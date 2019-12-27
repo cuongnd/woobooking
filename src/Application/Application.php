@@ -2,9 +2,8 @@
 namespace WooBooking\CMS\Application;
 
 use FOFInput;
-use JLog;
-use WooBooking\CMS\FOFInput\FOFInput;
-use Woobooking\CMS\Log\Log;
+use Log;
+
 use Woobooking\CMS\Registry\Registry;
 use nb_config;
 use Factory;
@@ -263,7 +262,6 @@ class Application extends CMSObject
         }
 
         // Build our language object
-        require_once WOOBOOKING_PATH_ROOT.'/lib/language/language.php';
 
         $lang = Language::getInstance($this->get('language'), $this->get('debug_lang'));
 
