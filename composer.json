@@ -1,21 +1,21 @@
 {
-    "name": "woobooking/booking",
+    "name": "woobooking",
     "description": "woobooking.",
     "type": "library",
     "keywords": [
-        "template"
+        ""
     ],
-    "homepage": "https://github.com/sebastianbergmann/php-text-template/",
+    "homepage": "https://github.com/cuongnd/woobooking",
     
     "authors": [
         {
             "name": "woobooking",
-            "email": "woobooking@gmail.com",
+            "email": "nguyendinhcuong@gmail.com",
             "role": "lead"
         }
     ],
     "support": {
-        "issues": "https://github.com/sebastianbergmann/php-text-template/issues123"
+        "issues": "https://github.com/cuongnd/woobooking/issues"
     },
     "require": {
         "php": ">=5.3.3"
