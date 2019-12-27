@@ -1,6 +1,6 @@
 {
-    "name": "php1234/emplate1235",
-    "description": "Simple template engine.",
+    "name": "woobooking/booking",
+    "description": "woobooking.",
     "type": "library",
     "keywords": [
         "template"
@@ -9,9 +9,9 @@
     
     "authors": [
         {
-            "name": "Sebastian Bergmann123",
-            "email": "sebastian@phpunit.de123",
-            "role": "lead123"
+            "name": "woobooking",
+            "email": "woobooking@gmail.com",
+            "role": "lead"
         }
     ],
     "support": {
