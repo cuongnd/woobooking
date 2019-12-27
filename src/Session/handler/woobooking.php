@@ -10,7 +10,7 @@ namespace Woobooking\CMS\Session\handler;
 
 use Factory;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 require_once __DIR__."/native.php";
 /**
  * Interface for managing HTTP sessions

@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Session\Exception;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Exception class defining an unsupported session storage object

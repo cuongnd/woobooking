@@ -6,15 +6,16 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Query Building Class.
  *
  * @since  11.1
  */
-require_once WOOBOOKING_PATH_ROOT."/lib/database/query.php";
-require_once WOOBOOKING_PATH_ROOT."/lib/database/query/limitable.php";
-class JDatabaseQueryMysqli extends JDatabaseQuery implements JDatabaseQueryLimitable
+
+class DatabaseQueryMysqli extends DatabaseQuery implements DatabaseQueryLimitable
 {
 	/**
 	 * @var    integer  The offset for the result set.
@@ -87,7 +88,7 @@ class JDatabaseQueryMysqli extends JDatabaseQuery implements JDatabaseQueryLimit
 	 * @param   integer  $limit   The limit for the result set
 	 * @param   integer  $offset  The offset for the result set
 	 *
-	 * @return  JDatabaseQuery  Returns this object to allow chaining.
+	 * @return  DatabaseQuery  Returns this object to allow chaining.
 	 *
 	 * @since   12.1
 	 */

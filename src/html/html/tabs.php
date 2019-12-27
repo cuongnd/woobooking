@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Utility class for Tabs elements.

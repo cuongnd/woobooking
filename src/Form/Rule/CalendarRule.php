@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Form\Rule;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Date\Date;
 use WooBooking\CMS\Form\Form;

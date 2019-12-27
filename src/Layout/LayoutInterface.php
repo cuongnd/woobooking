@@ -8,7 +8,7 @@
 namespace  Woobooking\CMS\Layout;
 
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Interface to handle display layout

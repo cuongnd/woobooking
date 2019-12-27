@@ -10,7 +10,7 @@ namespace WooBooking\CMS\Filesystem\Wrapper;
 
 use WooBooking\CMS\Filesystem\Folder;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Wrapper class for Folder

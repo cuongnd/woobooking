@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Query Building Class.
  *
  * @since  11.3
  */
-class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryLimitable
+class DatabaseQueryPostgresql extends DatabaseQuery implements DatabaseQueryLimitable
 {
 	/**
 	 * @var    object  The FOR UPDATE element used in "FOR UPDATE"  lock
@@ -144,7 +145,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 				$query = parent::__toString();
 				break;
 		}
-		if ($this instanceof JDatabaseQueryLimitable)
+		if ($this instanceof DatabaseQueryLimitable)
 		{
 			$query = $this->processLimit($query, $this->limit, $this->offset);
 		}
@@ -155,7 +156,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 *
 	 * @param   string  $clause  Optionally, the name of the clause to clear, or nothing to clear the whole query.
 	 *
-	 * @return  JDatabaseQueryPostgresql  Returns this object to allow chaining.
+	 * @return  DatabaseQueryPostgresql  Returns this object to allow chaining.
 	 *
 	 * @since   11.3
 	 */
@@ -268,7 +269,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 * @param   string  $table_name  The table to lock
 	 * @param   string  $glue        The glue by which to join the conditions. Defaults to ',' .
 	 *
-	 * @return  JDatabaseQueryPostgresql  FOR UPDATE query element
+	 * @return  DatabaseQueryPostgresql  FOR UPDATE query element
 	 *
 	 * @since   11.3
 	 */
@@ -278,7 +279,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 		if (is_null($this->forUpdate))
 		{
 			$glue            = strtoupper($glue);
-			$this->forUpdate = new JDatabaseQueryElement('FOR UPDATE', 'OF ' . $table_name, "$glue ");
+			$this->forUpdate = new DatabaseQueryElement('FOR UPDATE', 'OF ' . $table_name, "$glue ");
 		}
 		else
 		{
@@ -292,7 +293,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 * @param   string  $table_name  The table to lock
 	 * @param   string  $glue        The glue by which to join the conditions. Defaults to ',' .
 	 *
-	 * @return  JDatabaseQueryPostgresql  FOR SHARE query element
+	 * @return  DatabaseQueryPostgresql  FOR SHARE query element
 	 *
 	 * @since   11.3
 	 */
@@ -302,7 +303,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 		if (is_null($this->forShare))
 		{
 			$glue           = strtoupper($glue);
-			$this->forShare = new JDatabaseQueryElement('FOR SHARE', 'OF ' . $table_name, "$glue ");
+			$this->forShare = new DatabaseQueryElement('FOR SHARE', 'OF ' . $table_name, "$glue ");
 		}
 		else
 		{
@@ -409,7 +410,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	/**
 	 * Sets the NOWAIT lock on select's output row
 	 *
-	 * @return  JDatabaseQueryPostgresql  NO WAIT query element
+	 * @return  DatabaseQueryPostgresql  NO WAIT query element
 	 *
 	 * @since   11.3
 	 */
@@ -418,7 +419,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 		$this->type = 'noWait';
 		if (is_null($this->noWait))
 		{
-			$this->noWait = new JDatabaseQueryElement('NOWAIT', null);
+			$this->noWait = new DatabaseQueryElement('NOWAIT', null);
 		}
 		return $this;
 	}
@@ -427,7 +428,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 *
 	 * @param   integer  $limit  An int of how many row will be returned
 	 *
-	 * @return  JDatabaseQueryPostgresql  Returns this object to allow chaining.
+	 * @return  DatabaseQueryPostgresql  Returns this object to allow chaining.
 	 *
 	 * @since   11.3
 	 */
@@ -435,7 +436,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	{
 		if (is_null($this->limit))
 		{
-			$this->limit = new JDatabaseQueryElement('LIMIT', (int) $limit);
+			$this->limit = new DatabaseQueryElement('LIMIT', (int) $limit);
 		}
 		return $this;
 	}
@@ -444,7 +445,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 *
 	 * @param   integer  $offset  An int for skipping row
 	 *
-	 * @return  JDatabaseQueryPostgresql  Returns this object to allow chaining.
+	 * @return  DatabaseQueryPostgresql  Returns this object to allow chaining.
 	 *
 	 * @since   11.3
 	 */
@@ -452,7 +453,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	{
 		if (is_null($this->offset))
 		{
-			$this->offset = new JDatabaseQueryElement('OFFSET', (int) $offset);
+			$this->offset = new DatabaseQueryElement('OFFSET', (int) $offset);
 		}
 		return $this;
 	}
@@ -461,7 +462,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 *
 	 * @param   mixed  $pkCol  The name of the primary key column.
 	 *
-	 * @return  JDatabaseQueryPostgresql  Returns this object to allow chaining.
+	 * @return  DatabaseQueryPostgresql  Returns this object to allow chaining.
 	 *
 	 * @since   11.3
 	 */
@@ -469,7 +470,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	{
 		if (is_null($this->returning))
 		{
-			$this->returning = new JDatabaseQueryElement('RETURNING', $pkCol);
+			$this->returning = new DatabaseQueryElement('RETURNING', $pkCol);
 		}
 		return $this;
 	}
@@ -483,7 +484,7 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 * @param   integer  $limit   The limit for the result set
 	 * @param   integer  $offset  The offset for the result set
 	 *
-	 * @return  JDatabaseQueryPostgresql  Returns this object to allow chaining.
+	 * @return  DatabaseQueryPostgresql  Returns this object to allow chaining.
 	 *
 	 * @since   12.1
 	 */

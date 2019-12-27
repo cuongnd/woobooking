@@ -6,14 +6,15 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\driver;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * SQLite database driver
  *
  * @see    https://secure.php.net/pdo
  * @since  12.1
  */
-class JDatabaseDriverSqlite extends JDatabaseDriverPdo
+class DatabaseDriverSqlite extends DatabaseDriverPdo
 {
 	/**
 	 * The name of the database driver.
@@ -67,7 +68,7 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	 * @param   string   $tableName  The name of the database table to drop.
 	 * @param   boolean  $ifExists   Optionally specify that the table must exist before it is dropped.
 	 *
-	 * @return  JDatabaseDriverSqlite  Returns this object to support chaining.
+	 * @return  DatabaseDriverSqlite  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 */
@@ -290,7 +291,7 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	 *
 	 * @param   string  $table  The name of the table to unlock.
 	 *
-	 * @return  JDatabaseDriverSqlite  Returns this object to support chaining.
+	 * @return  DatabaseDriverSqlite  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -307,7 +308,7 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	 * @param   string  $backup    Not used by Sqlite.
 	 * @param   string  $prefix    Not used by Sqlite.
 	 *
-	 * @return  JDatabaseDriverSqlite  Returns this object to support chaining.
+	 * @return  DatabaseDriverSqlite  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -320,7 +321,7 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	/**
 	 * Unlocks tables in the database.
 	 *
-	 * @return  JDatabaseDriverSqlite  Returns this object to support chaining.
+	 * @return  DatabaseDriverSqlite  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException

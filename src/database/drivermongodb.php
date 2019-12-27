@@ -6,7 +6,8 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
+namespace Woobooking\CMS\Database;
 /**
  * woobooking Platform Database Driver Class
  *
@@ -15,7 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @method      string  q()   q($text, $escape = true)  Alias for quote method
  * @method      string  qn()  qn($name, $as = null)     Alias for quoteName method
  */
-abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInterface
+abstract class DatabaseMongoDbDriver extends Database implements DatabaseInterface
 {
 	/**
 	 * The name of the database.
@@ -136,7 +137,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 */
 	protected $errorMsg;
 	/**
-	 * @var    array  JDatabaseDriver instances container.
+	 * @var    array  DatabaseDriver instances container.
 	 * @since  11.1
 	 */
 	protected static $instances = array();
@@ -184,7 +185,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 				continue;
 			}
 			// Derive the class name from the type.
-			$class = str_ireplace('.php', '', 'JDatabaseDriver' . ucfirst(trim($fileName)));
+			$class = str_ireplace('.php', '', 'DatabaseDriver' . ucfirst(trim($fileName)));
 			// If the class doesn't exist we have nothing left to do but look at the next type. We did our best.
 			if (!class_exists($class))
 			{
@@ -200,8 +201,8 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 		return $connectors;
 	}
 	/**
-	 * Method to return a JDatabaseDriver instance based on the given options.  There are three global options and then
-	 * the rest are specific to the database driver.  The 'driver' option defines which JDatabaseDriver class is
+	 * Method to return a DatabaseDriver instance based on the given options.  There are three global options and then
+	 * the rest are specific to the database driver.  The 'driver' option defines which DatabaseDriver class is
 	 * used for the connection -- the default is 'mysqli'.  The 'database' option determines which database is to
 	 * be used for the connection.  The 'select' option determines whether the connector should automatically select
 	 * the chosen database.
@@ -211,7 +212,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 *
 	 * @param   array  $options  Parameters to be passed to the database driver.
 	 *
-	 * @return  JDatabaseDriver  A database object.
+	 * @return  DatabaseDriver  A database object.
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
@@ -226,12 +227,12 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 		if ($options['driver'] === 'mongodb' && PHP_MAJOR_VERSION >= 7)
 		{
 			// Check if we have support for the other MySQL drivers
-			$mysqliSupported   = JDatabaseDriverMongodb::isSupported();
-			$pdoMysqlSupported = JDatabaseDriverPdomysql::isSupported();
+			$mysqliSupported   = DatabaseDriverMongodb::isSupported();
+			$pdoMysqlSupported = DatabaseDriverPdomysql::isSupported();
 			// If neither is supported, then the user cannot use MySQL; throw an exception
 			if (!$mysqliSupported && !$pdoMysqlSupported)
 			{
-				throw new JDatabaseExceptionUnsupported(
+				throw new DatabaseExceptionUnsupported(
 					'The PHP `ext/mysql` extension is removed in PHP 7, cannot use the `mysql` driver.'
 					. ' Also, this system does not support MySQLi or PDO MySQL.  Cannot instantiate database driver.'
 				);
@@ -262,20 +263,20 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 		if (empty(self::$instances[$signature]))
 		{
 			// Derive the class name from the driver.
-			$class = 'JDatabaseDriver' . ucfirst(strtolower($options['driver']));
+			$class = 'DatabaseDriver' . ucfirst(strtolower($options['driver']));
 			// If the class still doesn't exist we have nothing left to do but throw an exception.  We did our best.
 			if (!class_exists($class))
 			{
-				throw new JDatabaseExceptionUnsupported(sprintf('Unable to load Database Driver: %s', $options['driver']));
+				throw new DatabaseExceptionUnsupported(sprintf('Unable to load Database Driver: %s', $options['driver']));
 			}
-			// Create our new JDatabaseDriver connector based on the options given.
+			// Create our new DatabaseDriver connector based on the options given.
 			try
 			{
 				$instance = new $class($options);
 			}
 			catch (RuntimeException $e)
 			{
-				throw new JDatabaseExceptionConnecting(sprintf('Unable to connect to the Database: %s', $e->getMessage()), $e->getCode(), $e);
+				throw new DatabaseExceptionConnecting(sprintf('Unable to connect to the Database: %s', $e->getMessage()), $e->getCode(), $e);
 			}
 			// Set the new connector to the global instances based on signature.
 			self::$instances[$signature] = $instance;
@@ -594,7 +595,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 */
 	abstract public function disconnect();
 	/**
-	 * Adds a function callable just before disconnecting the database. Parameter of the callable is $this JDatabaseDriver
+	 * Adds a function callable just before disconnecting the database. Parameter of the callable is $this DatabaseDriver
 	 *
 	 * @param   callable  $callable  Function to call in disconnect() method just before disconnecting from database
 	 *
@@ -612,7 +613,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 * @param   string   $table     The name of the database table to drop.
 	 * @param   boolean  $ifExists  Optionally specify that the table must exist before it is dropped.
 	 *
-	 * @return  JDatabaseDriver     Returns this object to support chaining.
+	 * @return  DatabaseDriver     Returns this object to support chaining.
 	 *
 	 * @since   11.4
 	 * @throws  RuntimeException
@@ -952,7 +953,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	/**
 	 * Gets an exporter class object.
 	 *
-	 * @return  JDatabaseExporter  An exporter object.
+	 * @return  DatabaseExporter  An exporter object.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -960,12 +961,12 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	public function getExporter()
 	{
 		// Derive the class name from the driver.
-		$class = 'JDatabaseExporter' . ucfirst($this->name);
+		$class = 'DatabaseExporter' . ucfirst($this->name);
 		// Make sure we have an exporter class for this driver.
 		if (!class_exists($class))
 		{
 			// If it doesn't exist we are at an impasse so throw an exception.
-			throw new JDatabaseExceptionUnsupported('Database Exporter not found.');
+			throw new DatabaseExceptionUnsupported('Database Exporter not found.');
 		}
 		$o = new $class;
 		$o->setDbo($this);
@@ -974,7 +975,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	/**
 	 * Gets an importer class object.
 	 *
-	 * @return  JDatabaseImporter  An importer object.
+	 * @return  DatabaseImporter  An importer object.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -982,12 +983,12 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	public function getImporter()
 	{
 		// Derive the class name from the driver.
-		$class = 'JDatabaseImporter' . ucfirst($this->name);
+		$class = 'DatabaseImporter' . ucfirst($this->name);
 		// Make sure we have an importer class for this driver.
 		if (!class_exists($class))
 		{
 			// If it doesn't exist we are at an impasse so throw an exception.
-			throw new JDatabaseExceptionUnsupported('Database Importer not found');
+			throw new DatabaseExceptionUnsupported('Database Importer not found');
 		}
 		$o = new $class;
 		$o->setDbo($this);
@@ -1006,7 +1007,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 		if (empty($this->name))
 		{
 			$className = get_class($this);
-			$className = str_replace('JDatabaseDriver', '', $className);
+			$className = str_replace('DatabaseDriver', '', $className);
 			$this->name = strtolower($className);
 		}
 		return $this->name;
@@ -1057,11 +1058,11 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 		return $this->serverType;
 	}
 	/**
-	 * Get the current query object or a new JDatabaseQuery object.
+	 * Get the current query object or a new DatabaseQuery object.
 	 *
-	 * @param   boolean  $new  False to return the current query object, True to return a new JDatabaseQuery object.
+	 * @param   boolean  $new  False to return the current query object, True to return a new DatabaseQuery object.
 	 *
-	 * @return  JDatabaseQuery  The current query object or a new object extending the JDatabaseQuery class.
+	 * @return  DatabaseQuery  The current query object or a new object extending the DatabaseQuery class.
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
@@ -1071,12 +1072,12 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 		if ($new)
 		{
 			// Derive the class name from the driver.
-			$class = 'JDatabaseQuery' . ucfirst($this->name);
+			$class = 'DatabaseQuery' . ucfirst($this->name);
 			// Make sure we have a query class for this driver.
 			if (!class_exists($class))
 			{
 				// If it doesn't exist we are at an impasse so throw an exception.
-				throw new JDatabaseExceptionUnsupported('Database Query Class not found.');
+				throw new DatabaseExceptionUnsupported('Database Query Class not found.');
 			}
 			return new $class($this);
 		}
@@ -1091,7 +1092,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 * @param   string  $column  An option column to use as the iterator key.
 	 * @param   string  $class   The class of object that is returned.
 	 *
-	 * @return  JDatabaseIterator  A new database iterator.
+	 * @return  DatabaseIterator  A new database iterator.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -1099,12 +1100,12 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	public function getIterator($column = null, $class = 'stdClass')
 	{
 		// Derive the class name from the driver.
-		$iteratorClass = 'JDatabaseIterator' . ucfirst($this->name);
+		$iteratorClass = 'DatabaseIterator' . ucfirst($this->name);
 		// Make sure we have an iterator class for this driver.
 		if (!class_exists($iteratorClass))
 		{
 			// If it doesn't exist we are at an impasse so throw an exception.
-			throw new JDatabaseExceptionUnsupported(sprintf('class *%s* is not defined', $iteratorClass));
+			throw new DatabaseExceptionUnsupported(sprintf('class *%s* is not defined', $iteratorClass));
 		}
 		// Return a new iterator
 		return new $iteratorClass($this->execute(), $column, $class);
@@ -1162,7 +1163,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 */
 	public function getUTFSupport()
 	{
-		Log::add('JDatabaseDriver::getUTFSupport() is deprecated. Use JDatabaseDriver::hasUTFSupport() instead.', Log::WARNING, 'deprecated');
+		Log::add('DatabaseDriver::getUTFSupport() is deprecated. Use DatabaseDriver::hasUTFSupport() instead.', Log::WARNING, 'deprecated');
 		return $this->hasUTFSupport();
 	}
 	/**
@@ -1379,7 +1380,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 */
 	public function loadNextObject($class = 'stdClass')
 	{
-		Log::add(__METHOD__ . '() is deprecated. Use JDatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
+		Log::add(__METHOD__ . '() is deprecated. Use DatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
 		$this->connect();
 		static $cursor = null;
 		// Execute the query and get the result set cursor.
@@ -1407,11 +1408,11 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
-	 * @deprecated  4.0 (CMS)  Use JDatabaseDriver::getIterator() instead
+	 * @deprecated  4.0 (CMS)  Use DatabaseDriver::getIterator() instead
 	 */
 	public function loadNextRow()
 	{
-		Log::add(__METHOD__ . '() is deprecated. Use JDatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
+		Log::add(__METHOD__ . '() is deprecated. Use DatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
 		$this->connect();
 		static $cursor = null;
 		// Execute the query and get the result set cursor.
@@ -1597,7 +1598,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 *
 	 * @param   string  $tableName  The name of the table to unlock.
 	 *
-	 * @return  JDatabaseDriver     Returns this object to support chaining.
+	 * @return  DatabaseDriver     Returns this object to support chaining.
 	 *
 	 * @since   11.4
 	 * @throws  RuntimeException
@@ -1796,7 +1797,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	 * @param   string  $backup    Table prefix
 	 * @param   string  $prefix    For the table - used to rename constraints in non-mysql databases
 	 *
-	 * @return  JDatabaseDriver    Returns this object to support chaining.
+	 * @return  DatabaseDriver    Returns this object to support chaining.
 	 *
 	 * @since   11.4
 	 * @throws  RuntimeException
@@ -1831,18 +1832,18 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	/**
 	 * Sets the SQL statement string for later execution.
 	 *
-	 * @param   mixed    $query   The SQL statement to set either as a JDatabaseQuery object or a string.
+	 * @param   mixed    $query   The SQL statement to set either as a DatabaseQuery object or a string.
 	 * @param   integer  $offset  The affected row offset to set.
 	 * @param   integer  $limit   The maximum affected rows to set.
 	 *
-	 * @return  JDatabaseDriver  This object to support method chaining.
+	 * @return  DatabaseDriver  This object to support method chaining.
 	 *
 	 * @since   11.1
 	 */
 	public function setQuery($query, $offset = 0, $limit = 0)
 	{
 		$this->sql = $query;
-		if ($query instanceof JDatabaseQueryLimitable)
+		if ($query instanceof DatabaseQueryLimitable)
 		{
 			if (!$limit && $query->limit)
 			{
@@ -2001,7 +2002,7 @@ abstract class JDatabaseMongoDbDriver extends JDatabase implements JDatabaseInte
 	/**
 	 * Unlocks tables in the database.
 	 *
-	 * @return  JDatabaseDriver  Returns this object to support chaining.
+	 * @return  DatabaseDriver  Returns this object to support chaining.
 	 *
 	 * @since   11.4
 	 * @throws  RuntimeException

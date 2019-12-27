@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Client;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use woobooking\CMS\Log\Log;
 use woobooking\CMS\Utility\BufferStreamHandler;

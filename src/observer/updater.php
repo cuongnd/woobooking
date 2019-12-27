@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 require_once WOOBOOKING_PATH_ROOT."/lib/WooBooking/observer/updater/interface.php";
 /**
  * Observer updater pattern implementation for woobooking

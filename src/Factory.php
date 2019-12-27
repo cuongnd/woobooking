@@ -84,9 +84,6 @@ class Factory
 
 
         try {
-
-            require_once WOOBOOKING_PATH_ROOT."/lib/database/driver/mysqli.php";
-
             $db = JDatabaseDriverMysqli::getInstance($options);
         } catch (RuntimeException $e) {
             if (!headers_sent()) {
@@ -119,10 +116,12 @@ class Factory
     }
     public static function getApplication($client="")
     {
-
+        
         if (!self::$application) {
+
             self::$application =Application::getInstance($client);
         }
+
         return self::$application;
     }
     public static function setRootUrl($root_url){

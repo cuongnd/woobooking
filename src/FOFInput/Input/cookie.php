@@ -9,7 +9,7 @@
 namespace WooBooking\CMS\FOFInput\Input;
 use FOFInput;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * woobooking! Input Cookie Class

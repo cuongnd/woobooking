@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Platform Database Exporter Class
  *
  * @since  12.1
  */
-abstract class JDatabaseExporter
+abstract class DatabaseExporter
 {
 	/**
 	 * The type of output format (xml).
@@ -31,7 +32,7 @@ abstract class JDatabaseExporter
 	/**
 	 * The database connector to use for exporting structure and/or data.
 	 *
-	 * @var    JDatabaseDriver
+	 * @var    DatabaseDriver
 	 * @since  13.1
 	 */
 	protected $db = null;
@@ -133,7 +134,7 @@ abstract class JDatabaseExporter
 	 *
 	 * @param   mixed  $from  The name of a single table, or an array of the table names to export.
 	 *
-	 * @return  JDatabaseExporter  Method supports chaining.
+	 * @return  DatabaseExporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 * @throws  Exception if input is not a string or array.
@@ -173,13 +174,13 @@ abstract class JDatabaseExporter
 	/**
 	 * Sets the database connector to use for exporting structure and/or data from MySQL.
 	 *
-	 * @param   JDatabaseDriver  $db  The database connector.
+	 * @param   DatabaseDriver  $db  The database connector.
 	 *
-	 * @return  JDatabaseExporter  Method supports chaining.
+	 * @return  DatabaseExporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 */
-	public function setDbo(JDatabaseDriver $db)
+	public function setDbo(DatabaseDriver $db)
 	{
 		$this->db = $db;
 		return $this;
@@ -189,7 +190,7 @@ abstract class JDatabaseExporter
 	 *
 	 * @param   boolean  $setting  True to export the structure, false to not.
 	 *
-	 * @return  JDatabaseExporter  Method supports chaining.
+	 * @return  DatabaseExporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 */

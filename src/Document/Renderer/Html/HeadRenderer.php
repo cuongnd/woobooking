@@ -7,7 +7,7 @@
  */
 
 namespace WooBooking\CMS\Document\Renderer\Html;
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use Factory;
 use WooBooking\CMS\Document\DocumentRenderer;

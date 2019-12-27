@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Session;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use woobooking\Application\AbstractApplication;
 use woobooking\CMS\Application\CMSApplication;

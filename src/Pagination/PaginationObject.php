@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Pagination;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Pagination object representing a particular item in the pagination lists.

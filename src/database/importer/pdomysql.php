@@ -6,7 +6,8 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\importer;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * MySQL import driver for the PDO based MySQL database driver.
  *
@@ -14,7 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Database
  * @since       3.4
  */
-class JDatabaseImporterPdomysql extends JDatabaseImporter
+class DatabaseImporterPdomysql extends DatabaseImporter
 {
 	/**
 	 * Get the SQL syntax to add a column.
@@ -364,7 +365,7 @@ class JDatabaseImporterPdomysql extends JDatabaseImporter
 	/**
 	 * Checks if all data and options are in order prior to exporting.
 	 *
-	 * @return  JDatabaseImporterPdomysql  Method supports chaining.
+	 * @return  DatabaseImporterPdomysql  Method supports chaining.
 	 *
 	 * @since   3.4
 	 * @throws  Exception if an error is encountered.
@@ -372,7 +373,7 @@ class JDatabaseImporterPdomysql extends JDatabaseImporter
 	public function check()
 	{
 		// Check if the db connector has been set.
-		if (!($this->db instanceof JDatabaseDriverPdomysql))
+		if (!($this->db instanceof DatabaseDriverPdomysql))
 		{
 			throw new Exception('JPLATFORM_ERROR_DATABASE_CONNECTOR_WRONG_TYPE');
 		}

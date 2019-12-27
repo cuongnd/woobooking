@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Crypt;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Encryption key object for the Joomla Platform.

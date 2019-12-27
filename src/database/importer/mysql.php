@@ -6,19 +6,20 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\importer;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * MySQL import driver.
  *
  * @since       11.1
  * @deprecated  Will be removed when the minimum supported PHP version no longer includes the deprecated PHP `mysql` extension
  */
-class JDatabaseImporterMysql extends JDatabaseImporterMysqli
+class DatabaseImporterMysql extends DatabaseImporterMysqli
 {
 	/**
 	 * Checks if all data and options are in order prior to exporting.
 	 *
-	 * @return  JDatabaseImporterMysql  Method supports chaining.
+	 * @return  DatabaseImporterMysql  Method supports chaining.
 	 *
 	 * @since   11.1
 	 * @throws  Exception if an error is encountered.
@@ -26,7 +27,7 @@ class JDatabaseImporterMysql extends JDatabaseImporterMysqli
 	public function check()
 	{
 		// Check if the db connector has been set.
-		if (!($this->db instanceof JDatabaseDriverMysql))
+		if (!($this->db instanceof DatabaseDriverMysql))
 		{
 			throw new Exception('JPLATFORM_ERROR_DATABASE_CONNECTOR_WRONG_TYPE');
 		}

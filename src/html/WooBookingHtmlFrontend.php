@@ -10,7 +10,7 @@
 
 
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Utility class for all HTML drawing classes

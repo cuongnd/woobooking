@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\driver;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * PostgreSQL database driver
  *
  * @since  12.1
  */
-class JDatabaseDriverPostgresql extends JDatabaseDriver
+class DatabaseDriverPostgresql extends DatabaseDriver
 {
 	/**
 	 * The database driver name
@@ -57,9 +58,9 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	 */
 	protected $concat_operator = '||';
 	/**
-	 * JDatabaseDriverPostgresqlQuery object returned by getQuery
+	 * DatabaseDriverPostgresqlQuery object returned by getQuery
 	 *
-	 * @var    JDatabaseDriverPostgresqlQuery
+	 * @var    DatabaseDriverPostgresqlQuery
 	 * @since  12.1
 	 */
 	protected $queryObject = null;
@@ -105,7 +106,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 		// Make sure the postgresql extension for PHP is installed and enabled.
 		if (!self::isSupported())
 		{
-			throw new JDatabaseExceptionUnsupported('PHP extension pg_connect is not available.');
+			throw new DatabaseExceptionUnsupported('PHP extension pg_connect is not available.');
 		}
 		// Build the DSN for the connection.
 		$dsn = '';
@@ -117,7 +118,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 		// Attempt to connect to the server.
 		if (!($this->connection = @pg_connect($dsn)))
 		{
-			throw new JDatabaseExceptionConnecting('Error connecting to PGSQL database.');
+			throw new DatabaseExceptionConnecting('Error connecting to PGSQL database.');
 		}
 		pg_set_error_verbosity($this->connection, PGSQL_ERRORS_DEFAULT);
 		pg_query($this->connection, 'SET standard_conforming_strings=off');
@@ -262,12 +263,12 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 		return pg_num_rows((int) $cur ? $cur : $this->cursor);
 	}
 	/**
-	 * Get the current or query, or new JDatabaseQuery object.
+	 * Get the current or query, or new DatabaseQuery object.
 	 *
-	 * @param   boolean  $new    False to return the last query set, True to return a new JDatabaseQuery object.
-	 * @param   boolean  $asObj  False to return last query as string, true to get JDatabaseQueryPostgresql object.
+	 * @param   boolean  $new    False to return the last query set, True to return a new DatabaseQuery object.
+	 * @param   boolean  $asObj  False to return last query as string, true to get DatabaseQueryPostgresql object.
 	 *
-	 * @return  JDatabaseQuery  The current query object or a new object extending the JDatabaseQuery class.
+	 * @return  DatabaseQuery  The current query object or a new object extending the DatabaseQuery class.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -277,11 +278,11 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 		if ($new)
 		{
 			// Make sure we have a query class for this driver.
-			if (!class_exists('JDatabaseQueryPostgresql'))
+			if (!class_exists('DatabaseQueryPostgresql'))
 			{
-				throw new JDatabaseExceptionUnsupported('JDatabaseQueryPostgresql Class not found.');
+				throw new DatabaseExceptionUnsupported('DatabaseQueryPostgresql Class not found.');
 			}
-			$this->queryObject = new JDatabaseQueryPostgresql($this);
+			$this->queryObject = new DatabaseQueryPostgresql($this);
 			return $this->queryObject;
 		}
 		else
@@ -565,7 +566,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	 *
 	 * @param   string  $tableName  The name of the table to unlock.
 	 *
-	 * @return  JDatabaseDriverPostgresql  Returns this object to support chaining.
+	 * @return  DatabaseDriverPostgresql  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -589,14 +590,14 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 		$this->connect();
 		// Take a local copy so that we don't modify the original query and cause issues later
 		$query = $this->replacePrefix((string) $this->sql);
-		if (!($this->sql instanceof JDatabaseQuery) && ($this->limit > 0 || $this->offset > 0))
+		if (!($this->sql instanceof DatabaseQuery) && ($this->limit > 0 || $this->offset > 0))
 		{
 			$query .= ' LIMIT ' . $this->limit . ' OFFSET ' . $this->offset;
 		}
 		if (!is_resource($this->connection))
 		{
 			Log::add(WoobookingText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), Log::ERROR, 'database');
-			throw new JDatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum);
+			throw new DatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum);
 		}
 		// Increment the query counter.
 		$this->count++;
@@ -658,7 +659,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 					$this->errorMsg = $this->getErrorMessage($query);
 					// Throw the normal query exception.
 					Log::add(WoobookingText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), Log::ERROR, 'database-error');
-					throw new JDatabaseExceptionExecuting($query, $this->errorMsg, null, $e);
+					throw new DatabaseExceptionExecuting($query, $this->errorMsg, null, $e);
 				}
 				// Since we were able to reconnect, run the query again.
 				return $this->execute();
@@ -671,7 +672,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 				$this->errorMsg = $errorMsg;
 				// Throw the normal query exception.
 				Log::add(WoobookingText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), Log::ERROR, 'database-error');
-				throw new JDatabaseExceptionExecuting($query, $this->errorMsg);
+				throw new DatabaseExceptionExecuting($query, $this->errorMsg);
 			}
 		}
 		return $this->cursor;
@@ -684,7 +685,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	 * @param   string  $backup    Not used by PostgreSQL.
 	 * @param   string  $prefix    Not used by PostgreSQL.
 	 *
-	 * @return  JDatabaseDriverPostgresql  Returns this object to support chaining.
+	 * @return  DatabaseDriverPostgresql  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
@@ -1212,7 +1213,7 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	 * Unlocks tables in the database, this command does not exist in PostgreSQL,
 	 * it is automatically done on commit or rollback.
 	 *
-	 * @return  JDatabaseDriverPostgresql  Returns this object to support chaining.
+	 * @return  DatabaseDriverPostgresql  Returns this object to support chaining.
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException

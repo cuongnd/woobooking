@@ -11,7 +11,7 @@ namespace WooBooking\CMS\Document;
 use WooBooking\CMS\Utilities\Utility;
 use WooBookingLoader;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 
 

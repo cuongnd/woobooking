@@ -18,7 +18,7 @@ use ReflectionClass;
 use stdClass;
 use WooBookingHtml;use WoobookingText;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * JUtility is a utility functions class

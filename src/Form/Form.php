@@ -15,7 +15,7 @@ use Factory;
 use WooBooking\CMS\Utilities\Utility;
 use WooBooking\CMS\Utilities\ArrayHelper;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 
 /**

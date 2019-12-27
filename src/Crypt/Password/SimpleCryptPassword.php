@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Crypt\Password;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Crypt\Crypt;
 use WooBooking\CMS\Crypt\CryptPassword;

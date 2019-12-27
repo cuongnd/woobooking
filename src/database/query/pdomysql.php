@@ -6,7 +6,8 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Query Building Class.
  *
@@ -14,6 +15,6 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Database
  * @since       3.4
  */
-class JDatabaseQueryPdomysql extends JDatabaseQueryMysqli
+class DatabaseQueryPdomysql extends DatabaseQueryMysqli
 {
 }

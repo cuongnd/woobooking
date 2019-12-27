@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Client;
 use Factory;
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Client helper class

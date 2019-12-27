@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Oracle Query Building Class.
  *
  * @since  12.1
  */
-class JDatabaseQueryOracle extends JDatabaseQueryPdo implements JDatabaseQueryPreparable, JDatabaseQueryLimitable
+class DatabaseQueryOracle extends DatabaseQueryPdo implements DatabaseQueryPreparable, DatabaseQueryLimitable
 {
 	/**
 	 * @var    integer  The offset for the result set.
@@ -41,7 +42,7 @@ class JDatabaseQueryOracle extends JDatabaseQueryPdo implements JDatabaseQueryPr
 	 * @param   integer         $length         The length of the variable. Usually required for OUTPUT parameters.
 	 * @param   array           $driverOptions  Optional driver options to be used.
 	 *
-	 * @return  JDatabaseQueryOracle
+	 * @return  DatabaseQueryOracle
 	 *
 	 * @since   12.1
 	 */
@@ -100,7 +101,7 @@ class JDatabaseQueryOracle extends JDatabaseQueryPdo implements JDatabaseQueryPr
 	 *
 	 * @param   string  $clause  Optionally, the name of the clause to clear, or nothing to clear the whole query.
 	 *
-	 * @return  JDatabaseQueryOracle  Returns this object to allow chaining.
+	 * @return  DatabaseQueryOracle  Returns this object to allow chaining.
 	 *
 	 * @since   12.1
 	 */
@@ -120,7 +121,7 @@ class JDatabaseQueryOracle extends JDatabaseQueryPdo implements JDatabaseQueryPr
 	 * additions to make the query limited to a particular number of
 	 * results, or start at a particular offset. This method is used
 	 * automatically by the __toString() method if it detects that the
-	 * query implements the JDatabaseQueryLimitable interface.
+	 * query implements the DatabaseQueryLimitable interface.
 	 *
 	 * @param   string   $query   The query in string format
 	 * @param   integer  $limit   The limit for the result set
@@ -168,7 +169,7 @@ class JDatabaseQueryOracle extends JDatabaseQueryPdo implements JDatabaseQueryPr
 	 * @param   integer  $limit   The limit for the result set
 	 * @param   integer  $offset  The offset for the result set
 	 *
-	 * @return  JDatabaseQueryOracle  Returns this object to allow chaining.
+	 * @return  DatabaseQueryOracle  Returns this object to allow chaining.
 	 *
 	 * @since   12.1
 	 */

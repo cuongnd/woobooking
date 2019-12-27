@@ -11,7 +11,7 @@
 use \WooBooking\CMS\Utilities\Utility;
 
 use Woobooking\CMS\Filesystem\Path;
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Utility class for all HTML drawing classes

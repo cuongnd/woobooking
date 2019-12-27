@@ -10,7 +10,7 @@ use Woobooking\CMS\Filesystem\Path;
 require_once __DIR__."/BaseLayout.php";
 require_once __DIR__."/LayoutInterface.php";
 use WooBooking\CMS\Utilities\Utility;
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 
 /**

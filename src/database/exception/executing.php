@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\exception;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Exception class defining an error executing a statement
  *
  * @since  3.6
  */
-class JDatabaseExceptionExecuting extends RuntimeException
+class DatabaseExceptionExecuting extends RuntimeException
 {
 	/**
 	 * The SQL statement that was executed.

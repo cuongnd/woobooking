@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Filesystem\Support;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * String Controller

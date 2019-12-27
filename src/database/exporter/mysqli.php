@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\exporter;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * MySQLi export driver.
  *
  * @since  11.1
  */
-class JDatabaseExporterMysqli extends JDatabaseExporter
+class DatabaseExporterMysqli extends DatabaseExporter
 {
 	/**
 	 * Builds the XML data for the tables to export.
@@ -72,7 +73,7 @@ class JDatabaseExporterMysqli extends JDatabaseExporter
 	/**
 	 * Checks if all data and options are in order prior to exporting.
 	 *
-	 * @return  JDatabaseExporterMysqli  Method supports chaining.
+	 * @return  DatabaseExporterMysqli  Method supports chaining.
 	 *
 	 * @since   11.1
 	 * @throws  Exception if an error is encountered.
@@ -80,7 +81,7 @@ class JDatabaseExporterMysqli extends JDatabaseExporter
 	public function check()
 	{
 		// Check if the db connector has been set.
-		if (!($this->db instanceof JDatabaseDriverMysqli))
+		if (!($this->db instanceof DatabaseDriverMysqli))
 		{
 			throw new Exception('JPLATFORM_ERROR_DATABASE_CONNECTOR_WRONG_TYPE');
 		}

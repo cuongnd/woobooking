@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\iterator;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * PDO database iterator.
  *
  * @since  12.1
  */
-class JDatabaseIteratorPdo extends JDatabaseIterator
+class DatabaseIteratorPdo extends DatabaseIterator
 {
 	/**
 	 * Get the number of rows in the result set for the executed SQL given by the cursor.

@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Log;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 use Woobooking\CMS\WbDate\WbDate;
 /**
  * woobooking! Log Entry class

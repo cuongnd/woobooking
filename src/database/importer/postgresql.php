@@ -6,18 +6,19 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\importer;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * PostgreSQL import driver.
  *
  * @since  12.1
  */
-class JDatabaseImporterPostgresql extends JDatabaseImporter
+class DatabaseImporterPostgresql extends DatabaseImporter
 {
 	/**
 	 * Checks if all data and options are in order prior to exporting.
 	 *
-	 * @return  JDatabaseImporterPostgresql  Method supports chaining.
+	 * @return  DatabaseImporterPostgresql  Method supports chaining.
 	 *
 	 * @since   12.1
 	 * @throws  Exception if an error is encountered.
@@ -25,7 +26,7 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 	public function check()
 	{
 		// Check if the db connector has been set.
-		if (!($this->db instanceof JDatabaseDriverPostgresql))
+		if (!($this->db instanceof DatabaseDriverPostgresql))
 		{
 			throw new Exception('JPLATFORM_ERROR_DATABASE_CONNECTOR_WRONG_TYPE');
 		}

@@ -6,14 +6,15 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\driver;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Platform PDO Database Driver Class
  *
  * @see    https://secure.php.net/pdo
  * @since  12.1
  */
-abstract class JDatabaseDriverPdo extends JDatabaseDriver
+abstract class DatabaseDriverPdo extends DatabaseDriver
 {
 	/**
 	 * The name of the database driver.
@@ -109,7 +110,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		// Make sure the PDO extension for PHP is installed and enabled.
 		if (!self::isSupported())
 		{
-			throw new JDatabaseExceptionUnsupported('PDO Extension is not available.', 1);
+			throw new DatabaseExceptionUnsupported('PDO Extension is not available.', 1);
 		}
 		$replace = array();
 		$with = array();
@@ -239,7 +240,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		}
 		catch (PDOException $e)
 		{
-			throw new JDatabaseExceptionConnecting('Could not connect to PDO: ' . $e->getMessage(), 2, $e);
+			throw new DatabaseExceptionConnecting('Could not connect to PDO: ' . $e->getMessage(), 2, $e);
 		}
 	}
 	/**
@@ -302,7 +303,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		$this->connect();
 		// Take a local copy so that we don't modify the original query and cause issues later
 		$query = $this->replacePrefix((string) $this->sql);
-		if (!($this->sql instanceof JDatabaseQuery) && ($this->limit > 0 || $this->offset > 0))
+		if (!($this->sql instanceof DatabaseQuery) && ($this->limit > 0 || $this->offset > 0))
 		{
 			// @TODO
 			$query .= ' LIMIT ' . $this->offset . ', ' . $this->limit;
@@ -310,7 +311,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		if (!is_object($this->connection))
 		{
 			Log::add(WoobookingText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), Log::ERROR, 'database');
-			throw new JDatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum);
+			throw new DatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum);
 		}
 		// Increment the query counter.
 		$this->count++;
@@ -330,7 +331,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		if ($this->prepared instanceof PDOStatement)
 		{
 			// Bind the variables:
-			if ($this->sql instanceof JDatabaseQueryPreparable)
+			if ($this->sql instanceof DatabaseQueryPreparable)
 			{
 				$bounded = $this->sql->getBounded();
 				foreach ($bounded as $key => $obj)
@@ -375,7 +376,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 					$this->errorMsg = $this->getErrorMessage($query);
 					// Throw the normal query exception.
 					Log::add(WoobookingText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), Log::ERROR, 'database-error');
-					throw new JDatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum, $e);
+					throw new DatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum, $e);
 				}
 				// Since we were able to reconnect, run the query again.
 				return $this->execute();
@@ -388,7 +389,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 				$this->errorMsg = $errorMsg;
 				// Throw the normal query exception.
 				Log::add(WoobookingText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), Log::ERROR, 'database-error');
-				throw new JDatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum);
+				throw new DatabaseExceptionExecuting($query, $this->errorMsg, $this->errorNum);
 			}
 		}
 		return $this->prepared;
@@ -571,12 +572,12 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 	/**
 	 * Sets the SQL statement string for later execution.
 	 *
-	 * @param   mixed    $query          The SQL statement to set either as a JDatabaseQuery object or a string.
+	 * @param   mixed    $query          The SQL statement to set either as a DatabaseQuery object or a string.
 	 * @param   integer  $offset         The affected row offset to set.
 	 * @param   integer  $limit          The maximum affected rows to set.
 	 * @param   array    $driverOptions  The optional PDO driver options.
 	 *
-	 * @return  JDatabaseDriver  This object to support method chaining.
+	 * @return  DatabaseDriver  This object to support method chaining.
 	 *
 	 * @since   12.1
 	 */
@@ -589,7 +590,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 			// Allows taking advantage of bound variables in a direct query:
 			$query = $this->getQuery(true)->setQuery($query);
 		}
-		if ($query instanceof JDatabaseQueryLimitable && !is_null($offset) && !is_null($limit))
+		if ($query instanceof DatabaseQueryLimitable && !is_null($offset) && !is_null($limit))
 		{
 			$query = $query->processLimit($query, $limit, $offset);
 		}
@@ -597,7 +598,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		$sql = $this->replacePrefix((string) $query);
 		// Use the stringified version in the prepare call:
 		$this->prepared = $this->connection->prepare($sql, $driverOptions);
-		// Store reference to the original JDatabaseQuery instance within the class.
+		// Store reference to the original DatabaseQuery instance within the class.
 		// This is important since binding variables depends on it within execute():
 		parent::setQuery($query, $offset, $limit);
 		return $this;
@@ -767,7 +768,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 	 */
 	public function loadNextObject($class = 'stdClass')
 	{
-		Log::add(__METHOD__ . '() is deprecated. Use JDatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
+		Log::add(__METHOD__ . '() is deprecated. Use DatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
 		$this->connect();
 		// Execute the query and get the result set cursor.
 		if (!$this->executed)
@@ -825,7 +826,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 	 */
 	public function loadNextRow()
 	{
-		Log::add(__METHOD__ . '() is deprecated. Use JDatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
+		Log::add(__METHOD__ . '() is deprecated. Use DatabaseDriver::getIterator() instead.', Log::WARNING, 'deprecated');
 		$this->connect();
 		// Execute the query and get the result set cursor.
 		if (!$this->executed)

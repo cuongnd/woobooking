@@ -6,7 +6,8 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Database Query Limitable Interface.
  * Adds bind/unbind methods as well as a getBounded() method
@@ -15,14 +16,14 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  12.1
  */
-interface JDatabaseQueryLimitable
+interface DatabaseQueryLimitable
 {
 	/**
 	 * Method to modify a query already in string format with the needed
 	 * additions to make the query limited to a particular number of
 	 * results, or start at a particular offset. This method is used
 	 * automatically by the __toString() method if it detects that the
-	 * query implements the JDatabaseQueryLimitable interface.
+	 * query implements the DatabaseQueryLimitable interface.
 	 *
 	 * @param   string   $query   The query in string format
 	 * @param   integer  $limit   The limit for the result set
@@ -43,7 +44,7 @@ interface JDatabaseQueryLimitable
 	 * @param   integer  $limit   The limit for the result set
 	 * @param   integer  $offset  The offset for the result set
 	 *
-	 * @return  JDatabaseQuery  Returns this object to allow chaining.
+	 * @return  DatabaseQuery  Returns this object to allow chaining.
 	 *
 	 * @since   12.1
 	 */

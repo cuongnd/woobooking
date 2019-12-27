@@ -8,7 +8,7 @@
 
 
 use Woobooking\CMS\Layout\FileLayout;
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Helper to render a Layout object, storing a base path

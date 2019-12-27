@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Crypt\Cipher;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Crypt cipher for Blowfish encryption, decryption and key generation.

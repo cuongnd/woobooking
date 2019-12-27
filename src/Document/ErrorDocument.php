@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Layout\LayoutHelper;
 use WooBooking\CMS\Uri\Uri;

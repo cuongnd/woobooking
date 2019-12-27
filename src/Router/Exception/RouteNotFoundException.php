@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Router\Exception;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Exception class defining an error for a missing route

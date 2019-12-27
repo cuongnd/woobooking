@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Session;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use SessionHandlerInterface;
 use WooBooking\CMS\FOFInput\Input\Input;

@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Filesystem;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Language\Text;

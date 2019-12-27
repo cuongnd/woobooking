@@ -6,7 +6,8 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Database Query Preparable Interface.
  * Adds bind/unbind methods as well as a getBounded() method
@@ -15,7 +16,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  12.1
  */
-interface JDatabaseQueryPreparable
+interface DatabaseQueryPreparable
 {
 	/**
 	 * Method to add a variable to an internal array that will be bound to a prepared SQL statement before query execution. Also
@@ -29,7 +30,7 @@ interface JDatabaseQueryPreparable
 	 * @param   integer         $length         The length of the variable. Usually required for OUTPUT parameters.
 	 * @param   array           $driverOptions  Optional driver options to be used.
 	 *
-	 * @return  JDatabaseQuery
+	 * @return  DatabaseQuery
 	 *
 	 * @since   12.1
 	 */

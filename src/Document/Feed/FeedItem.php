@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document\Feed;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Data object representing a feed item

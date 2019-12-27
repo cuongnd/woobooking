@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Log\Logger;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use Woobooking\CMS\Log\LogEntry;
 use Woobooking\CMS\Log\Logger;

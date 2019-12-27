@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\query;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Query Building Class.
  *
  * @since  11.1
  */
-class JDatabaseQuerySqlsrv extends JDatabaseQuery implements JDatabaseQueryLimitable
+class DatabaseQuerySqlsrv extends DatabaseQuery implements DatabaseQueryLimitable
 {
 	/**
 	 * The character(s) used to quote SQL statement names such as table names or field names,
@@ -81,7 +82,7 @@ class JDatabaseQuerySqlsrv extends JDatabaseQuery implements JDatabaseQueryLimit
 				{
 					$query .= (string) $this->having;
 				}
-				if ($this instanceof JDatabaseQueryLimitable && ($this->limit > 0 || $this->offset > 0))
+				if ($this instanceof DatabaseQueryLimitable && ($this->limit > 0 || $this->offset > 0))
 				{
 					$query = $this->processLimit($query, $this->limit, $this->offset);
 				}
@@ -297,7 +298,7 @@ class JDatabaseQuerySqlsrv extends JDatabaseQuery implements JDatabaseQueryLimit
 	 * @param   integer  $limit   The limit for the result set
 	 * @param   integer  $offset  The offset for the result set
 	 *
-	 * @return  JDatabaseQuery  Returns this object to allow chaining.
+	 * @return  DatabaseQuery  Returns this object to allow chaining.
 	 *
 	 * @since   12.1
 	 */
@@ -315,7 +316,7 @@ class JDatabaseQuerySqlsrv extends JDatabaseQuery implements JDatabaseQueryLimit
 	 *
 	 * @param   mixed  $columns  A string or array of ordering columns.
 	 *
-	 * @return  JDatabaseQuery  Returns this object to allow chaining.
+	 * @return  DatabaseQuery  Returns this object to allow chaining.
 	 *
 	 * @since   11.1
 	 */
@@ -374,7 +375,7 @@ class JDatabaseQuerySqlsrv extends JDatabaseQuery implements JDatabaseQueryLimit
 		$columns = array_unique(array_merge($columns, $selectCols));
 		$columns = implode(',', $columns);
 		// Recreate it every time, to ensure we have checked _all_ select statements
-		$this->group = new JDatabaseQueryElement('GROUP BY', $columns);
+		$this->group = new DatabaseQueryElement('GROUP BY', $columns);
 		return $this;
 	}
 	/**

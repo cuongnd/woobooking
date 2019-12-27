@@ -8,7 +8,7 @@
 
 namespace Woobooking\CMS\Exception;
 use Woobooking\CMS\Log\Log;
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Displays the custom error page when an uncaught exception occurs.

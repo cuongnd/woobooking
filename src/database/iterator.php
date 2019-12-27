@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Platform Database Driver Class
  *
  * @since  12.1
  */
-abstract class JDatabaseIterator implements Countable, Iterator
+abstract class DatabaseIterator implements Countable, Iterator
 {
 	/**
 	 * The database cursor.

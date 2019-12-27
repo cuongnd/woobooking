@@ -1,15 +1,16 @@
 <?php
 namespace WooBooking\CMS\Application;
 
-use FOFInput;
-use Log;
 
+
+use WooBooking\CMS\FOFInput\FOFInput;
 use Woobooking\CMS\Registry\Registry;
 use nb_config;
 use Factory;
+use Woobooking\CMS\Log\Log;
 use Language;
 use WooBooking\CMS\Object\CMSObject;
-use WooBooking\CMS\Log\Logger as NullLogger;
+
 
 
 use WooBooking\CMS\OpenSource\WordPress\WooBookingOnWordpress;
@@ -38,6 +39,7 @@ class Application extends CMSObject
 
     public static function getInstance($client)
     {
+       
         if (!is_object(self::$instance))
         {
             self::$instance = new static;
@@ -247,6 +249,7 @@ class Application extends CMSObject
      */
     protected function initialiseApp($options = array())
     {
+        
         require_once WOOBOOKING_PATH_ROOT."/nb_config.php";
         $config= new nb_config();
         
@@ -305,6 +308,7 @@ class Application extends CMSObject
     }
     public function __construct()
     {
+        
         $this->input =  new FOFInput;
         $this->initialiseApp();
     }

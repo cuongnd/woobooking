@@ -6,13 +6,14 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Platform Database Importer Class
  *
  * @since  12.1
  */
-abstract class JDatabaseImporter
+abstract class DatabaseImporter
 {
 	/**
 	 * @var    array  An array of cached data.
@@ -22,7 +23,7 @@ abstract class JDatabaseImporter
 	/**
 	 * The database connector to use for exporting structure and/or data.
 	 *
-	 * @var    JDatabaseDriver
+	 * @var    DatabaseDriver
 	 * @since  13.1
 	 */
 	protected $db = null;
@@ -68,7 +69,7 @@ abstract class JDatabaseImporter
 	/**
 	 * Set the output option for the exporter to XML format.
 	 *
-	 * @return  JDatabaseImporter  Method supports chaining.
+	 * @return  DatabaseImporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 */
@@ -80,7 +81,7 @@ abstract class JDatabaseImporter
 	/**
 	 * Checks if all data and options are in order prior to exporting.
 	 *
-	 * @return  JDatabaseImporter  Method supports chaining.
+	 * @return  DatabaseImporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 * @throws  Exception if an error is encountered.
@@ -91,7 +92,7 @@ abstract class JDatabaseImporter
 	 *
 	 * @param   mixed  $from  The data source to import.
 	 *
-	 * @return  JDatabaseImporter  Method supports chaining.
+	 * @return  DatabaseImporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 */
@@ -183,13 +184,13 @@ abstract class JDatabaseImporter
 	/**
 	 * Sets the database connector to use for exporting structure and/or data.
 	 *
-	 * @param   JDatabaseDriver  $db  The database connector.
+	 * @param   DatabaseDriver  $db  The database connector.
 	 *
-	 * @return  JDatabaseImporter  Method supports chaining.
+	 * @return  DatabaseImporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 */
-	public function setDbo(JDatabaseDriver $db)
+	public function setDbo(DatabaseDriver $db)
 	{
 		$this->db = $db;
 		return $this;
@@ -199,7 +200,7 @@ abstract class JDatabaseImporter
 	 *
 	 * @param   boolean  $setting  True to export the structure, false to not.
 	 *
-	 * @return  JDatabaseImporter  Method supports chaining.
+	 * @return  DatabaseImporter  Method supports chaining.
 	 *
 	 * @since   13.1
 	 */

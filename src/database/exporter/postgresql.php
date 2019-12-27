@@ -6,15 +6,16 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database\exporter;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * PostgreSQL export driver.
  *
  * @since  12.1
  *
- * @property-read  JDatabaseDriverPostgresql  $db  The database connector to use for exporting structure and/or data.
+ * @property-read  DatabaseDriverPostgresql  $db  The database connector to use for exporting structure and/or data.
  */
-class JDatabaseExporterPostgresql extends JDatabaseExporter
+class DatabaseExporterPostgresql extends DatabaseExporter
 {
 	/**
 	 * Builds the XML data for the tables to export.
@@ -86,7 +87,7 @@ class JDatabaseExporterPostgresql extends JDatabaseExporter
 	/**
 	 * Checks if all data and options are in order prior to exporting.
 	 *
-	 * @return  JDatabaseExporterPostgresql  Method supports chaining.
+	 * @return  DatabaseExporterPostgresql  Method supports chaining.
 	 *
 	 * @since   12.1
 	 * @throws  Exception if an error is encountered.
@@ -94,7 +95,7 @@ class JDatabaseExporterPostgresql extends JDatabaseExporter
 	public function check()
 	{
 		// Check if the db connector has been set.
-		if (!($this->db instanceof JDatabaseDriverPostgresql))
+		if (!($this->db instanceof DatabaseDriverPostgresql))
 		{
 			throw new Exception('JPLATFORM_ERROR_DATABASE_CONNECTOR_WRONG_TYPE');
 		}

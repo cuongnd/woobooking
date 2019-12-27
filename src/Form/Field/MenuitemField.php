@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Form\Field;
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Factory;
 use WooBooking\CMS\Form\FormHelper;

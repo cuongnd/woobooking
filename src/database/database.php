@@ -6,14 +6,15 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('JPATH_PLATFORM') or die;
+namespace Woobooking\CMS\Database;
+defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Database connector class.
  *
  * @since       11.1
  * @deprecated  13.3 (Platform) & 4.0 (CMS)
  */
-abstract class JDatabase
+abstract class Database
 {
 	/**
 	 * Execute the SQL statement.
@@ -26,7 +27,7 @@ abstract class JDatabase
 	 */
 	public function query()
 	{
-		Log::add('JDatabase::query() is deprecated, use JDatabaseDriver::execute() instead.', Log::WARNING, 'deprecated');
+		Log::add('Database::query() is deprecated, use DatabaseDriver::execute() instead.', Log::WARNING, 'deprecated');
 		return $this->execute();
 	}
 	/**
@@ -41,8 +42,8 @@ abstract class JDatabase
 	 */
 	public static function getConnectors()
 	{
-		Log::add('JDatabase::getConnectors() is deprecated, use JDatabaseDriver::getConnectors() instead.', Log::WARNING, 'deprecated');
-		return JDatabaseDriver::getConnectors();
+		Log::add('Database::getConnectors() is deprecated, use DatabaseDriver::getConnectors() instead.', Log::WARNING, 'deprecated');
+		return DatabaseDriver::getConnectors();
 	}
 	/**
 	 * Gets the error message from the database connection.
@@ -56,7 +57,7 @@ abstract class JDatabase
 	 */
 	public function getErrorMsg($escaped = false)
 	{
-		Log::add('JDatabase::getErrorMsg() is deprecated, use exception handling instead.', Log::WARNING, 'deprecated');
+		Log::add('Database::getErrorMsg() is deprecated, use exception handling instead.', Log::WARNING, 'deprecated');
 		if ($escaped)
 		{
 			return addslashes($this->errorMsg);
@@ -76,12 +77,12 @@ abstract class JDatabase
 	 */
 	public function getErrorNum()
 	{
-		Log::add('JDatabase::getErrorNum() is deprecated, use exception handling instead.', Log::WARNING, 'deprecated');
+		Log::add('Database::getErrorNum() is deprecated, use exception handling instead.', Log::WARNING, 'deprecated');
 		return $this->errorNum;
 	}
 	/**
-	 * Method to return a JDatabaseDriver instance based on the given options.  There are three global options and then
-	 * the rest are specific to the database driver.  The 'driver' option defines which JDatabaseDriver class is
+	 * Method to return a DatabaseDriver instance based on the given options.  There are three global options and then
+	 * the rest are specific to the database driver.  The 'driver' option defines which DatabaseDriver class is
 	 * used for the connection -- the default is 'mysqli'.  The 'database' option determines which database is to
 	 * be used for the connection.  The 'select' option determines whether the connector should automatically select
 	 * the chosen database.
@@ -91,15 +92,15 @@ abstract class JDatabase
 	 *
 	 * @param   array  $options  Parameters to be passed to the database driver.
 	 *
-	 * @return  JDatabaseDriver  A database object.
+	 * @return  DatabaseDriver  A database object.
 	 *
 	 * @since       11.1
 	 * @deprecated  13.1 (Platform) & 4.0 (CMS)
 	 */
 	public static function getInstance($options = array())
 	{
-		Log::add('JDatabase::getInstance() is deprecated, use JDatabaseDriver::getInstance() instead.', Log::WARNING, 'deprecated');
-		return JDatabaseDriver::getInstance($options);
+		Log::add('Database::getInstance() is deprecated, use DatabaseDriver::getInstance() instead.', Log::WARNING, 'deprecated');
+		return DatabaseDriver::getInstance($options);
 	}
 	/**
 	 * Splits a string of multiple queries into an array of individual queries.
@@ -113,8 +114,8 @@ abstract class JDatabase
 	 */
 	public static function splitSql($query)
 	{
-		Log::add('JDatabase::splitSql() is deprecated, use JDatabaseDriver::splitSql() instead.', Log::WARNING, 'deprecated');
-		return JDatabaseDriver::splitSql($query);
+		Log::add('Database::splitSql() is deprecated, use DatabaseDriver::splitSql() instead.', Log::WARNING, 'deprecated');
+		return DatabaseDriver::splitSql($query);
 	}
 	/**
 	 * Return the most recent error message for the database connector.
@@ -128,7 +129,7 @@ abstract class JDatabase
 	 */
 	public function stderr($showSQL = false)
 	{
-		Log::add('JDatabase::stderr() is deprecated.', Log::WARNING, 'deprecated');
+		Log::add('Database::stderr() is deprecated.', Log::WARNING, 'deprecated');
 		if ($this->errorNum != 0)
 		{
 			return WoobookingText::sprintf('JLIB_DATABASE_ERROR_FUNCTION_FAILED', $this->errorNum, $this->errorMsg)
@@ -145,11 +146,11 @@ abstract class JDatabase
 	 * @return  boolean  True on success, false otherwise.
 	 *
 	 * @since   11.1
-	 * @deprecated  12.3 (Platform) & 4.0 (CMS) - Use JDatabaseDriver::isSupported() instead.
+	 * @deprecated  12.3 (Platform) & 4.0 (CMS) - Use DatabaseDriver::isSupported() instead.
 	 */
 	public static function test()
 	{
-		Log::add('JDatabase::test() is deprecated. Use JDatabaseDriver::isSupported() instead.', Log::WARNING, 'deprecated');
+		Log::add('Database::test() is deprecated. Use DatabaseDriver::isSupported() instead.', Log::WARNING, 'deprecated');
 		return static::isSupported();
 	}
 }
