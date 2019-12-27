@@ -9,8 +9,8 @@
 
 namespace WooBooking\CMS\Form;
 use WooBooking\CMS\Object\CMSObject;
-use Woobooking\CMS\Registry\Registry;
-use Woobooking\CMS\Filesystem\Path;
+use WooBooking\CMS\Registry\Registry;
+use WooBooking\CMS\Filesystem\Path;
 use Factory;
 use WooBooking\CMS\Utilities\Utility;
 use WooBooking\CMS\Utilities\ArrayHelper;

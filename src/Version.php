@@ -10,7 +10,7 @@ namespace WooBooking\CMS;
 
 defined('_WOO_BOOKING_EXEC') or die;
 
-use Woobooking\CMS\Helper\LibraryHelper;
+use WooBooking\CMS\Helper\LibraryHelper;
 
 /**
  * Version information class for the woobooking CMS.

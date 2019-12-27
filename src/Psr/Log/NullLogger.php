@@ -1,6 +1,6 @@
 <?php
 
-namespace Woobooking\CMS\Psr\Log;
+namespace WooBooking\CMS\Psr\Log;
 
 /**
  * This Logger can be used to avoid conditional log calls.

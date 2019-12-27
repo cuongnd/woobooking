@@ -6,8 +6,8 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Layout;
-use Woobooking\CMS\Registry\Registry;
+namespace WooBooking\CMS\Layout;
+use WooBooking\CMS\Registry\Registry;
 
 require_once __DIR__."/LayoutInterface.php";
 

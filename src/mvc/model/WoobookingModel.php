@@ -3,7 +3,7 @@
 use WooBooking\CMS\mvc\model\BaseDatabaseModel;
 use WooBooking\CMS\Utilities\Utility;
 use WooBooking\CMS\Form\Form;
-use Woobooking\CMS\Filesystem\Path;
+use WooBooking\CMS\Filesystem\Path;
 use WooBooking\CMS\Object\CMSObject;
 
 class WoobookingModel extends BaseDatabaseModel

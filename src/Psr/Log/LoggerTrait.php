@@ -1,6 +1,6 @@
 <?php
 
-namespace Woobooking\CMS\Psr\Log;
+namespace WooBooking\CMS\Psr\Log;
 
 /**
  * This is a simple Logger trait that classes unable to extend AbstractLogger

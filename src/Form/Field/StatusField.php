@@ -11,7 +11,7 @@ namespace WooBooking\CMS\Form\Field;
 defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Form\FormHelper;
-use Woobooking\CMS\Form\fields\FormFieldPredefinedList;
+use WooBooking\CMS\Form\fields\FormFieldPredefinedList;
 FormHelper::loadFieldClass('predefinedlist');
 
 /**

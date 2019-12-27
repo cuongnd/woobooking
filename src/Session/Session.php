@@ -6,18 +6,18 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Session;
+namespace WooBooking\CMS\Session;
 
 defined('_WOO_BOOKING_EXEC') or die;
 
 use SessionHandlerInterface;
 use WooBooking\CMS\FOFInput\Input\Input;
-use Woobooking\CMS\Session\handler\SessionHandlerWoobooking;
+use WooBooking\CMS\Session\handler\SessionHandlerWoobooking;
 use woobooking\CMS\Application\ApplicationHelper;
 
 use woobooking\CMS\User\UserHelper;
 use Factory;
-use Woobooking\CMS\Registry\Registry;
+use WooBooking\CMS\Registry\Registry;
 
 /**
  * Class for managing HTTP sessions

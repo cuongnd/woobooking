@@ -5,7 +5,7 @@
  * @copyright  Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
-namespace Woobooking\CMS\Registry;
+namespace WooBooking\CMS\Registry;
 require_once __DIR__."/AbstractRegistryFormat.php";
 use WooBooking\CMS\Utilities\ArrayHelper;
 

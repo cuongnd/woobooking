@@ -7,7 +7,7 @@
  */
 
 namespace WooBooking\CMS\Filesystem\Wrapper;
-
+    
 use WooBooking\CMS\Filesystem\Path;
 defined('_WOO_BOOKING_EXEC') or die;
 

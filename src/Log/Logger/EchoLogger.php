@@ -6,12 +6,12 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Log\Logger;
+namespace WooBooking\CMS\Log\Logger;
 
 defined('_WOO_BOOKING_EXEC') or die;
 
-use Woobooking\CMS\Log\LogEntry;
-use Woobooking\CMS\Log\Logger;
+use WooBooking\CMS\Log\LogEntry;
+use WooBooking\CMS\Log\Logger;
 
 /**
  * woobooking Echo logger class.

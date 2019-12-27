@@ -3,7 +3,7 @@
 namespace WooBooking\CMS\Application;
 
 
-use Woobooking\CMS\Registry\Registry;
+use WooBooking\CMS\Registry\Registry;
 
 class NBAppHelper
 {

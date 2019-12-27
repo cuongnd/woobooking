@@ -1,9 +1,9 @@
 <?php
 
-namespace Woobooking\CMS\Psr\Log\Test;
+namespace WooBooking\CMS\Psr\Log\Test;
 
-use Woobooking\CMS\Psr\Log\LoggerInterface;
-use Woobooking\CMS\Psr\Log\LogLevel;
+use WooBooking\CMS\Psr\Log\LoggerInterface;
+use WooBooking\CMS\Psr\Log\LogLevel;
 
 /**
  * Provides a base test class for ensuring compliance with the LoggerInterface.

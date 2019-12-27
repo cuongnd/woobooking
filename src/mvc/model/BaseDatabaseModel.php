@@ -12,8 +12,8 @@ defined('_WOO_BOOKING_EXEC') or die;
 
 
 use Factory;
-use Woobooking\CMS\Filesystem\Path;
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Filesystem\Path;
+use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Object\CMSObject;
 use WoobookingTable;
 use WoobookingText;

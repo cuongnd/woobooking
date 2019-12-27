@@ -8,7 +8,7 @@
 namespace WooBooking\CMS\Form;
 
 use WooBooking\CMS\String\Normalise;
-use Woobooking\CMS\Filesystem\Path;
+use WooBooking\CMS\Filesystem\Path;
 
 
 /**

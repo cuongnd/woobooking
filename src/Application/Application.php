@@ -4,10 +4,10 @@ namespace WooBooking\CMS\Application;
 
 
 use WooBooking\CMS\FOFInput\FOFInput;
-use Woobooking\CMS\Registry\Registry;
+use WooBooking\CMS\Registry\Registry;
 use nb_config;
 use Factory;
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Log\Log;
 use Language;
 use WooBooking\CMS\Object\CMSObject;
 

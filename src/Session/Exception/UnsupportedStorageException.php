@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Session\Exception;
+namespace WooBooking\CMS\Session\Exception;
 
 defined('_WOO_BOOKING_EXEC') or die;
 

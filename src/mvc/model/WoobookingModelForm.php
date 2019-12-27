@@ -2,7 +2,7 @@
 
 
 use WooBooking\CMS\Form\Form;
-use Woobooking\CMS\Registry\Registry;
+use WooBooking\CMS\Registry\Registry;
 
 
 class WoobookingModelForm extends WoobookingModel

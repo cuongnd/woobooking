@@ -1,14 +1,15 @@
 <?php
 
 use WooBooking\CMS\WbDate\WbDate;
-
+use WooBooking\CMS\FOFInput\FOFInput;
 use WooBooking\CMS\Registry\Registry;
 use WooBooking\CMS\Document\Document;
 use WooBooking\CMS\Application\Application;
 use WooBooking\CMS\Uri\NBUri;
 use WooBooking\CMS\Application\NBAppHelper;
 use WooBooking\CMS\OpenSource\WooBookingOnOpenSource;
-use Woobooking\CMS\Session\Session;
+use WooBooking\CMS\Session\Session;
+use WooBooking\CMS\Database\driver\DatabaseDriverMysqli;
 class Factory
 {
     private static $database;
@@ -84,7 +85,7 @@ class Factory
 
 
         try {
-            $db = JDatabaseDriverMysqli::getInstance($options);
+            $db = DatabaseDriverMysqli::getInstance($options);
         } catch (RuntimeException $e) {
             if (!headers_sent()) {
                 header('HTTP/1.1 500 Internal Server Error');

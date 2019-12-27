@@ -10,7 +10,7 @@
 
 use \WooBooking\CMS\Utilities\Utility;
 
-use Woobooking\CMS\Filesystem\Path;
+use WooBooking\CMS\Filesystem\Path;
 defined('_WOO_BOOKING_EXEC') or die;
 
 /**

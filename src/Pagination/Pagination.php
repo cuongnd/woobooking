@@ -13,7 +13,7 @@ defined('_WOO_BOOKING_EXEC') or die;
 use Factory;
 use LayoutHelper;
 use WooBooking\CMS\Pagination\PaginationObject;
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Application\Application;
 use WooBooking\CMS\Router\Route;
 use WooBooking\CMS\Router\Router;

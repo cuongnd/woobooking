@@ -11,12 +11,12 @@ defined('_WOO_BOOKING_EXEC') or die;
 
 
 use Factory;
-use Woobooking\CMS\Client\ClientHelper;
+use WooBooking\CMS\Client\ClientHelper;
 use WooBooking\CMS\Filesystem\Wrapper\FileWrapper;
 use WooBooking\CMS\Filesystem\Wrapper\PathWrapper;
 use WooBooking\CMS\Filesystem\Wrapper\FolderWrapper;
 use WooBooking\CMS\Filesystem\Path;
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Log\Log;
 use WoobookingText;
 
 /**

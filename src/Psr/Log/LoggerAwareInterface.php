@@ -1,6 +1,6 @@
 <?php
 
-namespace Woobooking\CMS\Psr\Log;
+namespace WooBooking\CMS\Psr\Log;
 
 /**
  * Describes a logger-aware instance.

@@ -6,9 +6,11 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
+namespace WooBooking\CMS\Database;
 defined('_WOO_BOOKING_EXEC') or die;
-namespace Woobooking\CMS\Database;
-
+use  WooBooking\CMS\Database\driver\DatabaseDriverMysqli;
+use WooBooking\CMS\Database\exception\DatabaseExceptionUnsupported;
+use WooBooking\CMS\Database\DatabaseQuery;
 
 
 /**
@@ -266,7 +268,8 @@ abstract class DatabaseDriver extends Database implements DatabaseInterface
 		if (empty(self::$instances[$signature]))
 		{
 			// Derive the class name from the driver.
-			$class = 'DatabaseDriver' . ucfirst(strtolower($options['driver']));
+			$class = __NAMESPACE__ ."\driver\DatabaseDriver" . ucfirst(strtolower($options['driver']));
+
 			// If the class still doesn't exist we have nothing left to do but throw an exception.  We did our best.
 			if (!class_exists($class))
 			{
@@ -1075,7 +1078,8 @@ abstract class DatabaseDriver extends Database implements DatabaseInterface
         if ($new)
         {
             // Derive the class name from the driver.
-            $class = 'DatabaseQuery' . ucfirst($this->name);
+            $class =__NAMESPACE__.'\query\DatabaseQuery' . ucfirst($this->name);
+
             // Make sure we have a query class for this driver.
             if (!class_exists($class))
             {

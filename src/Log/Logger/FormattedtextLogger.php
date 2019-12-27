@@ -6,14 +6,14 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Log\Logger;
+namespace WooBooking\CMS\Log\Logger;
 
 defined('_WOO_BOOKING_EXEC') or die;
 
 use WooBooking\CMS\Filesystem\File;
 use WooBooking\CMS\Filesystem\Folder;
-use Woobooking\CMS\Log\LogEntry;
-use Woobooking\CMS\Log\Logger;
+use WooBooking\CMS\Log\LogEntry;
+use WooBooking\CMS\Log\Logger;
 use WooBookingLoader;
 WooBookingLoader::import('WooBooking.Filesystem.File');
 WooBookingLoader::import('WooBooking.Filesystem.Folder');

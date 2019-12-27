@@ -6,11 +6,11 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Log;
+namespace WooBooking\CMS\Log;
 
-use Woobooking\CMS\Psr\Log\AbstractLogger;
-use Woobooking\CMS\Psr\Log\InvalidArgumentException;
-use Woobooking\CMS\Psr\Log\LogLevel;
+use WooBooking\CMS\Psr\Log\AbstractLogger;
+use WooBooking\CMS\Psr\Log\InvalidArgumentException;
+use WooBooking\CMS\Psr\Log\LogLevel;
 
 /**
  * Delegating logger which delegates log messages received from the PSR-3 interface to the woobooking! Log object.

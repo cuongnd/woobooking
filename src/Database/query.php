@@ -20,7 +20,8 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @property-read   DatabaseQueryElement  $group
  * @property-read   DatabaseQueryElement  $having
  */
-namespace Woobooking\CMS\Database;
+namespace WooBooking\CMS\Database;
+use WooBooking\CMS\Database\query\DatabaseQueryElement;
 abstract class DatabaseQuery
 {
 	/**

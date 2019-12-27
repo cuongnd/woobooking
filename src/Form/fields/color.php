@@ -8,7 +8,7 @@
  */
 
 
-namespace Woobooking\CMS\Form\fields;
+namespace WooBooking\CMS\Form\fields;
 defined('_WOO_BOOKING_EXEC') or die;
 use WooBooking\CMS\Form\FormField;
 use WoobookingText;

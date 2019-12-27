@@ -6,10 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Log;
+namespace WooBooking\CMS\Log;
 
 defined('_WOO_BOOKING_EXEC') or die;
-use Woobooking\CMS\WbDate\WbDate;
+use WooBooking\CMS\WbDate\WbDate;
 /**
  * woobooking! Log Entry class
  *

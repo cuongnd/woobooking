@@ -6,9 +6,9 @@
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-namespace Woobooking\CMS\Session\handler;
+namespace WooBooking\CMS\Session\handler;
 use Factory;
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Log\Log;
 
 defined('_WOO_BOOKING_EXEC') or die;
 require_once __DIR__."/interface.php";

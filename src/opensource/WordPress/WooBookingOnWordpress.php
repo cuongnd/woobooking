@@ -194,9 +194,6 @@ class WooBookingOnWordpress
         $root_url = self::get_root_url();
         $input = Factory::getInput();
         Factory::setRootUrl($root_url);
-        require_once WOOBOOKING_PATH_ROOT . "/lib/html/WooBookingHtmlFrontend.php";
-        require_once WOOBOOKING_PATH_ROOT . "/nb_apps/nb_woobooking/woobooking.php";
-        require_once WOOBOOKING_PATH_ROOT . "/nb_apps/nb_woobooking/WooBookingHelper.php";
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
 
         add_action('wp_print_scripts', [$this,'frontend_shapeSpace_print_scripts']);

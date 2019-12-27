@@ -6,9 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Woobooking\CMS\Filesystem;
-use WooBooking\CMS\Utilities\Utility;
+namespace WooBooking\CMS\Filesystem;
 defined('_WOO_BOOKING_EXEC') or die;
+use WooBooking\CMS\Utilities\Utility;
+
 
 /**
  * A Path handling class

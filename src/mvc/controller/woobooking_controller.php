@@ -1,6 +1,6 @@
 <?php
 
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Utilities\Utility;
 
 class woobooking_controller{

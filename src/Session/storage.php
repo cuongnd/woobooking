@@ -6,7 +6,7 @@
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-namespace Woobooking\CMS\Session;
+namespace WooBooking\CMS\Session;
 defined('_WOO_BOOKING_EXEC') or die;
 
 /**

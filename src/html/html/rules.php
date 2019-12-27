@@ -8,7 +8,7 @@
  */
 
 defined('_WOO_BOOKING_EXEC') or die;
-use Woobooking\CMS\Log\Log;
+use WooBooking\CMS\Log\Log;
 Log::add('JHtmlRules is deprecated.', Log::WARNING, 'deprecated');
 
 /**
