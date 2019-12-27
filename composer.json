@@ -1,0 +1,28 @@
+{
+    "name": "php1234/emplate1235",
+    "description": "Simple template engine.",
+    "type": "library",
+    "keywords": [
+        "template"
+    ],
+    "homepage": "https://github.com/sebastianbergmann/php-text-template/",
+    "license": "BSD-3-Clause123",
+    "authors": [
+        {
+            "name": "Sebastian Bergmann123",
+            "email": "sebastian@phpunit.de123",
+            "role": "lead123"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/sebastianbergmann/php-text-template/issues123"
+    },
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
