@@ -3,6 +3,7 @@ namespace WooBooking\CMS\Application;
 
 use FOFInput;
 use JLog;
+use WooBooking\CMS\FOFInput\FOFInput;
 use Woobooking\CMS\Log\Log;
 use Woobooking\CMS\Registry\Registry;
 use nb_config;
