@@ -8,7 +8,6 @@
 
 
 use Woobooking\CMS\Layout\FileLayout;
-WooBookingImport('WooBooking.Layout.FileLayout');
 defined('JPATH_PLATFORM') or die;
 
 /**

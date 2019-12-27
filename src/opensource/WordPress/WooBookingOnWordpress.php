@@ -21,8 +21,8 @@ use WoobookingModel;
 use WoobookingText;
 use BlockController;
 
-WooBookingImport('WooBooking.Utilities.Utility');
-WooBookingImport('WooBooking.opensource.WooBookingOnOpenSource');
+
+
 
 
 class WooBookingOnWordpress
@@ -118,7 +118,7 @@ class WooBookingOnWordpress
 
 
         }
-        WooBookingImport('WooBooking.Utilities.Utility');
+        
         add_action('wp_print_scripts', [$this,'woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts']);
         $prefix_link=self::$prefix_link;
         //hook api
@@ -378,7 +378,6 @@ class WooBookingOnWordpress
 
             $this->initOpenWooBookingWordpressFrontend();
             $this->initWordpressBackend();
-            WooBookingImport('WooBooking.opensource.WordPress.ECommerce.ECommerce');
             $this->ecommerce=ECommerce::getInstance();
         }
 

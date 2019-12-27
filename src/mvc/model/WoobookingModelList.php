@@ -112,7 +112,7 @@ class WoobookingModelList extends  WoobookingModel
     }
     public function getFilterForm($data = array(), $loadData = true)
     {
-        WooBookingImport('WooBooking.Form.Form');
+        
         Form::addFormPath(WOOBOOKING_PATH_COMPONENT."/models/forms");
         $form = null;
 

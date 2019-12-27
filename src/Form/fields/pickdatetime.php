@@ -9,7 +9,7 @@
 namespace Woobooking\CMS\Form\fields;
 use Factory;
 defined('JPATH_PLATFORM') or die;
-WooBookingImport('WooBooking.Form.FormField');
+
 use WooBooking\CMS\Form\FormField;
 use SimpleXMLElement;
 use WooBookingHtml;

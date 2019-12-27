@@ -1,7 +1,6 @@
 <?php
 namespace WooBooking\CMS\OpenSource;
 use WooBooking\CMS\OpenSource\WordPress\WooBookingOnWordpress;
-WooBookingImport('WooBooking.opensource.WordPress.WooBookingOnWordpress');
 class      WooBookingOnOpenSource
 {
     public static $instance=null;

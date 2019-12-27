@@ -9,7 +9,6 @@
 namespace WooBooking\CMS\Filesystem\Wrapper;
 
 use WooBooking\CMS\Filesystem\Path;
-WooBookingImport('WooBooking.Filesystem.Path');
 defined('JPATH_PLATFORM') or die;
 
 /**

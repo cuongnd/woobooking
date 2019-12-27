@@ -9,7 +9,6 @@
 namespace Woobooking\CMS\Log;
 
 defined('JPATH_PLATFORM') or die;
-WooBookingImport('WooBooking.WbDate.WbDate');
 use Woobooking\CMS\WbDate\WbDate;
 /**
  * woobooking! Log Entry class

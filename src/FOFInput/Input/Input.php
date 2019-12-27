@@ -7,7 +7,6 @@
  */
 
 namespace WooBooking\CMS\FOFInput\Input;
-WooBookingImport('WooBooking.filter.InputFilter');
 use WooBooking\CMS\Filter\InputFilter;
 
 
@@ -140,7 +139,6 @@ class Input implements \Serializable, \Countable
         {
             return $this->inputs[$name];
         }
-        WooBookingImport('WooBooking.FOFInput.Input.'.$name);
         //WooBooking\CMS\FOFInput
         $className = '\\WooBooking\\CMS\\FOFInput\\Input\\Input' . ucfirst($name);
 

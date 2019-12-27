@@ -4,7 +4,7 @@
 use WooBooking\CMS\Form\Form;
 use Woobooking\CMS\Registry\Registry;
 
-WooBookingImport('WooBooking.Form.Form');
+
 class WoobookingModelForm extends WoobookingModel
 {
     public $model="";

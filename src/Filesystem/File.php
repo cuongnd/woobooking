@@ -8,10 +8,7 @@
 namespace WooBooking\CMS\Filesystem;
 defined('JPATH_PLATFORM') or die;
 
-WooBookingImport('WooBooking.Client.ClientHelper');
-WooBookingImport('WooBooking.Filesystem.Wrapper.FileWrapper');
-WooBookingImport('WooBooking.Filesystem.Wrapper.PathWrapper');
-WooBookingImport('WooBooking.Filesystem.Path');
+
 
 use Factory;
 use Woobooking\CMS\Client\ClientHelper;

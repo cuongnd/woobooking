@@ -10,7 +10,6 @@ use WooBooking\CMS\Object\CMSObject;
 
 defined('JPATH_PLATFORM') or die;
 
-WooBookingImport('WooBooking.Object.CMSObject');
 
 /**
  * Abstract Table class

@@ -177,7 +177,6 @@ abstract class FormHelper
         foreach (self::addPrefix($entity) as $prefix)
 		{
 			// Treat underscores as namespace
-            WooBookingImport('WooBooking.String.Normalise');
 			$name = Normalise::toSpaceSeparated($type);
 			$name = str_ireplace(' ', '\\', ucwords($name));
 

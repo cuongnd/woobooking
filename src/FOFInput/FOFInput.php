@@ -16,7 +16,6 @@ use WooBooking\CMS\FOFInput\Input\Input;
  * @since    2.0
  */
 
-WooBookingImport('WooBooking.FOFInput.Input.Input');
 
 class FOFInput extends Input
 {

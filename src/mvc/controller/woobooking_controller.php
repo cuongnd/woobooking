@@ -188,7 +188,7 @@ class woobooking_controller{
         $task=$input->getString('task','');
         $task=$task?$task:$data->task;
         list($controller,$task)=explode(".",$task);
-        WooBookingImport('WooBooking.Utilities.Utility');
+        
         $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
@@ -224,7 +224,7 @@ class woobooking_controller{
                     </script>
                     <?php
                     $script = ob_get_clean();
-                    WooBookingImport('WooBooking.Utilities.Utility');
+                    
                     $script = Utility::remove_string_javascript($script);
                     $doc->addScriptDeclaration($script);
 
@@ -266,7 +266,7 @@ class woobooking_controller{
         $task=$task?$task:$data->task;
         $app=Factory::getApplication();
         list($controller,$task)=explode(".",$task);
-        WooBookingImport('WooBooking.Utilities.Utility');
+        
         $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
@@ -305,7 +305,7 @@ class woobooking_controller{
         {
             return self::$instance[$controller];
         }
-        WooBookingImport('WooBooking.Utilities.Utility');
+        
         $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();

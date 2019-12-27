@@ -108,7 +108,6 @@ abstract class BaseDatabaseModel extends CMSObject
 		if (!empty($path))
 		{
 
-			WooBookingImport('WooBooking.filesystem.path');
 
 			foreach ((array) $path as $includePath)
 			{
@@ -183,7 +182,6 @@ abstract class BaseDatabaseModel extends CMSObject
 
 		if (!class_exists($modelClass))
 		{
-			WooBookingImport('WooBooking.filesystem.path');
 			$path = Path::find(self::addIncludePath(null, $prefix), self::_createFileName('model', array('name' => $type)));
 
 			if (!$path)

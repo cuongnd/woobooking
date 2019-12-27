@@ -249,7 +249,7 @@ class Application extends CMSObject
     {
         require_once WOOBOOKING_PATH_ROOT."/nb_config.php";
         $config= new nb_config();
-        WooBookingImport("WooBooking.Registry.Registry");
+        
         $register=new Registry();
         $register->loadObject($config);
         $this->setConfiguration($register);

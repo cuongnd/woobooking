@@ -7,7 +7,7 @@
  */
 
 namespace WooBooking\CMS\filter;
-WooBookingImport('WooBooking.Utilities.ArrayHelper');
+
 use WooBooking\CMS\String\StringHelper;
 
 /**

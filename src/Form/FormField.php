@@ -7,8 +7,6 @@
  */
 
 namespace WooBooking\CMS\Form;
-if(!class_exists('Woobooking\CMS\Layout\FileLayout'))
-    WooBookingImport('WooBooking.Layout.FileLayout');
 use Woobooking\CMS\Layout\FileLayout;
 use WoobookingText;
 use WooBooking\CMS\Utilities\Utility;

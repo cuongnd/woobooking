@@ -11,7 +11,6 @@ namespace Woobooking\CMS\Log;
 use Woobooking\CMS\Log\LogEntry;
 use WooBooking\CMS\Utilities\Utility;
 use Woobooking\CMS\Log\Logger\FormattedtextLogger;
-WooBookingImport('WooBooking.Log.LogEntry');
 defined('JPATH_PLATFORM') or die;
 
 /**
@@ -314,7 +313,6 @@ class Log
 			{
                 $logger=ucfirst($this->configurations[$signature]['logger']);
 				$class = __NAMESPACE__ . '\\Logger\\' . $logger . 'Logger';
-				WooBookingImport("WooBooking.Log.Logger.{$logger}Logger");
 				if (!class_exists($class))
 				{
 					throw new \RuntimeException('Unable to create a Logger instance: ' . $class);

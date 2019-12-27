@@ -3,7 +3,6 @@
 
 use WooBooking\CMS\Object\CMSObject;
 
-WooBookingImport('html.WooBookingHtml');
 class WooBookingView extends CMSObject
 {
     public $view="";

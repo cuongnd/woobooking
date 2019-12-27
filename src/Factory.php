@@ -66,7 +66,7 @@ class Factory
     public static function getOpenSource(){
         if (!isset(self::$open_source))
         {
-            WooBookingImport('WooBooking.opensource.WooBookingOnOpenSource');
+            
             self::$open_source = WooBookingOnOpenSource::getInstance();
         }
         return self::$open_source;
@@ -172,7 +172,6 @@ class Factory
 
         // Config time is in minutes
         $options['expire'] = ($conf->get('lifetime')) ? $conf->get('lifetime') * 60 : 900;
-        WooBookingImport('WooBooking.Session.Session');
         $session = Session::getInstance($handler, $options);
         return $session;
     }

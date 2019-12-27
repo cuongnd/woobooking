@@ -268,7 +268,7 @@ class Form
 	 */
 	public function getField($name, $group = null, $value = null)
 	{
-        WooBookingImport('WooBooking.Form.FormField');
+        
 		// Make sure there is a valid JForm XML document.
 		if (!($this->xml instanceof \SimpleXMLElement))
 		{
@@ -338,7 +338,7 @@ class Form
 	public function getFieldset($set = null)
 	{
 
-	    WooBookingImport('WooBooking.Form.FormField');
+	    
 		$fields = array();
 
 		// Get all of the field elements in the fieldset.

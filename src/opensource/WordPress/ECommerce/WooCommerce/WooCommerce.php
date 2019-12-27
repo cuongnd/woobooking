@@ -12,7 +12,6 @@ class WooCommerce
 
     public function run()
     {
-        WooBookingImport('WooBooking.opensource.WordPress.ECommerce.WooCommerce.Versions.WooCommerce_v1.HookPage.Cart');
         $cart=Cart::getInstance();
         //add_action( 'woocommerce_checkout_order_review', [$checkout,'woocommerce_order_review'], 10 );
         add_action( 'woocommerce_before_cart_contents', [$cart,'woocommerce_before_cart_contents'],  1, 1  );
@@ -20,7 +19,6 @@ class WooCommerce
         add_action( 'woocommerce_after_cart_contents', [$cart,'woocommerce_after_cart_contents'],  1, 1  );
 
 
-        WooBookingImport('WooBooking.opensource.WordPress.ECommerce.WooCommerce.Versions.WooCommerce_v1.HookPage.CheckOut');
         $checkout=CheckOut::getInstance();
         //add_action( 'woocommerce_checkout_order_review', [$checkout,'woocommerce_order_review'], 10 );
         add_action( 'woocommerce_checkout_order_processed', [$checkout,'woocommerce_checkout_order_processed'],  10, 3   );

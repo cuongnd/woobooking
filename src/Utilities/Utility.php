@@ -143,7 +143,7 @@ class Utility
 
     public static function printDebugBacktrace($title = 'Debug Backtrace:')
     {
-        WooBookingImport('WooBooking.Filesystem.File');
+        
         $stacks = debug_backtrace();
         ob_start();
         ?>
@@ -1013,7 +1013,7 @@ class Utility
 
     public function get_class_icon_font()
     {
-        WooBookingImport('WooBooking.filesystem.file');
+        
         $iconFiles = array(
             'templates/sprflat/assets/less/icons.less'
         );
