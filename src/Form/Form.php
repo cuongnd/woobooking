@@ -863,9 +863,6 @@ class Form
         // Check to see if the path is an absolute path.
 		if (!is_file($file))
 		{
-
-
-
             // Not an absolute path so let's attempt to find one using JPath.
 			$file = Path::find(self::addFormPath(), strtolower($file) . '.xml');
 

@@ -110,7 +110,7 @@ abstract class WooBookingHtml
             self::addIncludePath(WOO_BOOKING_PATH_PLATFORM."/html/html");
         }
 
-        if (!class_exists($className) || !empty($file))
+        if (!class_exists($className))
         {
             $path = Path::find(static::$includePaths, strtolower($file) . '.php');
             if (!$path)

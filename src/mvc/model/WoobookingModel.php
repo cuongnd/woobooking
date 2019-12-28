@@ -409,7 +409,7 @@ class WoobookingModel extends BaseDatabaseModel
     {
         Form::addFieldPath(WOOBOOKING_PATH_ROOT . '/lib/Form/Field');
         Form::addFieldPath(WOOBOOKING_PATH_ROOT . '/lib/WooBooking/form/fields');
-        Form::addFieldPath(WOOBOOKING_PATH_COMPONENT . '/models/forms');
+        Form::addFormPath(WOOBOOKING_PATH_COMPONENT . '/models/forms');
 
         try {
             $form = Form::getInstance($source, $options, false, $xpath);
