@@ -914,8 +914,10 @@ class WooBookingOnWordpress
                 return $live_site;
             } elseif (strpos($current_running, $environment) !== false) {
                 $root_url = $environment;
+                break;
             } else {
                 $root_url = $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
+                break;
             }
         }
         return $root_url;
