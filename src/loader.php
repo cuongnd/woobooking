@@ -14,7 +14,7 @@
  * @package  Joomla.Platform
  * @since    1.7.0
  */
-abstract class Loader
+abstract class WooBookingLoader
 {
 	/**
 	 * Container for already imported library paths.
@@ -842,5 +842,5 @@ if (!function_exists('jexit'))
  */
 function import($path, $base = null)
 {
-	return Loader::import($path, $base);
+	return WooBookingLoader::import($path, $base);
 }
