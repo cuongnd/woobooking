@@ -1,5 +1,6 @@
 <?php
 
+use WooBooking\CMS\Version;
 use WooBooking\CMS\WbDate\WbDate;
 use WooBooking\CMS\FOFInput\FOFInput;
 use WooBooking\CMS\Registry\Registry;
@@ -110,11 +111,31 @@ class Factory
     }
     public static function getDocument()
     {
-        if (!self::$document) {
-            self::$document = Document::getInstance();
+        if (!self::$document)
+        {
+            self::$document = self::createDocument();
         }
+
         return self::$document;
     }
+    protected static function createDocument()
+    {
+
+        $input = self::getApplication()->input;
+        $type = $input->get('format', 'html', 'cmd');
+
+
+        $attributes = array(
+            'charset'      => 'utf-8',
+            'lineend'      => 'unix',
+            'tab'          => "\t",
+
+        );
+
+        return Document::getInstance($type, $attributes);
+    }
+
+
     public static function getApplication($client="")
     {
         

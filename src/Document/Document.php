@@ -8,8 +8,10 @@
 
 namespace WooBooking\CMS\Document;
 
+use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Utilities\Utility;
-
+use WooBookingLoader;
+use WooBooking\CMS\Document\HtmlDocument;
 
 defined('_WOO_BOOKING_EXEC') or die;
 
@@ -283,52 +285,54 @@ class Document
 	 *
 	 * @since   1.7.0
 	 */
-	public static function getInstance($type = 'html', $attributes = array())
-	{
-		$signature = serialize(array($type, $attributes));
+    public static function getInstance($type = 'html', $attributes = array())
+    {
+        $signature = serialize(array($type, $attributes));
 
-		if (empty(self::$instances[$signature]))
-		{
-			$type  = preg_replace('/[^A-Z0-9_\.-]/i', '', $type);
-			$ntype = null;
+        if (empty(self::$instances[$signature]))
+        {
+            $type  = preg_replace('/[^A-Z0-9_\.-]/i', '', $type);
+            $ntype = null;
 
-			// Determine the path and class
-			$class =ucfirst($type) . 'Document';
-			if (!class_exists($class))
-			{
-				$class = ucfirst($type).'Document';
-			}
+            // Determine the path and class
+            $class = __NAMESPACE__ . '\\' . ucfirst($type) . 'Document';
 
-			if (!class_exists($class))
-			{
-				// @deprecated 4.0 - Document objects should be autoloaded instead
-				$path = __DIR__ ."/".ucfirst($type) . 'Document.php';
+            if (!class_exists($class))
+            {
+                $class = 'Document' . ucfirst($type);
+            }
 
-				if (class_exists($class))
-				{
-					Log::add('Non-autoloadable Document subclasses are deprecated, support will be removed in 4.0.', \Log::WARNING, 'deprecated');
-				}
-				// Default to the raw format
-				else
-				{
-					$ntype = $type;
-					$class = 'RawDocument';
-				}
-			}
-            $class=__NAMESPACE__."\\$class";
+            if (!class_exists($class))
+            {
+                // @deprecated 4.0 - Document objects should be autoloaded instead
+                $path = __DIR__ . '/' . $type . '/' . $type . '.php';
 
-			$instance = new $class($attributes);
+                WooBookingLoader::register($class, $path);
+
+                if (class_exists($class))
+                {
+                    Log::add('Non-autoloadable Document subclasses are deprecated, support will be removed in 4.0.', Log::WARNING, 'deprecated');
+                }
+                // Default to the raw format
+                else
+                {
+                    $ntype = $type;
+                    $class = 'DocumentRaw';
+                }
+            }
+
+            $instance = new $class($attributes);
             self::$instances[$signature] = $instance;
 
-			if (!is_null($ntype))
-			{
-				// Set the type to the Document type originally requested
-				$instance->setType($ntype);
-			}
-		}
+            if (!is_null($ntype))
+            {
+                // Set the type to the Document type originally requested
+                $instance->setType($ntype);
+            }
+        }
 
-		return self::$instances[$signature];
-	}
+        return self::$instances[$signature];
+    }
 
 	/**
 	 * Set the document type
@@ -1270,47 +1274,45 @@ class Document
 	 * @since   1.7.0
 	 * @throws  \RuntimeException
 	 */
-	public function loadRenderer($type)
-	{
+    public function loadRenderer($type)
+    {
+        // Determine the path and class
+        $class = __NAMESPACE__ . '\\Renderer\\' . ucfirst($this->getType()) . '\\' . ucfirst($type) . 'Renderer';
 
-		// Determine the path and class
-		$class =  ucfirst($type) . 'Renderer';
+        if (!class_exists($class))
+        {
+            $class = 'DocumentRenderer' . ucfirst($this->getType()) . ucfirst($type);
+        }
 
-		if (!class_exists($class))
-		{
-			$class = 'DocumentRenderer' . ucfirst($this->getType()) . ucfirst($type);
-		}
+        if (!class_exists($class))
+        {
+            // "Legacy" class name structure
+            $class = 'DocumentRenderer' . $type;
 
-		if (!class_exists($class))
-		{
-			// "Legacy" class name structure
-			$class = "{$type}Renderer";
+            if (!class_exists($class))
+            {
+                // @deprecated 4.0 - Non-autoloadable class support is deprecated, only log a message though if a file is found
+                $path = __DIR__ . '/' . $this->getType() . '/renderer/' . $type . '.php';
 
-			if (!class_exists($class))
-			{
-				// @deprecated 4.0 - Non-autoloadable class support is deprecated, only log a message though if a file is found
-				$path = __DIR__ . '/renderer/' . ucfirst($this->getType())."/".  ucfirst($type) . 'Renderer.php';
+                if (!file_exists($path))
+                {
+                    throw new \RuntimeException('Unable to load renderer class', 500);
+                }
 
-				if (!file_exists($path))
-				{
-					throw new \RuntimeException('Unable to load renderer class', 500);
-				}
-                require_once  $path;
-				Loader::register($class, $path);
+                WooBookingLoader::register($class, $path);
 
-				//\Log::add('Non-autoloadable DocumentRenderer subclasses are deprecated, support will be removed in 4.0.', \Log::WARNING, 'deprecated');
+                Log::add('Non-autoloadable JDocumentRenderer subclasses are deprecated, support will be removed in 4.0.', Log::WARNING, 'deprecated');
 
-				// If the class still doesn't exist after including the path, we've got issues
-				if (!class_exists($class))
-				{
-					throw new \RuntimeException('Unable to load renderer class', 500);
-				}
-			}
-		}
-
+                // If the class still doesn't exist after including the path, we've got issues
+                if (!class_exists($class))
+                {
+                    throw new \RuntimeException('Unable to load renderer class', 500);
+                }
+            }
+        }
 
         return new $class($this);
-	}
+    }
 
 	/**
 	 * Parses the document and prepares the buffers

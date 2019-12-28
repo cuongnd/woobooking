@@ -42,7 +42,7 @@ class WooBookingOnWordpress
     public static function getInstance($new = false)
     {
         if (!is_object(self::$instance)) {
-            self::$instance = new static;
+            self::$instance = new WooBookingOnWordpress();
             self::$instance->run();
         }
 
@@ -368,8 +368,6 @@ class WooBookingOnWordpress
             $this->initOpenWooBookingWooPanelBackend();
         }else{
             $input=Factory::getInput();
-
-
             $this->initOpenWooBookingWordpressFrontend();
             $this->initWordpressBackend();
             $this->ecommerce=ECommerce::getInstance();
@@ -679,6 +677,7 @@ class WooBookingOnWordpress
         require_once WOOBOOKING_PATH_COMPONENT_FRONT_END."/controllers/Block.php";
         $input=Factory::getInput();
         if(is_array($atts) && $id=reset($atts)){
+
             list($package,$block,$block_name)=explode("-",$a_view);
             echo   BlockController::view_block_module($id,$block_name);
         }

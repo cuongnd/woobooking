@@ -42,7 +42,7 @@ class Application extends CMSObject
        
         if (!is_object(self::$instance))
         {
-            self::$instance = new static;
+            self::$instance = new Application();
             self::$instance->setClient($client);
         }
 

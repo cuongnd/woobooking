@@ -121,6 +121,7 @@ class woobooking_controller{
             require_once $block_view_path;
             $view_class=new BlockView();
             $view_class->view="block";
+
             return $view_class->display_block($block_id,$block_name);
         }else{
 
