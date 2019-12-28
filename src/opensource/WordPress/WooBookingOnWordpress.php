@@ -33,6 +33,7 @@ class WooBookingOnWordpress
     public static $version = "1.0";
     public static $prefix_link = "wb_";
     public static $namespace = "woobooking_api/1.0";
+    private static $list_environment=array();
     public $view = "";
     public $ecommerce = null;
     public $scripts = array();
@@ -896,34 +897,26 @@ class WooBookingOnWordpress
 
     }
     //TODO chú ý sửa cái này trước khi đẩy live
+    public function set_environments($list_environment){
+        self::$list_environment=$list_environment;
+    }
     public function get_root_url()
     {
         $config =Factory::getConfig();
+        $list_environment=self::$list_environment;
+
         $uri=Factory::getUri();
         $live_site=$config->get('live_site',"");
         $current_running=$uri->toString(array('scheme', 'user', 'pass', 'host', 'port','path'));
-
         $root_url="";
-        if($current_running=="http://demo9.cmsmart.net"){
-            return $live_site;
-        }elseif(strpos($current_running,"http://localhost/WooBooking") !==false){
-            $root_url= "http://localhost/WooBooking/";
-        }elseif(strpos($current_running,"http://localhost/woobooking2") !==false){
-            $root_url= "http://localhost/woobooking2/";
-        }elseif(strpos($current_running,"http://localhost/wp-03") !==false){
-            $root_url= "http://localhost/wp-03/";
-        }elseif(strpos($current_running,"http://localhost/wooboking_fitness_v1") !==false){
-            $root_url= "http://localhost/wooboking_fitness_v1/";
-        }elseif(strpos($current_running,"http://localhost/woobooking_v1.1") !==false){
-            $root_url= "http://localhost/woobooking_v1.1/";
-        }elseif(strpos($current_running,"http://demo9.cmsmart.net/woobooking") !==false){
-            $root_url= "http://demo9.cmsmart.net/woobooking/";
-        }elseif(strpos($current_running,"http://demo9.cmsmart.net/wooboking_fitness_v1") !==false){
-            $root_url= "http://demo9.cmsmart.net/wooboking_fitness_v1/";
-        }elseif(strpos($current_running,"http://45.119.84.18/~wbkfitnes") !==false){
-            $root_url= "http://45.119.84.18/~wbkfitnes/";
-        } else{
-            $root_url=   $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
+        foreach ($list_environment as $environment) {
+            if ($current_running == "http://demo9.cmsmart.net") {
+                return $live_site;
+            } elseif (strpos($current_running, $environment) !== false) {
+                $root_url = $environment;
+            } else {
+                $root_url = $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
+            }
         }
         return $root_url;
     }
