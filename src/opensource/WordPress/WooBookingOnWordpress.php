@@ -15,7 +15,7 @@ use WooBooking\CMS;
 use woobooking_controller;
 use WooBookingHtml;
 use WooBookingHtmlFrontend;
-use WooBookingLoader;
+
 use WooBooking\CMS\Utilities\Utility;
 use WoobookingModel;
 use WoobookingText;
@@ -102,9 +102,6 @@ class WooBookingOnWordpress
         }
 
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
-        require_once WOOBOOKING_PATH_ROOT . "/admin/nb_apps/nb_woobooking/WooBookingHelper.php";
-        require_once WOOBOOKING_PATH_ROOT . "/nb_apps/nb_woobooking/woobooking.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/html/WooBookingHtml.php";
 
 
         if ($app->getClient() == 1 && !in_array($this->view, $listMenuWooPanel)) {
@@ -409,7 +406,6 @@ class WooBookingOnWordpress
         Factory::setRootUrl($root_url);
         $input = Factory::getInput();
         $doc=Factory::getDocument();
-        require_once WOOBOOKING_PATH_ROOT . "/lib/html/WooBookingHtmlFrontend.php";
         if(!self::is_rest_api()) {
             WooBookingHtmlFrontend::_('jquery.less');
         }
@@ -891,14 +887,6 @@ class WooBookingOnWordpress
         $id = $product->get_id();
         $input = Factory::getInput();
         $app = Factory::getApplication();
-        require_once WOOBOOKING_PATH_ROOT . "/lib/language/text.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/controller/woobooking_controller.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/model/WoobookingModel.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/model/WoobookingModelList.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/model/WoobookingModelForm.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/view/WooBookingView.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/table/WoobookingTable.php";
-        require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/mvc/api/ApiWoobooking.php";
 
         $file_controller_path = WOOBOOKING_PATH_COMPONENT . "/controllers/Booking.php";
         require_once $file_controller_path;

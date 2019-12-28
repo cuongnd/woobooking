@@ -1,6 +1,5 @@
 <?php
 
-require_once __DIR__."/woobooking_controller.php";
 class woobookingControllerList extends woobooking_controller
 {
     public function ajax_sorting($list_ordering=array()){

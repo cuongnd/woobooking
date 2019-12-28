@@ -130,7 +130,6 @@ class Session implements \IteratorAggregate
 	 */
 	public function __construct($store = 'none', array $options = array(), SessionHandlerInterface $handlerInterface = null)
 	{
-	    require_once WOOBOOKING_PATH_ROOT.'/lib/WooBooking/Session/handler/woobooking.php';
 		// Set the session handler
 
         $this->_handler = new SessionHandlerWoobooking($options);
@@ -139,7 +138,6 @@ class Session implements \IteratorAggregate
 		$this->data = new Registry;
 
         // Create handler
-        require_once WOOBOOKING_PATH_ROOT.'/lib/WooBooking/Session/storage.php';
         //$this->_store = SessionStorage::getInstance($store, $options);
 
         $this->storeName = $store;

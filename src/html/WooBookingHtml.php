@@ -118,7 +118,6 @@ abstract class WooBookingHtml
                 throw new \InvalidArgumentException(sprintf('path %s %s %s not found.',$path, $prefix, $file), 500);
             }
 
-            WooBookingLoader::register($className, $path);
 
 
             if (!class_exists($className))

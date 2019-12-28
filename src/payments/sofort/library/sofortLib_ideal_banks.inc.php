@@ -8,7 +8,6 @@
  */
 defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 ?><?php
-require_once dirname(__FILE__).'/sofortLib_abstract.inc.php';
 
 class SofortLib_iDeal_Banks extends SofortLib_Abstract {
 

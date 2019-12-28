@@ -5,6 +5,7 @@ use WooBooking\CMS\Utilities\Utility;
 use WooBooking\CMS\Form\Form;
 use WooBooking\CMS\Filesystem\Path;
 use WooBooking\CMS\Object\CMSObject;
+use WooBooking\CMS\FOFInput\FOFInput;
 
 class WoobookingModel extends BaseDatabaseModel
 {

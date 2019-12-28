@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 namespace WooBooking\CMS\FOFInput\Input;
-use FOFInput;
+use WooBooking\CMS\FOFInput\FOFInput;
 
 defined('_WOO_BOOKING_EXEC') or die;
 

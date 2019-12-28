@@ -7,9 +7,8 @@
  */
 
 namespace  WooBooking\CMS\registry;
+use WooBooking\CMS\Registry\Factory;
 
-require_once __DIR__."/FormatInterface.php";
-require_once __DIR__."/Factory.php";
 /**
  * Abstract Format for Registry
  *

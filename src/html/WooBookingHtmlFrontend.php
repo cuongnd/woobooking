@@ -8,7 +8,7 @@
 
 
 
-
+use WoobookingHtmlfrontendJquery as WoobookingHtmlfrontendJquery;
 
 defined('_WOO_BOOKING_EXEC') or die;
 
@@ -65,7 +65,7 @@ abstract class WooBookingHtmlFrontend
 		// Check to see whether we need to load a helper file
 		$parts = explode('.', $key);
 
-		$prefix = count($parts) === 3 ? array_shift($parts) : 'WoobookingHtmlfrontend';
+		$prefix = count($parts) === 3 ? array_shift($parts) : 'WoobookingHtmlFrontend';
 		$file   = count($parts) === 2 ? array_shift($parts) : '';
 		$func   = array_shift($parts);
 
@@ -107,20 +107,7 @@ abstract class WooBookingHtmlFrontend
 		if (!class_exists($className))
 		{
 
-
-            $path = WOOBOOKING_PATH_ROOT."/lib/html/htmlfrontend/$file.php";
-
-
-			if (!$path)
-			{
-				throw new \InvalidArgumentException(sprintf('%s %s not found.', $prefix, $file), 500);
-			}
-
-            WooBookingLoader::register($className, $path);
-			if (!class_exists($className))
-			{
-				throw new \InvalidArgumentException(sprintf('%s not found.', $className), 500);
-			}
+            throw new \InvalidArgumentException(sprintf('%s not found.', $className), 500);
 		}
 
 		$toCall = array($className, $func);

@@ -9,7 +9,7 @@
 namespace WooBooking\CMS\Document;
 
 use WooBooking\CMS\Utilities\Utility;
-use WooBookingLoader;
+
 
 defined('_WOO_BOOKING_EXEC') or die;
 
@@ -304,19 +304,18 @@ class Document
 				// @deprecated 4.0 - Document objects should be autoloaded instead
 				$path = __DIR__ ."/".ucfirst($type) . 'Document.php';
 
-                WooBookingLoader::register($class, $path);
-
 				if (class_exists($class))
 				{
-					//Log::add('Non-autoloadable Document subclasses are deprecated, support will be removed in 4.0.', \Log::WARNING, 'deprecated');
+					Log::add('Non-autoloadable Document subclasses are deprecated, support will be removed in 4.0.', \Log::WARNING, 'deprecated');
 				}
 				// Default to the raw format
 				else
 				{
 					$ntype = $type;
-					$class = 'DocumentRaw';
+					$class = 'RawDocument';
 				}
 			}
+            $class=__NAMESPACE__."\\$class";
 
 			$instance = new $class($attributes);
             self::$instances[$signature] = $instance;

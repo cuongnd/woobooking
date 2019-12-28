@@ -9,7 +9,6 @@
 namespace WooBooking\CMS\Layout;
 use WooBooking\CMS\Registry\Registry;
 
-require_once __DIR__."/LayoutInterface.php";
 
 
 /**

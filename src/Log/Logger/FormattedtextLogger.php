@@ -14,9 +14,7 @@ use WooBooking\CMS\Filesystem\File;
 use WooBooking\CMS\Filesystem\Folder;
 use WooBooking\CMS\Log\LogEntry;
 use WooBooking\CMS\Log\Logger;
-use WooBookingLoader;
-WooBookingLoader::import('WooBooking.Filesystem.File');
-WooBookingLoader::import('WooBooking.Filesystem.Folder');
+
 
 require_once __DIR__."/../Logger.php";
 /**

@@ -16,7 +16,6 @@ use WooBooking\CMS\Document\DocumentRenderer;
  *
  * @since  3.5
  */
-require_once WOOBOOKING_PATH_ROOT . "/lib/WooBooking/Document/DocumentRenderer.php";
 
 class HeadRenderer extends DocumentRenderer
 {
