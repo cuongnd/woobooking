@@ -117,7 +117,7 @@ class WooBookingOnWordpress
 
         }
         
-        add_action('wp_print_scripts', [$this,'woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts']);
+        add_action('wp_print_scripts', array($this,'woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts'));
         $prefix_link=self::$prefix_link;
         //hook api
         add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
@@ -194,7 +194,7 @@ class WooBookingOnWordpress
         Factory::setRootUrl($root_url);
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
 
-        add_action('wp_print_scripts', [$this,'frontend_shapeSpace_print_scripts']);
+        add_action('wp_print_scripts', array($this,'frontend_shapeSpace_print_scripts'));
         /**
          * Plugin Name: Test Plugin
          * Author: John Doe
@@ -214,8 +214,8 @@ class WooBookingOnWordpress
         add_filter('woocommerce_get_price_html', array($this, 'react2wp_woocommerce_hide_product_price'));
 
 
-        add_action('wp_login', [$this,'wp_login']);
-        add_action('wp_logout', [$this,'wp_logout']);
+        add_action('wp_login', array($this,'wp_login'));
+        add_action('wp_logout', array($this,'wp_logout'));
 
         //end remove add to cart and price
 
@@ -230,13 +230,13 @@ class WooBookingOnWordpress
 
         foreach ($list_view as $key=> $view){
             $a_key=self::$key_woo_booking."-".$key;
-            add_shortcode( $a_key, [$this,'woo_booking_render_by_tag_func'] );
+            add_shortcode( $a_key, array($this,'woo_booking_render_by_tag_func') );
         }
         $list_view=self::get_list_layout_block_frontend();
 
         foreach ($list_view as $key=> $view){
             $a_key=self::$key_woo_booking."-block-".$key;
-            add_shortcode( $a_key, [$this,'woo_booking_render_block_by_tag_func'] );
+            add_shortcode( $a_key, array($this,'woo_booking_render_block_by_tag_func') );
         }
 
 
@@ -287,14 +287,14 @@ class WooBookingOnWordpress
         $data=$user->to_array();
         $user=$userModel->getUserByOpenSourceUserId($open_source_user_id);
         if(!$user){
-            $date_user=[
+            $date_user=array(
                 'open_source_user_id'=>$open_source_user_id,
                 'first_name'=>$data['user_nicename'],
                 'last_name'=>"",
                 'email'=>$data['user_email'],
                 'created'=>$data['user_registered'],
                 'published'=>$data['user_status'],
-            ];
+            );
             $user=$userModel->save($date_user);
         }
         $session=Factory::getSession();
@@ -422,7 +422,7 @@ class WooBookingOnWordpress
 
         // inline script via wp_print_scripts
 
-        add_action('wp_print_scripts', [$this,'shapeSpace_print_scripts']);
+        add_action('wp_print_scripts', array($this,'shapeSpace_print_scripts'));
 
 
 
@@ -450,10 +450,10 @@ class WooBookingOnWordpress
 
 
 
-        add_action( 'vc_before_init', [$this,'your_name_integrateWithVC'] );
+        add_action( 'vc_before_init', array($this,'your_name_integrateWithVC') );
         if(function_exists("vc_add_shortcode_param"))
         {
-            vc_add_shortcode_param( 'woo_booking_block_type', [$this,'woo_booking_block_type_settings_field'] );
+            vc_add_shortcode_param( 'woo_booking_block_type', array($this,'woo_booking_block_type_settings_field') );
         }
 
 
@@ -537,7 +537,7 @@ class WooBookingOnWordpress
     protected  static  function  get_list_layout_view_frontend() {
         $views_path=WOOBOOKING_PATH_COMPONENT_FRONT_END."/views";
 
-        $list_view=[];
+        $list_view=array();
         $folders=Folder::folders($views_path);
 
 
@@ -557,15 +557,15 @@ class WooBookingOnWordpress
                 $xml = simplexml_load_file($file_path);
 
                 try {
-                    $title=@(string)$xml->layout->attributes()['title'];
+                    $title=@(string)($xml->layout->attributes())['title'];
                 }catch(Exception $e) {
                         echo "please check file tructor xml";
                         die;
                 }
                 $title=WoobookingText::_($title);
-                $list_view["$view-$filename"]=[
+                $list_view["$view-$filename"]=array(
                   "title"=>$title
-                ];
+                );
 
 
             }
@@ -575,7 +575,7 @@ class WooBookingOnWordpress
     protected  static  function  get_list_layout_block_frontend() {
         $blocks_path=WOOBOOKING_PATH_ROOT."/blocks";
 
-        $list_block=[];
+        $list_block=array();
         $folders=Folder::folders($blocks_path);
 
 
@@ -588,21 +588,21 @@ class WooBookingOnWordpress
             $xml = simplexml_load_file($file);
 
             try {
-                $title=(string)$xml->layout->attributes()['title'];
+                $title=(string)($xml->layout->attributes())['title'];
             }catch(Exception $e) {
                 echo "please check file tructor xml";
                 die;
             }
             $title=WoobookingText::_($title);
-            $list_block["$file_config_block"]=[
+            $list_block["$file_config_block"]=array(
                 "title"=>$title
-            ];
+            );
         }
         return $list_block;
     }
     protected  static  function  get_list_view_backend() {
         $views_path=WOOBOOKING_PATH_COMPONENT."/views";
-        $list_view=[];
+        $list_view=array();
         $folders=CMS\Filesystem\Folder::folders($views_path);
         foreach ($folders as $view){
             $view_path=$views_path."/$view";
@@ -618,15 +618,15 @@ class WooBookingOnWordpress
                 $title="";
                 $xml = simplexml_load_file($file_path);
                 try {
-                    $title=(string)$xml->layout->attributes()['title'];
+                    $title=(string)($xml->layout->attributes())['title'];
                 }catch(Exception $e) {
                         echo "please check file tructor xml";
                         die;
                 }
                 $title=WoobookingText::_($title);
-                $list_view["$view-$filename"]=[
+                $list_view["$view-$filename"]=array(
                   "title"=>$title
-                ];
+                );
 
 
             }
@@ -1011,20 +1011,20 @@ class WooBookingOnWordpress
             $list_menu_by_xml=self::get_list_view_xml();
             $confingModel=WoobookingModel::getInstance('config');
             $list_view=$confingModel->get_list_view_publish();
-            $items_submenus=[];
+            $items_submenus=array();
             $index=21;
 
 
             foreach ($list_menu_by_xml as $view){
                 if( $view->is_system || in_array($view->menu_slug,$list_view)) {
-                    $items_submenus[] = [
+                    $items_submenus[] = array(
                         'id' => self::$prefix_link . $view->id,
                         'menu_slug' => self::$prefix_link . $view->menu_slug,
                         'label' => $view->label,
                         'page_title' => $view->page_title,
                         'capability' => $view->capability,
                         'icon' => $view->icon,
-                    ];
+                    );
 
                     $index++;
                 }
@@ -1046,7 +1046,7 @@ class WooBookingOnWordpress
         $list_view_admin=self::get_list_view_for_woo_panel();
 
 
-        $list_menu=[];
+        $list_menu=array();
         foreach ($list_view_admin as $view){
             $list_menu[]=$view['id'];
         }
@@ -1080,7 +1080,7 @@ class WooBookingOnWordpress
         $arr_query = array_merge($arr_query, $arr_query_new);
         return $arr_query;
     }
-    public static $list_menu_by_xml=[];
+    public static $list_menu_by_xml=array();
     public static function get_list_view_xml(){
 
         if(empty(self::$list_menu_by_xml)){
@@ -1088,19 +1088,19 @@ class WooBookingOnWordpress
             $xml = simplexml_load_file($file_xml_path_app);
 
 
-            $list_menu_by_xml=[];
+            $list_menu_by_xml=array();
             foreach ($xml->view as $view){
-                $list_menu_by_xml[]=(object)[
-                    'id' => (string)$view->attributes()['id'],
-                    'menu_slug' => (string)$view->attributes()['menu_slug'],
-                    'label' => (string)$view->attributes()['label'],
-                    'page_title' => (string)$view->attributes()['page_title'],
-                    'capability' => (string)$view->attributes()['capability'],
-                    'icon' => (string)$view->attributes()['icon'],
-                    'class' => (string)$view->attributes()['class'],
-                    'is_system' => (boolean)$view->attributes()['is_system'],
+                $list_menu_by_xml[]=(object)array(
+                    'id' => (string)($view->attributes())['id'],
+                    'menu_slug' => (string)($view->attributes())['menu_slug'],
+                    'label' => (string)($view->attributes())['label'],
+                    'page_title' => (string)($view->attributes())['page_title'],
+                    'capability' => (string)($view->attributes())['capability'],
+                    'icon' => (string)($view->attributes())['icon'],
+                    'class' => (string)($view->attributes())['class'],
+                    'is_system' => (boolean)($view->attributes())['is_system'],
 
-                ];
+                );
 
 
             }
