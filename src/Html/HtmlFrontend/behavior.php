@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WoobookingHtmlFrontendBehavior
+abstract class HtmlFrontendBehavior
 {
 	/**
 	 * Array containing information for loaded files

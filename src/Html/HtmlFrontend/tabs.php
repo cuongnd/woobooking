@@ -15,7 +15,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since       1.6
  * @deprecated  3.7.0 These helpers are dependent on the deprecated MooTools support
  */
-abstract class WoobookingHtmlFrontendTabs
+abstract class HtmlFrontendTabs
 {
 	/**
 	 * Creates a panes and creates the JavaScript object for it.

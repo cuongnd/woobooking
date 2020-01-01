@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WoobookingHtmlFrontendContent
+abstract class HtmlFrontendContent
 {
 	/**
 	 * Fire onContentPrepare for content that isn't part of an article.

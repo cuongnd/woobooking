@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.2
  */
-abstract class WoobookingHtmlFrontendLinks
+abstract class HtmlFrontendLinks
 {
 	/**
 	 * Method to generate html code for groups of lists of links

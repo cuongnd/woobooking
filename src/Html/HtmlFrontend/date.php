@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  2.5
  */
-abstract class WoobookingHtmlFrontendDate
+abstract class HtmlFrontendDate
 {
 	/**
 	 * Function to convert a static time into a relative measurement

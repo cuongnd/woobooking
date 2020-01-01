@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.5
  */
-abstract class WoobookingHtmlFrontendForm
+abstract class HtmlFrontendForm
 {
 	/**
 	 * Array containing information for loaded files.

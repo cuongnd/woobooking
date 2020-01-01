@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  3.1
  */
-abstract class WoobookingHtmlFrontendTag
+abstract class HtmlFrontendTag
 {
 	/**
 	 * Cached array of the tag items.

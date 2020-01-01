@@ -16,7 +16,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @deprecated  4.0 Use JLayout directly
  */
-abstract class WoobookingHtmlFrontendBatch
+abstract class HtmlFrontendBatch
 {
 	/**
 	 * Display a batch widget for the access level selector.

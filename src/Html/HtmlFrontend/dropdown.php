@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.0
  */
-abstract class WoobookingHtmlFrontendDropdown
+abstract class HtmlFrontendDropdown
 {
 	/**
 	 * @var    array  Array containing information for loaded files

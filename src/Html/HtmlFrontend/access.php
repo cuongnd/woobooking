@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.6
  */
-abstract class WoobookingHtmlFrontendAccess
+abstract class HtmlFrontendAccess
 {
 	/**
 	 * A cached array of the asset groups

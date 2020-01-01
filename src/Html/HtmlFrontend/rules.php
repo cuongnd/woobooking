@@ -17,7 +17,7 @@ Log::add('JHtmlRules is deprecated.', Log::WARNING, 'deprecated');
  * @since       1.6
  * @deprecated  4.0
  */
-abstract class WoobookingHtmlFrontendRules
+abstract class HtmlFrontendRules
 {
 	/**
 	 * Creates the HTML for the permissions widget

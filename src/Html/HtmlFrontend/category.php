@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.5
  */
-abstract class WoobookingHtmlFrontendCategory
+abstract class HtmlFrontendCategory
 {
 	/**
 	 * Cached array of the category items.

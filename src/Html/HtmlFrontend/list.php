@@ -16,7 +16,7 @@ use WooBooking\String\StringHelper;
  *
  * @since  1.5
  */
-abstract class WoobookingHtmlFrontendList
+abstract class HtmlFrontendList
 {
 	/**
 	 * Build the select list to choose an image

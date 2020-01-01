@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  2.5
  */
-abstract class WoobookingHtmlFrontendIcons
+abstract class HtmlFrontendIcons
 {
 	/**
 	 * Method to generate html code for a list of buttons

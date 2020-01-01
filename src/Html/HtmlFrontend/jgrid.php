@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-abstract class WoobookingHtmlFrontendJGrid
+abstract class HtmlFrontendJGrid
 {
 	/**
 	 * Returns an action on a grid

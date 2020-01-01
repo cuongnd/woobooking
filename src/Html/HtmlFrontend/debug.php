@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.7.0
  */
-abstract class WoobookingHtmlFrontendDebug
+abstract class HtmlFrontendDebug
 {
 	/**
 	 * xdebug.file_link_format from the php.ini.

@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.5
  */
-abstract class WoobookingHtmlFrontendSelect
+abstract class HtmlFrontendSelect
 {
 	/**
 	 * Default values for options. Organized by option group.

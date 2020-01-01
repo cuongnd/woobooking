@@ -16,7 +16,7 @@ use WooBooking\String\StringHelper;
  *
  * @since  1.6
  */
-abstract class WoobookingHtmlFrontendString
+abstract class HtmlFrontendString
 {
 	/**
 	 * Truncates text blocks over the specified character limit and closes

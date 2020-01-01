@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.2
  */
-abstract class WoobookingHtmlFrontendActionsDropdown
+abstract class HtmlFrontendActionsDropdown
 {
 	/**
 	 * @var    string  HTML markup for the dropdown list

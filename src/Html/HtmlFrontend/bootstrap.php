@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.0
  */
-abstract class WoobookingHtmlFrontendBootstrap
+abstract class HtmlFrontendBootstrap
 {
 	/**
 	 * @var    array  Array containing information for loaded files
@@ -791,7 +791,7 @@ abstract class WoobookingHtmlFrontendBootstrap
 		$tabScriptLayout = $tabScriptLayout === null ? new JLayoutFile('libraries.cms.html.bootstrap.addtabscript') : $tabScriptLayout;
 		$tabLayout = $tabLayout === null ? new JLayoutFile('libraries.cms.html.bootstrap.addtab') : $tabLayout;
 
-		$active = (static::$loaded['WoobookingHtmlFrontendBootstrap::startTabSet'][$selector]['active'] == $id) ? ' active' : '';
+		$active = (static::$loaded['HtmlFrontendBootstrap::startTabSet'][$selector]['active'] == $id) ? ' active' : '';
 
 		// Inject tab into UL
 		Factory::getDocument()
@@ -827,7 +827,7 @@ abstract class WoobookingHtmlFrontendBootstrap
 	{
 		$sig = md5(serialize(array($selector, $params)));
 
-		if (!isset(static::$loaded['WoobookingHtmlFrontendBootstrap::startTabSet'][$sig]))
+		if (!isset(static::$loaded['HtmlFrontendBootstrap::startTabSet'][$sig]))
 		{
 			// Include Bootstrap framework
 			HtmlFrontend::_('bootstrap.framework');
@@ -846,8 +846,8 @@ abstract class WoobookingHtmlFrontendBootstrap
 			);
 
 			// Set static array
-			static::$loaded['WoobookingHtmlFrontendBootstrap::startTabSet'][$sig] = true;
-			static::$loaded['WoobookingHtmlFrontendBootstrap::startTabSet'][$selector]['active'] = $opt['active'];
+			static::$loaded['HtmlFrontendBootstrap::startTabSet'][$sig] = true;
+			static::$loaded['HtmlFrontendBootstrap::startTabSet'][$selector]['active'] = $opt['active'];
 		}
 
 		return '<div class="tab-content" id="' . $selector . 'Content">';
@@ -879,7 +879,7 @@ abstract class WoobookingHtmlFrontendBootstrap
 	 */
 	public static function addPanel($selector, $id)
 	{
-		$active = (static::$loaded['WoobookingHtmlFrontendBootstrap::startTabSet'][$selector]['active'] == $id) ? ' active' : '';
+		$active = (static::$loaded['HtmlFrontendBootstrap::startTabSet'][$selector]['active'] == $id) ? ' active' : '';
 
 		return '<div id="' . $id . '" class="tab-pane' . $active . '">';
 	}

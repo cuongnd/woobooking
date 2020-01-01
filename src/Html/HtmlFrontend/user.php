@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  2.5
  */
-abstract class WoobookingHtmlFrontendUser
+abstract class HtmlFrontendUser
 {
 	/**
 	 * Displays a list of user groups.
