@@ -15,7 +15,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since       1.6
  * @deprecated  3.7.0 These helpers are dependent on the deprecated MooTools support
  */
-abstract class WooBookingHtmlTabs
+abstract class HtmlTabs
 {
 	/**
 	 * Creates a panes and creates the JavaScript object for it.
@@ -82,7 +82,7 @@ abstract class WooBookingHtmlTabs
 		if (!array_key_exists((string) $group, $loaded))
 		{
 			// Include MooTools framework
-			WooBookingHtml::_('behavior.framework', true);
+			Html::_('behavior.framework', true);
 
 			$opt['onActive']            = isset($params['onActive']) ? '\\' . $params['onActive'] : null;
 			$opt['onBackground']        = isset($params['onBackground']) ? '\\' . $params['onBackground'] : null;
@@ -93,7 +93,7 @@ abstract class WooBookingHtmlTabs
 			// When use storage is set and value is false - By default we allow to use storage
 			$opt['useStorage'] = !(isset($params['useCookie']) && !$params['useCookie']);
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			$js = '	window.addEvent(\'domready\', function(){
 						$$(\'dl#' . $group . '.tabs\').each(function(tabs){
@@ -103,7 +103,7 @@ abstract class WooBookingHtmlTabs
 
 			$document = Factory::getDocument();
 			$document->addScriptDeclaration($js);
-			WooBookingHtml::_('script', 'system/tabs.js', array('version' => 'auto', 'relative' => true));
+			Html::_('script', 'system/tabs.js', array('version' => 'auto', 'relative' => true));
 
 			$loaded[(string) $group] = true;
 		}

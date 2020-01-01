@@ -107,19 +107,17 @@ abstract class Html
         $className = $prefix . ucfirst($file);
 
         if(empty(static::$includePaths)){
-            self::addIncludePath(WOO_BOOKING_PATH_PLATFORM."/html/html");
+            self::addIncludePath(WOO_BOOKING_PATH_PLATFORM."/Html/Html");
         }
 
         if (!class_exists($className))
         {
+
             $path = Path::find(static::$includePaths, strtolower($file) . '.php');
             if (!$path)
             {
                 throw new \InvalidArgumentException(sprintf('path %s %s %s not found.',$path, $prefix, $file), 500);
             }
-
-
-
             if (!class_exists($className))
             {
                 throw new \InvalidArgumentException(sprintf('%s %s not found.',$path, $className), 500);

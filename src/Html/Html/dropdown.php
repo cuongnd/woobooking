@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.0
  */
-abstract class WooBookingHtmlDropdown
+abstract class HtmlDropdown
 {
 	/**
 	 * @var    array  Array containing information for loaded files
@@ -44,7 +44,7 @@ abstract class WooBookingHtmlDropdown
 		}
 
 		// Depends on Bootstrap
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		Factory::getDocument()->addScriptDeclaration("
 			(function($){

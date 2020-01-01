@@ -17,7 +17,7 @@ Log::add('JHtmlRules is deprecated.', Log::WARNING, 'deprecated');
  * @since       1.6
  * @deprecated  4.0
  */
-abstract class WooBookingHtmlRules
+abstract class HtmlRules
 {
 	/**
 	 * Creates the HTML for the permissions widget
@@ -50,8 +50,8 @@ abstract class WooBookingHtmlRules
 		$html = array();
 
 		$html[] = '<div class="acl-options">';
-		$html[] = WooBookingHtml::_('tabs.start', 'acl-rules-' . $assetId, array('useCookie' => 1));
-		$html[] = WooBookingHtml::_('tabs.panel', WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY'), 'summary');
+		$html[] = Html::_('tabs.start', 'acl-rules-' . $assetId, array('useCookie' => 1));
+		$html[] = Html::_('tabs.panel', WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY'), 'summary');
 		$html[] = '			<p>' . WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY_DESC') . '</p>';
 		$html[] = '			<table class="aclsummary-table" summary="' . WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY_DESC') . '">';
 		$html[] = '			<caption>' . WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY_DESC_CAPTION') . '</caption>';
@@ -86,7 +86,7 @@ abstract class WooBookingHtmlRules
 		{
 			$actionTitle = WoobookingText::_($action->title);
 			$actionDesc = WoobookingText::_($action->description);
-			$html[] = WooBookingHtml::_('tabs.panel', $actionTitle, $action->name);
+			$html[] = Html::_('tabs.panel', $actionTitle, $action->name);
 			$html[] = '			<p>' . $actionDesc . '</p>';
 			$html[] = '			<table class="aclmodify-table" summary="' . strip_tags($actionDesc) . '">';
 			$html[] = '			<caption>' . WoobookingText::_('JLIB_HTML_ACCESS_MODIFY_DESC_CAPTION_ACL') . ' ' . $actionTitle . ' '
@@ -127,7 +127,7 @@ abstract class WooBookingHtmlRules
 			$html[] = '			</table>';
 		}
 
-		$html[] = WooBookingHtml::_('tabs.end');
+		$html[] = Html::_('tabs.end');
 
 		// Build the footer with legend and special purpose buttons.
 		$html[] = '	<div class="clr"></div>';

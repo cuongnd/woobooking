@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-abstract class WooBookingHtmlJGrid
+abstract class HtmlJGrid
 {
 	/**
 	 * Returns an action on a grid
@@ -57,11 +57,11 @@ abstract class WooBookingHtmlJGrid
 
 		if ($tip)
 		{
-			WooBookingHtml::_('bootstrap.tooltip');
+			Html::_('bootstrap.tooltip');
 
 			$title = $enabled ? $active_title : $inactive_title;
 			$title = $translate ? WoobookingText::_($title) : $title;
-			$title = WooBookingHtml::_('tooltipText', $title, '', 0);
+			$title = Html::_('tooltipText', $title, '', 0);
 		}
 
 		if ($enabled)
@@ -188,12 +188,12 @@ abstract class WooBookingHtmlJGrid
 
 			if ($publish_up)
 			{
-				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_START', WooBookingHtml::_('date', $publish_up, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
+				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_START', Html::_('date', $publish_up, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
 			}
 
 			if ($publish_down)
 			{
-				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_FINISHED', WooBookingHtml::_('date', $publish_down, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
+				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_FINISHED', Html::_('date', $publish_down, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
 			}
 
 			$tip = empty($tips) ? false : implode('<br />', $tips);
@@ -286,27 +286,27 @@ abstract class WooBookingHtmlJGrid
 
 		if (!array_key_exists('published', $config) || $config['published'])
 		{
-			$options[] = WooBookingHtml::_('select.option', '1', 'JPUBLISHED');
+			$options[] = Html::_('select.option', '1', 'JPUBLISHED');
 		}
 
 		if (!array_key_exists('unpublished', $config) || $config['unpublished'])
 		{
-			$options[] = WooBookingHtml::_('select.option', '0', 'JUNPUBLISHED');
+			$options[] = Html::_('select.option', '0', 'JUNPUBLISHED');
 		}
 
 		if (!array_key_exists('archived', $config) || $config['archived'])
 		{
-			$options[] = WooBookingHtml::_('select.option', '2', 'JARCHIVED');
+			$options[] = Html::_('select.option', '2', 'JARCHIVED');
 		}
 
 		if (!array_key_exists('trash', $config) || $config['trash'])
 		{
-			$options[] = WooBookingHtml::_('select.option', '-2', 'JTRASHED');
+			$options[] = Html::_('select.option', '-2', 'JTRASHED');
 		}
 
 		if (!array_key_exists('all', $config) || $config['all'])
 		{
-			$options[] = WooBookingHtml::_('select.option', '*', 'JALL');
+			$options[] = Html::_('select.option', '*', 'JALL');
 		}
 
 		return $options;
@@ -328,7 +328,7 @@ abstract class WooBookingHtmlJGrid
 	 */
 	public static function checkedout($i, $editorName, $time, $prefix = '', $enabled = false, $checkbox = 'cb')
 	{
-		WooBookingHtml::_('bootstrap.tooltip');
+		Html::_('bootstrap.tooltip');
 
 		if (is_array($prefix))
 		{
@@ -338,9 +338,9 @@ abstract class WooBookingHtmlJGrid
 			$prefix = array_key_exists('prefix', $options) ? $options['prefix'] : '';
 		}
 
-		$text = $editorName . '<br />' . WooBookingHtml::_('date', $time, WoobookingText::_('DATE_FORMAT_LC')) . '<br />' . WooBookingHtml::_('date', $time, 'H:i');
-		$active_title = WooBookingHtml::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKIN'), $text, 0);
-		$inactive_title = WooBookingHtml::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKED_OUT'), $text, 0);
+		$text = $editorName . '<br />' . Html::_('date', $time, WoobookingText::_('DATE_FORMAT_LC')) . '<br />' . Html::_('date', $time, 'H:i');
+		$active_title = Html::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKIN'), $text, 0);
+		$inactive_title = Html::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKED_OUT'), $text, 0);
 
 		return static::action(
 			$i, 'checkin', $prefix, WoobookingText::_('JLIB_HTML_CHECKED_OUT'), html_entity_decode($active_title, ENT_QUOTES, 'UTF-8'),

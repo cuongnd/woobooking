@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlMenu
+abstract class HtmlMenu
 {
 	/**
 	 * Cached array of the menus.
@@ -154,22 +154,22 @@ abstract class WooBookingHtmlMenu
 				}
 
 				// Start group:
-				static::$items[$key][] = WooBookingHtml::_('select.optgroup', $menu->text);
+				static::$items[$key][] = Html::_('select.optgroup', $menu->text);
 
 				// Special "Add to this Menu" option:
-				static::$items[$key][] = WooBookingHtml::_('select.option', $menu->value . '.1', WoobookingText::_('JLIB_HTML_ADD_TO_THIS_MENU'));
+				static::$items[$key][] = Html::_('select.option', $menu->value . '.1', WoobookingText::_('JLIB_HTML_ADD_TO_THIS_MENU'));
 
 				// Menu items:
 				if (isset($lookup[$menu->value]))
 				{
 					foreach ($lookup[$menu->value] as &$item)
 					{
-						static::$items[$key][] = WooBookingHtml::_('select.option', $menu->value . '.' . $item->value, $item->text);
+						static::$items[$key][] = Html::_('select.option', $menu->value . '.' . $item->value, $item->text);
 					}
 				}
 
 				// Finish group:
-				static::$items[$key][] = WooBookingHtml::_('select.optgroup', $menu->text);
+				static::$items[$key][] = Html::_('select.optgroup', $menu->text);
 			}
 		}
 
@@ -194,7 +194,7 @@ abstract class WooBookingHtmlMenu
 
 		$options = static::menuItems($config);
 
-		return WooBookingHtml::_(
+		return Html::_(
 			'select.genericlist', $options, $name,
 			array(
 				'id'             => isset($config['id']) ? $config['id'] : 'assetgroups_' . (++$count),
@@ -227,8 +227,8 @@ abstract class WooBookingHtmlMenu
 				->where($db->quoteName('parent_id') . ' = ' . (int) $row->parent_id)
 				->where($db->quoteName('published') . ' != -2')
 				->order('ordering');
-			$order = WooBookingHtml::_('list.genericordering', $query);
-			$ordering = WooBookingHtml::_(
+			$order = Html::_('list.genericordering', $query);
+			$ordering = Html::_(
 				'select.genericlist', $order, 'ordering',
 				array('list.attr' => 'class="inputbox" size="1"', 'list.select' => (int) $row->ordering)
 			);
@@ -297,19 +297,19 @@ abstract class WooBookingHtmlMenu
 
 		if ($all | $unassigned)
 		{
-			$mitems[] = WooBookingHtml::_('select.option', '<OPTGROUP>', WoobookingText::_('JOPTION_MENUS'));
+			$mitems[] = Html::_('select.option', '<OPTGROUP>', WoobookingText::_('JOPTION_MENUS'));
 
 			if ($all)
 			{
-				$mitems[] = WooBookingHtml::_('select.option', 0, WoobookingText::_('JALL'));
+				$mitems[] = Html::_('select.option', 0, WoobookingText::_('JALL'));
 			}
 
 			if ($unassigned)
 			{
-				$mitems[] = WooBookingHtml::_('select.option', -1, WoobookingText::_('JOPTION_UNASSIGNED'));
+				$mitems[] = Html::_('select.option', -1, WoobookingText::_('JOPTION_UNASSIGNED'));
 			}
 
-			$mitems[] = WooBookingHtml::_('select.option', '</OPTGROUP>');
+			$mitems[] = Html::_('select.option', '</OPTGROUP>');
 		}
 
 		$lastMenuType = null;
@@ -321,20 +321,20 @@ abstract class WooBookingHtmlMenu
 			{
 				if ($tmpMenuType)
 				{
-					$mitems[] = WooBookingHtml::_('select.option', '</OPTGROUP>');
+					$mitems[] = Html::_('select.option', '</OPTGROUP>');
 				}
 
-				$mitems[]     = WooBookingHtml::_('select.option', '<OPTGROUP>', $list_a->menutype);
+				$mitems[]     = Html::_('select.option', '<OPTGROUP>', $list_a->menutype);
 				$lastMenuType = $list_a->menutype;
 				$tmpMenuType  = $list_a->menutype;
 			}
 
-			$mitems[] = WooBookingHtml::_('select.option', $list_a->id, $list_a->title);
+			$mitems[] = Html::_('select.option', $list_a->id, $list_a->title);
 		}
 
 		if ($lastMenuType !== null)
 		{
-			$mitems[] = WooBookingHtml::_('select.option', '</OPTGROUP>');
+			$mitems[] = Html::_('select.option', '</OPTGROUP>');
 		}
 
 		return $mitems;

@@ -16,7 +16,7 @@ use WooBooking\String\StringHelper;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlList
+abstract class HtmlList
 {
 	/**
 	 * Build the select list to choose an image
@@ -46,7 +46,7 @@ abstract class WooBookingHtmlList
 		}
 
 		$imageFiles = new DirectoryIterator(JPATH_SITE . '/' . $directory);
-		$images = array(WooBookingHtml::_('select.option', '', WoobookingText::_('JOPTION_SELECT_IMAGE')));
+		$images = array(Html::_('select.option', '', WoobookingText::_('JOPTION_SELECT_IMAGE')));
 
 		foreach ($imageFiles as $file)
 		{
@@ -59,11 +59,11 @@ abstract class WooBookingHtmlList
 
 			if (preg_match('#(' . $extensions . ')$#', $fileName))
 			{
-				$images[] = WooBookingHtml::_('select.option', $fileName);
+				$images[] = Html::_('select.option', $fileName);
 			}
 		}
 
-		$images = WooBookingHtml::_(
+		$images = Html::_(
 			'select.genericlist',
 			$images,
 			$name,
@@ -96,12 +96,12 @@ abstract class WooBookingHtmlList
 
 		if (empty($items))
 		{
-			$options[] = WooBookingHtml::_('select.option', 1, WoobookingText::_('JOPTION_ORDER_FIRST'));
+			$options[] = Html::_('select.option', 1, WoobookingText::_('JOPTION_ORDER_FIRST'));
 
 			return $options;
 		}
 
-		$options[] = WooBookingHtml::_('select.option', 0, '0 ' . WoobookingText::_('JOPTION_ORDER_FIRST'));
+		$options[] = Html::_('select.option', 0, '0 ' . WoobookingText::_('JOPTION_ORDER_FIRST'));
 
 		for ($i = 0, $n = count($items); $i < $n; $i++)
 		{
@@ -116,10 +116,10 @@ abstract class WooBookingHtmlList
 				$text = $items[$i]->text;
 			}
 
-			$options[] = WooBookingHtml::_('select.option', $items[$i]->value, $items[$i]->value . '. ' . $text);
+			$options[] = Html::_('select.option', $items[$i]->value, $items[$i]->value . '. ' . $text);
 		}
 
-		$options[] = WooBookingHtml::_('select.option', $items[$i - 1]->value + 1, ($items[$i - 1]->value + 1) . ' ' . WoobookingText::_('JOPTION_ORDER_LAST'));
+		$options[] = Html::_('select.option', $items[$i - 1]->value + 1, ($items[$i - 1]->value + 1) . ' ' . WoobookingText::_('JOPTION_ORDER_LAST'));
 
 		return $options;
 	}
@@ -146,8 +146,8 @@ abstract class WooBookingHtmlList
 
 		if (empty($neworder))
 		{
-			$orders = WooBookingHtml::_('list.genericordering', $query);
-			$html = WooBookingHtml::_('select.genericlist', $orders, $name, array('list.attr' => $attribs, 'list.select' => (int) $selected));
+			$orders = Html::_('list.genericordering', $query);
+			$html = Html::_('select.genericlist', $orders, $name, array('list.attr' => $attribs, 'list.select' => (int) $selected));
 		}
 		else
 		{
@@ -193,7 +193,7 @@ abstract class WooBookingHtmlList
 
 		if ($nouser)
 		{
-			$users[] = WooBookingHtml::_('select.option', '0', WoobookingText::_('JOPTION_NO_USER'));
+			$users[] = Html::_('select.option', '0', WoobookingText::_('JOPTION_NO_USER'));
 			$users = array_merge($users, $db->loadObjectList());
 		}
 		else
@@ -201,7 +201,7 @@ abstract class WooBookingHtmlList
 			$users = $db->loadObjectList();
 		}
 
-		$users = WooBookingHtml::_(
+		$users = Html::_(
 			'select.genericlist',
 			$users,
 			$name,
@@ -255,7 +255,7 @@ abstract class WooBookingHtmlList
 			$pos['right'] = WoobookingText::_('JGLOBAL_RIGHT');
 		}
 
-		$positions = WooBookingHtml::_(
+		$positions = Html::_(
 			'select.genericlist', $pos, $name,
 			array(
 				'id' => $id,

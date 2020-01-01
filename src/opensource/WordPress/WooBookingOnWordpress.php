@@ -15,7 +15,7 @@ use WooBooking\CMS;
 use woobooking_controller;
 use WooBookingHtml;
 use WooBookingHtmlFrontend;
-
+use WooBooking\CMS\Html\Html;
 use WooBooking\CMS\Utilities\Utility;
 use WoobookingModel;
 use WoobookingText;
@@ -973,7 +973,7 @@ class WooBookingOnWordpress
         $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 
         if ($app->getClient() == 1) {
-            WooBookingHtml::_('jquery.loading_js');
+            Html::_('jquery.loading_js');
             $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
             $doc->addScript('admin/resources/js/less/less.min.js');
             $doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
@@ -985,20 +985,20 @@ class WooBookingOnWordpress
             $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/main_script.js');
             $doc->addLessStyleSheet('admin/nb_apps/nb_woobooking/assets/less/main_style.less');
             $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
-            WooBookingHtml::_('jquery.tooltip');
-            WooBookingHtml::_('jquery.bootstrap');
+            Html::_('jquery.tooltip');
+            Html::_('jquery.bootstrap');
 
             $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
             $doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
             $doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
             $doc->addStyleSheet('admin/resources/js/fontawesome-free-5.11.2/css/all.min.css');
         } else {
-            WooBookingHtmlFrontend::_('jquery.loading_js');
+            HtmlFrontend::_('jquery.loading_js');
             $doc->addScript('resources/js/less/less.min.js');
             $doc->addScript('resources/js/autoNumeric/autoNumeric.js');
             $doc->addScript('resources/js/Bootstrap-Loading/src/waitingfor.js');
 
-            WooBookingHtmlFrontend::_('jquery.bootstrap');
+            HtmlFrontend::_('jquery.bootstrap');
 
             $doc->addScript('nb_apps/nb_woobooking/assets/js/main_script.js');
             $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style.less');

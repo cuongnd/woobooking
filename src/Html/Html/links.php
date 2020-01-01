@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.2
  */
-abstract class WooBookingHtmlLinks
+abstract class HtmlLinks
 {
 	/**
 	 * Method to generate html code for groups of lists of links
@@ -45,7 +45,7 @@ abstract class WooBookingHtmlLinks
 				$layout = new JLayoutFile('WooBooking.links.groupopen');
 				$htmlHeader = $layout->render($title);
 
-				$htmlLinks  = WooBookingHtml::_('links.links', $links);
+				$htmlLinks  = Html::_('links.links', $links);
 
 				if ($htmlLinks != '')
 				{
@@ -79,7 +79,7 @@ abstract class WooBookingHtmlLinks
 
 		foreach ($links as $link)
 		{
-			$html[] = WooBookingHtml::_('links.link', $link);
+			$html[] = Html::_('links.link', $link);
 		}
 
 		return implode($html);

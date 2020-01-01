@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.6
  */
-abstract class WooBookingHtmlNumber
+abstract class HtmlNumber
 {
 	/**
 	 * Converts bytes to more distinguishable formats such as:

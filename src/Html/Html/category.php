@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlCategory
+abstract class HtmlCategory
 {
 	/**
 	 * Cached array of the category items.
@@ -127,7 +127,7 @@ abstract class WooBookingHtmlCategory
 					$item->title .= ' (' . $item->language . ')';
 				}
 
-				static::$items[$hash][] = WooBookingHtml::_('select.option', $item->id, $item->title);
+				static::$items[$hash][] = Html::_('select.option', $item->id, $item->title);
 			}
 		}
 
@@ -191,10 +191,10 @@ abstract class WooBookingHtmlCategory
 			{
 				$repeat = ($item->level - 1 >= 0) ? $item->level - 1 : 0;
 				$item->title = str_repeat('- ', $repeat) . $item->title;
-				static::$items[$hash][] = WooBookingHtml::_('select.option', $item->id, $item->title);
+				static::$items[$hash][] = Html::_('select.option', $item->id, $item->title);
 			}
 			// Special "Add to root" option:
-			static::$items[$hash][] = WooBookingHtml::_('select.option', '1', WoobookingText::_('JLIB_HTML_ADD_TO_ROOT'));
+			static::$items[$hash][] = Html::_('select.option', '1', WoobookingText::_('JLIB_HTML_ADD_TO_ROOT'));
 		}
 
 		return static::$items[$hash];

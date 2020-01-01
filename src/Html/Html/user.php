@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  2.5
  */
-abstract class WooBookingHtmlUser
+abstract class HtmlUser
 {
 	/**
 	 * Displays a list of user groups.
@@ -33,7 +33,7 @@ abstract class WooBookingHtmlUser
 		{
 			$options[$i]->value = $options[$i]->id;
 			$options[$i]->text = str_repeat('- ', $options[$i]->level) . $options[$i]->title;
-			$groups[] = WooBookingHtml::_('select.option', $options[$i]->value, $options[$i]->text);
+			$groups[] = Html::_('select.option', $options[$i]->value, $options[$i]->text);
 		}
 
 		// Exclude super admin groups if requested

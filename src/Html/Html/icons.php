@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  2.5
  */
-abstract class WooBookingHtmlIcons
+abstract class HtmlIcons
 {
 	/**
 	 * Method to generate html code for a list of buttons
@@ -31,7 +31,7 @@ abstract class WooBookingHtmlIcons
 
 		foreach ($buttons as $button)
 		{
-			$html[] = WooBookingHtml::_('icons.button', $button);
+			$html[] = Html::_('icons.button', $button);
 		}
 
 		return implode($html);

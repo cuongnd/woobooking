@@ -15,7 +15,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since       1.6
  * @deprecated  3.7.0 These helpers are dependent on the deprecated MooTools support
  */
-abstract class WooBookingHtmlSliders
+abstract class HtmlSliders
 {
 	/**
 	 * Creates a panes and loads the javascript behavior for it.
@@ -88,7 +88,7 @@ abstract class WooBookingHtmlSliders
 			$loaded[$group] = true;
 
 			// Include mootools framework.
-			WooBookingHtml::_('behavior.framework', true);
+			Html::_('behavior.framework', true);
 
 			$document = Factory::getDocument();
 
@@ -111,7 +111,7 @@ abstract class WooBookingHtmlSliders
 			$opt['opacity'] = (isset($params['opacityTransition']) && $params['opacityTransition']) ? 'true' : 'false';
 			$opt['alwaysHide'] = (isset($params['allowAllClose']) && (!$params['allowAllClose'])) ? 'false' : 'true';
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			$js = "window.addEvent('domready', function(){ new Fx.Accordion($$('div#" . $group
 				. ".pane-sliders > .panel > h3.pane-toggler'), $$('div#" . $group . ".pane-sliders > .panel > div.pane-slider'), " . $options

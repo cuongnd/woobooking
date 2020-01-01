@@ -15,7 +15,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since  2.5
  */
 
-abstract class WooBookingHtmlDate
+abstract class HtmlDate
 {
 	/**
 	 * Function to convert a static time into a relative measurement
@@ -24,7 +24,7 @@ abstract class WooBookingHtmlDate
 	 * @param   string  $unit    The optional unit of measurement to return
 	 *                           if the value of the diff is greater than one
 	 * @param   string  $time    An optional time to compare to, defaults to now
-	 * @param   string  $format  An optional format for the WooBookingHtml::date output
+	 * @param   string  $format  An optional format for the Html::date output
 	 *
 	 * @return  string  The converted time string
 	 *
@@ -84,6 +84,6 @@ abstract class WooBookingHtmlDate
 		}
 
 		// Over a month, return the absolute time
-		return WooBookingHtml::_('date', $date, $format);
+		return Html::_('date', $date, $format);
 	}
 }

@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.6
  */
-abstract class WooBookingHtmlContentLanguage
+abstract class HtmlContentLanguage
 {
 	/**
 	 * Cached array of the content language items.

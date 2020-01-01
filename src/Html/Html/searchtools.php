@@ -16,7 +16,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.2
  */
-abstract class WooBookingHtmlSearchtools
+abstract class HtmlSearchtools
 {
 	/**
 	 * @var    array  Array containing information for loaded files
@@ -39,12 +39,12 @@ abstract class WooBookingHtmlSearchtools
 			// Requires jQuery but allows to skip its loading
 			if ($loadJquery = (!isset($options['loadJquery']) || $options['loadJquery'] != 0))
 			{
-				WooBookingHtml::_('jquery.framework');
+				Html::_('jquery.framework');
 			}
 
 			// Load the jQuery plugin && CSS
-			WooBookingHtml::_('script', 'jui/jquery.searchtools.min.js', array('version' => 'auto', 'relative' => true));
-			WooBookingHtml::_('stylesheet', 'jui/jquery.searchtools.css', array('version' => 'auto', 'relative' => true));
+			Html::_('script', 'jui/jquery.searchtools.min.js', array('version' => 'auto', 'relative' => true));
+			Html::_('stylesheet', 'jui/jquery.searchtools.css', array('version' => 'auto', 'relative' => true));
 
 			static::$loaded[__METHOD__] = true;
 		}

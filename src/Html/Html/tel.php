@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.6
  */
-abstract class WooBookingHtmlTel
+abstract class HtmlTel
 {
 	/**
 	 * Converts strings of integers into more readable telephone format

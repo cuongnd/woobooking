@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.0
  */
-abstract class WooBookingHtmlSortablelist
+abstract class HtmlSortablelist
 {
 	/**
 	 * @var    array  Array containing information for loaded files

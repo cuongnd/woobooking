@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  3.1
  */
-abstract class WooBookingHtmlTag
+abstract class HtmlTag
 {
 	/**
 	 * Cached array of the tag items.
@@ -93,7 +93,7 @@ abstract class WooBookingHtmlTag
 			{
 				$repeat = ($item->level - 1 >= 0) ? $item->level - 1 : 0;
 				$item->title = str_repeat('- ', $repeat) . $item->title;
-				static::$items[$hash][] = WooBookingHtml::_('select.option', $item->id, $item->title);
+				static::$items[$hash][] = Html::_('select.option', $item->id, $item->title);
 			}
 		}
 
@@ -145,7 +145,7 @@ abstract class WooBookingHtmlTag
 		{
 			$repeat = ($item->level - 1 >= 0) ? $item->level - 1 : 0;
 			$item->title = str_repeat('- ', $repeat) . $item->title;
-			static::$items[$hash][] = WooBookingHtml::_('select.option', $item->id, $item->title);
+			static::$items[$hash][] = Html::_('select.option', $item->id, $item->title);
 		}
 
 		return static::$items[$hash];

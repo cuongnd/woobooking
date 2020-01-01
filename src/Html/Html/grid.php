@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlGrid
+abstract class HtmlGrid
 {
 	/**
 	 * Display a boolean setting widget.
@@ -34,11 +34,11 @@ abstract class WooBookingHtmlGrid
 	{
 		// Load the behavior.
 		static::behavior();
-		WooBookingHtml::_('bootstrap.tooltip');
+		Html::_('bootstrap.tooltip');
 
 		// Build the title.
 		$title = $value ? WoobookingText::_('JYES') : WoobookingText::_('JNO');
-		$title = WooBookingHtml::_('tooltipText', $title, WoobookingText::_('JGLOBAL_CLICK_TO_TOGGLE_STATE'), 0);
+		$title = Html::_('tooltipText', $title, WoobookingText::_('JGLOBAL_CLICK_TO_TOGGLE_STATE'), 0);
 
 		// Build the <a> tag.
 		$bool = $value ? 'true' : 'false';
@@ -74,8 +74,8 @@ abstract class WooBookingHtmlGrid
 	 */
 	public static function sort($title, $order, $direction = 'asc', $selected = '', $task = null, $new_direction = 'asc', $tip = '', $form = null)
 	{
-		WooBookingHtml::_('behavior.core');
-		WooBookingHtml::_('bootstrap.popover');
+		Html::_('behavior.core');
+		Html::_('bootstrap.popover');
 
 		$direction = strtolower($direction);
 		$icon = array('arrow-up-3', 'arrow-down-3');
@@ -131,10 +131,10 @@ abstract class WooBookingHtmlGrid
 	 */
 	public static function checkall($name = 'checkall-toggle', $tip = 'JGLOBAL_CHECK_ALL', $action = 'WooBooking.checkAll(this)')
 	{
-		WooBookingHtml::_('behavior.core');
-		WooBookingHtml::_('bootstrap.tooltip');
+		Html::_('behavior.core');
+		Html::_('bootstrap.tooltip');
 
-		return '<input type="checkbox" name="' . $name . '" value="" class="hasTooltip" title="' . WooBookingHtml::_('tooltipText', $tip)
+		return '<input type="checkbox" name="' . $name . '" value="" class="hasTooltip" title="' . Html::_('tooltipText', $tip)
 			. '" onclick="' . $action . '" />';
 	}
 
@@ -190,11 +190,11 @@ abstract class WooBookingHtmlGrid
 		{
 			if ($identifier === 'id')
 			{
-				return WooBookingHtml::_('grid.id', $i, $row->$identifier);
+				return Html::_('grid.id', $i, $row->$identifier);
 			}
 			else
 			{
-				return WooBookingHtml::_('grid.id', $i, $row->$identifier, $result, $identifier);
+				return Html::_('grid.id', $i, $row->$identifier, $result, $identifier);
 			}
 		}
 	}
@@ -225,7 +225,7 @@ abstract class WooBookingHtmlGrid
 		$action = $value ? WoobookingText::_('JLIB_HTML_UNPUBLISH_ITEM') : WoobookingText::_('JLIB_HTML_PUBLISH_ITEM');
 
 		return '<a href="#" onclick="return listItemTask(\'cb' . $i . '\',\'' . $prefix . $task . '\')" title="' . $action . '">'
-			. WooBookingHtml::_('image', 'admin/' . $img, $alt, null, true) . '</a>';
+			. Html::_('image', 'admin/' . $img, $alt, null, true) . '</a>';
 	}
 
 	/**
@@ -256,7 +256,7 @@ abstract class WooBookingHtmlGrid
 			$state['T'] = WoobookingText::_($trashed);
 		}
 
-		return WooBookingHtml::_(
+		return Html::_(
 			'select.genericlist',
 			$state,
 			'filter_state',
@@ -302,16 +302,16 @@ abstract class WooBookingHtmlGrid
 
 		if ($overlib)
 		{
-			WooBookingHtml::_('bootstrap.tooltip');
+			Html::_('bootstrap.tooltip');
 
-			$date = WooBookingHtml::_('date', $row->checked_out_time, WoobookingText::_('DATE_FORMAT_LC1'));
-			$time = WooBookingHtml::_('date', $row->checked_out_time, 'H:i');
+			$date = Html::_('date', $row->checked_out_time, WoobookingText::_('DATE_FORMAT_LC1'));
+			$time = Html::_('date', $row->checked_out_time, 'H:i');
 
-			$hover = '<span class="editlinktip hasTooltip" title="' . WooBookingHtml::_('tooltipText', 'JLIB_HTML_CHECKED_OUT', $row->editor)
+			$hover = '<span class="editlinktip hasTooltip" title="' . Html::_('tooltipText', 'JLIB_HTML_CHECKED_OUT', $row->editor)
 				. '<br />' . $date . '<br />' . $time . '">';
 		}
 
-		return $hover . WooBookingHtml::_('image', 'admin/checked_out.png', null, null, true) . '</span>';
+		return $hover . Html::_('image', 'admin/checked_out.png', null, null, true) . '</span>';
 	}
 
 	/**
@@ -330,7 +330,7 @@ abstract class WooBookingHtmlGrid
 		if (!$loaded)
 		{
 			// Include jQuery
-			WooBookingHtml::_('jquery.framework');
+			Html::_('jquery.framework');
 
 			// Build the behavior script.
 			$js = '

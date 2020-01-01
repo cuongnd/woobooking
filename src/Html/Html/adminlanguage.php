@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.8.0
  */
-abstract class WooBookingHtmlAdminLanguage
+abstract class HtmlAdminLanguage
 {
 	/**
 	 * Cached array of the administrator language items.

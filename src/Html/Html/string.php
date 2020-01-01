@@ -16,7 +16,7 @@ use WooBooking\String\StringHelper;
  *
  * @since  1.6
  */
-abstract class WooBookingHtmlString
+abstract class HtmlString
 {
 	/**
 	 * Truncates text blocks over the specified character limit and closes
@@ -201,7 +201,7 @@ abstract class WooBookingHtmlString
 		}
 
 		// First get the truncated plain text string. This is the rendered text we want to end up with.
-		$ptString = WooBookingHtml::_('string.truncate', $html, $maxLength, $noSplit, $allowHtml = false);
+		$ptString = Html::_('string.truncate', $html, $maxLength, $noSplit, $allowHtml = false);
 
 		// It's all HTML, just return it.
 		if ($ptString === '')
@@ -220,7 +220,7 @@ abstract class WooBookingHtmlString
 		if ($ptString === '...')
 		{
 			$stripped = substr(strip_tags($html), 0, $maxLength);
-			$ptString = WooBookingHtml::_('string.truncate', $stripped, $maxLength, $noSplit, $allowHtml = false);
+			$ptString = Html::_('string.truncate', $stripped, $maxLength, $noSplit, $allowHtml = false);
 		}
 
 		// We need to trim the ellipsis that truncate adds.
@@ -230,7 +230,7 @@ abstract class WooBookingHtmlString
 		while ($maxLength <= $baseLength)
 		{
 			// Get the truncated string assuming HTML is allowed.
-			$htmlString = WooBookingHtml::_('string.truncate', $html, $maxLength, $noSplit, $allowHtml = true);
+			$htmlString = Html::_('string.truncate', $html, $maxLength, $noSplit, $allowHtml = true);
 
 			if ($htmlString === '...' && strlen($ptString) + 3 > $maxLength)
 			{
@@ -240,7 +240,7 @@ abstract class WooBookingHtmlString
 			$htmlString = rtrim($htmlString, '.');
 
 			// Now get the plain text from the HTML string and trim it.
-			$htmlStringToPtString = WooBookingHtml::_('string.truncate', $htmlString, $maxLength, $noSplit, $allowHtml = false);
+			$htmlStringToPtString = Html::_('string.truncate', $htmlString, $maxLength, $noSplit, $allowHtml = false);
 			$htmlStringToPtString = rtrim($htmlStringToPtString, '.');
 
 			// If the new plain text string matches the original plain text string we are done.

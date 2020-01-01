@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.0
  */
-abstract class WooBookingHtmlBootstrap
+abstract class HtmlBootstrap
 {
 	/**
 	 * @var    array  Array containing information for loaded files
@@ -48,12 +48,12 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$sig]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['offset'] = isset($params['offset']) ? $params['offset'] : 10;
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			// Attach affix to document
 			Factory::getDocument()->addScriptDeclaration(
@@ -85,7 +85,7 @@ abstract class WooBookingHtmlBootstrap
 		}
 
 		// Include Bootstrap framework
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		// Attach the alerts to the document
 		Factory::getDocument()->addScriptDeclaration(
@@ -115,7 +115,7 @@ abstract class WooBookingHtmlBootstrap
 		}
 
 		// Include Bootstrap framework
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		// Attach the button to the document
 		Factory::getDocument()->addScriptDeclaration(
@@ -149,13 +149,13 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$sig]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['interval'] = isset($params['interval']) ? (int) $params['interval'] : 5000;
 			$opt['pause']    = isset($params['pause']) ? $params['pause'] : 'hover';
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			// Attach the carousel to document
 			Factory::getDocument()->addScriptDeclaration(
@@ -187,7 +187,7 @@ abstract class WooBookingHtmlBootstrap
 		}
 
 		// Include Bootstrap framework
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		// Attach the dropdown to the document
 		Factory::getDocument()->addScriptDeclaration(
@@ -219,7 +219,7 @@ abstract class WooBookingHtmlBootstrap
 		}
 
 		// Load jQuery
-		WooBookingHtml::_('jquery.framework');
+		Html::_('jquery.framework');
 
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null)
@@ -227,7 +227,7 @@ abstract class WooBookingHtmlBootstrap
 			$debug = WBDEBUG;
 		}
 
-		WooBookingHtml::_('script', 'jui/bootstrap.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
+		Html::_('script', 'jui/bootstrap.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
 		static::$loaded[__METHOD__] = true;
 
 		return;
@@ -258,7 +258,7 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$sig]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['backdrop'] = isset($params['backdrop']) ? (boolean) $params['backdrop'] : true;
@@ -266,7 +266,7 @@ abstract class WooBookingHtmlBootstrap
 			$opt['show']     = isset($params['show']) ? (boolean) $params['show'] : false;
 			$opt['remote']   = isset($params['remote']) ? $params['remote'] : '';
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			// Attach the modal to document
 			Factory::getDocument()->addScriptDeclaration(
@@ -305,7 +305,7 @@ abstract class WooBookingHtmlBootstrap
 	public static function renderModal($selector = 'modal', $params = array(), $body = '')
 	{
 		// Include Bootstrap framework
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		$layoutData = array(
 			'selector' => $selector,
@@ -350,7 +350,7 @@ abstract class WooBookingHtmlBootstrap
 		}
 
 		// Include Bootstrap framework
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		$opt['animation'] = isset($params['animation']) ? $params['animation'] : null;
 		$opt['html']      = isset($params['html']) ? $params['html'] : true;
@@ -362,7 +362,7 @@ abstract class WooBookingHtmlBootstrap
 		$opt['delay']     = isset($params['delay']) ? $params['delay'] : null;
 		$opt['container'] = isset($params['container']) ? $params['container'] : 'body';
 
-		$options = WooBookingHtml::getJSObject($opt);
+		$options = Html::getJSObject($opt);
 
 		$initFunction = 'function initPopovers (event, container) { ' .
 				'$(container || document).find(' . json_encode($selector) . ').popover(' . $options . ');' .
@@ -397,12 +397,12 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$sig]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['offset'] = isset($params['offset']) ? (int) $params['offset'] : 10;
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			// Attach ScrollSpy to document
 			Factory::getDocument()->addScriptDeclaration(
@@ -446,7 +446,7 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$selector]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['animation'] = isset($params['animation']) ? (boolean) $params['animation'] : null;
@@ -463,7 +463,7 @@ abstract class WooBookingHtmlBootstrap
 			$onHide           = isset($params['onHide']) ? (string) $params['onHide'] : null;
 			$onHidden         = isset($params['onHidden']) ? (string) $params['onHidden'] : null;
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			// Build the script.
 			$script = array('$(container).find(' . json_encode($selector) . ').tooltip(' . $options . ')');
@@ -515,8 +515,8 @@ abstract class WooBookingHtmlBootstrap
 	{
 		if ($extended)
 		{
-			WooBookingHtml::_('script', 'jui/bootstrap-tooltip-extended.min.js', array('version' => 'auto', 'relative' => true));
-			WooBookingHtml::_('stylesheet', 'jui/bootstrap-tooltip-extended.css', array('version' => 'auto', 'relative' => true));
+			Html::_('script', 'jui/bootstrap-tooltip-extended.min.js', array('version' => 'auto', 'relative' => true));
+			Html::_('stylesheet', 'jui/bootstrap-tooltip-extended.css', array('version' => 'auto', 'relative' => true));
 		}
 	}
 
@@ -553,7 +553,7 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$selector]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['source']      = isset($params['source']) ? $params['source'] : null;
@@ -564,7 +564,7 @@ abstract class WooBookingHtmlBootstrap
 			$opt['updater']     = isset($params['updater']) ? (string) $params['updater'] : null;
 			$opt['highlighter'] = isset($params['highlighter']) ? (int) $params['highlighter'] : null;
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			// Attach typehead to document
 			Factory::getDocument()->addScriptDeclaration(
@@ -605,7 +605,7 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$selector]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['parent'] = isset($params['parent']) ? ($params['parent'] == true ? '#' . $selector : $params['parent']) : false;
@@ -615,7 +615,7 @@ abstract class WooBookingHtmlBootstrap
 			$onHide = isset($params['onHide']) ? (string) $params['onHide'] : null;
 			$onHidden = isset($params['onHidden']) ? (string) $params['onHidden'] : null;
 
-			$options = WooBookingHtml::getJSObject($opt);
+			$options = Html::getJSObject($opt);
 
 			$opt['active'] = isset($params['active']) ? (string) $params['active'] : '';
 
@@ -743,7 +743,7 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded[__METHOD__][$sig]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['active'] = (isset($params['active']) && $params['active']) ? (string) $params['active'] : '';
@@ -821,7 +821,7 @@ abstract class WooBookingHtmlBootstrap
 	 * @return  string
 	 *
 	 * @since   3.0
-	 * @deprecated  4.0	Use WooBookingHtml::_('bootstrap.startTabSet') instead.
+	 * @deprecated  4.0	Use Html::_('bootstrap.startTabSet') instead.
 	 */
 	public static function startPane($selector = 'myTab', $params = array())
 	{
@@ -830,7 +830,7 @@ abstract class WooBookingHtmlBootstrap
 		if (!isset(static::$loaded['WoobookingHtmlBootstrap::startTabSet'][$sig]))
 		{
 			// Include Bootstrap framework
-			WooBookingHtml::_('bootstrap.framework');
+			Html::_('bootstrap.framework');
 
 			// Setup options object
 			$opt['active'] = isset($params['active']) ? (string) $params['active'] : '';
@@ -859,7 +859,7 @@ abstract class WooBookingHtmlBootstrap
 	 * @return  string  HTML to close the pane
 	 *
 	 * @since   3.0
-	 * @deprecated  4.0	Use WooBookingHtml::_('bootstrap.endTabSet') instead.
+	 * @deprecated  4.0	Use Html::_('bootstrap.endTabSet') instead.
 	 */
 	public static function endPane()
 	{
@@ -875,7 +875,7 @@ abstract class WooBookingHtmlBootstrap
 	 * @return  string  HTML to start a new panel
 	 *
 	 * @since   3.0
-	 * @deprecated  4.0 Use WooBookingHtml::_('bootstrap.addTab') instead.
+	 * @deprecated  4.0 Use Html::_('bootstrap.addTab') instead.
 	 */
 	public static function addPanel($selector, $id)
 	{
@@ -890,7 +890,7 @@ abstract class WooBookingHtmlBootstrap
 	 * @return  string  HTML to close the pane
 	 *
 	 * @since   3.0
-	 * @deprecated  4.0 Use WooBookingHtml::_('bootstrap.endTab') instead.
+	 * @deprecated  4.0 Use Html::_('bootstrap.endTab') instead.
 	 */
 	public static function endPanel()
 	{
@@ -902,7 +902,7 @@ abstract class WooBookingHtmlBootstrap
 	 *
 	 * @param   boolean  $includeMainCss  If true, main bootstrap.css files are loaded
 	 * @param   string   $direction       rtl or ltr direction. If empty, ltr is assumed
-	 * @param   array    $attribs         Optional array of attributes to be passed to WooBookingHtml::_('stylesheet')
+	 * @param   array    $attribs         Optional array of attributes to be passed to Html::_('stylesheet')
 	 *
 	 * @return  void
 	 *
@@ -913,15 +913,15 @@ abstract class WooBookingHtmlBootstrap
 		// Load Bootstrap main CSS
 		if ($includeMainCss)
 		{
-			WooBookingHtml::_('stylesheet', 'jui/bootstrap.min.css', array('version' => 'auto', 'relative' => true), $attribs);
-			WooBookingHtml::_('stylesheet', 'jui/bootstrap-responsive.min.css', array('version' => 'auto', 'relative' => true), $attribs);
-			WooBookingHtml::_('stylesheet', 'jui/bootstrap-extended.css', array('version' => 'auto', 'relative' => true), $attribs);
+			Html::_('stylesheet', 'jui/bootstrap.min.css', array('version' => 'auto', 'relative' => true), $attribs);
+			Html::_('stylesheet', 'jui/bootstrap-responsive.min.css', array('version' => 'auto', 'relative' => true), $attribs);
+			Html::_('stylesheet', 'jui/bootstrap-extended.css', array('version' => 'auto', 'relative' => true), $attribs);
 		}
 
 		// Load Bootstrap RTL CSS
 		if ($direction === 'rtl')
 		{
-			WooBookingHtml::_('stylesheet', 'jui/bootstrap-rtl.css', array('version' => 'auto', 'relative' => true), $attribs);
+			Html::_('stylesheet', 'jui/bootstrap-rtl.css', array('version' => 'auto', 'relative' => true), $attribs);
 		}
 	}
 }

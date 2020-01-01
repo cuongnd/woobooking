@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  3.7.0
  */
-abstract class WooBookingHtmlDebug
+abstract class HtmlDebug
 {
 	/**
 	 * xdebug.file_link_format from the php.ini.
@@ -57,7 +57,7 @@ abstract class WooBookingHtmlDebug
 			$href = str_replace('%f', $file, $href);
 			$href = str_replace('%l', $line, $href);
 
-			$html = WooBookingHtml::_('link', $href, $link);
+			$html = Html::_('link', $href, $link);
 		}
 		else
 		{

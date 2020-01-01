@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlContent
+abstract class HtmlContent
 {
 	/**
 	 * Fire onContentPrepare for content that isn't part of an article.
@@ -72,7 +72,7 @@ abstract class WooBookingHtmlContent
 		foreach ($model->countItemsByMonth() as $item)
 		{
 			$date    = new JDate($item->d);
-			$items[] = WooBookingHtml::_('select.option', $item->d, $date->format('F Y') . ' [' . $item->c . ']');
+			$items[] = Html::_('select.option', $item->d, $date->format('F Y') . ' [' . $item->c . ']');
 		}
 
 		return $items;

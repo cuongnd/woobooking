@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.6
  */
-abstract class WooBookingHtmlAccess
+abstract class HtmlAccess
 {
 	/**
 	 * A cached array of the asset groups
@@ -61,10 +61,10 @@ abstract class WooBookingHtmlAccess
 		// If all levels is allowed, push it into the array.
 		elseif ($params)
 		{
-			array_unshift($options, WooBookingHtml::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_LEVELS')));
+			array_unshift($options, Html::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_LEVELS')));
 		}
 
-		return WooBookingHtml::_(
+		return Html::_(
 			'select.genericlist',
 			$options,
 			$name,
@@ -103,10 +103,10 @@ abstract class WooBookingHtmlAccess
 		// If all usergroups is allowed, push it into the array.
 		if ($allowAll)
 		{
-			array_unshift($options, WooBookingHtml::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_GROUPS')));
+			array_unshift($options, Html::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_GROUPS')));
 		}
 
-		return WooBookingHtml::_('select.genericlist', $options, $name, array('list.attr' => $attribs, 'list.select' => $selected, 'id' => $id));
+		return Html::_('select.genericlist', $options, $name, array('list.attr' => $attribs, 'list.select' => $selected, 'id' => $id));
 	}
 
 	/**
@@ -263,10 +263,10 @@ abstract class WooBookingHtmlAccess
 
 		if (isset($config['title']))
 		{
-			array_unshift($options, WooBookingHtml::_('select.option', '', $config['title']));
+			array_unshift($options, Html::_('select.option', '', $config['title']));
 		}
 
-		return WooBookingHtml::_(
+		return Html::_(
 			'select.genericlist',
 			$options,
 			$name,

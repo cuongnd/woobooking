@@ -16,7 +16,7 @@ use WooBooking\Utilities\ArrayHelper;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlSelect
+abstract class HtmlSelect
 {
 	/**
 	 * Default values for options. Organized by option group.
@@ -57,9 +57,9 @@ abstract class WooBookingHtmlSelect
 	 */
 	public static function booleanlist($name, $attribs = array(), $selected = null, $yes = 'JYES', $no = 'JNO', $id = false)
 	{
-		$arr = array(WooBookingHtml::_('select.option', '0', WoobookingText::_($no)), WooBookingHtml::_('select.option', '1', WoobookingText::_($yes)));
+		$arr = array(Html::_('select.option', '0', WoobookingText::_($no)), Html::_('select.option', '1', WoobookingText::_($yes)));
 
-		return WooBookingHtml::_('select.radiolist', $arr, $name, $attribs, 'value', 'text', (int) $selected, $id);
+		return Html::_('select.radiolist', $arr, $name, $attribs, 'value', 'text', (int) $selected, $id);
 	}
 
 	/**
@@ -70,7 +70,7 @@ abstract class WooBookingHtmlSelect
 	 * @param   mixed    $attribs    Additional HTML attributes for the `<select>` tag. This
 	 *                               can be an array of attributes, or an array of options. Treated as options
 	 *                               if it is the last argument passed. Valid options are:
-	 *                               Format options, see {@see WooBookingHtml::$formatOptions}.
+	 *                               Format options, see {@see Html::$formatOptions}.
 	 *                               Selection options, see {@see JHtmlSelect::options()}.
 	 *                               list.attr, string|array: Additional attributes for the select
 	 *                               element.
@@ -93,7 +93,7 @@ abstract class WooBookingHtmlSelect
 		$translate = false)
 	{
 		// Set default options
-		$options = array_merge(WooBookingHtml::$formatOptions, array('format.depth' => 0, 'id' => false));
+		$options = array_merge(Html::$formatOptions, array('format.depth' => 0, 'id' => false));
 
 		if (is_array($attribs) && func_num_args() === 3)
 		{
@@ -174,7 +174,7 @@ abstract class WooBookingHtmlSelect
 		}
 
 		// Set default options
-		$options = array_merge(WooBookingHtml::$formatOptions, array('format.depth' => 0, 'id' => false));
+		$options = array_merge(Html::$formatOptions, array('format.depth' => 0, 'id' => false));
 
 		// Get options from the parameters
 		$options['id'] = $idtag;
@@ -199,7 +199,7 @@ abstract class WooBookingHtmlSelect
 	 * @param   array   $data     An array of groups, each of which is an array of options.
 	 * @param   string  $name     The value of the HTML name attribute
 	 * @param   array   $options  Options, an array of key/value pairs. Valid options are:
-	 *                            Format options, {@see WooBookingHtml::$formatOptions}.
+	 *                            Format options, {@see Html::$formatOptions}.
 	 *                            Selection options. See {@see JHtmlSelect::options()}.
 	 *                            group.id: The property in each group to use as the group id
 	 *                            attribute. Defaults to none.
@@ -228,7 +228,7 @@ abstract class WooBookingHtmlSelect
 	{
 		// Set default options and overwrite with anything passed in
 		$options = array_merge(
-			WooBookingHtml::$formatOptions,
+			Html::$formatOptions,
 			array('format.depth' => 0, 'group.items' => 'items', 'group.label' => 'text', 'group.label.toHtml' => true, 'id' => false),
 			$options
 		);
@@ -355,7 +355,7 @@ abstract class WooBookingHtmlSelect
 	public static function integerlist($start, $end, $inc, $name, $attribs = null, $selected = null, $format = '')
 	{
 		// Set default options
-		$options = array_merge(WooBookingHtml::$formatOptions, array('format.depth' => 0, 'option.format' => '', 'id' => null));
+		$options = array_merge(Html::$formatOptions, array('format.depth' => 0, 'option.format' => '', 'id' => null));
 
 		if (is_array($attribs) && func_num_args() === 5)
 		{
@@ -387,7 +387,7 @@ abstract class WooBookingHtmlSelect
 		// Tell genericlist() to use array keys
 		$options['option.key'] = null;
 
-		return WooBookingHtml::_('select.genericlist', $data, $name, $options);
+		return Html::_('select.genericlist', $data, $name, $options);
 	}
 
 	/**
@@ -529,7 +529,7 @@ abstract class WooBookingHtmlSelect
 	 * @param   mixed    $optKey     If a string, this is the name of the object variable for
 	 *                               the option value. If null, the index of the array of objects is used. If
 	 *                               an array, this is a set of options, as key/value pairs. Valid options are:
-	 *                               -Format options, {@see WooBookingHtml::$formatOptions}.
+	 *                               -Format options, {@see Html::$formatOptions}.
 	 *                               -groups: Boolean. If set, looks for keys with the value
 	 *                                "&lt;optgroup>" and synthesizes groups from them. Deprecated. Defaults
 	 *                                true for backwards compatibility.
@@ -567,7 +567,7 @@ abstract class WooBookingHtmlSelect
 	public static function options($arr, $optKey = 'value', $optText = 'text', $selected = null, $translate = false)
 	{
 		$options = array_merge(
-			WooBookingHtml::$formatOptions,
+			Html::$formatOptions,
 			static::$optionDefaults['option'],
 			array('format.depth' => 0, 'groups' => true, 'list.select' => null, 'list.translate' => false)
 		);

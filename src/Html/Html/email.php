@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlEmail
+abstract class HtmlEmail
 {
 	/**
 	 * Simple JavaScript email cloaker
