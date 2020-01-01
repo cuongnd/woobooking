@@ -54,7 +54,7 @@ class FormFieldGroupedList extends FormField
 					$disabled = ($disabled == 'true' || $disabled == 'disabled' || $disabled == '1');
 
 					// Create a new option object based on the <option /> element.
-					$tmp = WooBookingHtml::_(
+					$tmp = Html::_(
 						'select.option', ($element['value']) ? (string) $element['value'] : trim((string) $element),
 						WoobookingText::alt(trim((string) $element), preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname)), 'value', 'text',
 						$disabled
@@ -97,7 +97,7 @@ class FormFieldGroupedList extends FormField
 						$disabled = ($disabled == 'true' || $disabled == 'disabled' || $disabled == '1');
 
 						// Create a new option object based on the <option /> element.
-						$tmp = WooBookingHtml::_(
+						$tmp = Html::_(
 							'select.option', ($option['value']) ? (string) $option['value'] : WoobookingText::_(trim((string) $option)),
 							WoobookingText::_(trim((string) $option)), 'value', 'text', $disabled
 						);
@@ -164,7 +164,7 @@ class FormFieldGroupedList extends FormField
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ($this->readonly)
 		{
-			$html[] = WooBookingHtml::_(
+			$html[] = Html::_(
 				'select.groupedlist', $groups, null,
 				array(
 					'list.attr' => $attr, 'id' => $this->id, 'list.select' => $this->value, 'group.items' => null, 'option.key.toHtml' => false,
@@ -194,7 +194,7 @@ class FormFieldGroupedList extends FormField
 		// Create a regular list.
 		else
 		{
-			$html[] = WooBookingHtml::_(
+			$html[] = Html::_(
 				'select.groupedlist', $groups, $this->name,
 				array(
 					'list.attr' => $attr, 'id' => $this->id, 'list.select' => $this->value, 'group.items' => null, 'option.key.toHtml' => false,

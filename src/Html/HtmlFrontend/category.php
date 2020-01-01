@@ -127,7 +127,7 @@ abstract class WoobookingHtmlFrontendCategory
 					$item->title .= ' (' . $item->language . ')';
 				}
 
-				static::$items[$hash][] = WoobookingHtmlFrontend::_('select.option', $item->id, $item->title);
+				static::$items[$hash][] = HtmlFrontend::_('select.option', $item->id, $item->title);
 			}
 		}
 
@@ -191,10 +191,10 @@ abstract class WoobookingHtmlFrontendCategory
 			{
 				$repeat = ($item->level - 1 >= 0) ? $item->level - 1 : 0;
 				$item->title = str_repeat('- ', $repeat) . $item->title;
-				static::$items[$hash][] = WoobookingHtmlFrontend::_('select.option', $item->id, $item->title);
+				static::$items[$hash][] = HtmlFrontend::_('select.option', $item->id, $item->title);
 			}
 			// Special "Add to root" option:
-			static::$items[$hash][] = WoobookingHtmlFrontend::_('select.option', '1', WoobookingText::_('JLIB_HTML_ADD_TO_ROOT'));
+			static::$items[$hash][] = HtmlFrontend::_('select.option', '1', WoobookingText::_('JLIB_HTML_ADD_TO_ROOT'));
 		}
 
 		return static::$items[$hash];

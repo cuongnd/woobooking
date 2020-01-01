@@ -61,10 +61,10 @@ abstract class WoobookingHtmlFrontendAccess
 		// If all levels is allowed, push it into the array.
 		elseif ($params)
 		{
-			array_unshift($options, WoobookingHtmlFrontend::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_LEVELS')));
+			array_unshift($options, HtmlFrontend::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_LEVELS')));
 		}
 
-		return WoobookingHtmlFrontend::_(
+		return HtmlFrontend::_(
 			'select.genericlist',
 			$options,
 			$name,
@@ -103,10 +103,10 @@ abstract class WoobookingHtmlFrontendAccess
 		// If all usergroups is allowed, push it into the array.
 		if ($allowAll)
 		{
-			array_unshift($options, WoobookingHtmlFrontend::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_GROUPS')));
+			array_unshift($options, HtmlFrontend::_('select.option', '', WoobookingText::_('JOPTION_ACCESS_SHOW_ALL_GROUPS')));
 		}
 
-		return WoobookingHtmlFrontend::_('select.genericlist', $options, $name, array('list.attr' => $attribs, 'list.select' => $selected, 'id' => $id));
+		return HtmlFrontend::_('select.genericlist', $options, $name, array('list.attr' => $attribs, 'list.select' => $selected, 'id' => $id));
 	}
 
 	/**
@@ -263,10 +263,10 @@ abstract class WoobookingHtmlFrontendAccess
 
 		if (isset($config['title']))
 		{
-			array_unshift($options, WoobookingHtmlFrontend::_('select.option', '', $config['title']));
+			array_unshift($options, HtmlFrontend::_('select.option', '', $config['title']));
 		}
 
-		return WoobookingHtmlFrontend::_(
+		return HtmlFrontend::_(
 			'select.genericlist',
 			$options,
 			$name,

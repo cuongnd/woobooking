@@ -293,7 +293,7 @@ class FormFieldSQL extends JFormFieldList
 		if (!empty($header))
 		{
 			$header_title = WoobookingText::_($header);
-			$options[] = WooBookingHtml::_('select.option', '', $header_title);
+			$options[] = Html::_('select.option', '', $header_title);
 		}
 
 		// Build the field options.
@@ -303,11 +303,11 @@ class FormFieldSQL extends JFormFieldList
 			{
 				if ($this->translate == true)
 				{
-					$options[] = WooBookingHtml::_('select.option', $item->$key, WoobookingText::_($item->$value));
+					$options[] = Html::_('select.option', $item->$key, WoobookingText::_($item->$value));
 				}
 				else
 				{
-					$options[] = WooBookingHtml::_('select.option', $item->$key, $item->$value);
+					$options[] = Html::_('select.option', $item->$key, $item->$value);
 				}
 			}
 		}

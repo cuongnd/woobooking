@@ -133,13 +133,13 @@ class OrderingField extends FormField
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ($this->readonly)
 		{
-			$html[] = \WooBookingHtml::_('list.ordering', '', $query, trim($attr), $this->value, $itemId ? 0 : 1);
+			$html[] = \Html::_('list.ordering', '', $query, trim($attr), $this->value, $itemId ? 0 : 1);
 			$html[] = '<input type="hidden" name="' . $this->name . '" value="' . $this->value . '"/>';
 		}
 		else
 		{
 			// Create a regular list.
-			$html[] = \WooBookingHtml::_('list.ordering', $this->name, $query, trim($attr), $this->value, $itemId ? 0 : 1);
+			$html[] = \Html::_('list.ordering', $this->name, $query, trim($attr), $this->value, $itemId ? 0 : 1);
 		}
 
 		return implode($html);

@@ -45,7 +45,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][notification]" , '',@$this->element->payment_params->notification	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][notification]" , '',@$this->element->payment_params->notification	); ?>
 	</td>
 </tr>
 <tr>
@@ -55,7 +55,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
 	</td>
 </tr>
 <tr>

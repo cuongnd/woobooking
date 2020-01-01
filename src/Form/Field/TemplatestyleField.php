@@ -180,7 +180,7 @@ class TemplatestyleField extends FormFieldGroupedList
 					$groups[$name] = array();
 				}
 
-				$groups[$name][] = \WooBookingHtml::_('select.option', $style->id, $style->title);
+				$groups[$name][] = \Html::_('select.option', $style->id, $style->title);
 			}
 		}
 

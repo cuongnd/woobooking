@@ -77,7 +77,7 @@ class FormFieldSpacer extends FormField
 			// If a description is specified, use it to build a tooltip.
 			if (!empty($this->description))
 			{
-				WooBookingHtml::_('bootstrap.popover');
+				Html::_('bootstrap.popover');
 				$label .= ' title="' . htmlspecialchars(trim($text, ':'), ENT_COMPAT, 'UTF-8') . '"';
 				$label .= ' data-content="' . htmlspecialchars(
 					$this->translateDescription ? WoobookingText::_($this->description) : $this->description,

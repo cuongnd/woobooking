@@ -80,7 +80,7 @@ class TagField extends FormFieldList
 			$cssId = '#' . $this->getId($id, $this->element['name']);
 
 			// Load the ajax-chosen customised field
-			\WooBookingHtml::_('tag.ajaxfield', $cssId, $this->allowCustom());
+			\Html::_('tag.ajaxfield', $cssId, $this->allowCustom());
 		}
 
 		if (!is_array($this->value) && !empty($this->value))

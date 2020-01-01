@@ -93,7 +93,7 @@ abstract class WoobookingHtmlFrontendTag
 			{
 				$repeat = ($item->level - 1 >= 0) ? $item->level - 1 : 0;
 				$item->title = str_repeat('- ', $repeat) . $item->title;
-				static::$items[$hash][] = WoobookingHtmlFrontend::_('select.option', $item->id, $item->title);
+				static::$items[$hash][] = HtmlFrontend::_('select.option', $item->id, $item->title);
 			}
 		}
 
@@ -145,7 +145,7 @@ abstract class WoobookingHtmlFrontendTag
 		{
 			$repeat = ($item->level - 1 >= 0) ? $item->level - 1 : 0;
 			$item->title = str_repeat('- ', $repeat) . $item->title;
-			static::$items[$hash][] = WoobookingHtmlFrontend::_('select.option', $item->id, $item->title);
+			static::$items[$hash][] = HtmlFrontend::_('select.option', $item->id, $item->title);
 		}
 
 		return static::$items[$hash];

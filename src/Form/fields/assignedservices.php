@@ -234,7 +234,7 @@ class FormFieldAssignedServices extends FormField
 			}
 
 			// Create a new option object based on the <option /> element.
-			$options[] = WooBookingHtml::_(
+			$options[] = Html::_(
 				'select.option', (string) $option['value'],
 				WoobookingText::alt(trim((string) $option), preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname)), 'value', 'text'
 			);

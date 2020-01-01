@@ -97,7 +97,7 @@ if(!class_exists('SimpleXMLElement')){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
 	</td>
 </tr>
 <tr>
@@ -107,7 +107,7 @@ if(!class_exists('SimpleXMLElement')){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][showVars]" , '',@$this->element->payment_params->showVars	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][showVars]" , '',@$this->element->payment_params->showVars	); ?>
 	</td>
 </tr>
 <tr><td colspan="2"><hr /></td></tr>
@@ -125,9 +125,9 @@ if(!class_exists('SimpleXMLElement')){ ?>
 			$values = array();
 			foreach ($files as $file) {
 				$name = basename($file, '.php');
-				if ($name != $file) $values[] = WooBookingHtml::_('select.option', $file, $name );
+				if ($name != $file) $values[] = Html::_('select.option', $file, $name );
 			}
-			 echo WooBookingHtml::_('select.genericlist', $values, 'params[payment_params][htmllayout]', 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->htmllayout);
+			 echo Html::_('select.genericlist', $values, 'params[payment_params][htmllayout]', 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->htmllayout);
 		?>
 	</td>
 </tr>
@@ -136,7 +136,7 @@ if(!class_exists('SimpleXMLElement')){ ?>
 		<label for="params[payment_params][show_tax_amount]">Show Tax Amount</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][show_tax_amount]" , '',@$this->element->payment_params->show_tax_amount	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][show_tax_amount]" , '',@$this->element->payment_params->show_tax_amount	); ?>
 	</td>
 </tr>
 <tr>
@@ -164,11 +164,11 @@ if(!class_exists('SimpleXMLElement')){ ?>
 	<td>
 		<?php
 			$values = array();
-			$values[] = WooBookingHtml::_('select.option', '',WoobookingText::_('NO_ADDRESS') );
-			$values[] = WooBookingHtml::_('select.option', 'billing',WoobookingText::_('HIKASHOP_BILLING_ADDRESS'));
-			$values[] = WooBookingHtml::_('select.option', 'shipping',WoobookingText::_('HIKASHOP_SHIPPING_ADDRESS'));
-			$values[] = WooBookingHtml::_('select.option', 'billing,shipping','Both addresses');
-			 echo WooBookingHtml::_('select.genericlist', $values, 'params[payment_params][address_type]', 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->address_type);
+			$values[] = Html::_('select.option', '',WoobookingText::_('NO_ADDRESS') );
+			$values[] = Html::_('select.option', 'billing',WoobookingText::_('HIKASHOP_BILLING_ADDRESS'));
+			$values[] = Html::_('select.option', 'shipping',WoobookingText::_('HIKASHOP_SHIPPING_ADDRESS'));
+			$values[] = Html::_('select.option', 'billing,shipping','Both addresses');
+			 echo Html::_('select.genericlist', $values, 'params[payment_params][address_type]', 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->address_type);
 		?>
 	</td>
 </tr>
@@ -196,7 +196,7 @@ if(!class_exists('SimpleXMLElement')){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][notification]" , '',@$this->element->payment_params->notification	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][notification]" , '',@$this->element->payment_params->notification	); ?>
 	</td>
 </tr>
 <tr>

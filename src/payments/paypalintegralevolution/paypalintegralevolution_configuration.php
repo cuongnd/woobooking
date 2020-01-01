@@ -34,7 +34,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][address_override]" , '', @$this->element->payment_params->address_override);
+		echo Html::_('select.booleanlist', "params[payment_params][address_override]" , '', @$this->element->payment_params->address_override);
 	?></td>
 </tr>
 <tr>
@@ -44,7 +44,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][details]" , '', @$this->element->payment_params->details);
+		echo Html::_('select.booleanlist', "params[payment_params][details]" , '', @$this->element->payment_params->details);
 	?></td>
 </tr>
 <tr>
@@ -54,7 +54,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][iframe]" , '', @$this->element->payment_params->iframe);
+		echo Html::_('select.booleanlist', "params[payment_params][iframe]" , '', @$this->element->payment_params->iframe);
 	?></td>
 </tr>
 <tr>
@@ -64,7 +64,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][sandbox]" , '', @$this->element->payment_params->sandbox);
+		echo Html::_('select.booleanlist', "params[payment_params][sandbox]" , '', @$this->element->payment_params->sandbox);
 	?></td>
 </tr>
 <tr>
@@ -74,7 +74,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '', @$this->element->payment_params->debug);
+		echo Html::_('select.booleanlist', "params[payment_params][debug]" , '', @$this->element->payment_params->debug);
 	?></td>
 </tr>
 <tr>

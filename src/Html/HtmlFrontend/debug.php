@@ -57,7 +57,7 @@ abstract class WoobookingHtmlFrontendDebug
 			$href = str_replace('%f', $file, $href);
 			$href = str_replace('%l', $line, $href);
 
-			$html = WoobookingHtmlFrontend::_('link', $href, $link);
+			$html = HtmlFrontend::_('link', $href, $link);
 		}
 		else
 		{

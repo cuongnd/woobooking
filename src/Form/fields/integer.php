@@ -68,7 +68,7 @@ class FormFieldInteger extends FormFieldList
 			// Build the options array backwards.
 			for ($i = $first; $i >= $last; $i += $step)
 			{
-				$options[] = WooBookingHtml::_('select.option', $i);
+				$options[] = Html::_('select.option', $i);
 			}
 		}
 		else
@@ -76,7 +76,7 @@ class FormFieldInteger extends FormFieldList
 			// Build the options array.
 			for ($i = $first; $i <= $last; $i += $step)
 			{
-				$options[] = WooBookingHtml::_('select.option', $i);
+				$options[] = Html::_('select.option', $i);
 			}
 		}
 

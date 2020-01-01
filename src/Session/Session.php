@@ -308,7 +308,7 @@ class Session implements \IteratorAggregate
 	/**
 	 * Checks for a form token in the request.
 	 *
-	 * Use in conjunction with \WooBookingHtml::_('form.token') or Session::getFormToken.
+	 * Use in conjunction with \Html::_('form.token') or Session::getFormToken.
 	 *
 	 * @param   string  $method  The request method in which to look for the token key.
 	 *

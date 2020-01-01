@@ -60,7 +60,7 @@ abstract class WoobookingHtmlFrontendBehavior
 			static::framework(false, $debug);
 		}
 
-		WoobookingHtmlFrontend::_('script', 'system/mootools-' . $type . '.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
+		HtmlFrontend::_('script', 'system/mootools-' . $type . '.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
 
 		// Keep loading core.js for BC reasons
 		static::core();
@@ -87,8 +87,8 @@ abstract class WoobookingHtmlFrontendBehavior
 			return;
 		}
 
-		WoobookingHtmlFrontend::_('form.csrf');
-		WoobookingHtmlFrontend::_('script', 'system/core.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('form.csrf');
+		HtmlFrontend::_('script', 'system/core.js', array('version' => 'auto', 'relative' => true));
 
 		// Add core and base uri paths so javascript scripts can use them.
 		Factory::getDocument()->addScriptOptions('system.paths', array('root' => JUri::root(true), 'base' => JUri::base(true)));
@@ -118,9 +118,9 @@ abstract class WoobookingHtmlFrontendBehavior
 		}
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
-		WoobookingHtmlFrontend::_('script', 'system/caption.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/caption.js', array('version' => 'auto', 'relative' => true));
 
 		// Attach caption to document
 		Factory::getDocument()->addScriptDeclaration(
@@ -188,13 +188,13 @@ abstract class WoobookingHtmlFrontendBehavior
 		static::core();
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
 		// Add validate.js language strings
 		WoobookingText::script('JLIB_FORM_FIELD_INVALID');
 
-		WoobookingHtmlFrontend::_('script', 'system/punycode.js', array('version' => 'auto', 'relative' => true));
-		WoobookingHtmlFrontend::_('script', 'system/validate.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/punycode.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/validate.js', array('version' => 'auto', 'relative' => true));
 		static::$loaded[__METHOD__] = true;
 	}
 
@@ -214,9 +214,9 @@ abstract class WoobookingHtmlFrontendBehavior
 		}
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
-		WoobookingHtmlFrontend::_('script', 'system/switcher.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/switcher.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
 
 		$script = "
 			document.switcher = null;
@@ -251,7 +251,7 @@ abstract class WoobookingHtmlFrontendBehavior
 		// Include core
 		static::core();
 
-		WoobookingHtmlFrontend::_('script', 'system/combobox.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/combobox.js', array('version' => 'auto', 'relative' => true));
 		static::$loaded[__METHOD__] = true;
 	}
 
@@ -305,10 +305,10 @@ abstract class WoobookingHtmlFrontendBehavior
 		$opt['onShow']    = isset($params['onShow']) ? '\\' . $params['onShow'] : null;
 		$opt['onHide']    = isset($params['onHide']) ? '\\' . $params['onHide'] : null;
 
-		$options = WoobookingHtmlFrontend::getJSObject($opt);
+		$options = HtmlFrontend::getJSObject($opt);
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
 		// Attach tooltips to document
 		Factory::getDocument()->addScriptDeclaration(
@@ -365,8 +365,8 @@ abstract class WoobookingHtmlFrontendBehavior
 			static::framework(true);
 
 			// Load the JavaScript and css
-			WoobookingHtmlFrontend::_('script', 'system/modal.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
-			WoobookingHtmlFrontend::_('stylesheet', 'system/modal.css', array('version' => 'auto', 'relative' => true));
+			HtmlFrontend::_('script', 'system/modal.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
+			HtmlFrontend::_('stylesheet', 'system/modal.css', array('version' => 'auto', 'relative' => true));
 		}
 
 		$sig = md5(serialize(array($selector, $params)));
@@ -398,14 +398,14 @@ abstract class WoobookingHtmlFrontendBehavior
 		$opt['onHide']        = isset($params['onHide']) ? $params['onHide'] : null;
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
 		if (isset($params['fullScreen']) && (bool) $params['fullScreen'])
 		{
 			$opt['size']      = array('x' => '\\jQuery(window).width() - 80', 'y' => '\\jQuery(window).height() - 80');
 		}
 
-		$options = WoobookingHtmlFrontend::getJSObject($opt);
+		$options = HtmlFrontend::getJSObject($opt);
 
 		// Attach modal behavior to document
 		$document
@@ -484,9 +484,9 @@ abstract class WoobookingHtmlFrontendBehavior
 		static::core();
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
-		WoobookingHtmlFrontend::_('script', 'system/multiselect.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/multiselect.js', array('version' => 'auto', 'relative' => true));
 
 		// Attach multiselect to document
 		Factory::getDocument()->addScriptDeclaration(
@@ -517,8 +517,8 @@ abstract class WoobookingHtmlFrontendBehavior
 		// Include MooTools framework
 		static::framework();
 
-		WoobookingHtmlFrontend::_('script', 'system/mootree.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
-		WoobookingHtmlFrontend::_('stylesheet', 'system/mootree.css', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/mootree.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('stylesheet', 'system/mootree.css', array('version' => 'auto', 'relative' => true));
 
 		if (isset(static::$loaded[__METHOD__][$id]))
 		{
@@ -526,13 +526,13 @@ abstract class WoobookingHtmlFrontendBehavior
 		}
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
 		// Setup options object
 		$opt['div']   = array_key_exists('div', $params) ? $params['div'] : $id . '_tree';
 		$opt['mode']  = array_key_exists('mode', $params) ? $params['mode'] : 'folders';
 		$opt['grid']  = array_key_exists('grid', $params) ? '\\' . $params['grid'] : true;
-		$opt['theme'] = array_key_exists('theme', $params) ? $params['theme'] : WoobookingHtmlFrontend::_('image', 'system/mootree.gif', '', array(), true, true);
+		$opt['theme'] = array_key_exists('theme', $params) ? $params['theme'] : HtmlFrontend::_('image', 'system/mootree.gif', '', array(), true, true);
 
 		// Event handlers
 		$opt['onExpand'] = array_key_exists('onExpand', $params) ? '\\' . $params['onExpand'] : null;
@@ -540,7 +540,7 @@ abstract class WoobookingHtmlFrontendBehavior
 		$opt['onClick']  = array_key_exists('onClick', $params) ? '\\' . $params['onClick']
 		: '\\function(node){  window.open(node.data.url, node.data.target != null ? node.data.target : \'_self\'); }';
 
-		$options = WoobookingHtmlFrontend::getJSObject($opt);
+		$options = HtmlFrontend::getJSObject($opt);
 
 		// Setup root node
 		$rt['text']     = array_key_exists('text', $root) ? $root['text'] : 'Root';
@@ -550,7 +550,7 @@ abstract class WoobookingHtmlFrontendBehavior
 		$rt['icon']     = array_key_exists('icon', $root) ? $root['icon'] : null;
 		$rt['openicon'] = array_key_exists('openicon', $root) ? $root['openicon'] : null;
 		$rt['data']     = array_key_exists('data', $root) ? $root['data'] : null;
-		$rootNode = WoobookingHtmlFrontend::getJSObject($rt);
+		$rootNode = HtmlFrontend::getJSObject($rt);
 
 		$treeName = array_key_exists('treeName', $params) ? $params['treeName'] : '';
 
@@ -591,9 +591,9 @@ abstract class WoobookingHtmlFrontendBehavior
 		$tag      = Factory::getLanguage()->getTag();
 		$attribs  = array('title' => WoobookingText::_('JLIB_HTML_BEHAVIOR_GREEN'), 'media' => 'all');
 
-		WoobookingHtmlFrontend::_('stylesheet', 'system/calendar-jos.css', array('version' => 'auto', 'relative' => true), $attribs);
-		WoobookingHtmlFrontend::_('script', $tag . '/calendar.js', array('version' => 'auto', 'relative' => true));
-		WoobookingHtmlFrontend::_('script', $tag . '/calendar-setup.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('stylesheet', 'system/calendar-jos.css', array('version' => 'auto', 'relative' => true), $attribs);
+		HtmlFrontend::_('script', $tag . '/calendar.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', $tag . '/calendar-setup.js', array('version' => 'auto', 'relative' => true));
 
 		$translation = static::calendartranslation();
 
@@ -623,10 +623,10 @@ abstract class WoobookingHtmlFrontendBehavior
 		}
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
-		WoobookingHtmlFrontend::_('script', 'jui/jquery.minicolors.min.js', array('version' => 'auto', 'relative' => true));
-		WoobookingHtmlFrontend::_('stylesheet', 'jui/jquery.minicolors.css', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'jui/jquery.minicolors.min.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('stylesheet', 'jui/jquery.minicolors.css', array('version' => 'auto', 'relative' => true));
 		Factory::getDocument()->addScriptDeclaration("
 				jQuery(document).ready(function (){
 					jQuery('.minicolors').each(function() {
@@ -669,10 +669,10 @@ abstract class WoobookingHtmlFrontendBehavior
 		}
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
-		WoobookingHtmlFrontend::_('script', 'jui/jquery.simplecolors.min.js', array('version' => 'auto', 'relative' => true));
-		WoobookingHtmlFrontend::_('stylesheet', 'jui/jquery.simplecolors.css', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'jui/jquery.simplecolors.min.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('stylesheet', 'jui/jquery.simplecolors.css', array('version' => 'auto', 'relative' => true));
 		Factory::getDocument()->addScriptDeclaration("
 				jQuery(document).ready(function (){
 					jQuery('select.simplecolors').simplecolors();
@@ -726,7 +726,7 @@ abstract class WoobookingHtmlFrontendBehavior
 		Factory::getDocument()->addScriptOptions('system.keepalive', array('interval' => $refreshTime * 1000, 'uri' => JRoute::_($uri)));
 
 		// Add script.
-		WoobookingHtmlFrontend::_('script', 'system/keepalive.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/keepalive.js', array('version' => 'auto', 'relative' => true));
 
 		static::$loaded[__METHOD__] = true;
 
@@ -771,9 +771,9 @@ abstract class WoobookingHtmlFrontendBehavior
 		static::core();
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
-		WoobookingHtmlFrontend::_('script', 'system/highlighter.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('script', 'system/highlighter.js', array('version' => 'auto', 'relative' => true));
 
 		foreach ($terms as $i => $term)
 		{
@@ -828,7 +828,7 @@ abstract class WoobookingHtmlFrontendBehavior
 		static::core();
 
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('jquery.framework');
 
 		$js = 'jQuery(function () {
 			if (top == self) {
@@ -859,13 +859,13 @@ abstract class WoobookingHtmlFrontendBehavior
 	 * @return  string  JavaScript object notation representation of the array
 	 *
 	 * @since       1.5
-	 * @deprecated  4.0 - Use WoobookingHtmlFrontend::getJSObject() instead.
+	 * @deprecated  4.0 - Use HtmlFrontend::getJSObject() instead.
 	 */
 	protected static function _getJSObject($array = array())
 	{
-		Log::add('JHtmlBehavior::_getJSObject() is deprecated. WoobookingHtmlFrontend::getJSObject() instead..', Log::WARNING, 'deprecated');
+		Log::add('JHtmlBehavior::_getJSObject() is deprecated. HtmlFrontend::getJSObject() instead..', Log::WARNING, 'deprecated');
 
-		return WoobookingHtmlFrontend::getJSObject($array);
+		return HtmlFrontend::getJSObject($array);
 	}
 
 	/**
@@ -891,9 +891,9 @@ abstract class WoobookingHtmlFrontendBehavior
 			return;
 		}
 		// Include jQuery
-		WoobookingHtmlFrontend::_('jquery.framework');
-		WoobookingHtmlFrontend::_('behavior.polyfill', array('filter','xpath'));
-		WoobookingHtmlFrontend::_('script', 'system/tabs-state.js', array('version' => 'auto', 'relative' => true));
+		HtmlFrontend::_('jquery.framework');
+		HtmlFrontend::_('behavior.polyfill', array('filter','xpath'));
+		HtmlFrontend::_('script', 'system/tabs-state.js', array('version' => 'auto', 'relative' => true));
 		self::$loaded[__METHOD__] = true;
 	}
 
@@ -928,7 +928,7 @@ abstract class WoobookingHtmlFrontendBehavior
 			$scriptOptions = array('version' => 'auto', 'relative' => true);
 			$scriptOptions = $conditionalBrowser !== null ? array_replace($scriptOptions, array('conditional' => $conditionalBrowser)) : $scriptOptions;
 
-			WoobookingHtmlFrontend::_('script', 'system/polyfill.' . $polyfillType . '.js', $scriptOptions);
+			HtmlFrontend::_('script', 'system/polyfill.' . $polyfillType . '.js', $scriptOptions);
 
 			// Set static array
 			static::$loaded[__METHOD__][$sig] = true;

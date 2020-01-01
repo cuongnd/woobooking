@@ -41,10 +41,10 @@ hikashop_loadJslib('mootools');
 	<td>
 		<?php
 		$values = array();
-		$values[] = WooBookingHtml::_('select.option', 'www.payjunction.com', 'Production Server');
-		$values[] = WooBookingHtml::_('select.option', 'www.payjunctionlabs.com', 'Test Server');
+		$values[] = Html::_('select.option', 'www.payjunction.com', 'Production Server');
+		$values[] = Html::_('select.option', 'www.payjunctionlabs.com', 'Test Server');
 
-		echo WooBookingHtml::_('select.genericlist',   $values, "params[payment_params][domain]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->domain ); ?>
+		echo Html::_('select.genericlist',   $values, "params[payment_params][domain]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->domain ); ?>
 	</td>
 </tr>
 <tr>
@@ -54,7 +54,7 @@ hikashop_loadJslib('mootools');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][ask_ccv]" , '',@$this->element->payment_params->ask_ccv ); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][ask_ccv]" , '',@$this->element->payment_params->ask_ccv ); ?>
 	</td>
 </tr>
 <tr>
@@ -64,7 +64,7 @@ hikashop_loadJslib('mootools');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][security]" , 'onclick="payjunction_avs_radio(this);" onchange="payjunction_avs_radio(this);"',@$this->element->payment_params->security ); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][security]" , 'onclick="payjunction_avs_radio(this);" onchange="payjunction_avs_radio(this);"',@$this->element->payment_params->security ); ?>
 	</td>
 </tr>
 </table>
@@ -86,18 +86,18 @@ hikashop_loadJslib('mootools');
 	<td>
 		<?php
 		$values = array();
-		$values[] = WooBookingHtml::_('select.option', 'AWZ', 'Match Address OR Zip');
-		$values[] = WooBookingHtml::_('select.option', 'XY', 'Match Address AND Zip');
-		$values[] = WooBookingHtml::_('select.option', 'WZ', 'Match Zip');
-		$values[] = WooBookingHtml::_('select.option', 'AW', 'Match Address OR 9 Digit Zip');
-		$values[] = WooBookingHtml::_('select.option', 'AW', 'Match Address OR 5 Digit Zip');
-		$values[] = WooBookingHtml::_('select.option', 'A', 'Match Address');
-		$values[] = WooBookingHtml::_('select.option', 'X', 'Match Address AND 9 Digit Zip');
-		$values[] = WooBookingHtml::_('select.option', 'Y', 'Match Address AND 5 Digit Zip');
-		$values[] = WooBookingHtml::_('select.option', 'W', 'Match 9 Digit Zip');
-		$values[] = WooBookingHtml::_('select.option', 'Z', 'Match 5 Digit Zip');
+		$values[] = Html::_('select.option', 'AWZ', 'Match Address OR Zip');
+		$values[] = Html::_('select.option', 'XY', 'Match Address AND Zip');
+		$values[] = Html::_('select.option', 'WZ', 'Match Zip');
+		$values[] = Html::_('select.option', 'AW', 'Match Address OR 9 Digit Zip');
+		$values[] = Html::_('select.option', 'AW', 'Match Address OR 5 Digit Zip');
+		$values[] = Html::_('select.option', 'A', 'Match Address');
+		$values[] = Html::_('select.option', 'X', 'Match Address AND 9 Digit Zip');
+		$values[] = Html::_('select.option', 'Y', 'Match Address AND 5 Digit Zip');
+		$values[] = Html::_('select.option', 'W', 'Match 9 Digit Zip');
+		$values[] = Html::_('select.option', 'Z', 'Match 5 Digit Zip');
 
-		echo WooBookingHtml::_('select.genericlist',   $values, "params[payment_params][security_avs]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->security_avs ); ?>
+		echo Html::_('select.genericlist',   $values, "params[payment_params][security_avs]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->security_avs ); ?>
 	</td>
 </tr>
 <tr>
@@ -107,7 +107,7 @@ hikashop_loadJslib('mootools');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][security_cvv]" , '',@$this->element->payment_params->security_cvv ); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][security_cvv]" , '',@$this->element->payment_params->security_cvv ); ?>
 	</td>
 </tr>
 <tr>
@@ -117,7 +117,7 @@ hikashop_loadJslib('mootools');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][security_preauth]" , '',@$this->element->payment_params->security_preauth ); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][security_preauth]" , '',@$this->element->payment_params->security_preauth ); ?>
 	</td>
 </tr>
 <tr>
@@ -127,7 +127,7 @@ hikashop_loadJslib('mootools');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][security_avsforce]" , '',@$this->element->payment_params->security_avsforce ); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][security_avsforce]" , '',@$this->element->payment_params->security_avsforce ); ?>
 	</td>
 </tr>
 <tr>
@@ -137,7 +137,7 @@ hikashop_loadJslib('mootools');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][security_cvvforce]" , '',@$this->element->payment_params->security_cvvforce ); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][security_cvvforce]" , '',@$this->element->payment_params->security_cvvforce ); ?>
 	</td>
 </tr>
 </table>
@@ -176,7 +176,7 @@ window.hikashop.ready( function() {
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
 	</td>
 </tr>
 <tr>

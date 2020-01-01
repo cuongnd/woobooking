@@ -395,7 +395,7 @@ class WoobookingText
 			// Normalize the key and translate the string.
 			self::$strings[strtoupper($string)] = Factory::getLanguage()->_($string, $jsSafe, $interpretBackSlashes);
 			// Load core.js dependency
-			WooBookingHtml::_('behavior.core');
+			Html::_('behavior.core');
 		}
 		return self::$strings;
 	}

@@ -39,12 +39,12 @@ abstract class WoobookingHtmlFrontendSearchtools
 			// Requires jQuery but allows to skip its loading
 			if ($loadJquery = (!isset($options['loadJquery']) || $options['loadJquery'] != 0))
 			{
-				WoobookingHtmlFrontend::_('jquery.framework');
+				HtmlFrontend::_('jquery.framework');
 			}
 
 			// Load the jQuery plugin && CSS
-			WoobookingHtmlFrontend::_('script', 'jui/jquery.searchtools.min.js', array('version' => 'auto', 'relative' => true));
-			WoobookingHtmlFrontend::_('stylesheet', 'jui/jquery.searchtools.css', array('version' => 'auto', 'relative' => true));
+			HtmlFrontend::_('script', 'jui/jquery.searchtools.min.js', array('version' => 'auto', 'relative' => true));
+			HtmlFrontend::_('stylesheet', 'jui/jquery.searchtools.css', array('version' => 'auto', 'relative' => true));
 
 			static::$loaded[__METHOD__] = true;
 		}

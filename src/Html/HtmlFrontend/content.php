@@ -72,7 +72,7 @@ abstract class WoobookingHtmlFrontendContent
 		foreach ($model->countItemsByMonth() as $item)
 		{
 			$date    = new JDate($item->d);
-			$items[] = WoobookingHtmlFrontend::_('select.option', $item->d, $date->format('F Y') . ' [' . $item->c . ']');
+			$items[] = HtmlFrontend::_('select.option', $item->d, $date->format('F Y') . ' [' . $item->c . ']');
 		}
 
 		return $items;

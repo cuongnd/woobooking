@@ -34,11 +34,11 @@ abstract class WoobookingHtmlFrontendGrid
 	{
 		// Load the behavior.
 		static::behavior();
-		WoobookingHtmlFrontend::_('bootstrap.tooltip');
+		HtmlFrontend::_('bootstrap.tooltip');
 
 		// Build the title.
 		$title = $value ? WoobookingText::_('JYES') : WoobookingText::_('JNO');
-		$title = WoobookingHtmlFrontend::_('tooltipText', $title, WoobookingText::_('JGLOBAL_CLICK_TO_TOGGLE_STATE'), 0);
+		$title = HtmlFrontend::_('tooltipText', $title, WoobookingText::_('JGLOBAL_CLICK_TO_TOGGLE_STATE'), 0);
 
 		// Build the <a> tag.
 		$bool = $value ? 'true' : 'false';
@@ -74,8 +74,8 @@ abstract class WoobookingHtmlFrontendGrid
 	 */
 	public static function sort($title, $order, $direction = 'asc', $selected = '', $task = null, $new_direction = 'asc', $tip = '', $form = null)
 	{
-		WoobookingHtmlFrontend::_('behavior.core');
-		WoobookingHtmlFrontend::_('bootstrap.popover');
+		HtmlFrontend::_('behavior.core');
+		HtmlFrontend::_('bootstrap.popover');
 
 		$direction = strtolower($direction);
 		$icon = array('arrow-up-3', 'arrow-down-3');
@@ -131,10 +131,10 @@ abstract class WoobookingHtmlFrontendGrid
 	 */
 	public static function checkall($name = 'checkall-toggle', $tip = 'JGLOBAL_CHECK_ALL', $action = 'WooBooking.checkAll(this)')
 	{
-		WoobookingHtmlFrontend::_('behavior.core');
-		WoobookingHtmlFrontend::_('bootstrap.tooltip');
+		HtmlFrontend::_('behavior.core');
+		HtmlFrontend::_('bootstrap.tooltip');
 
-		return '<input type="checkbox" name="' . $name . '" value="" class="hasTooltip" title="' . WoobookingHtmlFrontend::_('tooltipText', $tip)
+		return '<input type="checkbox" name="' . $name . '" value="" class="hasTooltip" title="' . HtmlFrontend::_('tooltipText', $tip)
 			. '" onclick="' . $action . '" />';
 	}
 
@@ -190,11 +190,11 @@ abstract class WoobookingHtmlFrontendGrid
 		{
 			if ($identifier === 'id')
 			{
-				return WoobookingHtmlFrontend::_('grid.id', $i, $row->$identifier);
+				return HtmlFrontend::_('grid.id', $i, $row->$identifier);
 			}
 			else
 			{
-				return WoobookingHtmlFrontend::_('grid.id', $i, $row->$identifier, $result, $identifier);
+				return HtmlFrontend::_('grid.id', $i, $row->$identifier, $result, $identifier);
 			}
 		}
 	}
@@ -225,7 +225,7 @@ abstract class WoobookingHtmlFrontendGrid
 		$action = $value ? WoobookingText::_('JLIB_HTML_UNPUBLISH_ITEM') : WoobookingText::_('JLIB_HTML_PUBLISH_ITEM');
 
 		return '<a href="#" onclick="return listItemTask(\'cb' . $i . '\',\'' . $prefix . $task . '\')" title="' . $action . '">'
-			. WoobookingHtmlFrontend::_('image', 'admin/' . $img, $alt, null, true) . '</a>';
+			. HtmlFrontend::_('image', 'admin/' . $img, $alt, null, true) . '</a>';
 	}
 
 	/**
@@ -256,7 +256,7 @@ abstract class WoobookingHtmlFrontendGrid
 			$state['T'] = WoobookingText::_($trashed);
 		}
 
-		return WoobookingHtmlFrontend::_(
+		return HtmlFrontend::_(
 			'select.genericlist',
 			$state,
 			'filter_state',
@@ -302,16 +302,16 @@ abstract class WoobookingHtmlFrontendGrid
 
 		if ($overlib)
 		{
-			WoobookingHtmlFrontend::_('bootstrap.tooltip');
+			HtmlFrontend::_('bootstrap.tooltip');
 
-			$date = WoobookingHtmlFrontend::_('date', $row->checked_out_time, WoobookingText::_('DATE_FORMAT_LC1'));
-			$time = WoobookingHtmlFrontend::_('date', $row->checked_out_time, 'H:i');
+			$date = HtmlFrontend::_('date', $row->checked_out_time, WoobookingText::_('DATE_FORMAT_LC1'));
+			$time = HtmlFrontend::_('date', $row->checked_out_time, 'H:i');
 
-			$hover = '<span class="editlinktip hasTooltip" title="' . WoobookingHtmlFrontend::_('tooltipText', 'JLIB_HTML_CHECKED_OUT', $row->editor)
+			$hover = '<span class="editlinktip hasTooltip" title="' . HtmlFrontend::_('tooltipText', 'JLIB_HTML_CHECKED_OUT', $row->editor)
 				. '<br />' . $date . '<br />' . $time . '">';
 		}
 
-		return $hover . WoobookingHtmlFrontend::_('image', 'admin/checked_out.png', null, null, true) . '</span>';
+		return $hover . HtmlFrontend::_('image', 'admin/checked_out.png', null, null, true) . '</span>';
 	}
 
 	/**
@@ -330,7 +330,7 @@ abstract class WoobookingHtmlFrontendGrid
 		if (!$loaded)
 		{
 			// Include jQuery
-			WoobookingHtmlFrontend::_('jquery.framework');
+			HtmlFrontend::_('jquery.framework');
 
 			// Build the behavior script.
 			$js = '

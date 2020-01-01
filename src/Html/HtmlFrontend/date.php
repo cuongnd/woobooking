@@ -23,7 +23,7 @@ abstract class WoobookingHtmlFrontendDate
 	 * @param   string  $unit    The optional unit of measurement to return
 	 *                           if the value of the diff is greater than one
 	 * @param   string  $time    An optional time to compare to, defaults to now
-	 * @param   string  $format  An optional format for the WoobookingHtmlFrontend::date output
+	 * @param   string  $format  An optional format for the HtmlFrontend::date output
 	 *
 	 * @return  string  The converted time string
 	 *
@@ -83,6 +83,6 @@ abstract class WoobookingHtmlFrontendDate
 		}
 
 		// Over a month, return the absolute time
-		return WoobookingHtmlFrontend::_('date', $date, $format);
+		return HtmlFrontend::_('date', $date, $format);
 	}
 }

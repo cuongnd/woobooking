@@ -149,7 +149,7 @@ class FormFieldTimezone extends JFormFieldGroupedList
 				// Only add options where a locale exists.
 				if (!empty($locale))
 				{
-					$groups[$group][$zone] = WooBookingHtml::_('select.option', $zone, str_replace('_', ' ', $locale), 'value', 'text', false);
+					$groups[$group][$zone] = Html::_('select.option', $zone, str_replace('_', ' ', $locale), 'value', 'text', false);
 				}
 			}
 		}

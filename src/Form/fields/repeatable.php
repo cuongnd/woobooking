@@ -135,14 +135,14 @@ class FormFieldRepeatable extends FormField
 				. '"  class="form-field-repeatable" ' . implode(' ', $data) . ' />';
 
 		// Add scripts
-		WooBookingHtml::_('bootstrap.framework');
+		Html::_('bootstrap.framework');
 
 		// Depends on jQuery UI
-		WooBookingHtml::_('jquery.ui', array('core', 'sortable'));
+		Html::_('jquery.ui', array('core', 'sortable'));
 
-		WooBookingHtml::_('script', 'jui/sortablelist.js', array('version' => 'auto', 'relative' => true));
-		WooBookingHtml::_('stylesheet', 'jui/sortablelist.css', array('version' => 'auto', 'relative' => true));
-		WooBookingHtml::_('script', 'system/repeatable.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
+		Html::_('script', 'jui/sortablelist.js', array('version' => 'auto', 'relative' => true));
+		Html::_('stylesheet', 'jui/sortablelist.css', array('version' => 'auto', 'relative' => true));
+		Html::_('script', 'system/repeatable.js', array('framework' => true, 'version' => 'auto', 'relative' => true));
 
 		$javascript = 'jQuery(document).ready(function($) { $("#' . $this->id . '_table tbody").sortable(); });';
 

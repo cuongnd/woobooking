@@ -31,7 +31,7 @@ abstract class WoobookingHtmlFrontendIcons
 
 		foreach ($buttons as $button)
 		{
-			$html[] = WoobookingHtmlFrontend::_('icons.button', $button);
+			$html[] = HtmlFrontend::_('icons.button', $button);
 		}
 
 		return implode($html);

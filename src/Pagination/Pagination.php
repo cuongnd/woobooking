@@ -587,19 +587,19 @@ class Pagination
 		// Make the option list.
 		for ($i = 5; $i <= 30; $i += 5)
 		{
-			$limits[] = WooBookingHtml::_('select.option', "$i");
+			$limits[] = Html::_('select.option', "$i");
 		}
 
-		$limits[] = WooBookingHtml::_('select.option', '50', WoobookingText::_('J50'));
-		$limits[] = WooBookingHtml::_('select.option', '100', WoobookingText::_('J100'));
-		$limits[] = WooBookingHtml::_('select.option', '0', WoobookingText::_('JALL'));
+		$limits[] = Html::_('select.option', '50', WoobookingText::_('J50'));
+		$limits[] = Html::_('select.option', '100', WoobookingText::_('J100'));
+		$limits[] = Html::_('select.option', '0', WoobookingText::_('JALL'));
 
 		$selected = $this->viewall ? 0 : $this->limit;
 
 		// Build the select list.
 		if ($this->app->isClient('admin'))
 		{
-			$html = WooBookingHtml::_(
+			$html = Html::_(
 				'select.genericlist',
 				$limits,
 				$this->prefix . 'limit',
@@ -611,7 +611,7 @@ class Pagination
 		}
 		else
 		{
-			$html = WooBookingHtml::_(
+			$html = Html::_(
 				'select.genericlist',
 				$limits,
 				$this->prefix . 'limit',
@@ -644,7 +644,7 @@ class Pagination
 		if (($i > 0 || ($i + $this->limitstart > 0)) && $condition)
 		{
 		    
-			return WooBookingHtml::_('jgrid.orderUp', $i, $task, '', $alt, $enabled, $checkbox);
+			return Html::_('jgrid.orderUp', $i, $task, '', $alt, $enabled, $checkbox);
 		}
 		else
 		{
@@ -671,7 +671,7 @@ class Pagination
 	{
 		if (($i < $n - 1 || $i + $this->limitstart < $this->total - 1) && $condition)
 		{
-			return WooBookingHtml::_('jgrid.orderDown', $i, $task, '', $alt, $enabled, $checkbox);
+			return Html::_('jgrid.orderDown', $i, $task, '', $alt, $enabled, $checkbox);
 		}
 		else
 		{
@@ -733,7 +733,7 @@ class Pagination
 
 		if (!is_numeric($item->text))
 		{
-			WooBookingHtml::_('bootstrap.tooltip');
+			Html::_('bootstrap.tooltip');
 			$title = ' title="' . $item->text . '"';
 			$class = 'hasTooltip ';
 		}

@@ -56,7 +56,7 @@ class HelpsiteField extends FormFieldList
 	 */
 	protected function getInput()
 	{
-		\WooBookingHtml::_('script', 'system/helpsite.js', array('version' => 'auto', 'relative' => true));
+		\Html::_('script', 'system/helpsite.js', array('version' => 'auto', 'relative' => true));
 
 		$showDefault = (string) $this->getAttribute('showDefault') === 'false' ? 'false' : 'true';
 

@@ -39,6 +39,6 @@ class ContentlanguageField extends FormFieldList
 	 */
 	protected function getOptions()
 	{
-		return array_merge(parent::getOptions(), \WooBookingHtml::_('contentlanguage.existing'));
+		return array_merge(parent::getOptions(), \Html::_('contentlanguage.existing'));
 	}
 }

@@ -191,9 +191,9 @@ class WBPaymentbf_rbsglobalgateway extends JPlugin {
 			$vars['cancelURL']  = rbsglobalgateway_helper::notificationURL($method->payment_params, $locale);
 		}
 		if(!HIKASHOP_J30)
-			WooBookingHtml::_('behavior.mootools');
+			Html::_('behavior.mootools');
 		else
-			WooBookingHtml::_('behavior.framework');
+			Html::_('behavior.framework');
 		$app = JFactory::getApplication();
 		$name = $method->payment_type.'_end.php';
 		$path = JPATH_THEMES.DS.$app->getTemplate().DS.'hikashoppayment'.DS.$name;

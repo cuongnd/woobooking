@@ -47,19 +47,19 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		<?php
 		$values = array();
 		if( function_exists('hash') || function_exists('sha1') ) {
-			$values[] = WooBookingHtml::_('select.option', 'sha1',WoobookingText::_('SHA1'));
+			$values[] = Html::_('select.option', 'sha1',WoobookingText::_('SHA1'));
 		} else {
-			$values[] = WooBookingHtml::_('select.option', 'sha1',WoobookingText::_('SHA1').' '.WoobookingText::_('not present'), 'value', 'text', true);
+			$values[] = Html::_('select.option', 'sha1',WoobookingText::_('SHA1').' '.WoobookingText::_('not present'), 'value', 'text', true);
 		}
 		if( function_exists('hash')){
-			$values[] = WooBookingHtml::_('select.option', 'sha256',WoobookingText::_('SHA256'));
-			$values[] = WooBookingHtml::_('select.option', 'sha512',WoobookingText::_('SHA512'));
+			$values[] = Html::_('select.option', 'sha256',WoobookingText::_('SHA256'));
+			$values[] = Html::_('select.option', 'sha512',WoobookingText::_('SHA512'));
 		}else{
-			$values[] = WooBookingHtml::_('select.option', 'sha256',WoobookingText::_('SHA256').' '.WoobookingText::_('not present'), 'value', 'text', true);
-			$values[] = WooBookingHtml::_('select.option', 'sha512',WoobookingText::_('SHA512').' '.WoobookingText::_('not present'), 'value', 'text', true);
+			$values[] = Html::_('select.option', 'sha256',WoobookingText::_('SHA256').' '.WoobookingText::_('not present'), 'value', 'text', true);
+			$values[] = Html::_('select.option', 'sha512',WoobookingText::_('SHA512').' '.WoobookingText::_('not present'), 'value', 'text', true);
 		}
 
-		echo WooBookingHtml::_('select.genericlist',   $values, "params[payment_params][hash_method]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->hash_method ); ?>
+		echo Html::_('select.genericlist',   $values, "params[payment_params][hash_method]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->hash_method ); ?>
 	</td>
 </tr>
 <tr>
@@ -71,10 +71,10 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 	<td>
 		<?php
 		$values = array();
-		$values[] = WooBookingHtml::_('select.option', 'production', WoobookingText::_('HIKA_PRODUCTION'));
-		$values[] = WooBookingHtml::_('select.option', 'test', WoobookingText::_('HIKA_TEST'));
+		$values[] = Html::_('select.option', 'production', WoobookingText::_('HIKA_PRODUCTION'));
+		$values[] = Html::_('select.option', 'test', WoobookingText::_('HIKA_TEST'));
 
-		echo WooBookingHtml::_('select.genericlist',   $values, "params[payment_params][environnement]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->environnement ); ?>
+		echo Html::_('select.genericlist',   $values, "params[payment_params][environnement]" , 'class="inputbox" size="1"', 'value', 'text', @$this->element->payment_params->environnement ); ?>
 	</td>
 </tr>
 <tr>
@@ -94,7 +94,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
 	</td>
 </tr>
 <tr>

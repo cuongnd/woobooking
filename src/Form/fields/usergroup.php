@@ -66,7 +66,7 @@ class FormFieldUsergroup extends FormField
 			$disabled = ($disabled == 'true' || $disabled == 'disabled' || $disabled == '1');
 
 			// Create a new option object based on the <option /> element.
-			$tmp = WooBookingHtml::_(
+			$tmp = Html::_(
 				'select.option', (string) $option['value'], trim((string) $option), 'value', 'text',
 				$disabled
 			);
@@ -81,6 +81,6 @@ class FormFieldUsergroup extends FormField
 			$options[] = $tmp;
 		}
 
-		return WooBookingHtml::_('access.usergroup', $this->name, $this->value, $attr, $options, $this->id);
+		return Html::_('access.usergroup', $this->name, $this->value, $attr, $options, $this->id);
 	}
 }

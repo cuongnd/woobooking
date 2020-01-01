@@ -45,7 +45,7 @@ abstract class WoobookingHtmlFrontendLinks
 				$layout = new JLayoutFile('WooBooking.links.groupopen');
 				$htmlHeader = $layout->render($title);
 
-				$htmlLinks  = WoobookingHtmlFrontend::_('links.links', $links);
+				$htmlLinks  = HtmlFrontend::_('links.links', $links);
 
 				if ($htmlLinks != '')
 				{
@@ -79,7 +79,7 @@ abstract class WoobookingHtmlFrontendLinks
 
 		foreach ($links as $link)
 		{
-			$html[] = WoobookingHtmlFrontend::_('links.link', $link);
+			$html[] = HtmlFrontend::_('links.link', $link);
 		}
 
 		return implode($html);

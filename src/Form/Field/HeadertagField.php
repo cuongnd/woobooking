@@ -44,7 +44,7 @@ class HeadertagField extends FormFieldList
 		// Create one new option object for each tag
 		foreach ($tags as $tag)
 		{
-			$tmp = \WooBookingHtml::_('select.option', $tag, $tag);
+			$tmp = \Html::_('select.option', $tag, $tag);
 			$options[] = $tmp;
 		}
 

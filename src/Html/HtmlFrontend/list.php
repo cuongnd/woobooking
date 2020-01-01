@@ -46,7 +46,7 @@ abstract class WoobookingHtmlFrontendList
 		}
 
 		$imageFiles = new DirectoryIterator(JPATH_SITE . '/' . $directory);
-		$images = array(WoobookingHtmlFrontend::_('select.option', '', WoobookingText::_('JOPTION_SELECT_IMAGE')));
+		$images = array(HtmlFrontend::_('select.option', '', WoobookingText::_('JOPTION_SELECT_IMAGE')));
 
 		foreach ($imageFiles as $file)
 		{
@@ -59,11 +59,11 @@ abstract class WoobookingHtmlFrontendList
 
 			if (preg_match('#(' . $extensions . ')$#', $fileName))
 			{
-				$images[] = WoobookingHtmlFrontend::_('select.option', $fileName);
+				$images[] = HtmlFrontend::_('select.option', $fileName);
 			}
 		}
 
-		$images = WoobookingHtmlFrontend::_(
+		$images = HtmlFrontend::_(
 			'select.genericlist',
 			$images,
 			$name,
@@ -96,12 +96,12 @@ abstract class WoobookingHtmlFrontendList
 
 		if (empty($items))
 		{
-			$options[] = WoobookingHtmlFrontend::_('select.option', 1, WoobookingText::_('JOPTION_ORDER_FIRST'));
+			$options[] = HtmlFrontend::_('select.option', 1, WoobookingText::_('JOPTION_ORDER_FIRST'));
 
 			return $options;
 		}
 
-		$options[] = WoobookingHtmlFrontend::_('select.option', 0, '0 ' . WoobookingText::_('JOPTION_ORDER_FIRST'));
+		$options[] = HtmlFrontend::_('select.option', 0, '0 ' . WoobookingText::_('JOPTION_ORDER_FIRST'));
 
 		for ($i = 0, $n = count($items); $i < $n; $i++)
 		{
@@ -116,10 +116,10 @@ abstract class WoobookingHtmlFrontendList
 				$text = $items[$i]->text;
 			}
 
-			$options[] = WoobookingHtmlFrontend::_('select.option', $items[$i]->value, $items[$i]->value . '. ' . $text);
+			$options[] = HtmlFrontend::_('select.option', $items[$i]->value, $items[$i]->value . '. ' . $text);
 		}
 
-		$options[] = WoobookingHtmlFrontend::_('select.option', $items[$i - 1]->value + 1, ($items[$i - 1]->value + 1) . ' ' . WoobookingText::_('JOPTION_ORDER_LAST'));
+		$options[] = HtmlFrontend::_('select.option', $items[$i - 1]->value + 1, ($items[$i - 1]->value + 1) . ' ' . WoobookingText::_('JOPTION_ORDER_LAST'));
 
 		return $options;
 	}
@@ -146,8 +146,8 @@ abstract class WoobookingHtmlFrontendList
 
 		if (empty($neworder))
 		{
-			$orders = WoobookingHtmlFrontend::_('list.genericordering', $query);
-			$html = WoobookingHtmlFrontend::_('select.genericlist', $orders, $name, array('list.attr' => $attribs, 'list.select' => (int) $selected));
+			$orders = HtmlFrontend::_('list.genericordering', $query);
+			$html = HtmlFrontend::_('select.genericlist', $orders, $name, array('list.attr' => $attribs, 'list.select' => (int) $selected));
 		}
 		else
 		{
@@ -193,7 +193,7 @@ abstract class WoobookingHtmlFrontendList
 
 		if ($nouser)
 		{
-			$users[] = WoobookingHtmlFrontend::_('select.option', '0', WoobookingText::_('JOPTION_NO_USER'));
+			$users[] = HtmlFrontend::_('select.option', '0', WoobookingText::_('JOPTION_NO_USER'));
 			$users = array_merge($users, $db->loadObjectList());
 		}
 		else
@@ -201,7 +201,7 @@ abstract class WoobookingHtmlFrontendList
 			$users = $db->loadObjectList();
 		}
 
-		$users = WoobookingHtmlFrontend::_(
+		$users = HtmlFrontend::_(
 			'select.genericlist',
 			$users,
 			$name,
@@ -255,7 +255,7 @@ abstract class WoobookingHtmlFrontendList
 			$pos['right'] = WoobookingText::_('JGLOBAL_RIGHT');
 		}
 
-		$positions = WoobookingHtmlFrontend::_(
+		$positions = HtmlFrontend::_(
 			'select.genericlist', $pos, $name,
 			array(
 				'id' => $id,

@@ -97,7 +97,7 @@ class WBPaymentAtos extends WBPayment
 			if($config->get('auto_submit_methods',1)){
 				$onclick = ' onclick="this.form.action=this.form.action+\'#hikashop_payment_methods\';this.form.submit(); return false;"';
 			}
-			$method->custom_html='<span style="margin-left:10%">'.WooBookingHtml::_('select.booleanlist', "hikashop_multiple_instalments", '',  $onclick, WoobookingText::sprintf( 'PAYMENT_IN_X_TIME' , $method->payment_params->instalments ), WoobookingText::sprintf( 'PAY_FULL_ORDER' , '1') ).'</span>';
+			$method->custom_html='<span style="margin-left:10%">'.Html::_('select.booleanlist', "hikashop_multiple_instalments", '',  $onclick, WoobookingText::sprintf( 'PAYMENT_IN_X_TIME' , $method->payment_params->instalments ), WoobookingText::sprintf( 'PAY_FULL_ORDER' , '1') ).'</span>';
 		}
 	}
 

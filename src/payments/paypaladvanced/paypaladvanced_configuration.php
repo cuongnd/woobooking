@@ -64,7 +64,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][validation]" , '', @$this->element->payment_params->validation);
+		echo Html::_('select.booleanlist', "params[payment_params][validation]" , '', @$this->element->payment_params->validation);
 	?></td>
 </tr>
 <tr>
@@ -125,10 +125,10 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 	</td>
 	<td><?php
 		$arr = array(
-			WooBookingHtml::_('select.option', 'iframe', 'Iframe' ),
-			WooBookingHtml::_('select.option', 'form', 'Form' ),
+			Html::_('select.option', 'iframe', 'Iframe' ),
+			Html::_('select.option', 'form', 'Form' ),
 		);
-		echo WooBookingHtml::_('select.genericlist',  $arr, "params[payment_params][type]", 'onchange="iframe_size_hide()"', 'value', 'text', @$this->element->payment_params->type);
+		echo Html::_('select.genericlist',  $arr, "params[payment_params][type]", 'onchange="iframe_size_hide()"', 'value', 'text', @$this->element->payment_params->type);
 		?><br/>
 		<div id="height">
 				<label for="params[payment_params][height]"><?php
@@ -168,7 +168,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 	<td><?php
 		if(!isset($this->element->payment_params->test_mode))
 			$this->element->payment_params->test_mode = 1;
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][test_mode]" , '', $this->element->payment_params->test_mode);
+		echo Html::_('select.booleanlist', "params[payment_params][test_mode]" , '', $this->element->payment_params->test_mode);
 	?></td>
 </tr>
 <tr>
@@ -178,6 +178,6 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '', @$this->element->payment_params->debug);
+		echo Html::_('select.booleanlist', "params[payment_params][debug]" , '', @$this->element->payment_params->debug);
 	?></td>
 </tr>

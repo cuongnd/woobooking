@@ -50,8 +50,8 @@ abstract class WoobookingHtmlFrontendRules
 		$html = array();
 
 		$html[] = '<div class="acl-options">';
-		$html[] = WoobookingHtmlFrontend::_('tabs.start', 'acl-rules-' . $assetId, array('useCookie' => 1));
-		$html[] = WoobookingHtmlFrontend::_('tabs.panel', WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY'), 'summary');
+		$html[] = HtmlFrontend::_('tabs.start', 'acl-rules-' . $assetId, array('useCookie' => 1));
+		$html[] = HtmlFrontend::_('tabs.panel', WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY'), 'summary');
 		$html[] = '			<p>' . WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY_DESC') . '</p>';
 		$html[] = '			<table class="aclsummary-table" summary="' . WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY_DESC') . '">';
 		$html[] = '			<caption>' . WoobookingText::_('JLIB_HTML_ACCESS_SUMMARY_DESC_CAPTION') . '</caption>';
@@ -86,7 +86,7 @@ abstract class WoobookingHtmlFrontendRules
 		{
 			$actionTitle = WoobookingText::_($action->title);
 			$actionDesc = WoobookingText::_($action->description);
-			$html[] = WoobookingHtmlFrontend::_('tabs.panel', $actionTitle, $action->name);
+			$html[] = HtmlFrontend::_('tabs.panel', $actionTitle, $action->name);
 			$html[] = '			<p>' . $actionDesc . '</p>';
 			$html[] = '			<table class="aclmodify-table" summary="' . strip_tags($actionDesc) . '">';
 			$html[] = '			<caption>' . WoobookingText::_('JLIB_HTML_ACCESS_MODIFY_DESC_CAPTION_ACL') . ' ' . $actionTitle . ' '
@@ -127,7 +127,7 @@ abstract class WoobookingHtmlFrontendRules
 			$html[] = '			</table>';
 		}
 
-		$html[] = WoobookingHtmlFrontend::_('tabs.end');
+		$html[] = HtmlFrontend::_('tabs.end');
 
 		// Build the footer with legend and special purpose buttons.
 		$html[] = '	<div class="clr"></div>';

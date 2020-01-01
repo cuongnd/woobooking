@@ -136,10 +136,10 @@ class FormFieldRules extends FormField
 	 */
 	protected function getInput()
 	{
-		WooBookingHtml::_('bootstrap.tooltip');
+		Html::_('bootstrap.tooltip');
 
 		// Add Javascript for permission change
-		WooBookingHtml::_('script', 'system/permissions.js', array('version' => 'auto', 'relative' => true));
+		Html::_('script', 'system/permissions.js', array('version' => 'auto', 'relative' => true));
 
 		// Load JavaScript message titles
 		WoobookingText::script('ERROR');
@@ -296,7 +296,7 @@ class FormFieldRules extends FormField
 				$html[] = '<tr>';
 				$html[] = '<td headers="actions-th' . $group->value . '">';
 				$html[] = '<label for="' . $this->id . '_' . $action->name . '_' . $group->value . '" class="hasTooltip" title="'
-					. WooBookingHtml::_('tooltipText', $action->title, $action->description) . '">';
+					. Html::_('tooltipText', $action->title, $action->description) . '">';
 				$html[] = WoobookingText::_($action->title);
 				$html[] = '</label>';
 				$html[] = '</td>';

@@ -8,13 +8,12 @@ use Exception;
 use Factory;
 use WooBooking\CMS\Filesystem\File;
 use WooBooking\CMS\Form\Form;
+use WooBooking\CMS\Html\HtmlFrontend;
 use WooBooking\CMS\OpenSource\WooBookingOnOpenSource;
 use WooBooking\CMS\Filesystem\Folder;
 use WooBooking\CMS\OpenSource\WordPress\ECommerce\ECommerce;
 use WooBooking\CMS;
 use woobooking_controller;
-use WooBookingHtml;
-use WooBookingHtmlFrontend;
 use WooBooking\CMS\Html\Html;
 use WooBooking\CMS\Utilities\Utility;
 use WoobookingModel;
@@ -130,8 +129,8 @@ class WooBookingOnWordpress
         if(!self::checkInstalled()){
             self::goToPopupInstall();
         }
-        WooBookingHtml::_('jquery.tooltip');
-        WooBookingHtml::_('jquery.bootstrap');
+        Html::_('jquery.tooltip');
+        Html::_('jquery.bootstrap');
         $root_url = self::get_root_url();
         $input=Factory::getInput();
         $data=$input->getData();
@@ -406,12 +405,12 @@ class WooBookingOnWordpress
         $input = Factory::getInput();
         $doc=Factory::getDocument();
         if(!self::is_rest_api()) {
-            WooBookingHtmlFrontend::_('jquery.less');
+            HtmlFrontend::_('jquery.less');
         }
-        WooBookingHtmlFrontend::_('jquery.fontawesome');
-        WooBookingHtmlFrontend::_('jquery.confirm');
-        WooBookingHtmlFrontend::_('jquery.serialize_object');
-        WooBookingHtmlFrontend::_('jquery.bootstrap');
+        HtmlFrontend::_('jquery.fontawesome');
+        HtmlFrontend::_('jquery.confirm');
+        HtmlFrontend::_('jquery.serialize_object');
+        HtmlFrontend::_('jquery.bootstrap');
         $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
         //$list_view=self::get_list_layout_view_frontend();

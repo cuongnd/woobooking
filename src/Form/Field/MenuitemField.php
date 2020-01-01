@@ -215,7 +215,7 @@ class MenuitemField extends FormFieldGroupedList
 					$lang = '';
 				}
 
-				$groups[$menuTitle][] = \WooBookingHtml::_('select.option',
+				$groups[$menuTitle][] = \Html::_('select.option',
 								$link->value, $levelPrefix . $link->text . $lang,
 								'value',
 								'text',
@@ -247,7 +247,7 @@ class MenuitemField extends FormFieldGroupedList
 						$lang = '';
 					}
 
-					$groups[$menu->title][] = \WooBookingHtml::_('select.option',
+					$groups[$menu->title][] = \Html::_('select.option',
 										$link->value, $levelPrefix . $link->text . $lang,
 										'value',
 										'text',

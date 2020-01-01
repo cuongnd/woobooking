@@ -88,7 +88,7 @@ abstract class WoobookingHtmlFrontendSliders
 			$loaded[$group] = true;
 
 			// Include mootools framework.
-			WoobookingHtmlFrontend::_('behavior.framework', true);
+			HtmlFrontend::_('behavior.framework', true);
 
 			$document = Factory::getDocument();
 
@@ -111,7 +111,7 @@ abstract class WoobookingHtmlFrontendSliders
 			$opt['opacity'] = (isset($params['opacityTransition']) && $params['opacityTransition']) ? 'true' : 'false';
 			$opt['alwaysHide'] = (isset($params['allowAllClose']) && (!$params['allowAllClose'])) ? 'false' : 'true';
 
-			$options = WoobookingHtmlFrontend::getJSObject($opt);
+			$options = HtmlFrontend::getJSObject($opt);
 
 			$js = "window.addEvent('domready', function(){ new Fx.Accordion($$('div#" . $group
 				. ".pane-sliders > .panel > h3.pane-toggler'), $$('div#" . $group . ".pane-sliders > .panel > div.pane-slider'), " . $options

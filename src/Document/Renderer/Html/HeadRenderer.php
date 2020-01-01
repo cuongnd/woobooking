@@ -59,7 +59,7 @@ class HeadRenderer extends DocumentRenderer
         }
 
         if ($document->getScriptOptions()) {
-            \WooBookingHtml::_('behavior.core');
+            \Html::_('behavior.core');
         }
 
         // Trigger the onBeforeCompileHead event

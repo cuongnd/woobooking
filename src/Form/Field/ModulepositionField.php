@@ -138,7 +138,7 @@ class ModulepositionField extends FormFieldText
 	protected function getInput()
 	{
 		// Load the modal behavior script.
-		\WooBookingHtml::_('behavior.modal', 'a.modal');
+		\Html::_('behavior.modal', 'a.modal');
 
 		// Build the script.
 		$script = array();

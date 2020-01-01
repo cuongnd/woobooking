@@ -54,6 +54,6 @@ class FormFieldAccessLevel extends JFormFieldList
 		// Get the field options.
 		$options = $this->getOptions();
 
-		return WooBookingHtml::_('access.level', $this->name, $this->value, $attr, $options, $this->id);
+		return Html::_('access.level', $this->name, $this->value, $attr, $options, $this->id);
 	}
 }

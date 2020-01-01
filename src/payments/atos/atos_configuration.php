@@ -146,7 +146,7 @@ if(!$safe_mode){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][enable_validation]" , '',@$this->element->payment_params->enable_validation	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][enable_validation]" , '',@$this->element->payment_params->enable_validation	); ?>
 	</td>
 </tr>
 <tr>
@@ -169,7 +169,7 @@ if(!$safe_mode){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][force_instalments]" , '',@$this->element->payment_params->force_instalments	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][force_instalments]" , '',@$this->element->payment_params->force_instalments	); ?>
 	</td>
 </tr>
 <tr>
@@ -199,7 +199,7 @@ if(!$safe_mode){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][notification]" , 'yes',@$this->element->payment_params->notification	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][notification]" , 'yes',@$this->element->payment_params->notification	); ?>
 	</td>
 </tr>
 <tr>
@@ -209,7 +209,7 @@ if(!$safe_mode){ ?>
 		</label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][debug]" , '',@$this->element->payment_params->debug	); ?>
 	</td>
 </tr>
 <tr>

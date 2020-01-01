@@ -195,12 +195,12 @@ class FormFieldFolderList extends JFormFieldList
 		// Prepend some default options based on field attributes.
 		if (!$this->hideNone)
 		{
-			$options[] = WooBookingHtml::_('select.option', '-1', WoobookingText::alt('JOPTION_DO_NOT_USE', preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname)));
+			$options[] = Html::_('select.option', '-1', WoobookingText::alt('JOPTION_DO_NOT_USE', preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname)));
 		}
 
 		if (!$this->hideDefault)
 		{
-			$options[] = WooBookingHtml::_('select.option', '', WoobookingText::alt('JOPTION_USE_DEFAULT', preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname)));
+			$options[] = Html::_('select.option', '', WoobookingText::alt('JOPTION_USE_DEFAULT', preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname)));
 		}
 
 		// Get a list of folders in the search path with the given filter.
@@ -223,7 +223,7 @@ class FormFieldFolderList extends JFormFieldList
 				// Remove the root part and the leading /
 				$folder = trim(str_replace($path, '', $folder), '/');
 
-				$options[] = WooBookingHtml::_('select.option', $folder, $folder);
+				$options[] = Html::_('select.option', $folder, $folder);
 			}
 		}
 

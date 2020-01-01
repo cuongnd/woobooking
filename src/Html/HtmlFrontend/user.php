@@ -33,7 +33,7 @@ abstract class WoobookingHtmlFrontendUser
 		{
 			$options[$i]->value = $options[$i]->id;
 			$options[$i]->text = str_repeat('- ', $options[$i]->level) . $options[$i]->title;
-			$groups[] = WoobookingHtmlFrontend::_('select.option', $options[$i]->value, $options[$i]->text);
+			$groups[] = HtmlFrontend::_('select.option', $options[$i]->value, $options[$i]->text);
 		}
 
 		// Exclude super admin groups if requested

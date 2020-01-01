@@ -57,11 +57,11 @@ abstract class WoobookingHtmlFrontendJGrid
 
 		if ($tip)
 		{
-			WoobookingHtmlFrontend::_('bootstrap.tooltip');
+			HtmlFrontend::_('bootstrap.tooltip');
 
 			$title = $enabled ? $active_title : $inactive_title;
 			$title = $translate ? WoobookingText::_($title) : $title;
-			$title = WoobookingHtmlFrontend::_('tooltipText', $title, '', 0);
+			$title = HtmlFrontend::_('tooltipText', $title, '', 0);
 		}
 
 		if ($enabled)
@@ -188,12 +188,12 @@ abstract class WoobookingHtmlFrontendJGrid
 
 			if ($publish_up)
 			{
-				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_START', WoobookingHtmlFrontend::_('date', $publish_up, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
+				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_START', HtmlFrontend::_('date', $publish_up, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
 			}
 
 			if ($publish_down)
 			{
-				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_FINISHED', WoobookingHtmlFrontend::_('date', $publish_down, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
+				$tips[] = WoobookingText::sprintf('JLIB_HTML_PUBLISHED_FINISHED', HtmlFrontend::_('date', $publish_down, WoobookingText::_('DATE_FORMAT_LC5'), 'UTC'));
 			}
 
 			$tip = empty($tips) ? false : implode('<br />', $tips);
@@ -286,27 +286,27 @@ abstract class WoobookingHtmlFrontendJGrid
 
 		if (!array_key_exists('published', $config) || $config['published'])
 		{
-			$options[] = WoobookingHtmlFrontend::_('select.option', '1', 'JPUBLISHED');
+			$options[] = HtmlFrontend::_('select.option', '1', 'JPUBLISHED');
 		}
 
 		if (!array_key_exists('unpublished', $config) || $config['unpublished'])
 		{
-			$options[] = WoobookingHtmlFrontend::_('select.option', '0', 'JUNPUBLISHED');
+			$options[] = HtmlFrontend::_('select.option', '0', 'JUNPUBLISHED');
 		}
 
 		if (!array_key_exists('archived', $config) || $config['archived'])
 		{
-			$options[] = WoobookingHtmlFrontend::_('select.option', '2', 'JARCHIVED');
+			$options[] = HtmlFrontend::_('select.option', '2', 'JARCHIVED');
 		}
 
 		if (!array_key_exists('trash', $config) || $config['trash'])
 		{
-			$options[] = WoobookingHtmlFrontend::_('select.option', '-2', 'JTRASHED');
+			$options[] = HtmlFrontend::_('select.option', '-2', 'JTRASHED');
 		}
 
 		if (!array_key_exists('all', $config) || $config['all'])
 		{
-			$options[] = WoobookingHtmlFrontend::_('select.option', '*', 'JALL');
+			$options[] = HtmlFrontend::_('select.option', '*', 'JALL');
 		}
 
 		return $options;
@@ -328,7 +328,7 @@ abstract class WoobookingHtmlFrontendJGrid
 	 */
 	public static function checkedout($i, $editorName, $time, $prefix = '', $enabled = false, $checkbox = 'cb')
 	{
-		WoobookingHtmlFrontend::_('bootstrap.tooltip');
+		HtmlFrontend::_('bootstrap.tooltip');
 
 		if (is_array($prefix))
 		{
@@ -338,9 +338,9 @@ abstract class WoobookingHtmlFrontendJGrid
 			$prefix = array_key_exists('prefix', $options) ? $options['prefix'] : '';
 		}
 
-		$text = $editorName . '<br />' . WoobookingHtmlFrontend::_('date', $time, WoobookingText::_('DATE_FORMAT_LC')) . '<br />' . WoobookingHtmlFrontend::_('date', $time, 'H:i');
-		$active_title = WoobookingHtmlFrontend::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKIN'), $text, 0);
-		$inactive_title = WoobookingHtmlFrontend::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKED_OUT'), $text, 0);
+		$text = $editorName . '<br />' . HtmlFrontend::_('date', $time, WoobookingText::_('DATE_FORMAT_LC')) . '<br />' . HtmlFrontend::_('date', $time, 'H:i');
+		$active_title = HtmlFrontend::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKIN'), $text, 0);
+		$inactive_title = HtmlFrontend::_('tooltipText', WoobookingText::_('JLIB_HTML_CHECKED_OUT'), $text, 0);
 
 		return static::action(
 			$i, 'checkin', $prefix, WoobookingText::_('JLIB_HTML_CHECKED_OUT'), html_entity_decode($active_title, ENT_QUOTES, 'UTF-8'),

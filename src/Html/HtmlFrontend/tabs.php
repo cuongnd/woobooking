@@ -82,7 +82,7 @@ abstract class WoobookingHtmlFrontendTabs
 		if (!array_key_exists((string) $group, $loaded))
 		{
 			// Include MooTools framework
-			WoobookingHtmlFrontend::_('behavior.framework', true);
+			HtmlFrontend::_('behavior.framework', true);
 
 			$opt['onActive']            = isset($params['onActive']) ? '\\' . $params['onActive'] : null;
 			$opt['onBackground']        = isset($params['onBackground']) ? '\\' . $params['onBackground'] : null;
@@ -93,7 +93,7 @@ abstract class WoobookingHtmlFrontendTabs
 			// When use storage is set and value is false - By default we allow to use storage
 			$opt['useStorage'] = !(isset($params['useCookie']) && !$params['useCookie']);
 
-			$options = WoobookingHtmlFrontend::getJSObject($opt);
+			$options = HtmlFrontend::getJSObject($opt);
 
 			$js = '	window.addEvent(\'domready\', function(){
 						$$(\'dl#' . $group . '.tabs\').each(function(tabs){
@@ -103,7 +103,7 @@ abstract class WoobookingHtmlFrontendTabs
 
 			$document = Factory::getDocument();
 			$document->addScriptDeclaration($js);
-			WoobookingHtmlFrontend::_('script', 'system/tabs.js', array('version' => 'auto', 'relative' => true));
+			HtmlFrontend::_('script', 'system/tabs.js', array('version' => 'auto', 'relative' => true));
 
 			$loaded[(string) $group] = true;
 		}

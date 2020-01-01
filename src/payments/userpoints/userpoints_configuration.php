@@ -14,7 +14,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 				?></label>
 			</td>
 			<td><?php
-				echo WooBookingHtml::_('select.genericlist', $this->data['modes'], "params[payment_params][points_mode]", '', 'value', 'text', @$this->element->payment_params->points_mode);
+				echo Html::_('select.genericlist', $this->data['modes'], "params[payment_params][points_mode]", '', 'value', 'text', @$this->element->payment_params->points_mode);
 			?></td>
 		</tr>
 		<tr>
@@ -76,7 +76,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 				?></label>
 			</td>
 			<td><?php
-				echo WooBookingHtml::_('select.booleanlist', "params[payment_params][allowshipping]" , '',@$this->element->payment_params->allowshipping);
+				echo Html::_('select.booleanlist', "params[payment_params][allowshipping]" , '',@$this->element->payment_params->allowshipping);
 			?></td>
 		</tr>
 		<tr>
@@ -86,7 +86,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 				?></label>
 			</td>
 			<td><?php
-				echo WooBookingHtml::_('select.booleanlist', "params[payment_params][partialpayment]" , 'onclick="setVisible(this.value);"',@$this->element->payment_params->partialpayment	);
+				echo Html::_('select.booleanlist', "params[payment_params][partialpayment]" , 'onclick="setVisible(this.value);"',@$this->element->payment_params->partialpayment	);
 			?></td>
 		</tr>
 <?php
@@ -139,7 +139,7 @@ if(empty($this->element->payment_params->partialpayment)){
 				?></label>
 			</td>
 			<td>
-				<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][givebackpoints]" , '',@$this->element->payment_params->givebackpoints ); ?>
+				<?php echo Html::_('select.booleanlist', "params[payment_params][givebackpoints]" , '',@$this->element->payment_params->givebackpoints ); ?>
 			</td>
 		</tr>
 		<tr>
@@ -149,7 +149,7 @@ if(empty($this->element->payment_params->partialpayment)){
 				?></label>
 			</td>
 			<td><?php
-				echo WooBookingHtml::_('select.booleanlist', "params[payment_params][virtual_coupon]" , '',@$this->element->payment_params->virtual_coupon );
+				echo Html::_('select.booleanlist', "params[payment_params][virtual_coupon]" , '',@$this->element->payment_params->virtual_coupon );
 			?></td>
 		</tr>
 		<tr>

@@ -102,7 +102,7 @@ class Utility
 	{
 		if ($custom)
 		{
-			$custom = WooBookingHtml::_('number.bytes', $custom, '');
+			$custom = Html::_('number.bytes', $custom, '');
 
 			if ($custom > 0)
 			{
@@ -114,8 +114,8 @@ class Utility
 		 * Read INI settings which affects upload size limits
 		 * and Convert each into number of bytes so that we can compare
 		 */
-		$sizes[] = WooBookingHtml::_('number.bytes', ini_get('post_max_size'), '');
-		$sizes[] = WooBookingHtml::_('number.bytes', ini_get('upload_max_filesize'), '');
+		$sizes[] = Html::_('number.bytes', ini_get('post_max_size'), '');
+		$sizes[] = Html::_('number.bytes', ini_get('upload_max_filesize'), '');
 
 		// The minimum of these is the limiting factor
 		return min($sizes);

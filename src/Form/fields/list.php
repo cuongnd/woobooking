@@ -63,7 +63,7 @@ class FormFieldList extends FormField
 		// Create a read-only list (no name) with hidden input(s) to store the value(s).
 		if ((string) $this->readonly == '1' || (string) $this->readonly == 'true')
 		{
-			$html[] = WooBookingHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
+			$html[] = Html::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
 
 			// E.g. form field type tag sends $this->value as array
 			if ($this->multiple && is_array($this->value))
@@ -95,7 +95,7 @@ class FormFieldList extends FormField
 			$listoptions['option.attr'] = 'optionattr';
 			$listoptions['list.attr'] = trim($attr);
 
-			$html[] = WooBookingHtml::_('select.genericlist', $options, $this->name, $listoptions);
+			$html[] = Html::_('select.genericlist', $options, $this->name, $listoptions);
 		}
 
 		return implode($html);

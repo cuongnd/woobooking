@@ -77,7 +77,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 			</tr>
 			<tr style="margin-bottom:5px;">
 				<td style="text-align:right"><label><?php
-					echo WooBookingHtml::tooltip(WoobookingText::_('CVC_TOOLTIP_TEXT').' : ', WoobookingText::_('CVC_TOOLTIP_TITLE'), '', WoobookingText::_('CARD_VALIDATION_CODE'));
+					echo Html::tooltip(WoobookingText::_('CVC_TOOLTIP_TEXT').' : ', WoobookingText::_('CVC_TOOLTIP_TITLE'), '', WoobookingText::_('CARD_VALIDATION_CODE'));
 				?></label></td>
 				<td><input style="text-align: center;" value="" type="text" maxlength="4" size="4" data-stripe="cvc"></td>
 			</tr>

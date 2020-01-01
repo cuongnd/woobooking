@@ -26,7 +26,7 @@ defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 	<td><?php
 		if(!isset($this->element->payment_params->classical))
 			$this->element->payment_params->classical = false;
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][classical]" , ' onchange="pp_adative_classical(this);"', $this->element->payment_params->classical);
+		echo Html::_('select.booleanlist', "params[payment_params][classical]" , ' onchange="pp_adative_classical(this);"', $this->element->payment_params->classical);
 	?>
 <script type="text/javascript">
 function pp_adative_classical(el) {
@@ -90,7 +90,7 @@ window.hikashop.ready(function(){
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][reverse_all_on_error]" , '', @$this->element->payment_params->reverse_all_on_error);
+		echo Html::_('select.booleanlist', "params[payment_params][reverse_all_on_error]" , '', @$this->element->payment_params->reverse_all_on_error);
 	?></td>
 </tr>
 <tr class="pp_adative_opt">
@@ -101,10 +101,10 @@ window.hikashop.ready(function(){
 	</td>
 	<td><?php
 		$arr = array(
-			WooBookingHtml::_('select.option', 'chained', 'Chained'),
-			WooBookingHtml::_('select.option', 'parallel', 'Parallel'),
+			Html::_('select.option', 'chained', 'Chained'),
+			Html::_('select.option', 'parallel', 'Parallel'),
 		);
-		echo WooBookingHtml::_('select.genericlist',  $arr, "params[payment_params][payment_mode]", '', 'value', 'text', @$this->element->payment_params->payment_mode);
+		echo Html::_('select.genericlist',  $arr, "params[payment_params][payment_mode]", '', 'value', 'text', @$this->element->payment_params->payment_mode);
 	?></td>
 </tr>
 <tr class="pp_adative_opt">
@@ -115,10 +115,10 @@ window.hikashop.ready(function(){
 	</td>
 	<td><?php
 		$arr = array(
-			WooBookingHtml::_('select.option', 'redirect', 'Redirect'),
-			WooBookingHtml::_('select.option', 'popup', 'Popup'),
+			Html::_('select.option', 'redirect', 'Redirect'),
+			Html::_('select.option', 'popup', 'Popup'),
 		);
-		echo WooBookingHtml::_('select.genericlist',  $arr, "params[payment_params][display_mode]", '', 'value', 'text', @$this->element->payment_params->display_mode);
+		echo Html::_('select.genericlist',  $arr, "params[payment_params][display_mode]", '', 'value', 'text', @$this->element->payment_params->display_mode);
 	?></td>
 </tr>
 <tr class="pp_adative_opt">
@@ -129,12 +129,12 @@ window.hikashop.ready(function(){
 	</td>
 	<td><?php
 		$arr = array(
-			WooBookingHtml::_('select.option', 'each', 'Each Receiver'),
-			WooBookingHtml::_('select.option', 'sender', 'Sender'),
-			WooBookingHtml::_('select.option', 'primary', 'Primary Receiver'),
-			WooBookingHtml::_('select.option', 'secondary', 'Secondary Receiver(s)'),
+			Html::_('select.option', 'each', 'Each Receiver'),
+			Html::_('select.option', 'sender', 'Sender'),
+			Html::_('select.option', 'primary', 'Primary Receiver'),
+			Html::_('select.option', 'secondary', 'Secondary Receiver(s)'),
 		);
-		echo WooBookingHtml::_('select.genericlist',  $arr, "params[payment_params][fee_mode]", '', 'value', 'text', @$this->element->payment_params->fee_mode);
+		echo Html::_('select.genericlist',  $arr, "params[payment_params][fee_mode]", '', 'value', 'text', @$this->element->payment_params->fee_mode);
 	?></td>
 </tr>
 <tr class="pp_adative_opt">
@@ -144,7 +144,7 @@ window.hikashop.ready(function(){
 		?></label>
 	</td>
 	<td>
-		<?php echo WooBookingHtml::_('select.booleanlist', "params[payment_params][store_secondary]" , '', @$this->element->payment_params->store_secondary); ?>
+		<?php echo Html::_('select.booleanlist', "params[payment_params][store_secondary]" , '', @$this->element->payment_params->store_secondary); ?>
 		<p>
 			<em><strong>Important</strong>: This option is not recommended.<br/>
 			It won't work correctly if you have several vendors in a single order.</em>
@@ -158,7 +158,7 @@ window.hikashop.ready(function(){
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][debug]" , '', @$this->element->payment_params->debug);
+		echo Html::_('select.booleanlist', "params[payment_params][debug]" , '', @$this->element->payment_params->debug);
 	?></td>
 </tr>
 <tr>
@@ -170,7 +170,7 @@ window.hikashop.ready(function(){
 	<td><?php
 		if(!isset($this->element->payment_params->sandbox) && isset($this->element->payment_params->debug))
 			$this->element->payment_params->sandbox = $this->element->payment_params->debug;
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][sandbox]" , '', @$this->element->payment_params->sandbox);
+		echo Html::_('select.booleanlist', "params[payment_params][sandbox]" , '', @$this->element->payment_params->sandbox);
 	?></td>
 </tr>
 <tr class="pp_adative_opt">
@@ -180,7 +180,7 @@ window.hikashop.ready(function(){
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][notify_wrong_emails]" , '', @$this->element->payment_params->notify_wrong_emails);
+		echo Html::_('select.booleanlist', "params[payment_params][notify_wrong_emails]" , '', @$this->element->payment_params->notify_wrong_emails);
 	?></td>
 </tr>
 <tr class="pp_adative_opt">
@@ -190,7 +190,7 @@ window.hikashop.ready(function(){
 		?></label>
 	</td>
 	<td><?php
-		echo WooBookingHtml::_('select.booleanlist', "params[payment_params][use_fsock]" , '', @$this->element->payment_params->use_fsock);
+		echo Html::_('select.booleanlist', "params[payment_params][use_fsock]" , '', @$this->element->payment_params->use_fsock);
 	?></td>
 </tr>
 <tr>

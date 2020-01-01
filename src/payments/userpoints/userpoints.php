@@ -842,10 +842,10 @@ class WBPaymentUserpoints extends WBPayment {
 
 		$this->modes = array();
 		if($this->getAUP(false, true))
-			$this->modes[] = WooBookingHtml::_('select.option', 'aup', 'ALPHA_USER_POINTS');
+			$this->modes[] = Html::_('select.option', 'aup', 'ALPHA_USER_POINTS');
 		if($this->getEasysocial(false))
-			$this->modes[] = WooBookingHtml::_('select.option', 'esp', 'EASYSOCIAL_POINTS');
-		$this->modes[] = WooBookingHtml::_('select.option', 'hk', 'HIKASHOP_USER_POINTS');
+			$this->modes[] = Html::_('select.option', 'esp', 'EASYSOCIAL_POINTS');
+		$this->modes[] = Html::_('select.option', 'hk', 'HIKASHOP_USER_POINTS');
 
 		$this->address = hikashop_get('type.address');
 		if(!empty($element->payment_params->categories))

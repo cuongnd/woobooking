@@ -180,7 +180,7 @@ abstract class WoobookingHtmlFrontendJquery
         }
 
         static::framework();
-        WoobookingHtmlFrontend::_('form.csrf', $name);
+        HtmlFrontend::_('form.csrf', $name);
 
         $doc = Factory::getDocument();
 
@@ -200,8 +200,8 @@ JS
     }
 
     /*
-     * WoobookingHtmlFrontend::_('jquery.framework');
-        WoobookingHtmlFrontend::_('jquery.confirm');
+     * HtmlFrontend::_('jquery.framework');
+        HtmlFrontend::_('jquery.confirm');
      */
     public static function confirm($debug = null)
     {
@@ -361,8 +361,8 @@ JS
         return;
     }
     /*
-     * WoobookingHtmlFrontend::_('jquery.framework');
-        WoobookingHtmlFrontend::_('jquery.spidochetube');
+     * HtmlFrontend::_('jquery.framework');
+        HtmlFrontend::_('jquery.spidochetube');
      */
     public static function spidochetube($debug = null)
     {
@@ -384,8 +384,8 @@ JS
         return;
     }
     /*
-     * WoobookingHtmlFrontend::_('jquery.framework');
-        WoobookingHtmlFrontend::_('jquery.youtube_video');
+     * HtmlFrontend::_('jquery.framework');
+        HtmlFrontend::_('jquery.youtube_video');
      */
     public static function select2($debug = null)
     {
@@ -499,8 +499,8 @@ JS
         return;
     }
     /*
-     * WoobookingHtmlFrontend::_('jquery.framework');
-        WoobookingHtmlFrontend::_('jquery.blink');
+     * HtmlFrontend::_('jquery.framework');
+        HtmlFrontend::_('jquery.blink');
      */
     public static function blink($debug = null)
     {
@@ -518,8 +518,8 @@ JS
         return;
     }
     /*
-     * WoobookingHtmlFrontend::_('jquery.framework');
-        WoobookingHtmlFrontend::_('jquery.fullscreen');
+     * HtmlFrontend::_('jquery.framework');
+        HtmlFrontend::_('jquery.fullscreen');
      */
     public static function fullscreen($debug = null)
     {
@@ -535,8 +535,8 @@ JS
         return;
     }
     /*
-     * WoobookingHtmlFrontend::_('jquery.framework');
-        WoobookingHtmlFrontend::_('jquery.elite_video_player');
+     * HtmlFrontend::_('jquery.framework');
+        HtmlFrontend::_('jquery.elite_video_player');
 
     	<link rel="stylesheet" href="css/elite.css" type="text/css" media="screen"/>
 	<link rel="stylesheet" href="css/elite-font-awesome.css" type="text/css">
@@ -575,8 +575,8 @@ JS
     }
 
     /*
-         * WoobookingHtmlFrontend::_('jquery.framework');
-            WoobookingHtmlFrontend::_('jquery.waitingfor');
+         * HtmlFrontend::_('jquery.framework');
+            HtmlFrontend::_('jquery.waitingfor');
          */
     public static function waitingfor($debug = null)
     {

@@ -44,7 +44,7 @@ abstract class WoobookingHtmlFrontendDropdown
 		}
 
 		// Depends on Bootstrap
-		WoobookingHtmlFrontend::_('bootstrap.framework');
+		HtmlFrontend::_('bootstrap.framework');
 
 		Factory::getDocument()->addScriptDeclaration("
 			(function($){
