@@ -7,9 +7,10 @@
  */
 
 
+namespace WooBooking\CMS\Html;
+use \WooBooking\CMS\Utilities\Utility;
 
-use WoobookingHtmlfrontendJquery as WoobookingHtmlfrontendJquery;
-
+use WooBooking\CMS\Filesystem\Path;
 defined('_WOO_BOOKING_EXEC') or die;
 
 /**
@@ -17,7 +18,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class WooBookingHtmlFrontend
+abstract class Html
 {
 	/**
 	 * Option values related to the generation of HTML output. Recognized
@@ -62,14 +63,14 @@ abstract class WooBookingHtmlFrontend
 	{
 		$key = preg_replace('#[^A-Z0-9_\.]#i', '', $key);
 
-		// Check to see whether we need to load a helper file
-		$parts = explode('.', $key);
 
-		$prefix = count($parts) === 3 ? array_shift($parts) : 'WoobookingHtmlFrontend';
+        // Check to see whether we need to load a helper file
+		$parts = explode('.', $key);
+        $prefix = count($parts) === 3 ? array_shift($parts) : 'Html';
 		$file   = count($parts) === 2 ? array_shift($parts) : '';
 		$func   = array_shift($parts);
-
-		return array(strtolower($prefix . '.' . $file . '.' . $func), $prefix, $file, $func);
+        $extract=array(strtolower($prefix . '.' . $file . '.' . $func), $prefix, $file, $func);
+        return $extract;
 	}
 
 	/**
@@ -87,44 +88,59 @@ abstract class WooBookingHtmlFrontend
 	 * @since   1.5
 	 * @throws  \InvalidArgumentException
 	 */
-	public static function _($key)
-	{
-		list($key, $prefix, $file, $func) = static::extract($key);
+    public static function _($key)
+    {
+        list($key, $prefix, $file, $func) = static::extract($key);
 
-		if (array_key_exists($key, static::$registry))
-		{
-			$function = static::$registry[$key];
-			$args     = func_get_args();
 
-			// Remove function name from arguments
-			array_shift($args);
+        if (array_key_exists($key, static::$registry))
+        {
+            $function = static::$registry[$key];
+            $args     = func_get_args();
 
-			return static::call($function, $args);
-		}
+            // Remove function name from arguments
+            array_shift($args);
 
-		$className = $prefix . ucfirst($file);
+            return static::call($function, $args);
+        }
 
-		if (!class_exists($className))
-		{
+        $className = $prefix . ucfirst($file);
 
-            throw new \InvalidArgumentException(sprintf('%s not found.', $className), 500);
-		}
+        if(empty(static::$includePaths)){
+            self::addIncludePath(WOO_BOOKING_PATH_PLATFORM."/html/html");
+        }
 
-		$toCall = array($className, $func);
+        if (!class_exists($className))
+        {
+            $path = Path::find(static::$includePaths, strtolower($file) . '.php');
+            if (!$path)
+            {
+                throw new \InvalidArgumentException(sprintf('path %s %s %s not found.',$path, $prefix, $file), 500);
+            }
 
-		if (!is_callable($toCall))
-		{
-			throw new \InvalidArgumentException(sprintf('%s::%s not found.', $className, $func), 500);
-		}
 
-		static::register($key, $toCall);
-		$args = func_get_args();
 
-		// Remove function name from arguments
-		array_shift($args);
+            if (!class_exists($className))
+            {
+                throw new \InvalidArgumentException(sprintf('%s %s not found.',$path, $className), 500);
+            }
+        }
 
-		return static::call($toCall, $args);
-	}
+        $toCall = array($className, $func);
+
+        if (!is_callable($toCall))
+        {
+            throw new \InvalidArgumentException(sprintf('function %s::%s not found.', $className, $func), 500);
+        }
+
+        static::register($key, $toCall);
+        $args = func_get_args();
+
+        // Remove function name from arguments
+        array_shift($args);
+
+        return static::call($toCall, $args);
+    }
 
 	/**
 	 * Registers a function to be called with a specific key
@@ -139,8 +155,7 @@ abstract class WooBookingHtmlFrontend
 	public static function register($key, $function)
 	{
 		list($key) = static::extract($key);
-
-		if (is_callable($function))
+        if (is_callable($function))
 		{
 			static::$registry[$key] = $function;
 
@@ -386,7 +401,7 @@ abstract class WooBookingHtmlFrontend
 		// If inclusion is required
 		$document = Factory::getDocument();
 
-		foreach ($includes as $include)
+		if(count($includes))foreach ($includes as $include)
 		{
 			// If there is already a version hash in the script reference (by using deprecated MD5SUM).
 			if ($pos = strpos($include, '?') !== false)
