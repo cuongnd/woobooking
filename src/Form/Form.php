@@ -865,8 +865,9 @@ class Form
 		{
             // Not an absolute path so let's attempt to find one using JPath.
 			$file = Path::find(self::addFormPath(), strtolower($file) . '.xml');
+           
 
-			// If unable to find the file return false.
+            // If unable to find the file return false.
 			if (!$file)
 			{
 

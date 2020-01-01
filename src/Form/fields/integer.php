@@ -11,7 +11,7 @@ defined('_WOO_BOOKING_EXEC') or die;
 use WooBooking\CMS\Form\fields\FormFieldList;
 use WooBooking\CMS\Form\FormField;
 use WooBooking\CMS\Form\FormHelper;
-use WooBookingHtml;
+use WooBooking\CMS\Html\Html;
 use WoobookingText;
 FormHelper::loadFieldClass('list');
 

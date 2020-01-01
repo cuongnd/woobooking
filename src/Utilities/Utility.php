@@ -16,7 +16,6 @@ use JDatabaseDriver;
 use Log;
 use ReflectionClass;
 use stdClass;
-use WooBookingHtml;use WoobookingText;
 
 defined('_WOO_BOOKING_EXEC') or die;
 

@@ -17,7 +17,7 @@ use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Application\Application;
 use WooBooking\CMS\Router\Route;
 use WooBooking\CMS\Router\Router;
-use WooBookingHtml;
+use WooBooking\CMS\Html\Html;
 use WoobookingText;
 
 /**

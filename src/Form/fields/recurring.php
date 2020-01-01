@@ -11,7 +11,7 @@ namespace WooBooking\CMS\Form\fields;
 defined('_WOO_BOOKING_EXEC') or die;
 use WooBooking\CMS\Form\FormField;
 use WoobookingText;
-use WooBookingHtml;
+use WooBooking\CMS\Html\Html;
 use SimpleXMLElement;
 
 /**
