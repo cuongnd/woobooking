@@ -16,7 +16,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  *
  * @since  1.5
  */
-abstract class HTMLFrontend
+abstract class HtmlFrontend
 {
 	/**
 	 * Option values related to the generation of HTML output. Recognized
