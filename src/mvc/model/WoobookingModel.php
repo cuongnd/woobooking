@@ -407,10 +407,9 @@ class WoobookingModel extends BaseDatabaseModel
 
     protected function loadForm($source = null, $options = array(), $clear = false, $xpath = false)
     {
-        Form::addFieldPath(WOOBOOKING_PATH_ROOT . '/lib/Form/Field');
-        Form::addFieldPath(WOOBOOKING_PATH_ROOT . '/lib/WooBooking/form/fields');
+        Form::addFieldPath(__DIR__ . '/../../form/fields');
         Form::addFormPath(WOOBOOKING_PATH_COMPONENT . '/models/forms');
-
+        Form::addFieldPath(WOOBOOKING_PATH_COMPONENT . '/models/fields');
         try {
             $form = Form::getInstance($source, $options, false, $xpath);
             if (isset($options['load_data']) && $options['load_data']) {
