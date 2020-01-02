@@ -8,7 +8,7 @@
  */
 
 defined('_WOO_BOOKING_EXEC') or die;
-
+use WooBooking\CMS\Html\Html;
 use WooBooking\Utilities\ArrayHelper;
 
 /**
