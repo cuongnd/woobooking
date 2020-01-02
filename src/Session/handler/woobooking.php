@@ -120,31 +120,8 @@ class SessionHandlerWoobooking extends SessionHandlerNative
 	 */
 	protected function setCookieParams()
 	{
-		if (headers_sent())
-		{
-			return;
-		}
 
-		$cookie = session_get_cookie_params();
 
-		if ($this->force_ssl)
-		{
-			$cookie['secure'] = true;
-		}
-
-		$config = Factory::getConfig();
-
-		if ($config->get('cookie_domain', '') != '')
-		{
-			$cookie['domain'] = $config->get('cookie_domain');
-		}
-
-		if ($config->get('cookie_path', '') != '')
-		{
-			$cookie['path'] = $config->get('cookie_path');
-		}
-
-		session_set_cookie_params($cookie['lifetime'], $cookie['path'], $cookie['domain'], $cookie['secure'], true);
 	}
 
 	/**

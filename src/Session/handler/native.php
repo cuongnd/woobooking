@@ -237,7 +237,6 @@ class SessionHandlerNative implements SessionHandlerInterface
 		register_shutdown_function(array($this, 'save'));
 
 		// Disable the cache limiter
-		session_cache_limiter('none');
 
 		/*
 		 * Extended checks to determine if the session has already been started

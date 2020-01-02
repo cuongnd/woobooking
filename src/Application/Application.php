@@ -34,7 +34,7 @@ class Application extends CMSObject
     /**
      * @var FOFInput
      */
-    public static  $input;
+    public  $input;
     public $logger;
 
     public static function getInstance($client)
