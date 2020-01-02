@@ -115,7 +115,7 @@ class WooBookingOnWordpress
 
 
         }
-        
+
         add_action('wp_print_scripts', array($this,'woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts'));
         $prefix_link=self::$prefix_link;
         //hook api
@@ -430,18 +430,18 @@ class WooBookingOnWordpress
         add_filter( 'block_categories', array($this,'woobooking_block_category'), 10, 2);
 
 
-       /* wp_update_nav_menu_item(23, 0, array('menu-item-title' => 'About',
-            'menu-item-object' => 'page',
-            'menu-item-object-id' => get_page_by_path('about')->ID,
-            'menu-item-type' => 'post_type',
-            'menu-item-status' => 'publish'));*/
+        /* wp_update_nav_menu_item(23, 0, array('menu-item-title' => 'About',
+             'menu-item-object' => 'page',
+             'menu-item-object-id' => get_page_by_path('about')->ID,
+             'menu-item-type' => 'post_type',
+             'menu-item-status' => 'publish'));*/
 
         // Registering the block
-       /* foreach ($list_view as $key=> $view) {
-            register_block_type("woobooking/$key", array(
-                'render_callback' => [$this, 'render_last_posts'],
-            ));
-        }*/
+        /* foreach ($list_view as $key=> $view) {
+             register_block_type("woobooking/$key", array(
+                 'render_callback' => [$this, 'render_last_posts'],
+             ));
+         }*/
         add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
 
         // [bartag foo="foo-value"]
@@ -516,21 +516,21 @@ class WooBookingOnWordpress
         $root_url = self::get_root_url();
         ?>
         <script type="text/javascript">
-                root_url = "<?php echo $root_url ?>";
-                current_url = "<?php echo $root_url.'sellercenter/'.$this->view ?>";
-                root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
-                api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-            </script>
+            root_url = "<?php echo $root_url ?>";
+            current_url = "<?php echo $root_url.'sellercenter/'.$this->view ?>";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+        </script>
         <?php
     }
     function frontend_shapeSpace_print_scripts() {
         $root_url = self::get_root_url();
         ?>
         <script type="text/javascript">
-        root_url = "<?php echo $root_url ?>";
-                root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
-                api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-            </script>
+            root_url = "<?php echo $root_url ?>";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+        </script>
         <?php
     }
     protected  static  function  get_list_layout_view_frontend() {
@@ -558,12 +558,12 @@ class WooBookingOnWordpress
                 try {
                     $title=@(string)($xml->layout->attributes())['title'];
                 }catch(Exception $e) {
-                        echo "please check file tructor xml";
-                        die;
+                    echo "please check file tructor xml";
+                    die;
                 }
                 $title=WoobookingText::_($title);
                 $list_view["$view-$filename"]=array(
-                  "title"=>$title
+                    "title"=>$title
                 );
 
 
@@ -619,12 +619,12 @@ class WooBookingOnWordpress
                 try {
                     $title=(string)($xml->layout->attributes())['title'];
                 }catch(Exception $e) {
-                        echo "please check file tructor xml";
-                        die;
+                    echo "please check file tructor xml";
+                    die;
                 }
                 $title=WoobookingText::_($title);
                 $list_view["$view-$filename"]=array(
-                  "title"=>$title
+                    "title"=>$title
                 );
 
 
@@ -896,7 +896,7 @@ class WooBookingOnWordpress
 
     }
     //TODO chú ý sửa cái này trước khi đẩy live
-    public function set_environments($list_environment){
+    public static function set_environments($list_environment){
         self::$list_environment=$list_environment;
     }
     public function get_root_url()
@@ -907,15 +907,14 @@ class WooBookingOnWordpress
         $uri=Factory::getUri();
         $live_site=$config->get('live_site',"");
         $current_running=$uri->toString(array('scheme', 'user', 'pass', 'host', 'port','path'));
+
         $root_url="";
         foreach ($list_environment as $environment) {
             if ($current_running == "http://demo9.cmsmart.net") {
                 return $live_site;
             } elseif (strpos($current_running, $environment) !== false) {
+
                 $root_url = $environment;
-                break;
-            } else {
-                $root_url = $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
                 break;
             }
         }
