@@ -16,9 +16,9 @@ use WooBooking\CMS\Object\CMSObject;
 use WooBooking\CMS\OpenSource\WordPress\WooBookingOnWordpress;
 use WooBooking\CMS\Router\Router;
 
-class Application extends CMSObject
+class ApplicationSite extends Application
 {
-    public static $instance=array();
+    public static $instance=null;
     public  $language=null;
     public  $config=null;
     public  $app_open_source=null;
@@ -37,18 +37,6 @@ class Application extends CMSObject
     public  $input;
     public $logger;
 
-    public static function getInstance($client)
-    {
-
-        if (!(self::$instance[$client]))
-        {
-            $class=$client=="admin"?'ApplicationAdmin':'ApplicationSite';
-            self::$instance[$client] = new $class();
-            self::$instance[$client]->setClient($client);
-        }
-
-        return self::$instance;
-    }
     public function getName(){
         return $this->_client;
     }
