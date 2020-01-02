@@ -44,11 +44,13 @@ class Application extends CMSObject
         if (!(self::$instance[$client]))
         {
             $class=$client=="admin"?'ApplicationAdmin':'ApplicationSite';
+            require_once __DIR__."/$class.php";
+            $class=__NAMESPACE__."\\$class";
             self::$instance[$client] = new $class();
             self::$instance[$client]->setClient($client);
         }
 
-        return self::$instance;
+        return self::$instance[$client];
     }
     public function getName(){
         return $this->_client;
@@ -74,7 +76,7 @@ class Application extends CMSObject
         return $router;
     }
     protected function setClient($client){
-            $this->_client=$client=="site"?0:1;
+        $this->_client=$client=="site"?0:1;
     }
     public function getClient(){
         return $this->_client;
@@ -251,10 +253,10 @@ class Application extends CMSObject
      */
     protected function initialiseApp($options = array())
     {
-        
+
         require_once WOOBOOKING_PATH_ROOT."/nb_config.php";
         $config= new nb_config();
-        
+
         $register=new Registry();
         $register->loadObject($config);
         $this->setConfiguration($register);
@@ -310,7 +312,7 @@ class Application extends CMSObject
     }
     public function __construct()
     {
-        
+
         $this->input =  new FOFInput;
         $this->initialiseApp();
     }
