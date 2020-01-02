@@ -2,7 +2,8 @@
 namespace WooBooking\CMS\Application;
 
 
-
+use WooBooking\CMS\Application\ApplicationSite;
+use WooBooking\CMS\Application\ApplicationAdmin;
 use WooBooking\CMS\FOFInput\FOFInput;
 use WooBooking\CMS\Registry\Registry;
 use nb_config;
