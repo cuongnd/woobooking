@@ -342,9 +342,7 @@ class woobooking_controller{
         {
             $data=$input->getArray($_POST);
         }
-        $model=$this->getModel();
-
-
+        $model=WoobookingModel::getInstance($this->model);
         $data= $model->save($data);
         return $data;
 
