@@ -18,6 +18,7 @@ class WBPaymentPaypal extends WBPayment
     );
 
     var $multiple = true;
+    var $debug = false;
     var $name = 'paypal';
     var $doc_form = 'paypal';
     /**
@@ -47,9 +48,9 @@ class WBPaymentPaypal extends WBPayment
         if ($this->currency->currency_locale['int_frac_digits'] > 2)
             $this->currency->currency_locale['int_frac_digits'] = 2;
         $app = Factory::getApplication();
-        $notify_url = woobooking_controller::getFrontendLink("payment.notify");
-        $return_url = woobooking_controller::getFrontendLink("payment.return");
-        $cancel_url = woobooking_controller::getFrontendLink("payment.cancel");
+        $notify_url = woobooking_controller::getFrontendLink("payment.notify","order_id=".$order->id);
+        $return_url = woobooking_controller::getFrontendLink("payment.return","order_id=".$order->id);
+        $cancel_url = woobooking_controller::getFrontendLink("payment.cancel","order_id=".$order->id);
 
         $tax_total = '';
         $discount_total = '';
@@ -93,6 +94,11 @@ class WBPaymentPaypal extends WBPayment
         }
         if (empty($this->payment_params->url))
             $this->payment_params->url = 'https://www.paypal.com/cgi-bin/webscr';
+        $debug=$this->debug;
+        if($debug==1){
+            $this->payment_params->url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+        }
+
         $vars['item_name']=$order->id;
         $vars['amount']=$order->total;
         $vars['currency_code']="USD";

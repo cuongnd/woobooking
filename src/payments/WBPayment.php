@@ -6,6 +6,8 @@ class WBPayment
 {
     private static $instance;
     var $type = 'payment';
+    var $debug = false;
+    var $object_payment = null;
     var $accepted_currencies = array();
     var $doc_form = 'generic';
     var $payment_params;
@@ -22,6 +24,8 @@ class WBPayment
 
     function __construct($config) {
         $this->payment_params=$config->params->get('payment_params');
+        $this->object_payment=$config;
+        $this->debug=$config->debug;
     }
     public static function getInstance($type,$config){
         $app=Factory::getApplication();
@@ -30,7 +34,7 @@ class WBPayment
             return self::$instance[$type];
         }
         
-        $file_payment_path=WOOBOOKING_PATH_ROOT."/lib/payments/$type/".$type.".php";
+        $file_payment_path=__DIR__."/$type/".$type.".php";
 
         $file_short_payment_path=Utility::get_short_file_by_path($file_payment_path);
         $response=new stdClass();
@@ -243,7 +247,7 @@ class WBPayment
     }
     public function showPage($page){
         $name=$this->name;
-       require WOOBOOKING_PATH_ROOT."/lib/payments/$name/{$name}_end.php";
+       require __DIR__."/$name/{$name}_end.php";
 
     }
     function onAfterOrderConfirm(&$order, &$methods, $method_id)

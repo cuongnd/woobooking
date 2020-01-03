@@ -68,7 +68,7 @@ class Factory
     public static function getOpenSource(){
         if (!isset(self::$open_source))
         {
-            
+
             self::$open_source = WooBookingOnOpenSource::getInstance();
         }
         return self::$open_source;
@@ -109,7 +109,11 @@ class Factory
         $uri=NBUri::getInstance();
         return $uri;
     }
-    public static function getDocument()
+
+    /**
+     * @return Document
+     */
+    public static function getDocument():Document
     {
         if (!self::$document)
         {
@@ -118,6 +122,10 @@ class Factory
 
         return self::$document;
     }
+
+    /**
+     * @return Document
+     */
     protected static function createDocument()
     {
 
@@ -138,7 +146,7 @@ class Factory
 
     public static function getApplication($client="")
     {
-        
+
         if (!self::$application) {
 
             self::$application =Application::getInstance($client);

@@ -311,7 +311,7 @@ class WoobookingModel extends BaseDatabaseModel
     }
 
 
-    public static function getInstance($model, $prefix = '', $config = array())
+    public static function getInstance($model, $prefix = '', $config = array()):WoobookingModel
     {
         $model = preg_replace('/[^A-Z0-9_\.-]/i', '', $model);
         $model = ucfirst($model);

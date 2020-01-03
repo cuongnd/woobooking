@@ -562,6 +562,9 @@ class WooBookingOnWordpress
                     die;
                 }
                 $title=WoobookingText::_($title);
+                if(!$title){
+                    continue;
+                }
                 $list_view["$view-$filename"]=array(
                     "title"=>$title
                 );
@@ -758,16 +761,17 @@ class WooBookingOnWordpress
         $list_page=WooBookingOnWordpress::get_list_layout_view_frontend();
         $key_woo_booking=self::$key_woo_booking;
         foreach ($list_page as $k => $page) {
+            $key_page="$key_woo_booking-$k";
             // Create post object
             $my_post = array(
-                'post_name'     => "$key_woo_booking-$k",
+                'post_name'     => $key_page,
                 'post_title'    => $page['title'],
-                'post_content'  => "[$key_woo_booking-$k]",
+                'post_content'  => "[$key_page]",
                 'post_status'   => "publish",
                 'post_author'   => get_current_user_id(),
                 'post_type'     => "page",
             );
-            $page_check = get_page_by_path($k);
+            $page_check = get_page_by_path($key_page);
 
 
             if(!isset($page_check->ID)){
