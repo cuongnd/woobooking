@@ -134,9 +134,11 @@ class woobooking_controller{
         }
         $Ucfmodel=ucfirst($model);
         $model_path=WOOBOOKING_PATH_COMPONENT."/models/$Ucfmodel.php";
-        $model_name="{$model}Model";
-        if(file_exists($model_path) &&  !class_exists($model_name)){
+        $model_name="{$Ucfmodel}Model";
+        if(file_exists($model_path)){
             require_once $model_path;
+        }
+        if(!class_exists($model_name)){
             $model_class=WoobookingModel::getInstance($model);
             $model_class->model=$model;
             return $model_class;
@@ -343,6 +345,8 @@ class woobooking_controller{
             $data=$input->getArray($_POST);
         }
         $model=WoobookingModel::getInstance($this->model);
+
+
         $data= $model->save($data);
         return $data;
 
