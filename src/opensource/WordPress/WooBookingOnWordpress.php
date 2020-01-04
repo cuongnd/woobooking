@@ -70,6 +70,9 @@ class WooBookingOnWordpress
         return '';
     }
 
+    public function render_content($content){
+        echo esc_html($content);
+    }
     public function my_action()
     {
         $input = Factory::getInput();
