@@ -372,7 +372,7 @@ class Session implements \IteratorAggregate
 	 */
 	public function getId()
 	{
-		return wp_get_session_token();
+        return session_id();
 	}
 
 	/**

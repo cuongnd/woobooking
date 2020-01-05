@@ -115,7 +115,7 @@ class WooBookingView extends CMSObject
         }
 
 
-        $link=Factory::getRootUrl()."sellercenter/woobooking-$view-$layout/?".implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."woobooking-$view-$layout/?".implode("&",$http_list_var);
         return $link;
     }
     public static function getFrontendLink($view_layout, $items_var=array()){

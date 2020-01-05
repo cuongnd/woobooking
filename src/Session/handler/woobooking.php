@@ -46,12 +46,13 @@ class SessionHandlerWoobooking extends SessionHandlerNative
 	public function __construct($options = array())
 	{
 
+
         register_shutdown_function(array($this, 'save'));
 		// Set options
 		$this->setOptions($options);
 		$this->setCookieParams();
 	}
-
+    
 	/**
 	 * Starts the session
 	 *

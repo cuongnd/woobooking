@@ -70,9 +70,6 @@ class WooBookingOnWordpress
         return '';
     }
 
-    public function render_content($content){
-        echo esc_html($content);
-    }
     public function my_action()
     {
         $input = Factory::getInput();
@@ -89,6 +86,10 @@ class WooBookingOnWordpress
         <?php
 
     }
+    public function render_content($content){
+        echo esc_html($content);
+    }
+
     public function initOpenWooBookingWooPanelBackend(){
 
 
@@ -179,6 +180,10 @@ class WooBookingOnWordpress
         add_action('wp_footer', array($this, 'wp_hook_add_script_content_footer'));
     }
     public function getSession(){
+
+        if(!session_id()) {
+            session_start();
+        }
         $wp_session = $_SESSION;
         return $wp_session;
     }
@@ -366,7 +371,6 @@ class WooBookingOnWordpress
 
         add_filter('woopanel_query_var_filter', array($this, 'db_appointments'), 20, 1);
         add_filter('woopanel_navigation_items', array($this, 'woobooking_add_appointment'), 10, 1);
-
         if ($app->getClient() == 1) {
             $this->initOpenWooBookingWooPanelBackend();
         }else{
@@ -379,7 +383,12 @@ class WooBookingOnWordpress
 
 
     }
+    function start_session() {
+        if(!session_id()) {
+            session_start();
+        }
 
+    }
     function getEcommerce( ) {
         return $this->ecommerce;
     }

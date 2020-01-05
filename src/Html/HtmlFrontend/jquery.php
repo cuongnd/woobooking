@@ -101,8 +101,8 @@ abstract class HtmlFrontendJquery
         }
 
         $doc=Factory::getDocument();
-        $doc->addScript('resources/js/jquery-ui-1.12.1/jquery-ui.js');
-        $doc->addStyleSheet('resources/js/jquery-ui-1.12.1/jquery-ui.min.css');
+        $doc->addScript('admin/resources/js/jquery-ui-1.11.4/jquery-ui.js');
+        $doc->addStyleSheet('admin/resources/js/jquery-ui-1.11.4/jquery-ui.css');
 
         return;
     }

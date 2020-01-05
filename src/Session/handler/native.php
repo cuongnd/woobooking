@@ -221,7 +221,7 @@ class SessionHandlerNative implements SessionHandlerInterface
 		$this->closed  = true;
 		$this->started = false;
 	}
-
+   
 	/**
 	 * Performs the session start mechanism
 	 *
@@ -232,7 +232,8 @@ class SessionHandlerNative implements SessionHandlerInterface
 	 */
 	private function doSessionStart()
 	{
-
+	   
+        
 		// Register our function as shutdown method, so we can manipulate it
 		register_shutdown_function(array($this, 'save'));
 
