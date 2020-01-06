@@ -455,6 +455,7 @@ class WooBookingOnWordpress
              ));
          }*/
         add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
+        add_action('admin_menu', array($this,'woobooking_plugin_setup_menu'));
 
         // [bartag foo="foo-value"]
 
@@ -473,6 +474,25 @@ class WooBookingOnWordpress
 
 
 
+    }
+    function woobooking_plugin_setup_menu(){
+        $list_view_admin=self::get_list_view_for_woo_panel();
+        $first_view=array_shift($list_view_admin);
+        $first_view=(object)$first_view;
+        $menu_slug=str_replace('_','-',$first_view->menu_slug);
+
+
+        add_menu_page( 'Woobooking', 'WooBooking', 'manage_options', 'woobooking-plugin',array($this,'woobooking_page') );
+        foreach ($list_view_admin as $key=> $view) {
+            $view=(object)$view;
+            add_submenu_page( 'woobooking-plugin', $view->label,  $view->label, 'manage_options', $view->menu_slug, array($this,'woobooking_page'));
+        }
+
+
+    }
+    function woobooking_page(){
+        echo '<div class="wrap"><div id="icon-options-general" class="icon32"><br></div>
+        <h2>Settings</h2></div>';
     }
     function woo_booking_block_type_settings_field( $settings, $value ) {
         ob_start();
