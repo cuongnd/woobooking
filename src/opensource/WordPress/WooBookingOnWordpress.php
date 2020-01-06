@@ -278,7 +278,6 @@ class WooBookingOnWordpress
         add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 
 
-        add_action( 'init', array($this,'my_custom_post_hotel') );
         //TODO làm đăng ký khi người dùng active plugin
 
         //register_deactivation_hook( __FILE__,  array( $this, 'pluginprefix_deactivation' )  );
@@ -322,32 +321,6 @@ class WooBookingOnWordpress
         return "Congrats! Your demo callback is fully functional. Now make it do something fancy";
     }
 
-    function my_custom_post_hotel() {
-        $labels = array(
-            'name' => _x( 'Hotels', 'post type general name' ),
-            'singular_name' => _x( 'Hotel', 'post type singular name' ),
-            'add_new' => _x( 'Add New', 'Hotel' ),
-            'add_new_item' => __( 'Add New Hotel' ),
-            'edit_item' => __( 'Edit Hotel' ),
-            'new_item' => __( 'New Hotel' ),
-            'all_items' => __( 'All Hotels' ),
-            'view_item' => __( 'View Hotel' ),
-            'search_items' => __( 'Search hotels' ),
-            'not_found' => __( 'No hotels found' ),
-            'not_found_in_trash' => __( 'No hotels found in the Trash' ),
-            'parent_item_colon' => '',
-            'menu_name' => 'Hotels'
-        );
-        $args = array(
-            'labels' => $labels,
-            'description' => 'Displays city hotels and their ratings',
-            'public' => true,
-            'menu_position' => 3,
-            'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
-            'has_archive' => true,
-        );
-        register_post_type( 'hotel', $args );
-    }
     public static function checkInstalled(){
         $app=Factory::getApplication();
         $db=Factory::getDBO();
@@ -427,7 +400,7 @@ class WooBookingOnWordpress
         $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 
 
-        HtmlFrontend::_('jquery.loading_js');
+        Html::_('jquery.loading_js');
         $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
         $doc->addScript('admin/resources/js/less/less.min.js');
         $doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
@@ -439,8 +412,8 @@ class WooBookingOnWordpress
         $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/main_script.js');
         $doc->addLessStyleSheet('admin/nb_apps/nb_woobooking/assets/less/main_style.less');
         $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
-        HtmlFrontend::_('jquery.tooltip');
-        HtmlFrontend::_('jquery.bootstrap');
+        Html::_('jquery.tooltip');
+        Html::_('jquery.bootstrap');
 
         $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
         $doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
@@ -448,12 +421,12 @@ class WooBookingOnWordpress
         $doc->addStyleSheet('admin/resources/js/fontawesome-free-5.11.2/css/all.min.css');
 
         if(!self::is_rest_api()) {
-            HtmlFrontend::_('jquery.less');
+            Html::_('jquery.less');
         }
-        HtmlFrontend::_('jquery.fontawesome');
-        HtmlFrontend::_('jquery.confirm');
-        HtmlFrontend::_('jquery.serialize_object');
-        HtmlFrontend::_('jquery.bootstrap');
+        Html::_('jquery.fontawesome');
+        Html::_('jquery.confirm');
+        Html::_('jquery.serialize_object');
+        Html::_('jquery.bootstrap');
         $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
         //$list_view=self::get_list_layout_view_frontend();

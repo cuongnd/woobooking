@@ -89,6 +89,20 @@ abstract class HtmlJquery
 
         return;
     }
+    public static function serialize_object($debug = null)
+    {
+
+        // Include jQuery
+        static::framework();
+        // If no debugging value is set, use the configuration setting
+        // Only attempt to load the component if it's supported in core and hasn't already been loaded
+        if (empty(static::$loaded[__METHOD__])) {
+            $doc = Factory::getDocument();
+            $doc->addScript('resources/js/form-serializeObject/jquery.serializeObject.min.js');
+            static::$loaded[__METHOD__] = true;
+        }
+        return;
+    }
 
     /**
      * Auto set CSRF token to ajaxSetup so all jQuery ajax call will contains CSRF token.
@@ -384,6 +398,21 @@ JS
         }
         return;
     }
+    public static function less($debug = null)
+    {
+        // Include jQuery
+        static::framework();
+        // If no debugging value is set, use the configuration setting
+        // Only attempt to load the component if it's supported in core and hasn't already been loaded
+        if (empty(static::$loaded[__METHOD__])) {
+            $doc = Factory::getDocument();
+            $doc->addScript('admin/resources/js/less/less.min.js');
+            static::$loaded[__METHOD__] = true;
+        }
+        return;
+    }
+
+
     /*
      * Html::_('jquery.framework');
         Html::_('jquery.youtube_video');

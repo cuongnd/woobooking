@@ -72,6 +72,20 @@ abstract class Html
         $extract=array(strtolower($prefix . '.' . $file . '.' . $func), $prefix, $file, $func);
         return $extract;
 	}
+    public static function serialize_object($debug = null)
+    {
+       
+        // Include jQuery
+        static::framework();
+        // If no debugging value is set, use the configuration setting
+        // Only attempt to load the component if it's supported in core and hasn't already been loaded
+        if (empty(static::$loaded[__METHOD__])) {
+            $doc = Factory::getDocument();
+            $doc->addScript('resources/js/form-serializeObject/jquery.serializeObject.min.js');
+            static::$loaded[__METHOD__] = true;
+        }
+        return;
+    }
 
 	/**
 	 * Class loader method
