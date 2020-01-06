@@ -176,7 +176,6 @@ class HeadRenderer extends DocumentRenderer
 
         $defaultJsMimes = array('text/javascript', 'application/javascript', 'text/x-javascript', 'application/x-javascript');
         $html5NoValueAttributes = array('defer', 'async');
-
         // Generate script file links
         $openSource->add_script_footer($document->_scripts);
         $openSource->add_script_content_footer($document->_script);

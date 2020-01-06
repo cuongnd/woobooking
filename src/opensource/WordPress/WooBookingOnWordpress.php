@@ -174,10 +174,12 @@ class WooBookingOnWordpress
     public function add_script_footer($scripts=array()){
         $this->scripts=$scripts;
         add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
+        add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
     }
     public function add_script_content_footer($script){
         $this->script=$script;
         add_action('wp_footer', array($this, 'wp_hook_add_script_content_footer'));
+        add_action('admin_footer', array($this, 'wp_hook_add_script_content_footer'));
     }
     public function getSession(){
 
@@ -361,22 +363,26 @@ class WooBookingOnWordpress
         }
         return $installed;
     }
+    public static function is_backend_wordpress(){
+        return is_admin();
+    }
     public function run()
     {
 
 
         $this->view = self::get_current_page();
-
         $app = Factory::getApplication();
-
+        $input=Factory::getInput();
         add_filter('woopanel_query_var_filter', array($this, 'db_appointments'), 20, 1);
         add_filter('woopanel_navigation_items', array($this, 'woobooking_add_appointment'), 10, 1);
         if ($app->getClient() == 1) {
-            $this->initOpenWooBookingWooPanelBackend();
+            if(self::is_backend_wordpress()){
+                $this->initWordpressBackend();
+            }else{
+                $this->initOpenWooBookingWooPanelBackend();
+            }
         }else{
-            $input=Factory::getInput();
             $this->initOpenWooBookingWordpressFrontend();
-            $this->initWordpressBackend();
             $this->ecommerce=ECommerce::getInstance();
         }
 
@@ -416,6 +422,29 @@ class WooBookingOnWordpress
         Factory::setRootUrl($root_url);
         $input = Factory::getInput();
         $doc=Factory::getDocument();
+
+        $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
+
+        //HtmlFrontend::_('jquery.loading_js');
+        $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
+        $doc->addScript('admin/resources/js/less/less.min.js');
+        $doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
+        $doc->addScript('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.js');
+        $doc->addScript('admin/resources/js/Bootstrap-Loading/src/waitingfor.js');
+        $doc->addScript('admin/resources/js/jquery.form/jquery.form.js');
+        $doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
+        $doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeToJSON.js');
+        $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/main_script.js');
+        $doc->addLessStyleSheet('admin/nb_apps/nb_woobooking/assets/less/main_style.less');
+        $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
+        HtmlFrontend::_('jquery.tooltip');
+        HtmlFrontend::_('jquery.bootstrap');
+
+        $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
+        $doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
+        $doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
+        $doc->addStyleSheet('admin/resources/js/fontawesome-free-5.11.2/css/all.min.css');
+
         if(!self::is_rest_api()) {
             HtmlFrontend::_('jquery.less');
         }
@@ -455,6 +484,7 @@ class WooBookingOnWordpress
              ));
          }*/
         add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
+        //add admin menu
         add_action('admin_menu', array($this,'woobooking_plugin_setup_menu'));
 
         // [bartag foo="foo-value"]
@@ -480,8 +510,6 @@ class WooBookingOnWordpress
         $first_view=array_shift($list_view_admin);
         $first_view=(object)$first_view;
         $menu_slug=str_replace('_','-',$first_view->menu_slug);
-
-
         add_menu_page( 'Woobooking', 'WooBooking', 'manage_options', 'woobooking-plugin',array($this,'woobooking_page') );
         foreach ($list_view_admin as $key=> $view) {
             $view=(object)$view;
@@ -491,8 +519,42 @@ class WooBookingOnWordpress
 
     }
     function woobooking_page(){
-        echo '<div class="wrap"><div id="icon-options-general" class="icon32"><br></div>
-        <h2>Settings</h2></div>';
+        $input=Factory::getInput();
+        $page=$input->getString('page','');
+        if(!self::checkInstalled()){
+            self::goToPopupInstall();
+        }
+        Html::_('jquery.tooltip');
+        Html::_('jquery.bootstrap');
+        $root_url = self::get_root_url();
+        $input=Factory::getInput();
+        $data=$input->getData();
+        $task=array_key_exists('task',$data)?$data['task']:null;
+        $layout=array_key_exists('layout',$data)?$data['layout']:null;
+        $layout=$layout?$layout:"list";
+
+        if($task){
+
+            echo woobooking_controller::action_task();
+        }else {
+            $menu = self::get_true_menu_of_woo_booking($page);
+            $file_controller_path = WOOBOOKING_PATH_COMPONENT . "/controllers/" . ucfirst($menu) . ".php";
+            $file_controller_short_path = Utility::get_short_file_by_path($file_controller_path);
+            if (file_exists($file_controller_path)) {
+                require_once $file_controller_path;
+                $class_name = ucfirst($menu) . "Controller";
+
+                if (class_exists($class_name)) {
+                    $class_controller = new $class_name();
+                    echo $class_controller->view("$menu.$layout");
+                } else {
+                    echo "Class $class_name not exit in file $file_controller_short_path, please create this class";
+                }
+            } else {
+
+                echo "File controller not found,please create file $file_controller_short_path";
+            }
+        }
     }
     function woo_booking_block_type_settings_field( $settings, $value ) {
         ob_start();
@@ -1007,6 +1069,7 @@ class WooBookingOnWordpress
         $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 
         if ($app->getClient() == 1) {
+
             Html::_('jquery.loading_js');
             $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
             $doc->addScript('admin/resources/js/less/less.min.js');
