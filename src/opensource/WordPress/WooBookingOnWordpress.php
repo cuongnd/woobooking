@@ -423,9 +423,11 @@ class WooBookingOnWordpress
         $input = Factory::getInput();
         $doc=Factory::getDocument();
 
+        add_action('admin_head', array($this,'admin_wordpress_shapeSpace_print_scripts'));
         $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 
-        //HtmlFrontend::_('jquery.loading_js');
+
+        HtmlFrontend::_('jquery.loading_js');
         $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
         $doc->addScript('admin/resources/js/less/less.min.js');
         $doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
@@ -622,6 +624,17 @@ class WooBookingOnWordpress
         ?>
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+        </script>
+        <?php
+    }
+    function admin_wordpress_shapeSpace_print_scripts() {
+        $root_url = self::get_root_url();
+        ?>
+        <script type="text/javascript">
+            root_url = "<?php echo $root_url ?>";
+            current_url = "<?php echo $root_url ?>";
             root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
         </script>
