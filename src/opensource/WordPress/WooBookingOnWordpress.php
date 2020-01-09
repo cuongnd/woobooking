@@ -87,7 +87,7 @@ class WooBookingOnWordpress
 
     }
     public function render_content($content){
-        echo esc_html($content);
+        echo $content;
     }
 
     public function initOpenWooBookingWooPanelBackend(){
