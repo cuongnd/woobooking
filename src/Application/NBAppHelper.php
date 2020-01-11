@@ -3,12 +3,13 @@
 namespace WooBooking\CMS\Application;
 
 
+use Factory;
 use WooBooking\CMS\Registry\Registry;
 
 class NBAppHelper
 {
     public static function getConfig(){
-        $db=\Factory::getDBO();
+        $db=Factory::getDBO();
         $query=$db->getQuery(true);
         $query->select("*")
             ->from(PREFIX_TABLE."config")
