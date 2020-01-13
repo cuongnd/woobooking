@@ -258,6 +258,7 @@ class woobooking_controller{
             $response->msg="cannot find file controller $file_short_controller_path not exists, please create it first";
             $response->data=null;
         }
+
         return json_encode($response);
 
 

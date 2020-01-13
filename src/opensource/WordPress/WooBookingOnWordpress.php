@@ -324,12 +324,17 @@ class WooBookingOnWordpress
     public static function checkInstalled(){
         $app=Factory::getApplication();
         $db=Factory::getDBO();
-        $list_database_table=$db->setQuery("SHOW TABLES LIKE ".$db->quote("woobooking%"))->loadColumn();
-        $json_table=File::read(WOOBOOKING_PATH_ROOT."/install/tables.json");
-        $json_table=json_decode($json_table);
+        $list_table_in_database=$db->setQuery("SHOW TABLES LIKE ".$db->quote("woobooking\\_%"))->loadColumn();
+        if(count($list_table_in_database)==0){
+            return false;
+        }
+        $json_table_need_install=File::read(WOOBOOKING_PATH_ROOT."/install/tables.json");
+
+        $json_table_need_install=json_decode($json_table_need_install);
         $installed=true;
-        foreach ($json_table as $table){
-            if(!in_array($table,$list_database_table)){
+        foreach ($json_table_need_install as $need_table){
+
+            if(!in_array($need_table,$list_table_in_database)){
                 $installed=false;
                 break;
             }
@@ -349,9 +354,11 @@ class WooBookingOnWordpress
         add_filter('woopanel_query_var_filter', array($this, 'db_appointments'), 20, 1);
         add_filter('woopanel_navigation_items', array($this, 'woobooking_add_appointment'), 10, 1);
         if ($app->getClient() == 1) {
+
             if(self::is_backend_wordpress()){
                 $this->initWordpressBackend();
             }else{
+
                 $this->initOpenWooBookingWooPanelBackend();
             }
         }else{
@@ -427,6 +434,7 @@ class WooBookingOnWordpress
         Html::_('jquery.confirm');
         Html::_('jquery.serialize_object');
         Html::_('jquery.bootstrap');
+
         $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
         //$list_view=self::get_list_layout_view_frontend();
@@ -485,10 +493,11 @@ class WooBookingOnWordpress
         $first_view=array_shift($list_view_admin);
         $first_view=(object)$first_view;
         $menu_slug=str_replace('_','-',$first_view->menu_slug);
-        add_menu_page( 'Woobooking', 'WooBooking', 'manage_options', 'woobooking-plugin',array($this,'woobooking_page') );
+        $link_dashboard="wb_dashboard";
+        add_menu_page( 'Woobooking', 'WooBooking', 'manage_options', $link_dashboard,array($this,'woobooking_page') );
         foreach ($list_view_admin as $key=> $view) {
             $view=(object)$view;
-            add_submenu_page( 'woobooking-plugin', $view->label,  $view->label, 'manage_options', $view->menu_slug, array($this,'woobooking_page'));
+            add_submenu_page( $link_dashboard, $view->label,  $view->label, 'manage_options', $view->menu_slug, array($this,'woobooking_page'));
         }
 
 
@@ -775,7 +784,7 @@ class WooBookingOnWordpress
                 "name" => __( $value['title'], "my-text-domain" ),
                 "base" => $a_key,
                 "class" => "",
-                'admin_enqueue_js' => array(plugins_url('render_view_config.js', __FILE__)),
+                'admin_enqueue_js' => array(plugins_url('render_block_config.js', __FILE__)),
                 "category" => __( "Woo Booking", "my-text-domain"),
                 "params" => array(
                     array(
