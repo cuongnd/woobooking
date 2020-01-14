@@ -1375,19 +1375,13 @@ class WooBookingOnWordpress
     }
     function woobooking_add_plus_navigation_items($output_menus)
     {
-
-
         global $woopanel_submenus;
         $list_item = array();
         foreach ($output_menus as $item) {
             $list_item[] = $item;
         }
         $output_menus = $list_item;
-
-
         $woopanel_submenus['db_appointments'] = self::get_list_view_for_woo_panel();
-
-
         $db_appointments = array(
             'id' => self::$prefix_link.'db_appointments',
             'menu_slug' => self::$prefix_link.'db_appointments',
@@ -1398,13 +1392,16 @@ class WooBookingOnWordpress
             'classes' => '',
             'submenu' => $woopanel_submenus['db_appointments']
         );
-
-        array_splice($output_menus, 2, 0, array($db_appointments));
-
-
-
-
-        return $output_menus;
+        $list=array();
+        foreach ($list_item as $index=> $item){
+            if($index==1){
+                $list[]=$db_appointments;
+                $list[]=$item;
+            }else{
+                $list[]=$item;
+            }
+        }
+        return $list;
 
     }
 }
