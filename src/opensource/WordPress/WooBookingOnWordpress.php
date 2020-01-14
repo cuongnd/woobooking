@@ -351,7 +351,7 @@ class WooBookingOnWordpress
         $input=Factory::getInput();
         add_filter('woopanel_query_var_filter', array($this, 'add_plus_menu_woopanel'), 999, 1);
 
-        add_filter('woopanel_navigation_items', array($this, 'woobooking_add_appointment'), 10, 1);
+        add_filter('woopanel_navigation_items', array($this, 'woobooking_add_plus_navigation_items'), 10, 1);
         if ($app->getClient() == 1) {
 
             if(self::is_backend_wordpress()){
@@ -1342,6 +1342,7 @@ class WooBookingOnWordpress
         $arr_query_new = self::getListMenuWooPanel();
 
         $arr_query = array_merge($arr_query, $arr_query_new);
+
         return $arr_query;
     }
     public static $list_menu_by_xml=array();
@@ -1372,7 +1373,7 @@ class WooBookingOnWordpress
         }
         return self::$list_menu_by_xml;
     }
-    function woobooking_add_appointment($output_menus)
+    function woobooking_add_plus_navigation_items($output_menus)
     {
 
 
