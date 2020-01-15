@@ -7,8 +7,6 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 namespace WooBooking\CMS\Database\exception;
-use RuntimeException;
-
 defined('_WOO_BOOKING_EXEC') or die;
 /**
  * Exception class defining an error executing a statement

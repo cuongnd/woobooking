@@ -72,8 +72,7 @@ class WoobookingModel extends BaseDatabaseModel
             throw new Exception("please defined publish var modelItem in file " . get_called_class());
         }
         $model_path = WOOBOOKING_PATH_COMPONENT . "/models/$model.php";
-        if (file_exists($model_path)) {
-            require_once $model_path;
+        if (file_exists($model_path)  && !class_exists("{$model}Model")) {
             $model_name = "{$model}Model";
             $model_class = WoobookingModel::getInstance($model);
             $model_class->model = $model;

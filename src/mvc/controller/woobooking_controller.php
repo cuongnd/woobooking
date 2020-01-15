@@ -174,8 +174,7 @@ class woobooking_controller{
         }
         $model_path=WOOBOOKING_PATH_COMPONENT."/models/$model.php";
         if(file_exists($model_path)){
-            require_once $model_path;
-            $model_name="{$model}Model";
+
             $model_class=WoobookingModel::getInstance($model);
             $model_class->model=$model;
             return $model_class;
