@@ -479,7 +479,8 @@ class WooBookingOnWordpress
         {
             vc_add_shortcode_param( 'woo_booking_block_type', array($this,'woo_booking_block_type_settings_field') );
         }
-
+        $headDocument=$doc->loadRenderer('head');
+        $headDocument->render('head');
 
         //vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
 

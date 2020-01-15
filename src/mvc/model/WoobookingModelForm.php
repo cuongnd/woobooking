@@ -60,7 +60,7 @@ class WoobookingModelForm extends WoobookingModel
             {
                 $data = array();
             }
-
+            
 
             // Load the data into the form after the plugins have operated.
             $form->bind($data);

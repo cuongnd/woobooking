@@ -90,11 +90,12 @@
                 }
             });
             //TODO sẽ update khi tìm hiểu được cách gọi function khi người dùng nhấn vào nút lưu
-
+            $button_save.find('.button-save-woo-booking-mark').remove();
             let $mark=$(`<span></span>`);
             $mark.addClass('button-save-woo-booking-mark');
             $button_save.append($mark);
             $mark.click(function (e) {
+                console.log("$element",$element);
                 if($element.find('form').length===0){
                     $.alert({
                         title: 'Error ',
@@ -111,6 +112,7 @@
                 });
 
             });
+
 
 
         };
