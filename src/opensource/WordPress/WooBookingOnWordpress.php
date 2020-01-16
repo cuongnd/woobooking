@@ -328,6 +328,21 @@ class WooBookingOnWordpress
         if(count($list_table_in_database)==0){
             return false;
         }
+        if (!class_exists( 'WooCommerce' ) ) {
+            return false;
+
+        }
+
+        if (!class_exists( 'WeDevs_Dokan' ) ) {
+            return false;
+        }
+
+
+        if (class_exists( 'NBWooCommerce_Dashboard' ) ) {
+            // some code
+            return false;
+        }
+
         $json_table_need_install=File::read(WOOBOOKING_PATH_ROOT."/install/tables.json");
 
         $json_table_need_install=json_decode($json_table_need_install);
@@ -339,6 +354,7 @@ class WooBookingOnWordpress
                 break;
             }
         }
+
         return $installed;
     }
     public static function is_backend_wordpress(){
