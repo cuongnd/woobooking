@@ -105,7 +105,7 @@ class WooBookingOnWordpress
             add_filter("woopanel_dashboard_{$menu}_endpoint",array($this,"woopanel_dashboard_woobooking_endpoint"));
         }
 
-        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
+        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/".PLUGIN_NAME."/");
 
 
         if ($app->getClient() == 1 && !in_array($this->view, $listMenuWooPanel)) {
@@ -201,7 +201,7 @@ class WooBookingOnWordpress
         $root_url = self::get_root_url();
         $input = Factory::getInput();
         Factory::setRootUrl($root_url);
-        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
+        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/".PLUGIN_NAME."/");
 
         add_action('wp_print_scripts', array($this,'frontend_shapeSpace_print_scripts'));
         /**
@@ -450,7 +450,7 @@ class WooBookingOnWordpress
         Html::_('jquery.bootstrap');
 
         $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
-        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/woobooking/");
+        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/".PLUGIN_NAME."/");
         //$list_view=self::get_list_layout_view_frontend();
         if ( !function_exists( 'wp_add_inline_script' ) ) {
             require_once ABSPATH . WPINC . '/functions.wp-scripts.php';
@@ -783,7 +783,7 @@ class WooBookingOnWordpress
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
             current_url = "<?php echo $root_url.'sellercenter/'.$this->view ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
         </script>
         <?php
@@ -793,7 +793,7 @@ class WooBookingOnWordpress
         ?>
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
         </script>
         <?php
@@ -804,7 +804,7 @@ class WooBookingOnWordpress
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
             current_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
         </script>
         <?php
@@ -918,7 +918,7 @@ class WooBookingOnWordpress
 
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/woobooking/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             list_view=<?php echo json_encode($list_view) ?>
         </script>

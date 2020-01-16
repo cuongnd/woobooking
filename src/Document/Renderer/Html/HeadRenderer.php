@@ -127,7 +127,7 @@ class HeadRenderer extends DocumentRenderer
             $random = random_int(100000, 900000);
             ob_start();
             ?>
-            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/woobooking/" . $src ?>"/>
+            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
             <?php
             echo ob_get_clean();
         }
