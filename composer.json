@@ -18,7 +18,8 @@
         "issues": "https://github.com/cuongnd/woobooking/issues"
     },
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+      "ext-simplexml": "*"
     },
     "autoload": {
         "classmap": [

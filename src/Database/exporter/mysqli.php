@@ -7,6 +7,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 namespace WooBooking\CMS\Database\exporter;
+use Exception;
+use WooBooking\CMS\Database\DatabaseExporter;
+use WooBooking\CMS\Database\driver\DatabaseDriverMysqli;
+
 defined('_WOO_BOOKING_EXEC') or die;
 /**
  * MySQLi export driver.

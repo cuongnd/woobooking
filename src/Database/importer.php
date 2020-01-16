@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 namespace WooBooking\CMS\Database;
+use SimpleXMLElement;
+
 defined('_WOO_BOOKING_EXEC') or die;
 /**
  * woobooking Platform Database Importer Class
