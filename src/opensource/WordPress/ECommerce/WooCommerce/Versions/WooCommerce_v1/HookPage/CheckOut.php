@@ -155,12 +155,12 @@ class CheckOut
                     foreach ($value_rates as $rate_id){
                        
                         $item_rate=$modelRate->getItem($rate_id);
-                        $new_order_detail_rate=[
+                        $new_order_detail_rate=array(
                             'order_detail_id'=>$new_order_detail->id,
                             'rate_id'=>$rate_id,
                             'start_date'=>$item_rate->from,
                             'end_date'=>$item_rate->to,
-                        ];
+                        );
                         $modelOrderDetailRate->save($new_order_detail_rate);
                     }
                 }

@@ -18,9 +18,9 @@ class WoobookingModel extends BaseDatabaseModel
     public $__state_set = null;
     public static $instance = array();
     public $key_table = "id";
-    public $_errors = [];
+    public $_errors = array();
     public $db = null;
-    private $filter_fields=[];
+    private $filter_fields=array();
 
     public function __construct($config = array())
     {
