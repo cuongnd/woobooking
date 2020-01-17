@@ -122,15 +122,11 @@ class HeadRenderer extends DocumentRenderer
 
 
 
-        foreach ($document->_lessStyleSheets as $src => $attribs) {
 
-            $random = random_int(100000, 900000);
-            ob_start();
-            ?>
-            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
-            <?php
-            echo ob_get_clean();
-        }
+
+        add_action('admin_head', array($this,'gretathemes_meta_tags'));
+        //add_action('wp_head', array($this,'gretathemes_meta_tags'));
+        add_action('wp_footer', array($this,'gretathemes_meta_tags'));
 
 
         foreach ($document->_styleSheets as $src => $attribs) {
@@ -196,6 +192,19 @@ class HeadRenderer extends DocumentRenderer
 
 
         return ltrim($buffer, $tab);
+    }
+    function gretathemes_meta_tags() {
+        $document=Factory::getDocument();
+        foreach ($document->_lessStyleSheets as $src => $attribs) {
+            ob_start();
+            ?>
+            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
+            <?php
+            echo ob_get_clean();
+        }
+
+
+        echo '<meta name="meta_name123" content="meta_value" />';
     }
 
 }
