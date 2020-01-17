@@ -289,6 +289,9 @@ class WooBookingOnWordpress
     }
 
     public static  function wp_login($user_login) {
+        if(!self::checkInstalled()){
+            return;
+        }
         $user = get_user_by('login',$user_login);
         $userModel=WoobookingModel::getInstance('user');
         $open_source_user_id=$user->__get('id');
@@ -322,6 +325,11 @@ class WooBookingOnWordpress
     }
 
     public static function checkInstalled(){
+        echo "<pre>";
+        print_r(Utility::printDebugBacktrace(), false);
+        echo "</pre>";
+        die;
+
         $app=Factory::getApplication();
         $db=Factory::getDBO();
         $list_table_in_database=$db->setQuery("SHOW TABLES LIKE ".$db->quote("woobooking\\_%"))->loadColumn();
@@ -927,9 +935,6 @@ class WooBookingOnWordpress
 
     }
     function woo_booking_render_by_tag_func( $atts,$content, $a_view ) {
-        if($a_view !="woobooking-install-form"  && !self::checkInstalled()){
-            self::goToPopupInstall();
-        }
 
         $input=Factory::getInput();
         $type=null;
