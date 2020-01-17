@@ -325,11 +325,6 @@ class WooBookingOnWordpress
     }
 
     public static function checkInstalled(){
-        echo "<pre>";
-        print_r(Utility::printDebugBacktrace(), false);
-        echo "</pre>";
-        die;
-
         $app=Factory::getApplication();
         $db=Factory::getDBO();
         $list_table_in_database=$db->setQuery("SHOW TABLES LIKE ".$db->quote("woobooking\\_%"))->loadColumn();
