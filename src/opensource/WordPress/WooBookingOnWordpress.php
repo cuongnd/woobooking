@@ -342,7 +342,7 @@ class WooBookingOnWordpress
         }
 
 
-        if (class_exists( 'NBWooCommerce_Dashboard' ) ) {
+        if (!class_exists( 'NBWooCommerce_Dashboard' ) ) {
             // some code
             $installed=false;
         }
