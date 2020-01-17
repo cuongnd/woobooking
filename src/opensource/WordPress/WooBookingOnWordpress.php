@@ -327,29 +327,30 @@ class WooBookingOnWordpress
     public static function checkInstalled(){
         $app=Factory::getApplication();
         $db=Factory::getDBO();
+        $installed=true;
         $list_table_in_database=$db->setQuery("SHOW TABLES LIKE ".$db->quote("woobooking\\_%"))->loadColumn();
         if(count($list_table_in_database)==0){
-            return false;
+            $installed=false;
         }
         if (!class_exists( 'WooCommerce' ) ) {
-            return false;
+            $installed=false;
 
         }
 
         if (!class_exists( 'WeDevs_Dokan' ) ) {
-            return false;
+            $installed=false;
         }
 
 
         if (class_exists( 'NBWooCommerce_Dashboard' ) ) {
             // some code
-            return false;
+            $installed=false;
         }
 
         $json_table_need_install=File::read(WOOBOOKING_PATH_ROOT."/install/tables.json");
 
         $json_table_need_install=json_decode($json_table_need_install);
-        $installed=true;
+
         foreach ($json_table_need_install as $need_table){
 
             if(!in_array($need_table,$list_table_in_database)){
