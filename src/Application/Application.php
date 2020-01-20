@@ -41,7 +41,7 @@ class Application extends CMSObject
     public static function getInstance($client)
     {
 
-        if (!(self::$instance[$client]))
+        if (!array_key_exists($client,self::$instance) || !(self::$instance[$client]))
         {
             $class=$client=="admin"?'ApplicationAdmin':'ApplicationSite';
             require_once __DIR__."/$class.php";
