@@ -372,6 +372,7 @@ class WooBookingOnWordpress
         add_filter('woopanel_query_var_filter', array($this, 'add_plus_menu_woopanel'), 999, 1);
 
         add_filter('woopanel_navigation_items', array($this, 'woobooking_add_plus_navigation_items'), 10, 1);
+
         if ($app->getClient() == 1) {
 
             if(self::is_backend_wordpress()){
@@ -1304,6 +1305,7 @@ class WooBookingOnWordpress
                         'page_title' => $view->page_title,
                         'capability' => $view->capability,
                         'icon' => $view->icon,
+                        "item_url"=>$view->item_url
                     );
 
                     $index++;
@@ -1382,6 +1384,7 @@ class WooBookingOnWordpress
                     'icon' => (string)($view->attributes())['icon'],
                     'class' => (string)($view->attributes())['class'],
                     'is_system' => (boolean)($view->attributes())['is_system'],
+                    'item_url' => (string)($view->attributes())['item_url']
 
                 );
 
@@ -1399,7 +1402,7 @@ class WooBookingOnWordpress
             $list_item[] = $item;
         }
         $output_menus = $list_item;
-        $woopanel_submenus['db_appointments'] = self::get_list_view_for_woo_panel();
+        $woopanel_submenus[self::$prefix_link.'db_appointments'] = self::get_list_view_for_woo_panel();
         $db_appointments = array(
             'id' => self::$prefix_link.'db_appointments',
             'menu_slug' => self::$prefix_link.'db_appointments',
@@ -1408,7 +1411,7 @@ class WooBookingOnWordpress
             'page_title' => '',
             'icon' => 'flaticon-line-graph',
             'classes' => '',
-            'submenu' => $woopanel_submenus['db_appointments']
+            'submenu' => $woopanel_submenus[self::$prefix_link.'db_appointments']
         );
         $list=array();
         foreach ($list_item as $index=> $item){

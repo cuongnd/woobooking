@@ -128,10 +128,14 @@ class HeadRenderer extends DocumentRenderer
         //add_action('wp_head', array($this,'gretathemes_meta_tags'));
         add_action('wp_footer', array($this,'gretathemes_meta_tags'));
 
+        add_action( 'admin_enqueue_scripts', array($this,'load_admin_style') );
 
         foreach ($document->_styleSheets as $src => $attribs) {
             $random = random_int(100000, 900000);
-            wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+            if(!$openSource->is_backend_wordpress())
+                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+
+
         }
 
         // Generate stylesheet declarations
@@ -205,6 +209,15 @@ class HeadRenderer extends DocumentRenderer
 
 
         echo '<meta name="meta_name123" content="meta_value" />';
+    }
+    public static function load_admin_style(){
+        $openSource=Factory::getOpenSource();
+        $document=Factory::getDocument();
+        foreach ($document->_styleSheets as $src => $attribs) {
+            $random = random_int(100000, 900000);
+            if($openSource->is_backend_wordpress())
+                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+        }
     }
 
 }
