@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
  * Archieve class interface
@@ -15,7 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @since       3.0.0
  * @deprecated  4.0 use the Joomla\Archive\ExtractableInterface interface instead
  */
-interface JArchiveExtractable
+interface ArchiveExtractable
 {
 	/**
 	 * Extract a compressed file to a given path

@@ -7,12 +7,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 jimport('joomla.filesystem.file');
 
 /**
- * Gzip format adapter for the JArchive class
+ * Gzip format adapter for the Archive class
  *
  * This class is inspired from and draws heavily in code and concept from the Compress package of
  * The Horde Project <https://www.horde.org>
@@ -23,7 +23,7 @@ jimport('joomla.filesystem.file');
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Gzip class instead
  */
-class JArchiveGzip implements JArchiveExtractable
+class ArchiveGzip implements ArchiveExtractable
 {
 	/**
 	 * Gzip file flags.

@@ -7,17 +7,17 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 /**
- * Wrapper class for JArchive
+ * Wrapper class for Archive
  *
  * @package     Joomla.Platform
  * @subpackage  Archive
  * @since       3.4
  * @deprecated  4.0 use the Joomla\Archive\Archive class instead
  */
-class JArchiveWrapperArchive
+class ArchiveWrapperArchive
 {
 	/**
 	 * Helper wrapper method for extract
@@ -27,14 +27,14 @@ class JArchiveWrapperArchive
 	 *
 	 * @return  boolean  True for success
 	 *
-	 * @see     JArchive::extract()
+	 * @see     Archive::extract()
 	 * @since   3.4
 	 * @throws InvalidArgumentException
 	 * @deprecated 4.0 use the Joomla\Archive\Archive class instead
 	 */
 	public function extract($archivename, $extractdir)
 	{
-		return JArchive::extract($archivename, $extractdir);
+		return Archive::extract($archivename, $extractdir);
 	}
 
 	/**
@@ -42,7 +42,7 @@ class JArchiveWrapperArchive
 	 *
 	 * @param   string  $type  The type of adapter (bzip2|gzip|tar|zip).
 	 *
-	 * @return  JArchiveExtractable  Adapter for the requested type
+	 * @return  ArchiveExtractable  Adapter for the requested type
 	 *
 	 * @see     JUserHelper::getAdapter()
 	 * @since   3.4
@@ -50,6 +50,6 @@ class JArchiveWrapperArchive
 	 */
 	public function getAdapter($type)
 	{
-		return JArchive::getAdapter($type);
+		return Archive::getAdapter($type);
 	}
 }

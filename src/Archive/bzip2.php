@@ -7,18 +7,18 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.stream');
 
 /**
- * Bzip2 format adapter for the JArchive class
+ * Bzip2 format adapter for the Archive class
  *
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Bzip2 class instead
  */
-class JArchiveBzip2 implements JArchiveExtractable
+class ArchiveBzip2 implements ArchiveExtractable
 {
 	/**
 	 * Bzip2 file data buffer

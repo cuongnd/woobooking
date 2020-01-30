@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
@@ -20,12 +20,12 @@ use Joomla\Archive\Archive;
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Archive class instead
  */
-class JArchive
+class Archive
 {
 	/**
 	 * The array of instantiated archive adapters.
 	 *
-	 * @var    JArchiveExtractable[]
+	 * @var    ArchiveExtractable[]
 	 * @since  3.0.0
 	 */
 	protected static $adapters = array();
@@ -56,7 +56,7 @@ class JArchive
 	 *
 	 * @param   string  $type  The type of adapter (bzip2|gzip|tar|zip).
 	 *
-	 * @return  JArchiveExtractable  Adapter for the requested type
+	 * @return  ArchiveExtractable  Adapter for the requested type
 	 *
 	 * @since   1.5
 	 * @throws  UnexpectedValueException
@@ -67,7 +67,7 @@ class JArchive
 		if (!isset(self::$adapters[$type]))
 		{
 			// Try to load the adapter object
-			$class = 'JArchive' . ucfirst($type);
+			$class = 'Archive' . ucfirst($type);
 
 			if (!class_exists($class))
 			{

@@ -7,14 +7,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.path');
 
 /**
- * Tar format adapter for the JArchive class
+ * Tar format adapter for the Archive class
  *
  * This class is inspired from and draws heavily in code and concept from the Compress package of
  * The Horde Project <https://www.horde.org>
@@ -25,7 +25,7 @@ jimport('joomla.filesystem.path');
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Tar class instead
  */
-class JArchiveTar implements JArchiveExtractable
+class ArchiveTar implements ArchiveExtractable
 {
 	/**
 	 * Tar file types.

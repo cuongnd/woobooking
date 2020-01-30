@@ -7,13 +7,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('JPATH_PLATFORM') or die;
+defined('_WOO_BOOKING_EXEC') or die;
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
 /**
- * ZIP format adapter for the JArchive class
+ * ZIP format adapter for the Archive class
  *
  * The ZIP compression code is partially based on code from:
  * Eric Mueller <eric@themepark.com>
@@ -35,7 +35,7 @@ jimport('joomla.filesystem.folder');
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Zip class instead
  */
-class JArchiveZip implements JArchiveExtractable
+class ArchiveZip implements ArchiveExtractable
 {
 	/**
 	 * ZIP compression methods.
