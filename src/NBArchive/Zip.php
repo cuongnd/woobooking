@@ -6,11 +6,11 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Joomla\Archive;
+namespace WooBooking\CMS\NBArchive;
 
-use Joomla\Filesystem\File;
-use Joomla\Filesystem\Folder;
-use Joomla\Filesystem\Path;
+use WooBooking\CMS\Filesystem\File;
+use WooBooking\CMS\Filesystem\Folder;
+use WooBooking\CMS\Filesystem\Path;
 
 /**
  * ZIP format adapter for the Archive package

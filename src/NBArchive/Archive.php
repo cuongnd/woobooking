@@ -6,10 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Joomla\Archive;
+namespace WooBooking\CMS\NBArchive;
 
-use Joomla\Filesystem\File;
-use Joomla\Filesystem\Folder;
+use WooBooking\CMS\Filesystem\File;
+use WooBooking\CMS\Filesystem\Folder;
 
 /**
  * An Archive handling class
@@ -214,7 +214,7 @@ class Archive
 		{
 			// Try to load the adapter object
 			/** @var ExtractableInterface $class */
-			$class = 'Joomla\\Archive\\' . ucfirst($type);
+			$class = 'WooBooking\CMS\\NBArchive\\' . ucfirst($type);
 
 			if (!class_exists($class) || !$class::isSupported())
 			{
