@@ -34,7 +34,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Zip class instead
  */
-class ArchiveZip implements ArchiveExtractable
+class NBArchiveZip implements ArchiveExtractable
 {
 	/**
 	 * ZIP compression methods.

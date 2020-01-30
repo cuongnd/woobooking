@@ -9,9 +9,9 @@
 
 defined('_WOO_BOOKING_EXEC') or die;
 
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.path');
+WooBookingImport('joomla.filesystem.file');
+WooBookingImport('joomla.filesystem.folder');
+WooBookingImport('joomla.filesystem.path');
 
 /**
  * Tar format adapter for the Archive class
@@ -25,7 +25,7 @@ jimport('joomla.filesystem.path');
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Tar class instead
  */
-class ArchiveTar implements ArchiveExtractable
+class NBArchiveTar implements ArchiveExtractable
 {
 	/**
 	 * Tar file types.

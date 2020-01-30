@@ -9,8 +9,8 @@
 
 defined('_WOO_BOOKING_EXEC') or die;
 
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.stream');
+WooBookingImport('joomla.filesystem.file');
+WooBookingImport('joomla.filesystem.stream');
 
 /**
  * Bzip2 format adapter for the Archive class
@@ -18,7 +18,7 @@ jimport('joomla.filesystem.stream');
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Bzip2 class instead
  */
-class ArchiveBzip2 implements ArchiveExtractable
+class NBArchiveBzip2 implements ArchiveExtractable
 {
 	/**
 	 * Bzip2 file data buffer

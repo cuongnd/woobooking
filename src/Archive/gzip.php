@@ -9,7 +9,7 @@
 
 defined('_WOO_BOOKING_EXEC') or die;
 
-jimport('joomla.filesystem.file');
+WooBookingImport('joomla.filesystem.file');
 
 /**
  * Gzip format adapter for the Archive class
@@ -23,7 +23,7 @@ jimport('joomla.filesystem.file');
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Gzip class instead
  */
-class ArchiveGzip implements ArchiveExtractable
+class NBArchiveGzip implements ArchiveExtractable
 {
 	/**
 	 * Gzip file flags.

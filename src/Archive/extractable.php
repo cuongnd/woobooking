@@ -15,7 +15,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since       3.0.0
  * @deprecated  4.0 use the Joomla\Archive\ExtractableInterface interface instead
  */
-interface ArchiveExtractable
+interface NBArchiveExtractable
 {
 	/**
 	 * Extract a compressed file to a given path
