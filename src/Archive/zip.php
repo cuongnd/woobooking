@@ -9,8 +9,7 @@
 
 defined('_WOO_BOOKING_EXEC') or die;
 
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.folder');
+
 
 /**
  * ZIP format adapter for the Archive class
