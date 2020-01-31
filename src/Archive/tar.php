@@ -116,7 +116,7 @@ class NBArchiveTar implements ArchiveExtractable
 					}
 				}
 
-				if (JFile::write($path, $buffer) === false)
+				if (File::write($path, $buffer) === false)
 				{
 					if (class_exists('JError'))
 					{

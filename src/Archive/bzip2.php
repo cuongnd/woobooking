@@ -70,7 +70,7 @@ class NBArchiveBzip2 implements ArchiveExtractable
 			return $this->raiseWarning(100, 'Unable to decompress data');
 		}
 
-		if (JFile::write($destination, $buffer) === false)
+		if (File::write($destination, $buffer) === false)
 		{
 			return $this->raiseWarning(100, 'Unable to write archive');
 		}

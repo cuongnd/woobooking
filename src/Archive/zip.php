@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
+use WooBooking\CMS\Filesystem\File;
+
 defined('_WOO_BOOKING_EXEC') or die;
 
 
@@ -34,7 +36,7 @@ defined('_WOO_BOOKING_EXEC') or die;
  * @since       1.5
  * @deprecated  4.0 use the Joomla\Archive\Zip class instead
  */
-class NBArchiveZip implements ArchiveExtractable
+class NBArchiveZip implements NBArchiveExtractable
 {
 	/**
 	 * ZIP compression methods.
@@ -258,7 +260,7 @@ class NBArchiveZip implements ArchiveExtractable
 					return $this->raiseWarning(100, 'Unable to create destination');
 				}
 
-				if (JFile::write($path, $buffer) === false)
+				if (File::write($path, $buffer) === false)
 				{
 					return $this->raiseWarning(100, 'Unable to write entry');
 				}
@@ -306,7 +308,7 @@ class NBArchiveZip implements ArchiveExtractable
 			{
 				$buffer = zip_entry_read($file, zip_entry_filesize($file));
 
-				if (JFile::write($destination . '/' . zip_entry_name($file), $buffer) === false)
+				if (File::write($destination . '/' . zip_entry_name($file), $buffer) === false)
 				{
 					return $this->raiseWarning(100, 'Unable to write entry');
 				}
@@ -640,7 +642,7 @@ class NBArchiveZip implements ArchiveExtractable
 		pack('V', strlen($data)) . /* ZIP file comment length. */
 		"\x00\x00";
 
-		if (JFile::write($path, $buffer) === false)
+		if (File::write($path, $buffer) === false)
 		{
 			return false;
 		}
