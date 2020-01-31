@@ -1295,9 +1295,18 @@ class WooBookingOnWordpress
             $items_submenus=array();
             $index=21;
 
+            $config=Factory::getConfig();
+			$environment=$config->get('environment','production');
+			$list_environment=array(
+			        "production"
+            );
+			if($environment=="development"){
+				$list_environment[]="development";
+			}
 
             foreach ($list_menu_by_xml as $view){
-                if( $view->is_system || in_array($view->menu_slug,$list_view)) {
+
+                if(in_array($view->environment,$list_environment) &&    ($view->is_system || in_array($view->menu_slug,$list_view))) {
                     $items_submenus[] = array(
                         'id' => self::$prefix_link . $view->id,
                         'menu_slug' => self::$prefix_link . $view->menu_slug,
@@ -1305,7 +1314,8 @@ class WooBookingOnWordpress
                         'page_title' => $view->page_title,
                         'capability' => $view->capability,
                         'icon' => $view->icon,
-                        "item_url"=>$view->item_url
+                        "item_url"=>$view->item_url,
+                        "environment"=>$view->environment
                     );
 
                     $index++;
@@ -1375,6 +1385,10 @@ class WooBookingOnWordpress
 
             $list_menu_by_xml=array();
             foreach ($xml->view as $view){
+				$environment=(string)($view->attributes())['environment'];
+				if(!$environment){
+					$environment="production";
+                }
                 $list_menu_by_xml[]=(object)array(
                     'id' => (string)($view->attributes())['id'],
                     'menu_slug' => (string)($view->attributes())['menu_slug'],
@@ -1384,7 +1398,8 @@ class WooBookingOnWordpress
                     'icon' => (string)($view->attributes())['icon'],
                     'class' => (string)($view->attributes())['class'],
                     'is_system' => (boolean)($view->attributes())['is_system'],
-                    'item_url' => (string)($view->attributes())['item_url']
+                    'item_url' => (string)($view->attributes())['item_url'],
+                    'environment' => $environment
 
                 );
 
