@@ -129,11 +129,17 @@ class HeadRenderer extends DocumentRenderer
         add_action('wp_footer', array($this,'gretathemes_meta_tags'));
 
         add_action( 'admin_enqueue_scripts', array($this,'load_admin_style') );
-
         foreach ($document->_styleSheets as $src => $attribs) {
             $random = random_int(100000, 900000);
             if(!$openSource->is_backend_wordpress())
-                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+            {
+				if(strpos($src,"http")!==false){
+					wp_enqueue_style('woobooking-css-' . $random, $src);
+				}else{
+					wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+                }
+
+			}
 
 
         }
