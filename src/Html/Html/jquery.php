@@ -68,27 +68,21 @@ abstract class HtmlJquery
      *
      * @since   3.0
      */
-    public static function ui(array $components = array('core'), $debug = null)
-    {
-
-
-        // Set an array containing the supported jQuery UI components handled by this method
-        $supported = array('core', 'sortable');
-
-        // Include jQuery
-        static::framework();
-
-        // If no debugging value is set, use the configuration setting
-        if ($debug === null) {
-            $debug = WBDEBUG;
-        }
-
-        $doc=Factory::getDocument();
-        $doc->addScript('admin/resources/js/jquery-ui-1.11.4/jquery-ui.js');
-        $doc->addStyleSheet('admin/resources/js/jquery-ui-1.11.4/jquery-ui.css');
-
-        return;
-    }
+	public static function ui(array $components = array('core'), $debug = null)
+	{
+		// Set an array containing the supported jQuery UI components handled by this method
+		$supported = array('core', 'sortable');
+		// Include jQuery
+		static::framework();
+		// If no debugging value is set, use the configuration setting
+		if ($debug === null) {
+			$debug = WBDEBUG;
+		}
+		$doc = Factory::getDocument();
+		$doc->addScript('https://code.jquery.com/ui/1.11.3/jquery-ui.js');
+		$doc->addStyleSheet('https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css');
+		return;
+	}
     public static function serialize_object($debug = null)
     {
 
