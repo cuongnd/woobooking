@@ -468,11 +468,11 @@ class WooBookingOnWordpress
 		$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
 		Html::_('jquery.tooltip');
 		Html::_('jquery.bootstrap');
+		Html::_('jquery.fontawesome');
 
 		$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
 		$doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
 		$doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
-		$doc->addStyleSheet('admin/resources/js/fontawesome-free-5.11.2/css/all.min.css');
 
 		if (!self::is_rest_api()) {
 			Html::_('jquery.less');
@@ -1385,7 +1385,7 @@ class WooBookingOnWordpress
 			$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
 			$doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
 			$doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
-			$doc->addStyleSheet('admin/resources/js/fontawesome-free-5.11.2/css/all.min.css');
+			Html::_('jquery.fontawesome');
 		} else {
 			HtmlFrontend::_('jquery.loading_js');
 			$doc->addScript('resources/js/less/less.min.js');
@@ -1396,7 +1396,7 @@ class WooBookingOnWordpress
 
 			$doc->addScript('nb_apps/nb_woobooking/assets/js/main_script.js');
 			$doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style.less');
-			$doc->addStyleSheet('resources/js/fontawesome-free-5.11.2/css/all.min.css');
+			HtmlFrontend::_('jquery.fontawesome');
 
 		}
 	}
