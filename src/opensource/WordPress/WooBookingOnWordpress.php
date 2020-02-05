@@ -248,14 +248,15 @@ class WooBookingOnWordpress
 
 		// add action when booking order
 		add_action('woocommerce_checkout_create_order', array($this, 'woobooking_checkout_create_order'), 20, 2);
-
+        $page=$input->getString('page',"home-default");
+		$page=strtolower($page);
 		$list_view = self::get_list_layout_view_frontend();
+		if(!isset($list_view[$page])){
+            echo "cannot found page";
+            die;
+        }
+		add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
 
-
-		foreach ($list_view as $key => $view) {
-			$a_key = self::$key_woo_booking . "-" . $key;
-			add_shortcode($a_key, array($this, 'woo_booking_render_by_tag_func'));
-		}
 		$list_view = self::get_list_layout_block_frontend();
 
 		foreach ($list_view as $key => $view) {
@@ -1019,12 +1020,13 @@ class WooBookingOnWordpress
 	{
 
 		$input = Factory::getInput();
+		$page=$input->getString('page','home-default');
 		$type = null;
 		if (is_array($atts) && $id = reset($atts)) {
-			list($package, $view, $layout) = explode("-", $a_view);
+			list($view, $layout) = explode("-", $page);
 			echo woobooking_controller::display_block_app($id, "$view.$layout");
 		} else {
-			list($package, $view, $layout) = explode("-", $a_view);
+			list($view, $layout) = explode("-", $page);
 			echo woobooking_controller::view("$view.$layout");
 		}
 	}
@@ -1131,27 +1133,19 @@ class WooBookingOnWordpress
 	{
 		$list_page = WooBookingOnWordpress::get_list_layout_view_frontend();
 		$key_woo_booking = self::$key_woo_booking;
-		foreach ($list_page as $k => $page) {
-			$show_main_menu = $page['show_main_menu'];
-			if (!$show_main_menu) {
-				continue;
-			}
-			$key_page = "$key_woo_booking-$k";
-			// Create post object
-			$my_post = array(
-				'post_name' => $key_page,
-				'post_title' => $page['title'],
-				'post_content' => "[$key_page]",
-				'post_status' => "publish",
-				'post_author' => get_current_user_id(),
-				'post_type' => "page",
-			);
-			$page_check = get_page_by_path($key_page);
-			if (!isset($page_check->ID)) {
+		$key_page="wp-booking-pro";
+		$my_post = array(
+			'post_name' => "$key_page",
+			'post_title' => "Wp booking pro",
+			'post_content' => "[$key_page]",
+			'post_status' => "publish",
+			'post_author' => get_current_user_id(),
+			'post_type' => "page",
+		);
+		$page_check = get_page_by_path($key_page);
+		if (!isset($page_check->ID)) {
 
-				wp_insert_post($my_post, '');
-			}
-
+			wp_insert_post($my_post, '');
 		}
 		return true;
 	}
