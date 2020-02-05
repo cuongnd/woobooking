@@ -114,14 +114,12 @@ class WooBookingOnWordpress
 		}
 
 
-
 		add_action('wp_print_scripts', array($this, 'woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts'));
 		$prefix_link = self::$prefix_link;
 		//hook api
-        $this->setup_script_woopanel();
+		$this->setup_script_woopanel();
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 		//add_action('woopanel_enqueue_scripts', array($this, 'wp_hook_add_script_footer'), 99999, 1);
-
 
 
 	}
@@ -197,9 +195,7 @@ class WooBookingOnWordpress
 		$this->render_script_body_woopanel_content_by_endpoint();
 
 
-
 	}
-
 
 
 	public function getSession()
@@ -248,13 +244,13 @@ class WooBookingOnWordpress
 
 		// add action when booking order
 		add_action('woocommerce_checkout_create_order', array($this, 'woobooking_checkout_create_order'), 20, 2);
-        $page=$input->getString('page',"home-default");
-		$page=strtolower($page);
+		$page = $input->getString('page', "home-default");
+		$page = strtolower($page);
 		$list_view = self::get_list_layout_view_frontend();
-		if(!isset($list_view[$page])){
-            echo "cannot found page";
-            die;
-        }
+		if (!isset($list_view[$page])) {
+			echo "cannot found page";
+			die;
+		}
 		add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
 
 		$list_view = self::get_list_layout_block_frontend();
@@ -296,7 +292,6 @@ class WooBookingOnWordpress
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 
 
-
 		//TODO làm đăng ký khi người dùng active plugin
 
 		//register_deactivation_hook( __FILE__,  array( $this, 'pluginprefix_deactivation' )  );
@@ -307,19 +302,22 @@ class WooBookingOnWordpress
 
 	}
 
-	function add_custom_header() {
+	function add_custom_header()
+	{
 
-		$document=Factory::getDocument();
+		$document = Factory::getDocument();
 		foreach ($document->_lessStyleSheets as $src => $attribs) {
 			ob_start();
 			?>
-            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
+            <link rel="stylesheet/less" type="text/css"
+                  href="<?php echo plugins_url() . "/" . PLUGIN_NAME . "/" . $src ?>"/>
 			<?php
 			echo ob_get_clean();
 		}
 
 
 	}
+
 	public static function wp_login($user_login)
 	{
 		if (!self::checkInstalled()) {
@@ -375,8 +373,6 @@ class WooBookingOnWordpress
 			$installed = false;
 
 		}
-
-
 
 
 		if (!class_exists('NBWooCommerce_Dashboard')) {
@@ -531,7 +527,11 @@ class WooBookingOnWordpress
 				 'render_callback' => [$this, 'render_last_posts'],
 			 ));
 		 }*/
-		add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
+
+		add_action('admin_head-nav-menus.php', array($this, 'my_register_menu_metabox'));
+
+
+		//add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
 		//add admin menu
 		add_action('admin_menu', array($this, 'woobooking_plugin_setup_menu'));
 		add_action('tgmpa_register', array($this, 'my_theme_register_required_plugins'));
@@ -548,6 +548,86 @@ class WooBookingOnWordpress
 		//vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
 
 
+	}
+
+	function my_register_menu_metabox()
+	{
+		$custom_param = array(0 => 'This param will be passed to my_render_menu_metabox');
+
+		add_meta_box('my-menu-test-metabox', 'Wp booking pro menu', array($this, 'my_render_menu_metabox'), 'nav-menus',
+			'side', 'default', $custom_param);
+	}
+
+	/**
+	 * Displays a menu metabox
+	 *
+	 * @param string $object Not used.
+	 * @param array $args Parameters and arguments. If you passed custom params to add_meta_box(),
+	 * they will be in $args['args']
+	 */
+	function my_render_menu_metabox($object, $args)
+	{
+		global $nav_menu_selected_id;
+
+		// Create an array of objects that imitate Post objects
+
+		$list_page = self::get_list_layout_view_frontend();
+		$key_woo_booking = self::$key_woo_booking;
+		$removed_args = array(
+			'action',
+			'customlink-tab',
+			'edit-menu-item',
+			'menu-item',
+			'page-tab',
+			'_wpnonce',
+		); ?>
+        <div id="my-plugin-div">
+            <div id="tabs-panel-my-plugin-all" class="tabs-panel tabs-panel-active">
+                <ul id="my-plugin-checklist-pop" class="categorychecklist form-no-clear">
+					<?php foreach ($list_page as $key => $page) { ?>
+                        <?php
+						if(!$page['show_main_menu'])
+						    continue;
+                        ?>
+                        <li>
+                            <label class="menu-item-title">
+                                <input type="checkbox" class="menu-item-checkbox"
+                                       name="menu-item[-1][menu-item-object-id]"
+                                       value="-1"> <?php echo $page['title'] ?>
+                            </label>
+                            <input type="hidden" class="menu-item-type" name="menu-item[-1][menu-item-type]"
+                                   value="custom">
+                            <input type="hidden" class="menu-item-title" name="menu-item[-1][menu-item-title]"
+                                   value="<?php echo $page['title'] ?>">
+                            <input type="hidden" class="menu-item-url" name="menu-item[-1][menu-item-url]"
+                                   value="<?php bloginfo('wpurl'); ?>/<?php echo "wp-booking-pro/?page=$key" ?>">
+                        </li>
+					<?php } ?>
+                </ul>
+
+                <p class="button-controls">
+			<span class="list-controls">
+				<a href="<?php
+				echo esc_url(add_query_arg(
+					array(
+						'my-plugin-all' => 'all',
+						'selectall' => 1,
+					),
+					remove_query_arg($removed_args)
+				));
+				?>#my-menu-test-metabox" class="select-all"><?php _e('Select All'); ?></a>
+			</span>
+                    <span class="add-to-menu">
+				<input type="submit"<?php wp_nav_menu_disabled_check($nav_menu_selected_id); ?>
+                       class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e('Add to Menu'); ?>"
+                       name="add-my-plugin-menu-item" id="submit-my-plugin-div"/>
+				<span class="spinner"></span>
+			</span>
+                </p>
+            </div>
+        </div>
+
+		<?php
 	}
 
 	/**
@@ -1020,7 +1100,7 @@ class WooBookingOnWordpress
 	{
 
 		$input = Factory::getInput();
-		$page=$input->getString('page','home-default');
+		$page = $input->getString('page', 'home-default');
 		$type = null;
 		if (is_array($atts) && $id = reset($atts)) {
 			list($view, $layout) = explode("-", $page);
@@ -1133,7 +1213,7 @@ class WooBookingOnWordpress
 	{
 		$list_page = WooBookingOnWordpress::get_list_layout_view_frontend();
 		$key_woo_booking = self::$key_woo_booking;
-		$key_page="wp-booking-pro";
+		$key_page = "wp-booking-pro";
 		$my_post = array(
 			'post_name' => "$key_page",
 			'post_title' => "Wp booking pro",
@@ -1154,9 +1234,9 @@ class WooBookingOnWordpress
 	{
 		add_meta_box(
 			'wl_login_nav_link',
-			__('Woo booking menu item'),
+			__('Wp booking pro menu item'),
 			array($this, 'nav_menu_link'),
-			'nav-menus',
+			'page',
 			'side',
 			'low'
 		);
@@ -1168,8 +1248,8 @@ class WooBookingOnWordpress
 		$list_page = self::get_list_layout_view_frontend();
 		$key_woo_booking = self::$key_woo_booking;
 		?>
-        <div id="posttype-wl-login" class="posttypediv">
-            <div  class="tabs-panel tabs-panel-active">
+        <div id="posttype-wl-login">
+            <div class="tabs-panel tabs-panel-active">
                 <ul id="wishlist-login-checklist" class="categorychecklist form-no-clear">
 					<?php foreach ($list_page as $key => $page) { ?>
                         <li>
@@ -1426,45 +1506,46 @@ class WooBookingOnWordpress
 	public function wp_hook_add_script_footer()
 	{
 
-	    $doc=Factory::getDocument();
-		$styleSheets=$doc->getStyleSheets();
+		$doc = Factory::getDocument();
+		$styleSheets = $doc->getStyleSheets();
 		foreach ($styleSheets as $src => $attribs) {
 			$random = random_int(100000, 900000);
 			if (strpos($src, 'http') !== false) {
 				wp_enqueue_style('woobooking-css-' . $random, $src);
 			} else {
-				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . PLUGIN_NAME . '/' . $src);
 			}
 		}
 
-		$lessStyleSheets=$doc->getLessStyleSheets();
+		$lessStyleSheets = $doc->getLessStyleSheets();
 		foreach ($lessStyleSheets as $src => $attribs) {
 			ob_start();
 			?>
-            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
+            <link rel="stylesheet/less" type="text/css"
+                  href="<?php echo plugins_url() . "/" . PLUGIN_NAME . "/" . $src ?>"/>
 			<?php
 			echo ob_get_clean();
 		}
-		$scripts=$doc->getScripts();
+		$scripts = $doc->getScripts();
 		foreach ($scripts as $src => $attribs) {
 			$random = random_int(100000, 900000);
 			if (strpos($src, 'http') !== false) {
 				wp_enqueue_script(
-					'woobooking-script-'.$random, // your script unique name
-                    $src, //script file location
+					'woobooking-script-' . $random, // your script unique name
+					$src, //script file location
 					array('jquery') //lists the scripts upon which your script depends
 				);
 			} else {
 				wp_enqueue_script(
-					'woobooking-script-'.$random, // your script unique name
-					Factory::getRootUrlPlugin() ."/". $src, //script file location
+					'woobooking-script-' . $random, // your script unique name
+					Factory::getRootUrlPlugin() . "/" . $src, //script file location
 					array('jquery') //lists the scripts upon which your script depends
 				);
 			}
 		}
 
 
-		$script=$doc->getScript();
+		$script = $doc->getScript();
 		foreach ($script as $attribs => $content) {
 			?>
             <script type="text/javascript">
@@ -1474,29 +1555,31 @@ class WooBookingOnWordpress
 		}
 
 	}
+
 	public function render_script_body_woopanel_content_by_endpoint()
 	{
 
-	    $doc=Factory::getDocument();
-		$styleSheets=$doc->getStyleSheets();
+		$doc = Factory::getDocument();
+		$styleSheets = $doc->getStyleSheets();
 		foreach ($styleSheets as $src => $attribs) {
 			$random = random_int(100000, 900000);
 			if (strpos($src, 'http') !== false) {
 				wp_enqueue_style('woobooking-css-' . $random, $src);
 			} else {
-				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . PLUGIN_NAME . '/' . $src);
 			}
 		}
 
-		$lessStyleSheets=$doc->getLessStyleSheets();
+		$lessStyleSheets = $doc->getLessStyleSheets();
 		foreach ($lessStyleSheets as $src => $attribs) {
 			ob_start();
 			?>
-            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
+            <link rel="stylesheet/less" type="text/css"
+                  href="<?php echo plugins_url() . "/" . PLUGIN_NAME . "/" . $src ?>"/>
 			<?php
 			echo ob_get_clean();
 		}
-		$scripts=$doc->getScripts();
+		$scripts = $doc->getScripts();
 		foreach ($scripts as $src => $attribs) {
 			$random = random_int(100000, 900000);
 			if (strpos($src, 'http') !== false) {
@@ -1507,7 +1590,7 @@ class WooBookingOnWordpress
 		}
 
 
-		$script=$doc->getScript();
+		$script = $doc->getScript();
 		foreach ($script as $attribs => $content) {
 			?>
             <script type="text/javascript">
