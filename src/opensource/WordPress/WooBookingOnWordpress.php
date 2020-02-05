@@ -28,6 +28,7 @@ class WooBookingOnWordpress
 	public static $prefix_link = "wb_";
 	public static $namespace = "woobooking_api/1.0";
 	private static $list_environment = array();
+	private static $page_default="event-list";
 	public $view = "";
 	public $ecommerce = null;
 	public $scripts = array();
@@ -244,7 +245,7 @@ class WooBookingOnWordpress
 
 		// add action when booking order
 		add_action('woocommerce_checkout_create_order', array($this, 'woobooking_checkout_create_order'), 20, 2);
-		$page = $input->getString('page', "event-list");
+		$page = $input->getString('page', self::$page_default);
 
 		$page = strtolower($page);
 		$list_view = self::get_list_layout_view_frontend();
@@ -1101,7 +1102,7 @@ class WooBookingOnWordpress
 	{
 
 		$input = Factory::getInput();
-		$page = $input->getString('page', 'home-default');
+		$page = $input->getString('page', self::$page_default);
 		$type = null;
 		if (is_array($atts) && $id = reset($atts)) {
 			list($view, $layout) = explode("-", $page);
