@@ -1169,7 +1169,7 @@ class WooBookingOnWordpress
 		$key_woo_booking = self::$key_woo_booking;
 		?>
         <div id="posttype-wl-login" class="posttypediv">
-            <div id="tabs-panel-wishlist-login" class="tabs-panel tabs-panel-active">
+            <div  class="tabs-panel tabs-panel-active">
                 <ul id="wishlist-login-checklist" class="categorychecklist form-no-clear">
 					<?php foreach ($list_page as $key => $page) { ?>
                         <li>
@@ -1183,7 +1183,7 @@ class WooBookingOnWordpress
                             <input type="hidden" class="menu-item-title" name="menu-item[-1][menu-item-title]"
                                    value="<?php echo $page['title'] ?>">
                             <input type="hidden" class="menu-item-url" name="menu-item[-1][menu-item-url]"
-                                   value="<?php bloginfo('wpurl'); ?>/<?php echo "$key_woo_booking-$key" ?>">
+                                   value="<?php bloginfo('wpurl'); ?>/<?php echo "wp-booking-pro/?page=$key_woo_booking-$key" ?>">
                         </li>
 					<?php } ?>
                 </ul>
