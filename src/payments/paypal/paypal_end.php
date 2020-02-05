@@ -9,7 +9,7 @@
 defined('_WOO_BOOKING_EXEC') or die('Restricted access');
 ?><div class="hikashop_paypal_end" id="hikashop_paypal_end">
 	<span id="hikashop_paypal_end_message" class="hikashop_paypal_end_message">
-		<?php echo WoobookingText::sprintf('PLEASE_WAIT_BEFORE_REDIRECTION_TO_X', $this->payment_name).'<br/><span id="hikashop_paypal_button_message">'. WoobookingText::_('CLICK_ON_BUTTON_IF_NOT_REDIRECTED').'</span>';?>
+		<?php echo WoobookingText::sprintf('PLEASE_WAIT_BEFORE_REDIRECTION_TO_X', @$this->payment_name).'<br/><span id="hikashop_paypal_button_message">'. WoobookingText::_('CLICK_ON_BUTTON_IF_NOT_REDIRECTED').'</span>';?>
 	</span>
 	<span id="hikashop_paypal_end_spinner" class="hikashop_paypal_end_spinner hikashop_checkout_end_spinner">
 	</span>

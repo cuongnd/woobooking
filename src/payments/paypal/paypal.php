@@ -45,7 +45,7 @@ class WBPaymentPaypal extends WBPayment
     function onAfterOrderConfirm(&$order,&$methods=null, $method_id=0)
     {
 
-        if ($this->currency->currency_locale['int_frac_digits'] > 2)
+        if (@$this->currency->currency_locale['int_frac_digits'] > 2)
             $this->currency->currency_locale['int_frac_digits'] = 2;
         $app = Factory::getApplication();
         $notify_url = woobooking_controller::getFrontendLink("payment.notify","order_id=".$order->id);
@@ -66,8 +66,8 @@ class WBPaymentPaypal extends WBPayment
             'upload' => '1',
             'business' => $this->payment_params->email,
             'receiver_email' => $this->payment_params->email,
-            'invoice' => $order->order_id,
-            'currency_code' => $this->currency->currency_code,
+            'invoice' => @$order->order_id,
+            'currency_code' => @$this->currency->currency_code,
             'return' => $return_url,
             'notify_url' => $notify_url,
             'cancel_return' => $cancel_url,

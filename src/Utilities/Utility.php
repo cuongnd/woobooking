@@ -84,7 +84,7 @@ class Utility
             $http_list_var[]=  $items_var;
         }
         $http_string_var=implode("&",$http_list_var);
-        $link=Factory::getRootUrl()."wp-booking-pro/?page=$view-$layout/".($http_string_var!=""?"?$http_string_var":'');
+        $link=Factory::getRootUrl()."wp-booking-pro/?page=$view-$layout".($http_string_var!=""?"&$http_string_var":'');
         return $link;
     }
 
