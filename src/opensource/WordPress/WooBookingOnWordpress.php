@@ -244,7 +244,8 @@ class WooBookingOnWordpress
 
 		// add action when booking order
 		add_action('woocommerce_checkout_create_order', array($this, 'woobooking_checkout_create_order'), 20, 2);
-		$page = $input->getString('page', "home-default");
+		$page = $input->getString('page', "event-list");
+
 		$page = strtolower($page);
 		$list_view = self::get_list_layout_view_frontend();
 		if (!isset($list_view[$page])) {
