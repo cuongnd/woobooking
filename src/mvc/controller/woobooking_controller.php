@@ -416,7 +416,7 @@ class woobooking_controller{
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";
@@ -424,7 +424,7 @@ class woobooking_controller{
         }else{
             $http_list_var[]=  $items_var;
         }
-        $url="woobooking-$view-$layout/?".implode("&",$http_list_var);
+        $url="wp-booking-pro/?page=$view-$layout&".implode("&",$http_list_var);
         $html = '<html><head>';
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.$url)) . ';</script>';

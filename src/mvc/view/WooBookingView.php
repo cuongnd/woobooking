@@ -105,7 +105,7 @@ class WooBookingView extends CMSObject
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";
@@ -115,7 +115,7 @@ class WooBookingView extends CMSObject
         }
 
 
-        $link=Factory::getRootUrl()."woobooking-$view-$layout/?".implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-booking-pro/?page=$view-$layout&".implode("&",$http_list_var);
         return $link;
     }
     public static function getFrontendLink($view_layout, $items_var=array()){
@@ -123,7 +123,7 @@ class WooBookingView extends CMSObject
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";

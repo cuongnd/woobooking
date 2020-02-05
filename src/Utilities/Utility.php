@@ -75,7 +75,7 @@ class Utility
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";
@@ -84,7 +84,7 @@ class Utility
             $http_list_var[]=  $items_var;
         }
         $http_string_var=implode("&",$http_list_var);
-        $link=Factory::getRootUrl()."woobooking-$view-$layout/".($http_string_var!=""?"?$http_string_var":'');
+        $link=Factory::getRootUrl()."wp-booking-pro/?page=$view-$layout/".($http_string_var!=""?"?$http_string_var":'');
         return $link;
     }
 
