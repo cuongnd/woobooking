@@ -126,6 +126,7 @@ class WooBookingOnWordpress
 		$prefix_link = self::$prefix_link;
 		//hook api
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
+		add_action( 'admin_enqueue_scripts', array($this,'load_style_sheet') );
 
 
 	}
@@ -174,20 +175,7 @@ class WooBookingOnWordpress
 
 	}
 
-	//add script
-	public function add_script_footer($scripts = array())
-	{
-		$this->scripts = $scripts;
-		add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
-		add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
-	}
 
-	public function add_script_content_footer($script)
-	{
-		$this->script = $script;
-		add_action('wp_footer', array($this, 'wp_hook_add_script_content_footer'));
-		add_action('admin_footer', array($this, 'wp_hook_add_script_content_footer'));
-	}
 
 	public function getSession()
 	{
@@ -214,15 +202,8 @@ class WooBookingOnWordpress
 		Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
 
 		add_action('wp_print_scripts', array($this, 'frontend_shapeSpace_print_scripts'));
-		/**
-		 * Plugin Name: Test Plugin
-		 * Author: John Doe
-		 * Version: 1.0.0
-		 */
-
-
 		$task = $input->getString('task', '');
-		add_action('wp_enqueue_scripts', array($this, 'woobooking_enqueue_scripts'), 99999, 1);
+
 
 		//trying remove add to cart and price
 		remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
@@ -283,8 +264,13 @@ class WooBookingOnWordpress
 				echo "class $class_name not exit in file $file_controller_short_path, please create this class";
 			}
 		}
+		$this->add_basic_script_and_style();
+		add_action('wp_footer', array($this,'add_custom_header'));
+		add_action( 'wp_enqueue_scripts', array($this,'load_style_sheet') );
+		add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
 		//hook api
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
+
 
 
 		//TODO làm đăng ký khi người dùng active plugin
@@ -296,7 +282,34 @@ class WooBookingOnWordpress
 
 
 	}
+	public static function load_style_sheet(){
+		$openSource=Factory::getOpenSource();
+		$document=Factory::getDocument();
+		$styleSheets=$document->getStyleSheets();
+		foreach ($styleSheets as $src => $attribs) {
+			$random = random_int(100000, 900000);
+			if (strpos($src, 'http') !== false) {
+				wp_enqueue_style('woobooking-css-' . $random, $src);
+			} else {
+				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+			}
+		}
+	}
 
+	function add_custom_header() {
+
+		$document=Factory::getDocument();
+		foreach ($document->_lessStyleSheets as $src => $attribs) {
+			ob_start();
+			?>
+            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
+			<?php
+			echo ob_get_clean();
+		}
+
+
+		echo '<meta name="meta_name123" content="meta_value" />';
+	}
 	public static function wp_login($user_login)
 	{
 		if (!self::checkInstalled()) {
@@ -1334,11 +1347,11 @@ class WooBookingOnWordpress
 	}
 
 	//for woobooking admin
-	function woobooking_enqueue_scripts()
+	function add_basic_script_and_style()
 	{
 		$app = Factory::getApplication();
 		$doc = Factory::getDocument();
-		wp_enqueue_media();
+		//wp_enqueue_media();
 		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 
 		if ($app->getClient() == 1) {
@@ -1373,6 +1386,8 @@ class WooBookingOnWordpress
 			$doc->addScript('nb_apps/nb_woobooking/assets/js/main_script.js');
 			$doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style.less');
 			HtmlFrontend::_('jquery.fontawesome');
+
+
 
 		}
 	}
@@ -1438,7 +1453,9 @@ class WooBookingOnWordpress
 
 	public function wp_hook_add_script_footer()
 	{
-		foreach ($this->scripts as $src => $attribs) {
+	    $doc=Factory::getDocument();
+		$scripts=$doc->getScripts();
+		foreach ($scripts as $src => $attribs) {
 			if (strpos($src, 'http') !== false) {
 				echo '<script type="text/javascript" src="' . $src . '"></script>';
 			} else {
@@ -1448,9 +1465,11 @@ class WooBookingOnWordpress
 
 	}
 
-	public function wp_hook_add_script_content_footer($script)
+	public function wp_hook_add_script_content_footer()
 	{
-		foreach ($this->script as $attribs => $content) {
+	    $doc=Factory::getDocument();
+		$script=$doc->getScript();
+		foreach ($script as $attribs => $content) {
 			?>
             <script type="text/javascript">
 				<?php echo $content ?>

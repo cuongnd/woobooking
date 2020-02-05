@@ -124,9 +124,7 @@ class HeadRenderer extends DocumentRenderer
 
 
 
-        add_action('admin_head', array($this,'gretathemes_meta_tags'));
-        //add_action('wp_head', array($this,'gretathemes_meta_tags'));
-        add_action('wp_footer', array($this,'gretathemes_meta_tags'));
+
 
         add_action( 'admin_enqueue_scripts', array($this,'load_admin_style') );
         foreach ($document->_styleSheets as $src => $attribs) {
@@ -186,44 +184,12 @@ class HeadRenderer extends DocumentRenderer
         $defaultJsMimes = array('text/javascript', 'application/javascript', 'text/x-javascript', 'application/x-javascript');
         $html5NoValueAttributes = array('defer', 'async');
         // Generate script file links
-        $openSource->add_script_footer($document->_scripts);
-        $openSource->add_script_content_footer($document->_script);
 
 
-
-        //add_action('wp_footer', array($this, 'wpb_hook_javascript'));
-
-
-        // Generate script declarations
-        foreach ($document->_script as $type => $content) {
-
-            //add_action('wp_head', array($this,'test_funtion'));
-        }
 
 
         return ltrim($buffer, $tab);
     }
-    function gretathemes_meta_tags() {
-        $document=Factory::getDocument();
-        foreach ($document->_lessStyleSheets as $src => $attribs) {
-            ob_start();
-            ?>
-            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
-            <?php
-            echo ob_get_clean();
-        }
 
-
-        echo '<meta name="meta_name123" content="meta_value" />';
-    }
-    public static function load_admin_style(){
-        $openSource=Factory::getOpenSource();
-        $document=Factory::getDocument();
-        foreach ($document->_styleSheets as $src => $attribs) {
-            $random = random_int(100000, 900000);
-            if($openSource->is_backend_wordpress())
-                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
-        }
-    }
 
 }
