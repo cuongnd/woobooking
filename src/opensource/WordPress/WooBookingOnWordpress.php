@@ -120,7 +120,7 @@ class WooBookingOnWordpress
 		//hook api
         $this->setup_script_woopanel();
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
-		add_action('woopanel_enqueue_scripts', array($this, 'wp_hook_add_script_footer'), 99999, 1);
+		//add_action('woopanel_enqueue_scripts', array($this, 'wp_hook_add_script_footer'), 99999, 1);
 
 
 
@@ -194,6 +194,10 @@ class WooBookingOnWordpress
 				echo "File controller not found,please create file $file_controller_short_path";
 			}
 		}
+		$this->render_script_body_woopanel_content_by_endpoint();
+
+
+
 	}
 
 
@@ -1448,7 +1452,6 @@ class WooBookingOnWordpress
 			echo ob_get_clean();
 		}
 		$scripts=$doc->getScripts();
-
 		foreach ($scripts as $src => $attribs) {
 			$random = random_int(100000, 900000);
 			if (strpos($src, 'http') !== false) {
@@ -1463,6 +1466,49 @@ class WooBookingOnWordpress
 					Factory::getRootUrlPlugin() ."/". $src, //script file location
 					array('jquery') //lists the scripts upon which your script depends
 				);
+			}
+		}
+
+
+		$script=$doc->getScript();
+		foreach ($script as $attribs => $content) {
+			?>
+            <script type="text/javascript">
+				<?php echo $content ?>
+            </script>
+			<?php
+		}
+
+	}
+	public function render_script_body_woopanel_content_by_endpoint()
+	{
+
+	    $doc=Factory::getDocument();
+		$styleSheets=$doc->getStyleSheets();
+		foreach ($styleSheets as $src => $attribs) {
+			$random = random_int(100000, 900000);
+			if (strpos($src, 'http') !== false) {
+				wp_enqueue_style('woobooking-css-' . $random, $src);
+			} else {
+				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
+			}
+		}
+
+		$lessStyleSheets=$doc->getLessStyleSheets();
+		foreach ($lessStyleSheets as $src => $attribs) {
+			ob_start();
+			?>
+            <link rel="stylesheet/less" type="text/css" href="<?php echo plugins_url() . "/".PLUGIN_NAME."/" . $src ?>"/>
+			<?php
+			echo ob_get_clean();
+		}
+		$scripts=$doc->getScripts();
+		foreach ($scripts as $src => $attribs) {
+			$random = random_int(100000, 900000);
+			if (strpos($src, 'http') !== false) {
+				echo '<script type="text/javascript" src="' . $src . '"></script>';
+			} else {
+				echo '<script type="text/javascript" src="' . Factory::getRootUrlPlugin() . $src . '"></script>';
 			}
 		}
 
