@@ -126,22 +126,6 @@ class HeadRenderer extends DocumentRenderer
 
 
 
-        add_action( 'admin_enqueue_scripts', array($this,'load_admin_style') );
-        foreach ($document->_styleSheets as $src => $attribs) {
-            $random = random_int(100000, 900000);
-            if(!$openSource->is_backend_wordpress())
-            {
-				if(strpos($src,"http")!==false){
-					wp_enqueue_style('woobooking-css-' . $random, $src);
-				}else{
-					wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/'.PLUGIN_NAME.'/' . $src);
-                }
-
-			}
-
-
-        }
-
         // Generate stylesheet declarations
         foreach ($document->_style as $type => $content) {
             $buffer .= $tab . '<style';
