@@ -295,6 +295,9 @@ class WooBookingOnWordpress
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 
 
+
+
+
 		//TODO làm đăng ký khi người dùng active plugin
 
 		//register_deactivation_hook( __FILE__,  array( $this, 'pluginprefix_deactivation' )  );
@@ -420,8 +423,7 @@ class WooBookingOnWordpress
 				$this->initOpenWooBookingWooPanelBackend();
 			}
 		} else {
-		    echo "sdfsdfds";
-		    die;
+
 			$this->initOpenWooBookingWordpressFrontend();
 			$this->ecommerce = ECommerce::getInstance();
 		}
@@ -1521,7 +1523,6 @@ class WooBookingOnWordpress
 				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . PLUGIN_NAME . '/' . $src);
 			}
 		}
-
 		$lessStyleSheets = $doc->getLessStyleSheets();
 		foreach ($lessStyleSheets as $src => $attribs) {
 			ob_start();
@@ -1533,23 +1534,33 @@ class WooBookingOnWordpress
 		}
 		$scripts = $doc->getScripts();
 
-		foreach ($scripts as $src => $attribs) {
-			$random = random_int(100000, 900000);
-			if (strpos($src, 'http') !== false) {
-				wp_enqueue_script(
-					'woobooking-script-' . $random, // your script unique name
-					$src, //script file location
-					array('jquery') //lists the scripts upon which your script depends
-				);
-			} else {
-				wp_enqueue_script(
-					'woobooking-script-' . $random, // your script unique name
-					Factory::getRootUrlPlugin() . "/" . $src, //script file location
-					array('jquery') //lists the scripts upon which your script depends
-				);
-			}
-		}
 
+        foreach ($scripts as $src => $attribs) {
+
+
+            $random = random_int(100000, 900000);
+            $options = array();
+            if (isset($attribs['selector']) && $attribs['selector'] != "")
+                $options['selector'] = $attribs['selector'];
+            if (isset($attribs['options']) && !empty($attribs['options']))
+                $options = array_merge($options, (array)$attribs['options']);
+            if (strpos($src, 'http') !== false) {
+                wp_enqueue_script('woobooking-script-' . $random, $src, array('jquery'));
+
+            } else {
+                wp_enqueue_script('woobooking-script-' . $random, Factory::getRootUrlPlugin() . $src, array('jquery'));
+            }
+            if (!empty($options))
+                wp_localize_script('woobooking-script-' . $random, 'wboptions', $options);
+        }
+
+        // Register the script
+
+
+        wp_enqueue_script('my-script', Factory::getRootUrlPlugin() . 'resources/js/emtry.js');
+        wp_localize_script('my-script', 'myScript', array(
+            'pluginsUrl' => plugins_url(),
+        ));
 
 		$script = $doc->getScript();
 		foreach ($script as $attribs => $content) {

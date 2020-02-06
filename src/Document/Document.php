@@ -520,6 +520,55 @@ class Document
 		return $this;
 	}
 
+    /**
+     * @param $url
+     * @param array $options
+     * @param array $attribs
+     * @return $this
+     */
+    public function addScriptApplySelector($selector="",$url, $options = array(), $attribs = array())
+	{
+		// B/C before 3.7.0
+		if (!is_array($options) && (!is_array($attribs) || $attribs === array()))
+		{
+			\Log::add('The addScript method signature used has changed, use (url, options, attributes) instead.', \Log::WARNING, 'deprecated');
+
+			$argList = func_get_args();
+			$options = array();
+			$attribs = array();
+
+			// Old mime type parameter.
+			if (!empty($argList[1]))
+			{
+				$attribs['mime'] = $argList[1];
+			}
+
+			// Old defer parameter.
+			if (isset($argList[2]) && $argList[2])
+			{
+				$attribs['defer'] = true;
+			}
+
+			// Old async parameter.
+			if (isset($argList[3]) && $argList[3])
+			{
+				$attribs['async'] = true;
+			}
+		}
+
+		// Default value for type.
+		if (!isset($attribs['type']) && !isset($attribs['mime']))
+		{
+			$attribs['type'] = 'text/javascript';
+		}
+
+		$this->_scripts[$url]            = isset($this->_scripts[$url]) ? array_replace($this->_scripts[$url], $attribs) : $attribs;
+		$this->_scripts[$url]['options'] = isset($this->_scripts[$url]['options']) ? array_replace($this->_scripts[$url]['options'], $options) : $options;
+		$this->_scripts[$url]['selector'] = $selector;
+
+		return $this;
+	}
+
 	/**
 	 * Adds a linked script to the page with a version to allow to flush it. Ex: myscript.js?54771616b5bceae9df03c6173babf11d
 	 * If not specified WooBooking! automatically handles versioning
