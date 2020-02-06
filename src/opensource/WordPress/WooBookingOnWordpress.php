@@ -826,17 +826,17 @@ class WooBookingOnWordpress
 		$first_view = (object)$first_view;
 		$menu_slug = str_replace('_', '-', $first_view->menu_slug);
 		$link_dashboard = "wb_dashboard";
-		add_menu_page('Woobooking', 'WooBooking', 'manage_options', $link_dashboard, array($this, 'woobooking_page'));
+		add_menu_page('Wpbookingpro', 'Wpbookingpro', 'manage_options', $link_dashboard, array($this, 'wpbookingpro_page'));
 		foreach ($list_view_admin as $key => $view) {
 			$view = (object)$view;
 			add_submenu_page($link_dashboard, $view->label, $view->label, 'manage_options', $view->menu_slug,
-				array($this, 'woobooking_page'));
+				array($this, 'wpbookingpro_page'));
 		}
 
 
 	}
 
-	function woobooking_page()
+	function wpbookingpro_page()
 	{
 		$input = Factory::getInput();
 		$page = $input->getString('page', '');
@@ -1679,7 +1679,7 @@ class WooBookingOnWordpress
 		$db_appointments = array(
 			'id' => self::$prefix_link . 'db_appointments',
 			'menu_slug' => self::$prefix_link . 'db_appointments',
-			'menu_title' => __('Woobooking'),
+			'menu_title' => __('Wp booking pro'),
 			'capability' => '',
 			'page_title' => '',
 			'icon' => 'flaticon-line-graph',
