@@ -289,6 +289,7 @@ class WooBookingOnWordpress
 			}
 		}
 		$this->add_basic_script_and_style_front_end();
+
 		add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
 		//hook api
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
@@ -419,6 +420,8 @@ class WooBookingOnWordpress
 				$this->initOpenWooBookingWooPanelBackend();
 			}
 		} else {
+		    echo "sdfsdfds";
+		    die;
 			$this->initOpenWooBookingWordpressFrontend();
 			$this->ecommerce = ECommerce::getInstance();
 		}
@@ -1529,6 +1532,7 @@ class WooBookingOnWordpress
 			echo ob_get_clean();
 		}
 		$scripts = $doc->getScripts();
+
 		foreach ($scripts as $src => $attribs) {
 			$random = random_int(100000, 900000);
 			if (strpos($src, 'http') !== false) {
