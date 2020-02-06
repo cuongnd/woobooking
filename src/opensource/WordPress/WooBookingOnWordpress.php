@@ -133,10 +133,10 @@ class WooBookingOnWordpress
 		//wp_enqueue_media();
 		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 		Html::_('jquery.loading_js');
+		Html::_('jquery.config');
 		$doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
 		$doc->addScript('admin/resources/js/less/less.min.js');
 		$doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
-		$doc->addScript('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.js');
 		$doc->addScript('admin/resources/js/Bootstrap-Loading/src/waitingfor.js');
 		$doc->addScript('admin/resources/js/jquery.form/jquery.form.js');
 		$doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
