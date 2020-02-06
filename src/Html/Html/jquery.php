@@ -148,8 +148,8 @@ JS
         // Only attempt to load the component if it's supported in core and hasn't already been loaded
         if (empty(static::$loaded[__METHOD__])) {
             $doc = Factory::getDocument();
-            $doc->addScript('media/system/js/jquery-confirm-master/dist/jquery-confirm.min.js');
-            $doc->addStyleSheet('media/system/js/jquery-confirm-master/dist/jquery-confirm.min.css');
+            $doc->addScript('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.js');
+            $doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
             static::$loaded[__METHOD__] = true;
         }
         return;
