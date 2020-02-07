@@ -888,7 +888,7 @@ class WooBookingOnWordpress
 		?>
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
-            current_url = "<?php echo $root_url . 'sellercenter/' . $this->view ?>";
+            current_url = "<?php echo $root_url . 'wp-admin/admin.php?page=' . $this->view ?>";
             root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
         </script>
@@ -1284,7 +1284,7 @@ class WooBookingOnWordpress
 			}
 		} else {
 			foreach ($listMenu as $menu) {
-				if (strpos($request_uri, 'sellercenter/' . $menu) !== false) {
+				if (strpos($request_uri, 'wp-admin/admin.php?page=' . $menu) !== false) {
 					$view = $menu;
 					break;
 				}

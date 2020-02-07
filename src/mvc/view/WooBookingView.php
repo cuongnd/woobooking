@@ -87,7 +87,7 @@ class WooBookingView extends CMSObject
         }
 
 
-        $link=Factory::getRootUrl()."sellercenter/wb_$view/?layout=$layout".implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-admin/admin.php?page=wb_$view/?layout=$layout".implode("&",$http_list_var);
         return $link;
     }
     public function redirect($url){
@@ -133,14 +133,14 @@ class WooBookingView extends CMSObject
         }
 
 
-        $link=Factory::getRootUrl()."sellercenter/woobooking-$view-$layout/?".implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-admin/admin.php?page=$view-$layout/?".implode("&",$http_list_var);
         return $link;
     }
 
     public static function goToTaskLink($view,$task, $items_var=array()){
 
 
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";
@@ -150,7 +150,7 @@ class WooBookingView extends CMSObject
         }
 
 
-        $link=Factory::getRootUrl()."sellercenter/wb_$view/?task=$view.$task".(is_array($items_var)&&count($items_var)?'&':null).implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-admin/admin.php?page=wb_$view/?task=$view.$task".(is_array($items_var)&&count($items_var)?'&':null).implode("&",$http_list_var);
         return $link;
     }
     public function loadTemplate($tpl){
