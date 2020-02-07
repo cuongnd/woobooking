@@ -1389,6 +1389,16 @@ class WooBookingOnWordpress
 			<?php
 			echo ob_get_clean();
 		}
+        $root_url = self::get_root_url();
+        ?>
+        <script type="text/javascript">
+            root_url = "<?php echo $root_url ?>";
+            current_url = "<?php echo $root_url ?>";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
+            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+        </script>
+        <?php
+
 		$scripts = $doc->getScripts();
 
 
@@ -1402,10 +1412,10 @@ class WooBookingOnWordpress
             if (isset($attribs['options']) && !empty($attribs['options']))
                 $options = array_merge($options, (array)$attribs['options']);
             if (strpos($src, 'http') !== false) {
-                wp_enqueue_script('woobooking-script-' . $random, $src);
+                wp_enqueue_script('woobooking-script-' . $random, $src,array('jquery'));
 
             } else {
-                wp_enqueue_script('woobooking-script-' . $random, Factory::getRootUrlPlugin() . $src);
+                wp_enqueue_script('woobooking-script-' . $random, Factory::getRootUrlPlugin() . $src,array('jquery'));
             }
             if (!empty($options))
                 wp_localize_script('woobooking-script-' . $random, 'wboptions', $options);
@@ -1414,10 +1424,7 @@ class WooBookingOnWordpress
         // Register the script
 
 
-        wp_enqueue_script('my-script', Factory::getRootUrlPlugin() . 'resources/js/emtry.js');
-        wp_localize_script('my-script', 'myScript', array(
-            'pluginsUrl' => plugins_url(),
-        ));
+
 
 		$script = $doc->getScript();
 		foreach ($script as $attribs => $content) {
