@@ -263,9 +263,9 @@ class WooBookingView extends CMSObject
             include $tmpl_path;
             $content=ob_get_clean();
             if(!trim($content)){
-                $content="<div class='wrapper-woo-booking is-style-wide'><p>layout <b>$tmpl_short_path</b> empty please add content to it</p>$debug</div>";
+                $content="<div class='wrapper-woo-booking'><p>layout <b>$tmpl_short_path</b> empty please add content to it</p>$debug</div>";
             }
-            $content="<div class=\"wrapper-woo-booking is-style-wide\">$content $debug</div>";
+            $content="<div class=\"wrapper-woo-booking\">$content $debug</div>";
             $doc=Factory::getDocument();
 
 
@@ -445,9 +445,9 @@ class WooBookingView extends CMSObject
             include $tmpl_path;
             $content=ob_get_clean();
             if(!trim($content)){
-                $content="<div class='wrapper-woo-booking is-style-wide'><p>layout <b>$tmpl_short_path</b> empty please add content to it</p>$debug</div>";
+                $content="<div class='wrapper-woo-booking'><p>layout <b>$tmpl_short_path</b> empty please add content to it</p>$debug</div>";
             }
-            $content="<div class=\"wrapper-woo-booking is-style-wide\">$content $debug</div>";
+            $content="<div class=\"wrapper-woo-booking\">$content $debug</div>";
             $doc=Factory::getDocument();
 
 
@@ -627,9 +627,9 @@ class WooBookingView extends CMSObject
             include $tmpl_path;
             $content=ob_get_clean();
             if(!trim($content)){
-                $content="<div class='wrapper-woo-booking is-style-wide'><p>layout <b>$tmpl_short_path</b> empty please add content to it</p>$debug</div>";
+                $content="<div class='wrapper-woo-booking'><p>layout <b>$tmpl_short_path</b> empty please add content to it</p>$debug</div>";
             }
-            $content="<div class=\"wrapper-woo-booking is-style-wide\">$content $debug</div>";
+            $content="<div class=\"wrapper-woo-booking\">$content $debug</div>";
             $doc=Factory::getDocument();
 
 
