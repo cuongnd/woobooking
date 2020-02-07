@@ -28,7 +28,7 @@ class WooBookingOnWordpress
 	public static $prefix_link = "wb_";
 	public static $namespace = "woobooking_api/1.0";
 	private static $list_environment = array();
-	private static $page_default="event-list";
+	public $page_default="event-list";
 	public $view = "";
 	public $ecommerce = null;
 	public $scripts = array();
@@ -47,6 +47,12 @@ class WooBookingOnWordpress
 
 	private static function setVersion($version=""){
 	    self::$version=$version;
+    }
+	public function setDefaultPage($default_page=""){
+	    $this->page_default=$default_page;
+    }
+	public function getDefaultPage(){
+	    return $this->page_default;
     }
 	private static function getVersion(){
 	    return self::$version;
@@ -250,8 +256,9 @@ class WooBookingOnWordpress
 
 
 		// add action when booking order
+
 		add_action('woocommerce_checkout_create_order', array($this, 'woobooking_checkout_create_order'), 20, 2);
-		$page = $input->getString('page', self::$page_default);
+		$page = $input->getString('page', $this->page_default);
 
 		$page = strtolower($page);
 		$list_view = self::get_list_layout_view_frontend();
@@ -1060,11 +1067,11 @@ class WooBookingOnWordpress
 
 	}
 
-	function woo_booking_render_by_tag_func($atts, $content, $a_view)
+	public function woo_booking_render_by_tag_func($atts, $content, $a_view)
 	{
 
 		$input = Factory::getInput();
-		$page = $input->getString('page', self::$page_default);
+		$page = $input->getString('page', $this->page_default);
 		$type = null;
 		if (is_array($atts) && $id = reset($atts)) {
 			list($view, $layout) = explode("-", $page);
