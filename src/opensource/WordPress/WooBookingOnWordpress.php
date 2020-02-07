@@ -653,45 +653,7 @@ class WooBookingOnWordpress
 		 */
 		$plugins = array(
 
-			// This is an example of how to include a plugin bundled with a theme.
-			array(
-				'name' => 'Woocommerce dashboard',
-				// The plugin name.
-				'slug' => 'woopanel',
-				// The plugin slug (typically the folder name).
-				'source' => 'http://45.119.84.18/~wbkfitnes/woopanel_download/wc-dashboard.zip',
-				// The plugin source.
-				'required' => true,
-				// If false, the plugin is only 'recommended' instead of required.
-				'version' => '',
-				// E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
-				'force_activation' => false,
-				// If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-				'force_deactivation' => false,
-				// If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-				// If set, overrides default API URL and points to an external URL.
-				'is_callable' => '',
-				// If set, this callable will be be checked for availability to determine if a plugin is active.
-			),
-			array(
-				'name' => 'woocommerce',
-				// The plugin name.
-				'slug' => 'woocommerce',
-				// The plugin slug (typically the folder name).
-				'source' => 'https://downloads.wordpress.org/plugin/woocommerce.3.8.1.zip',
-				// The plugin source.
-				'required' => true,
-				// If false, the plugin is only 'recommended' instead of required.
-				'version' => '',
-				// E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
-				'force_activation' => false,
-				// If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-				'force_deactivation' => false,
-				// If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-				// If set, overrides default API URL and points to an external URL.
-				'is_callable' => '',
-				// If set, this callable will be be checked for availability to determine if a plugin is active.
-			)
+
 		);
 
 		/*
