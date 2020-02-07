@@ -210,7 +210,11 @@ class woobooking_controller{
                     //$doc->addScript('admin/resources/js/less/less.min.js');
                     $response->scripts=$doc->getScripts();
                     $scripts=$response->scripts;
+
+
                     foreach ($scripts as $src=>$item){
+                        if(trim($src)==="")
+                            continue;
                         $item=(object)$item;
                         $wboptions=new stdClass();
                         if(isset($item->selector)){
