@@ -375,17 +375,6 @@ class WooBookingOnWordpress
 		if (count($list_table_in_database) == 0) {
 			$installed = false;
 		}
-		if (!class_exists('WooCommerce')) {
-			$installed = false;
-
-		}
-
-
-		if (!class_exists('NBWooCommerce_Dashboard')) {
-			// some code
-			$installed = false;
-		}
-
 		$json_table_need_install = File::read(WOOBOOKING_PATH_ROOT . "/install/tables.json");
 
 		$json_table_need_install = json_decode($json_table_need_install);
