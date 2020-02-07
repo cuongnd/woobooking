@@ -207,30 +207,32 @@ class woobooking_controller{
                 if(method_exists ( $class_controller ,  $task ) ){
                     $data=call_user_func(array($class_controller, $task));
                     $doc=Factory::getDocument();
+                    ob_start();
+                    ?>
+                    <script type="text/javascript">
+                        less.registerStylesheetsImmediately();
+                        console.log("less.sheets",less.sheets);
+                        var sheets = [];
+                        for(var i = less.sheets.length; i--; )
+                            sheets.push(less.sheets[i].href);
+                        less.refresh(1);
+
+                        var fnImport = less.tree.Import;
+                        less.tree.Import = function(path, imports)
+                        {
+                            path.value += '?x='+Math.random();
+                            fnImport(path, imports);
+                        }
+                    </script>
+                    <?php
+                    $script = ob_get_clean();
+
+                    $script = Utility::remove_string_javascript($script);
+                    $doc->addScriptDeclaration($script);
+
                     //$doc->addScript('admin/resources/js/less/less.min.js');
                     $response->scripts=$doc->getScripts();
-                    $scripts=$response->scripts;
-
-
-                    foreach ($scripts as $src=>$item){
-                        if(trim($src)==="")
-                            continue;
-                        $item=(object)$item;
-                        $wboptions=new stdClass();
-                        if(isset($item->selector)){
-                            $wboptions->selector=$item->selector;
-                        }
-                        if(isset($item->options) && count($item->options)){
-                            $wboptions->options=$item->options;
-                        }
-                        $data.='<script type="text/javascript" >var wboptions='.json_encode($wboptions).'</script>';
-                        if(strpos($src,"http")!==false){
-                            $data.='<script src="'.$src.'"></script>';
-                        }else{
-                            $data.='<script src="'.Factory::getRootUrlPlugin().$src.'"></script>';
-                        }
-
-                    }
+                    $response->script=$doc->getScript();
                     $response->styleSheets=$doc->getStyleSheets();
                     $response->lessStyleSheets=$doc->getLessStyleSheets();
                     $response->style=$doc->getStyle();
@@ -267,7 +269,7 @@ class woobooking_controller{
         $task=$task?$task:$data->task;
         $app=Factory::getApplication();
         list($controller,$task)=explode(".",$task);
-        
+
         $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
@@ -306,7 +308,7 @@ class woobooking_controller{
         {
             return self::$instance[$controller];
         }
-        $app=Factory::getApplication();
+
         $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
@@ -334,7 +336,7 @@ class woobooking_controller{
         $input=Factory::getInput();
         if(empty($data))
         {
-            $data=($input->getArray($_POST))['data'];
+            $data=$input->getArray($_POST)['data'];
         }
 
 
@@ -395,7 +397,7 @@ class woobooking_controller{
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=array();
+        $http_list_var=[];
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";
@@ -405,7 +407,7 @@ class woobooking_controller{
         }
 
 
-        $link=Factory::getRootUrl()."wp-admin/admin.php?page=wb_$view-$layout&".implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-admin/admin.php?page=wb_$view-$layout/?".implode("&",$http_list_var);
         return $link;
     }
 
