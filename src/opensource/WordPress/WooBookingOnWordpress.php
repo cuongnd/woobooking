@@ -105,110 +105,9 @@ class WooBookingOnWordpress
 		echo $content;
 	}
 
-	public function initOpenWooBookingWooPanelBackend()
-	{
 
 
-		$app = Factory::getApplication();
-		$root_url = self::get_root_url();
-		Factory::setRootUrl($root_url);
-		$user = Factory::getUser();
 
-		$listMenuWooPanel = self::getListMenuWooPanel();
-		foreach ($listMenuWooPanel as $menu) {
-			add_filter("woopanel_dashboard_{$menu}_endpoint", array($this, "render_body_woopanel_content_by_endpoint"));
-		}
-		Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
-
-
-		if ($app->getClient() == 1 && !in_array($this->view, $listMenuWooPanel)) {
-
-			return;
-		}
-
-
-		add_action('wp_print_scripts', array($this, 'woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts'));
-		$prefix_link = self::$prefix_link;
-		//hook api
-		$this->setup_script_woopanel();
-		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
-		//add_action('woopanel_enqueue_scripts', array($this, 'wp_hook_add_script_footer'), 99999, 1);
-
-
-	}
-
-
-	function setup_script_woopanel()
-	{
-		$app = Factory::getApplication();
-		$doc = Factory::getDocument();
-		//wp_enqueue_media();
-		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
-		Html::_('jquery.loading_js');
-		Html::_('jquery.confirm');
-		$doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
-		$doc->addScript('admin/resources/js/less/less.min.js');
-		$doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
-		$doc->addScript('admin/resources/js/Bootstrap-Loading/src/waitingfor.js');
-		$doc->addScript('admin/resources/js/jquery.form/jquery.form.js');
-		$doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
-		$doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeToJSON.js');
-		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/main_script.js');
-		$doc->addLessStyleSheet('admin/nb_apps/nb_woobooking/assets/less/main_style.less');
-		$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
-		Html::_('jquery.tooltip');
-		Html::_('jquery.bootstrap');
-
-		$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
-		$doc->addStyleSheet('admin/resources/js/jquery-confirm-master/dist/jquery-confirm.min.css');
-		$doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
-		Html::_('jquery.fontawesome');
-	}
-
-	public function render_body_woopanel_content_by_endpoint()
-	{
-		if (!self::checkInstalled()) {
-			self::goToPopupInstall();
-		}
-		Html::_('jquery.tooltip');
-		Html::_('jquery.bootstrap');
-		$root_url = self::get_root_url();
-		$input = Factory::getInput();
-		$data = $input->getData();
-		$task = array_key_exists('task', $data) ? $data['task'] : null;
-		$layout = array_key_exists('layout', $data) ? $data['layout'] : null;
-		$layout = $layout ? $layout : "list";
-
-		if ($task) {
-
-			echo woobooking_controller::action_task();
-		} else {
-
-
-			$menu = $this->get_current_page();
-			$menu = self::get_true_menu_of_woo_booking($menu);
-			$file_controller_path = WOOBOOKING_PATH_COMPONENT . "/controllers/" . ucfirst($menu) . ".php";
-
-			$file_controller_short_path = Utility::get_short_file_by_path($file_controller_path);
-			if (file_exists($file_controller_path)) {
-				require_once $file_controller_path;
-				$class_name = ucfirst($menu) . "Controller";
-
-				if (class_exists($class_name)) {
-					$class_controller = new $class_name();
-					echo $class_controller->view("$menu.$layout");
-				} else {
-					echo "Class $class_name not exit in file $file_controller_short_path, please create this class";
-				}
-			} else {
-
-				echo "File controller not found,please create file $file_controller_short_path";
-			}
-		}
-		$this->render_script_body_woopanel_content_by_endpoint();
-
-
-	}
 
 
 	public function getSession()
@@ -1525,50 +1424,6 @@ class WooBookingOnWordpress
 
 	}
 
-	public function render_script_body_woopanel_content_by_endpoint()
-	{
-
-		$doc = Factory::getDocument();
-		$styleSheets = $doc->getStyleSheets();
-		foreach ($styleSheets as $src => $attribs) {
-			$random = random_int(100000, 900000);
-			if (strpos($src, 'http') !== false) {
-				wp_enqueue_style('woobooking-css-' . $random, $src);
-			} else {
-				wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . PLUGIN_NAME . '/' . $src);
-			}
-		}
-
-		$lessStyleSheets = $doc->getLessStyleSheets();
-		foreach ($lessStyleSheets as $src => $attribs) {
-			ob_start();
-			?>
-            <link rel="stylesheet/less" type="text/css"
-                  href="<?php echo plugins_url() . "/" . PLUGIN_NAME . "/" . $src ?>"/>
-			<?php
-			echo ob_get_clean();
-		}
-		$scripts = $doc->getScripts();
-		foreach ($scripts as $src => $attribs) {
-			$random = random_int(100000, 900000);
-			if (strpos($src, 'http') !== false) {
-				echo '<script type="text/javascript" src="' . $src . '"></script>';
-			} else {
-				echo '<script type="text/javascript" src="' . Factory::getRootUrlPlugin() . $src . '"></script>';
-			}
-		}
-
-
-		$script = $doc->getScript();
-		foreach ($script as $attribs => $content) {
-			?>
-            <script type="text/javascript">
-				<?php echo $content ?>
-            </script>
-			<?php
-		}
-
-	}
 
 
 	//Hiển thị các page my-plugin1
