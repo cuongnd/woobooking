@@ -207,37 +207,11 @@ class woobooking_controller{
                 if(method_exists ( $class_controller ,  $task ) ){
                     $data=call_user_func(array($class_controller, $task));
                     $doc=Factory::getDocument();
-                    ob_start();
-                    ?>
-                    <script type="text/javascript">
-                        less.registerStylesheetsImmediately();
-                        console.log("less.sheets",less.sheets);
-                        var sheets = [];
-                        for(var i = less.sheets.length; i--; )
-                            sheets.push(less.sheets[i].href);
-                        less.refresh(1);
-
-                        var fnImport = less.tree.Import;
-                        less.tree.Import = function(path, imports)
-                        {
-                            path.value += '?x='+Math.random();
-                            fnImport(path, imports);
-                        }
-                    </script>
-                    <?php
-                    $script = ob_get_clean();
-                    
-                    $script = Utility::remove_string_javascript($script);
-                    $doc->addScriptDeclaration($script);
-
                     //$doc->addScript('admin/resources/js/less/less.min.js');
                     $response->scripts=$doc->getScripts();
                     $scripts=$response->scripts;
                     foreach ($scripts as $src=>$item){
                         $item=(object)$item;
-                      
-
-
                         $wboptions=new stdClass();
                         if(isset($item->selector)){
                             $wboptions->selector=$item->selector;
