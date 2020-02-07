@@ -232,6 +232,27 @@ class woobooking_controller{
 
                     //$doc->addScript('admin/resources/js/less/less.min.js');
                     $response->scripts=$doc->getScripts();
+                    $scripts=$response->scripts;
+                    foreach ($scripts as $src=>$item){
+                        $item=(object)$item;
+                      
+
+
+                        $wboptions=new stdClass();
+                        if(isset($item->selector)){
+                            $wboptions->selector=$item->selector;
+                        }
+                        if(isset($item->options) && count($item->options)){
+                            $wboptions->options=$item->options;
+                        }
+                        $data.='<script type="text/javascript" >var wboptions='.json_encode($wboptions).'</script>';
+                        if(strpos($src,"http")!==false){
+                            $data.='<script src="'.$src.'"></script>';
+                        }else{
+                            $data.='<script src="'.Factory::getRootUrlPlugin().$src.'"></script>';
+                        }
+
+                    }
                     $response->script=$doc->getScript();
                     $response->styleSheets=$doc->getStyleSheets();
                     $response->lessStyleSheets=$doc->getLessStyleSheets();

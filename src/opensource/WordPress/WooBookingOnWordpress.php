@@ -418,12 +418,7 @@ class WooBookingOnWordpress
 		add_filter('woopanel_navigation_items', array($this, 'woobooking_add_plus_navigation_items'), 10, 1);
 
 		if ($app->getClient() == 1) {
-
-			if (self::is_backend_wordpress()) {
-				$this->initWordpressBackend();
-			} else {
-				$this->initOpenWooBookingWooPanelBackend();
-			}
+            $this->initWordpressBackend();
 		} else {
 
 			$this->initOpenWooBookingWordpressFrontend();
@@ -910,14 +905,7 @@ class WooBookingOnWordpress
 
 	function frontend_shapeSpace_print_scripts()
 	{
-		$root_url = self::get_root_url();
-		?>
-        <script type="text/javascript">
-            root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
-            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-        </script>
-		<?php
+
 	}
 
 	function admin_wordpress_shapeSpace_print_scripts()
