@@ -369,84 +369,90 @@ class WooBookingOnWordpress
 		Factory::setRootUrl($root_url);
 		$input = Factory::getInput();
 		$doc = Factory::getDocument();
-		require_once WOOBOOKING_PATH_LIB . "/tgm-plugin-activation/class-tgm-plugin-activation.php";
-		add_action('admin_head', array($this, 'admin_wordpress_shapeSpace_print_scripts'));
-		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
+        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
+        if (self::is_rest_api()) {
+
+        }else{
+            require_once WOOBOOKING_PATH_LIB . "/tgm-plugin-activation/class-tgm-plugin-activation.php";
+            add_action('admin_head', array($this, 'admin_wordpress_shapeSpace_print_scripts'));
+            $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 
 
-		Html::_('jquery.loading_js');
-		$doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
-		$doc->addScript('admin/resources/js/less/less.min.js');
-		$doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
-		Html::_('jquery.confirm');
-		$doc->addScript('admin/resources/js/Bootstrap-Loading/src/waitingfor.js');
-		$doc->addScript('admin/resources/js/jquery.form/jquery.form.js');
-		$doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
-		$doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeToJSON.js');
-		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/main_script.js');
-		$doc->addLessStyleSheet('admin/nb_apps/nb_woobooking/assets/less/main_style.less');
-		$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
-		Html::_('jquery.tooltip');
-		Html::_('jquery.bootstrap');
-		Html::_('jquery.fontawesome');
+            Html::_('jquery.loading_js');
+            $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
+            $doc->addScript('admin/resources/js/less/less.min.js');
+            $doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
+            Html::_('jquery.confirm');
+            $doc->addScript('admin/resources/js/Bootstrap-Loading/src/waitingfor.js');
+            $doc->addScript('admin/resources/js/jquery.form/jquery.form.js');
+            $doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
+            $doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeToJSON.js');
+            $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/main_script.js');
+            $doc->addLessStyleSheet('admin/nb_apps/nb_woobooking/assets/less/main_style.less');
+            $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
+            Html::_('jquery.tooltip');
+            Html::_('jquery.bootstrap');
+            Html::_('jquery.fontawesome');
 
-		$doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
-		$doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
+            $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
+            $doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
 
-		if (!self::is_rest_api()) {
-			Html::_('jquery.less');
-		}
-		Html::_('jquery.fontawesome');
-		Html::_('jquery.confirm');
-		Html::_('jquery.serialize_object');
-		Html::_('jquery.bootstrap');
+            if (!self::is_rest_api()) {
+                Html::_('jquery.less');
+            }
+            Html::_('jquery.fontawesome');
+            Html::_('jquery.confirm');
+            Html::_('jquery.serialize_object');
+            Html::_('jquery.bootstrap');
 
-		$doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
-		Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
-		//$list_view=self::get_list_layout_view_frontend();
-		if (!function_exists('wp_add_inline_script')) {
-			require_once ABSPATH . WPINC . '/functions.wp-scripts.php';
-		}
+            $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
 
-
-		// inline script via wp_print_scripts
-
-		add_action('wp_print_scripts', array($this, 'shapeSpace_print_scripts'));
+            //$list_view=self::get_list_layout_view_frontend();
+            if (!function_exists('wp_add_inline_script')) {
+                require_once ABSPATH . WPINC . '/functions.wp-scripts.php';
+            }
 
 
-		add_action('admin_footer', array($this, 'add_script_admin_wordpress'));
-		add_filter('block_categories', array($this, 'woobooking_block_category'), 10, 2);
+            // inline script via wp_print_scripts
+
+            add_action('wp_print_scripts', array($this, 'shapeSpace_print_scripts'));
 
 
-		/* wp_update_nav_menu_item(23, 0, array('menu-item-title' => 'About',
-			 'menu-item-object' => 'page',
-			 'menu-item-object-id' => get_page_by_path('about')->ID,
-			 'menu-item-type' => 'post_type',
-			 'menu-item-status' => 'publish'));*/
-
-		// Registering the block
-		/* foreach ($list_view as $key=> $view) {
-			 register_block_type("woobooking/$key", array(
-				 'render_callback' => [$this, 'render_last_posts'],
-			 ));
-		 }*/
-
-		add_action('admin_head-nav-menus.php', array($this, 'my_register_menu_metabox'));
+            add_action('admin_footer', array($this, 'add_script_admin_wordpress'));
+            add_filter('block_categories', array($this, 'woobooking_block_category'), 10, 2);
 
 
-		//add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
-		//add admin menu
-		add_action('admin_menu', array($this, 'woobooking_plugin_setup_menu'));
-		add_action('tgmpa_register', array($this, 'my_theme_register_required_plugins'));
+            /* wp_update_nav_menu_item(23, 0, array('menu-item-title' => 'About',
+                 'menu-item-object' => 'page',
+                 'menu-item-object-id' => get_page_by_path('about')->ID,
+                 'menu-item-type' => 'post_type',
+                 'menu-item-status' => 'publish'));*/
 
-		// [bartag foo="foo-value"]
+            // Registering the block
+            /* foreach ($list_view as $key=> $view) {
+                 register_block_type("woobooking/$key", array(
+                     'render_callback' => [$this, 'render_last_posts'],
+                 ));
+             }*/
+
+            add_action('admin_head-nav-menus.php', array($this, 'my_register_menu_metabox'));
 
 
-		add_action('vc_before_init', array($this, 'your_name_integrateWithVC'));
-		if (function_exists("vc_add_shortcode_param")) {
-			vc_add_shortcode_param('woo_booking_block_type', array($this, 'woo_booking_block_type_settings_field'));
-		}
-		add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
+            //add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
+            //add admin menu
+            add_action('admin_menu', array($this, 'woobooking_plugin_setup_menu'));
+            add_action('tgmpa_register', array($this, 'my_theme_register_required_plugins'));
+
+            // [bartag foo="foo-value"]
+
+
+            add_action('vc_before_init', array($this, 'your_name_integrateWithVC'));
+            if (function_exists("vc_add_shortcode_param")) {
+                vc_add_shortcode_param('woo_booking_block_type', array($this, 'woo_booking_block_type_settings_field'));
+            }
+            add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
+
+        }
         add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 		//vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
 
@@ -1396,10 +1402,10 @@ class WooBookingOnWordpress
             if (isset($attribs['options']) && !empty($attribs['options']))
                 $options = array_merge($options, (array)$attribs['options']);
             if (strpos($src, 'http') !== false) {
-                wp_enqueue_script('woobooking-script-' . $random, $src, array('jquery'));
+                wp_enqueue_script('woobooking-script-' . $random, $src);
 
             } else {
-                wp_enqueue_script('woobooking-script-' . $random, Factory::getRootUrlPlugin() . $src, array('jquery'));
+                wp_enqueue_script('woobooking-script-' . $random, Factory::getRootUrlPlugin() . $src);
             }
             if (!empty($options))
                 wp_localize_script('woobooking-script-' . $random, 'wboptions', $options);
