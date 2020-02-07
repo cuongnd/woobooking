@@ -45,6 +45,12 @@ class WooBookingOnWordpress
 		return self::$instance;
 	}
 
+	private static function setVersion($version=""){
+	    self::$version=$version;
+    }
+	private static function getVersion(){
+	    return self::$version;
+    }
 	private static function get_prefix_link()
 	{
 
