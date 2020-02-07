@@ -933,7 +933,7 @@ class WooBookingOnWordpress
 		<?php
 	}
 
-	protected static function get_list_layout_view_frontend()
+	public static function get_list_layout_view_frontend()
 	{
 		$views_path = WOOBOOKING_PATH_COMPONENT_FRONT_END . "/views";
 
