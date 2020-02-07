@@ -227,7 +227,6 @@ class woobooking_controller{
                         }
 
                     }
-                    $response->script=$doc->getScript();
                     $response->styleSheets=$doc->getStyleSheets();
                     $response->lessStyleSheets=$doc->getLessStyleSheets();
                     $response->style=$doc->getStyle();
@@ -303,7 +302,7 @@ class woobooking_controller{
         {
             return self::$instance[$controller];
         }
-        
+        $app=Factory::getApplication();
         $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
@@ -331,7 +330,7 @@ class woobooking_controller{
         $input=Factory::getInput();
         if(empty($data))
         {
-            $data=$input->getArray($_POST)['data'];
+            $data=($input->getArray($_POST))['data'];
         }
 
 
@@ -392,7 +391,7 @@ class woobooking_controller{
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";
