@@ -1,5 +1,6 @@
 <?php
 
+use WooBooking\CMS\Filesystem\File as FileAlias;
 use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Utilities\Utility;
 
@@ -245,12 +246,14 @@ class woobooking_controller{
                             $wboptions->selector=$item->selector;
                         }
                         if(isset($item->options) && count($item->options)){
-                            $wboptions->options=$item->options;
+                            foreach ($item->options as $key=>$value){
+                                $wboptions->$key=$value;
+                            }
                         }
-                        $data_script.='<script type="text/javascript" >var wboptions='.json_encode($wboptions).'</script>';
+                        $data_script.='<script type="text/javascript" >var wboptions='.json_encode($wboptions).';</script>';
                         if(strpos($src,"http")!==false){
                             $data_script.='<script  src="'.$src.'"></script>';
-                        }else{
+                        }elseif(FileAlias::exists(WOOBOOKING_PATH_ROOT.DS.$src)){
                             $data_script.='<script src="'.Factory::getRootUrlPlugin().$src.'"></script>';
                         }
 
