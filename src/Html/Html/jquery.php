@@ -292,20 +292,21 @@ JS
         }
         return;
     }
-	public static function bootstrap($debug = null)
-	{
-		// Include jQuery
-		static::framework();
-		// If no debugging value is set, use the configuration setting
-		// Only attempt to load the component if it's supported in core and hasn't already been loaded
-		if (empty(static::$loaded[__METHOD__])) {
-			$doc = Factory::getDocument();
-			$doc->addStyleSheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-			$doc->addScript('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
-			static::$loaded[__METHOD__] = true;
-		}
-		return;
-	}
+    public static function bootstrap($debug = null)
+    {
+
+        // Include jQuery
+        static::framework();
+        // If no debugging value is set, use the configuration setting
+        // Only attempt to load the component if it's supported in core and hasn't already been loaded
+        if (empty(static::$loaded[__METHOD__])) {
+            $doc = Factory::getDocument();
+            $doc->addStyleSheet('resources/js/bootstrap3.3.7/bootstrap.min.css');
+            $doc->addScript('resources/js/bootstrap3.3.7/bootstrap.min.js');
+            static::$loaded[__METHOD__] = true;
+        }
+        return;
+    }
     public static function tooltip($debug = null)
     {
         // Include jQuery
