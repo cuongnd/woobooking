@@ -526,7 +526,7 @@ class Document
      * @param array $attribs
      * @return $this
      */
-    public function addScriptApplySelector($selector="",$url, $options = array(), $attribs = array())
+    public function addScriptApplySelector($selector="",$function_name,$config,$url, $options = array(), $attribs = array())
 	{
 		// B/C before 3.7.0
 		if (!is_array($options) && (!is_array($attribs) || $attribs === array()))
@@ -565,6 +565,27 @@ class Document
 		$this->_scripts[$url]            = isset($this->_scripts[$url]) ? array_replace($this->_scripts[$url], $attribs) : $attribs;
 		$this->_scripts[$url]['options'] = isset($this->_scripts[$url]['options']) ? array_replace($this->_scripts[$url]['options'], $options) : $options;
 		$this->_scripts[$url]['selector'] = $selector;
+		ob_start();
+		?>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $('<?php echo $selector ?>').<?php echo $function_name ?>(<?php echo json_encode($config) ?>);
+            });
+
+        </script>
+		<?php
+
+        $content=ob_get_clean();
+        $content=Utility::remove_string_javascript($content);
+		$type="text/javascript";
+        if (!isset($this->_script[strtolower($type)]))
+        {
+            $this->_script[strtolower($type)] = $content;
+        }
+        else
+        {
+            $this->_script[strtolower($type)] .= chr(13) . $content;
+        }
 
 		return $this;
 	}

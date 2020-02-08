@@ -142,7 +142,7 @@ class FileLayout extends BaseLayout
 		$includePaths = $this->getIncludePaths();
 		$suffixes     = $this->getSuffixes();
 
-		$this->addDebugMessage('<strong>Layout:</strong> ' . $this->layoutId);
+        $this->addDebugMessage('<strong>Layout:</strong> ' . $this->layoutId);
 
 		if (!$layoutId)
 		{
@@ -200,7 +200,7 @@ class FileLayout extends BaseLayout
 		$rawPath  = str_replace('.', '/', $this->layoutId) . '.php';
 		$this->addDebugMessage('<strong>Searching layout for:</strong> ' . $rawPath);
 
-		$foundLayout = Path::find($this->includePaths, $rawPath);
+        $foundLayout = Path::find($this->includePaths, $rawPath);
 
 
         if (!$foundLayout)

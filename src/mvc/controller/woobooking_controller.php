@@ -241,16 +241,7 @@ class woobooking_controller{
                         if(trim($src)==="")
                             continue;
                         $item=(object)$item;
-                        $wboptions=new stdClass();
-                        if(isset($item->selector)){
-                            $wboptions->selector=$item->selector;
-                        }
-                        if(isset($item->options) && count($item->options)){
-                            foreach ($item->options as $key=>$value){
-                                $wboptions->$key=$value;
-                            }
-                        }
-                        $data_script.='<script type="text/javascript" >var wboptions='.json_encode($wboptions).';</script>';
+
                         if(strpos($src,"http")!==false){
                             $data_script.='<script  src="'.$src.'"></script>';
                         }elseif(FileAlias::exists(WOOBOOKING_PATH_ROOT.DS.$src)){
@@ -258,8 +249,6 @@ class woobooking_controller{
                         }
 
                     }
-
-
                     $response->data_script=$data_script;
                     $response->script=$doc->getScript();
                     $response->styleSheets=$doc->getStyleSheets();

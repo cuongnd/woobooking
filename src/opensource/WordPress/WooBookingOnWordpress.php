@@ -200,7 +200,9 @@ class WooBookingOnWordpress
 				echo "class $class_name not exit in file $file_controller_short_path, please create this class";
 			}
 		}
+
 		$this->add_basic_script_and_style_front_end();
+
 
 		add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
 		//hook api
@@ -220,6 +222,10 @@ class WooBookingOnWordpress
 
 	}
 
+	function wp_hook_add_script_head(){
+        wp_enqueue_script('jquery');
+
+    }
 	function add_custom_header()
 	{
 
@@ -373,6 +379,7 @@ class WooBookingOnWordpress
         if (self::is_rest_api()) {
 
         }else{
+
             require_once WOOBOOKING_PATH_LIB . "/tgm-plugin-activation/class-tgm-plugin-activation.php";
             add_action('admin_head', array($this, 'admin_wordpress_shapeSpace_print_scripts'));
             $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
@@ -1369,7 +1376,8 @@ class WooBookingOnWordpress
 
 	public function wp_hook_add_script_footer()
 	{
-
+        wp_enqueue_script("jquery");
+        wp_head();
 		$doc = Factory::getDocument();
 		$styleSheets = $doc->getStyleSheets();
 		foreach ($styleSheets as $src => $attribs) {
@@ -1402,23 +1410,15 @@ class WooBookingOnWordpress
 		$scripts = $doc->getScripts();
 
 
+
         foreach ($scripts as $src => $attribs) {
-
-
-            $random = random_int(100000, 900000);
-            $options = array();
-            if (isset($attribs['selector']) && $attribs['selector'] != "")
-                $options['selector'] = $attribs['selector'];
-            if (isset($attribs['options']) && !empty($attribs['options']))
-                $options = array_merge($options, (array)$attribs['options']);
             if (strpos($src, 'http') !== false) {
-                wp_enqueue_script('woobooking-script-' . $random, $src,array('jquery'));
-
             } else {
-                wp_enqueue_script('woobooking-script-' . $random, Factory::getRootUrlPlugin() . $src,array('jquery'));
+                $src=Factory::getRootUrlPlugin() . $src;
             }
-            if (!empty($options))
-                wp_localize_script('woobooking-script-' . $random, 'wboptions', $options);
+            ?>
+            <script type="text/javascript" src="<?php echo $src ?>"></script>
+            <?php
         }
 
         // Register the script
