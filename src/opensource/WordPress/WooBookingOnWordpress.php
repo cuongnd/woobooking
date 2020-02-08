@@ -135,7 +135,6 @@ class WooBookingOnWordpress
 		Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
 
 
-		add_action('wp_print_scripts', array($this, 'frontend_shapeSpace_print_scripts'));
 		$task = $input->getString('task', '');
 
 
@@ -154,7 +153,6 @@ class WooBookingOnWordpress
 		add_action('woocommerce_after_single_product_summary', array($this, 'woocommerce_after_single_product_summary'),
 			10, 0);
 
-
 		// add action when booking order
 
 		add_action('woocommerce_checkout_create_order', array($this, 'woobooking_checkout_create_order'), 20, 2);
@@ -167,7 +165,6 @@ class WooBookingOnWordpress
 			die;
 		}
 		add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
-
 		$list_view = self::get_list_layout_block_frontend();
 
 		foreach ($list_view as $key => $view) {
@@ -201,54 +198,18 @@ class WooBookingOnWordpress
 				echo "class $class_name not exit in file $file_controller_short_path, please create this class";
 			}
 		}
-
 		$this->add_basic_script_and_style_front_end();
-
-
-
-
 		//hook api
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
-
-
-
-
-
-		//TODO làm đăng ký khi người dùng active plugin
-
-		//register_deactivation_hook( __FILE__,  array( $this, 'pluginprefix_deactivation' )  );
-		//register_activation_hook( __FILE__, 'pluginprefix_deactivation' );
-
-		//dang ky router
-
-
 	}
 
-	function wp_hook_add_script_head(){
-        wp_enqueue_script('jquery');
-
-    }
 	function wp_add_inline_script(){
-        add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
-
-
-
+	    if(self::is_backend_wordpress()){
+            add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
+        }else{
+            add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
+        }
     }
-	function add_custom_header()
-	{
-
-		$document = Factory::getDocument();
-		foreach ($document->_lessStyleSheets as $src => $attribs) {
-			ob_start();
-			?>
-            <link rel="stylesheet/less" type="text/css"
-                  href="<?php echo plugins_url() . "/" . PLUGIN_NAME . "/" . $src ?>"/>
-			<?php
-			echo ob_get_clean();
-		}
-
-
-	}
 
 	public static function wp_login($user_login)
 	{
@@ -326,10 +287,6 @@ class WooBookingOnWordpress
 		$this->view = self::get_current_page();
 		$app = Factory::getApplication();
 		$input = Factory::getInput();
-		add_filter('woopanel_query_var_filter', array($this, 'add_plus_menu_woopanel'), 999, 1);
-
-		add_filter('woopanel_navigation_items', array($this, 'woobooking_add_plus_navigation_items'), 10, 1);
-
 		if ($app->getClient() == 1) {
             $this->initWordpressBackend();
 		} else {
@@ -337,8 +294,6 @@ class WooBookingOnWordpress
 			$this->initOpenWooBookingWordpressFrontend();
 			$this->ecommerce = ECommerce::getInstance();
 		}
-
-
 	}
 
 	function start_session()
@@ -356,7 +311,6 @@ class WooBookingOnWordpress
 
 	function woobooking_block_category($categories, $post)
 	{
-
 		return array_merge(
 			$categories,
 			array(
@@ -368,12 +322,6 @@ class WooBookingOnWordpress
 		);
 	}
 
-	function add_script_admin_wordpress()
-	{
-		$doc = Factory::getDocument();
-		echo '<script type="text/javascript" src="' . Factory::getRootUrlPlugin() . 'admin/resources/js/less/less.min.js"></script>';
-		//echo '<script type="text/javascript" src="'.Factory::getRootUrlPlugin() .'lib/WooBooking/opensource/WordPress/blocks.build.js"></script>';
-	}
 
 	public function initWordpressBackend()
 	{
@@ -387,12 +335,8 @@ class WooBookingOnWordpress
         if (self::is_rest_api()) {
 
         }else{
-
             require_once WOOBOOKING_PATH_LIB . "/tgm-plugin-activation/class-tgm-plugin-activation.php";
-            add_action('admin_head', array($this, 'admin_wordpress_shapeSpace_print_scripts'));
             $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
-
-
             Html::_('jquery.loading_js');
             $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
             $doc->addScript('admin/resources/js/less/less.min.js');
@@ -408,7 +352,6 @@ class WooBookingOnWordpress
             Html::_('jquery.tooltip');
             Html::_('jquery.bootstrap');
             Html::_('jquery.fontawesome');
-
             $doc->addStyleSheet('admin/resources/js/drawer-master/css/style.css');
             $doc->addScript('admin/resources/js/autoNumeric/autoNumeric.js');
 
@@ -422,18 +365,11 @@ class WooBookingOnWordpress
 
             $doc->addLessStyleSheet('nb_apps/nb_woobooking/assets/less/main_style_backend_wordpress.less');
 
-            //$list_view=self::get_list_layout_view_frontend();
-            if (!function_exists('wp_add_inline_script')) {
-                require_once ABSPATH . WPINC . '/functions.wp-scripts.php';
-            }
-
 
             // inline script via wp_print_scripts
 
-            add_action('wp_print_scripts', array($this, 'shapeSpace_print_scripts'));
 
 
-            add_action('admin_footer', array($this, 'add_script_admin_wordpress'));
             add_filter('block_categories', array($this, 'woobooking_block_category'), 10, 2);
 
 
@@ -456,17 +392,10 @@ class WooBookingOnWordpress
             //add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
             //add admin menu
             add_action('admin_menu', array($this, 'woobooking_plugin_setup_menu'));
-            add_action('tgmpa_register', array($this, 'my_theme_register_required_plugins'));
-
-            // [bartag foo="foo-value"]
-
-
             add_action('vc_before_init', array($this, 'your_name_integrateWithVC'));
             if (function_exists("vc_add_shortcode_param")) {
                 vc_add_shortcode_param('woo_booking_block_type', array($this, 'woo_booking_block_type_settings_field'));
             }
-            add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
-
         }
         add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 		//vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
@@ -552,150 +481,6 @@ class WooBookingOnWordpress
         </div>
 
 		<?php
-	}
-
-	/**
-	 * Register the required plugins for this theme.
-	 *
-	 * In this example, we register five plugins:
-	 * - one included with the TGMPA library
-	 * - two from an external source, one from an arbitrary source, one from a GitHub repository
-	 * - two from the .org repo, where one demonstrates the use of the `is_callable` argument
-	 *
-	 * The variables passed to the `tgmpa()` function should be:
-	 * - an array of plugin arrays;
-	 * - optionally a configuration array.
-	 * If you are not changing anything in the configuration array, you can remove the array and remove the
-	 * variable from the function call: `tgmpa( $plugins );`.
-	 * In that case, the TGMPA default settings will be used.
-	 *
-	 * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
-	 */
-	function my_theme_register_required_plugins()
-	{
-		$root_plugin = Factory::getRootUrlPlugin();
-
-		/*
-		 * Array of plugin arrays. Required keys are name and slug.
-		 * If the source is NOT from the .org repo, then source is also required.
-		 */
-		$plugins = array(
-
-
-		);
-
-		/*
-		 * Array of configuration settings. Amend each line as needed.
-		 *
-		 * TGMPA will start providing localized text strings soon. If you already have translations of our standard
-		 * strings available, please help us make TGMPA even better by giving us access to these translations or by
-		 * sending in a pull-request with .po file(s) with the translations.
-		 *
-		 * Only uncomment the strings in the config array if you want to customize the strings.
-		 */
-		$config = array(
-			'id' => 'tgmpa',
-			// Unique ID for hashing notices for multiple instances of TGMPA.
-			'default_path' => '',
-			// Default absolute path to bundled plugins.
-			'parent_slug' => 'themes.php',
-			'menu' => 'tgmpa-install-plugins',
-			// Menu slug.
-			'has_notices' => true,
-			// Show admin notices or not.
-			'dismissable' => true,
-			// If false, a user cannot dismiss the nag message.
-			'dismiss_msg' => '',
-			// If 'dismissable' is false, this message will be output at top of nag.
-			'is_automatic' => false,
-			// Automatically activate plugins after installation or not.
-			'message' => '',
-			// Message to output right before the plugins table.
-
-
-			'strings' => array(
-				'notice_can_install_required' => _n_noop(
-				/* translators: 1: plugin name(s). */
-					'Plugin Woobooking required two plugin: %1$s.',
-					'Plugin Woobooking required two plugin: %1$s.',
-					'theme-slug'
-				),
-				/* translators: %s: plugin name. * /
-				'installing'                      => __( 'Installing Plugin: %s', 'theme-slug' ),
-				/* translators: %s: plugin name. * /
-				'updating'                        => __( 'Updating Plugin: %s', 'theme-slug' ),
-				'oops'                            => __( 'Something went wrong with the plugin API.', 'theme-slug' ),
-				'notice_can_install_required'     => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'This theme requires the following plugin: %1$s.',
-					'This theme requires the following plugins: %1$s.',
-					'theme-slug'
-				),
-				'notice_can_install_recommended'  => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'This theme recommends the following plugin: %1$s.',
-					'This theme recommends the following plugins: %1$s.',
-					'theme-slug'
-				),
-				'notice_ask_to_update'            => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
-					'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
-					'theme-slug'
-				),
-				'notice_ask_to_update_maybe'      => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'There is an update available for: %1$s.',
-					'There are updates available for the following plugins: %1$s.',
-					'theme-slug'
-				),
-				'notice_can_activate_required'    => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'The following required plugin is currently inactive: %1$s.',
-					'The following required plugins are currently inactive: %1$s.',
-					'theme-slug'
-				),
-				'notice_can_activate_recommended' => _n_noop(
-					/* translators: 1: plugin name(s). * /
-					'The following recommended plugin is currently inactive: %1$s.',
-					'The following recommended plugins are currently inactive: %1$s.',
-					'theme-slug'
-				),
-				'install_link'                    => _n_noop(
-					'Begin installing plugin',
-					'Begin installing plugins',
-					'theme-slug'
-				),
-				'update_link' 					  => _n_noop(
-					'Begin updating plugin',
-					'Begin updating plugins',
-					'theme-slug'
-				),
-				'activate_link'                   => _n_noop(
-					'Begin activating plugin',
-					'Begin activating plugins',
-					'theme-slug'
-				),
-				'return'                          => __( 'Return to Required Plugins Installer', 'theme-slug' ),
-				'plugin_activated'                => __( 'Plugin activated successfully.', 'theme-slug' ),
-				'activated_successfully'          => __( 'The following plugin was activated successfully:', 'theme-slug' ),
-				/* translators: 1: plugin name. * /
-				'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'theme-slug' ),
-				/* translators: 1: plugin name. * /
-				'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'theme-slug' ),
-				/* translators: 1: dashboard link. * /
-				'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'theme-slug' ),
-				'dismiss'                         => __( 'Dismiss this notice', 'theme-slug' ),
-				'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'theme-slug' ),
-				'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'theme-slug' ),
-
-				'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
-				*/
-			),
-
-		);
-
-		tgmpa($plugins, $config);
 	}
 
 	function woobooking_plugin_setup_menu()
@@ -808,39 +593,6 @@ class WooBookingOnWordpress
 		<?php
 		return ob_get_clean();
 	}
-
-
-	function woopanel_dashboard_woobooking_frontend_shapeSpace_print_scripts()
-	{
-		$root_url = self::get_root_url();
-		?>
-        <script type="text/javascript">
-            root_url = "<?php echo $root_url ?>";
-            current_url = "<?php echo $root_url . 'wp-admin/admin.php?page=' . $this->view ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
-            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-        </script>
-		<?php
-	}
-
-	function frontend_shapeSpace_print_scripts()
-	{
-
-	}
-
-	function admin_wordpress_shapeSpace_print_scripts()
-	{
-		$root_url = self::get_root_url();
-		?>
-        <script type="text/javascript">
-            root_url = "<?php echo $root_url ?>";
-            current_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
-            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-        </script>
-		<?php
-	}
-
 	public static function get_list_layout_view_frontend()
 	{
 		$views_path = WOOBOOKING_PATH_COMPONENT_FRONT_END . "/views";
@@ -1448,19 +1200,6 @@ class WooBookingOnWordpress
 
 	}
 
-
-
-	//Hiển thị các page my-plugin1
-	function add_plus_menu_woopanel($arr_query)
-	{
-
-		$arr_query_new = self::getListMenuWooPanel();
-
-		$arr_query = array_merge($arr_query, $arr_query_new);
-
-		return $arr_query;
-	}
-
 	public static $list_menu_by_xml = array();
 
 	public static function get_list_view_xml()
@@ -1498,35 +1237,4 @@ class WooBookingOnWordpress
 		return self::$list_menu_by_xml;
 	}
 
-	function woobooking_add_plus_navigation_items($output_menus)
-	{
-		global $woopanel_submenus;
-		$list_item = array();
-		foreach ($output_menus as $item) {
-			$list_item[] = $item;
-		}
-		$output_menus = $list_item;
-		$woopanel_submenus[self::$prefix_link . 'db_appointments'] = self::get_list_view_for_woo_panel();
-		$db_appointments = array(
-			'id' => self::$prefix_link . 'db_appointments',
-			'menu_slug' => self::$prefix_link . 'db_appointments',
-			'menu_title' => __('Wp booking pro'),
-			'capability' => '',
-			'page_title' => '',
-			'icon' => 'flaticon-line-graph',
-			'classes' => '',
-			'submenu' => $woopanel_submenus[self::$prefix_link . 'db_appointments']
-		);
-		$list = array();
-		foreach ($list_item as $index => $item) {
-			if ($index == 1) {
-				$list[] = $db_appointments;
-				$list[] = $item;
-			} else {
-				$list[] = $item;
-			}
-		}
-		return $list;
-
-	}
 }
