@@ -466,7 +466,7 @@ class woobooking_controller{
         $root_url=Factory::getRootUrl();
         $html = '<html><head>';
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
-        $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.'wp-admin/admin.php?page='.$page)) . ';</script>';
+        $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.'wp-booking-pro?page='.$page)) . ';</script>';
         $html .= '</head><body></body></html>';
         echo $html;
     }

@@ -284,7 +284,7 @@ class WooBookingOnWordpress
 
 	public static function get_stander_page_front_end($page)
 	{
-		return self::getKeyWooBooking() . "-$page";
+		return  $page;
 	}
 
 	function bl_new_demo_route_callback()
