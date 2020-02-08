@@ -1418,7 +1418,7 @@ class WooBookingOnWordpress
         $content=ob_get_clean();
         $content=Utility::remove_string_javascript($content);
         wp_enqueue_script('js-wp-booking-pro-init', Factory::getRootUrlPlugin() .'resources/js/init.js' );
-        wp_add_inline_script('js-wp-booking-pro', $content);
+        wp_add_inline_script('js-wp-booking-pro-init', $content);
 
 
 
