@@ -751,6 +751,20 @@ abstract class FormField
 		return $title;
 	}
 
+    /**
+     * Method to get the field title.
+     *
+     * @param string $name
+     * @return  string  The field title.
+     *
+     * @since   1.7.0
+     */
+	public function setName($name="")
+	{
+	    $this->name=$name;
+        //$this->element['name']=$name;
+	}
+
 	/**
 	 * Method to get the field label markup.
 	 *
