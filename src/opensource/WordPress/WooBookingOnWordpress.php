@@ -134,6 +134,7 @@ class WooBookingOnWordpress
 		Factory::setRootUrl($root_url);
 		Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
 
+
 		add_action('wp_print_scripts', array($this, 'frontend_shapeSpace_print_scripts'));
 		$task = $input->getString('task', '');
 
@@ -205,7 +206,7 @@ class WooBookingOnWordpress
 
 
 
-		add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
+
 		//hook api
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 
@@ -228,15 +229,10 @@ class WooBookingOnWordpress
 
     }
 	function wp_add_inline_script(){
-        $document = Factory::getDocument();
-        $script = $document->getScript();
-        wp_add_inline_script( 'dummy-handle-header', 'console.log( "header" );' );
+        add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
 
-        foreach ($script as $attribs => $content) {
-            $random=rand(1000,30000);
 
-            wp_add_inline_script('js-'.$random, $content);
-        }
+
     }
 	function add_custom_header()
 	{
@@ -1410,6 +1406,7 @@ class WooBookingOnWordpress
 			echo ob_get_clean();
 		}
         $root_url = self::get_root_url();
+		ob_start();
         ?>
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
@@ -1418,19 +1415,28 @@ class WooBookingOnWordpress
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
         </script>
         <?php
+        $content=ob_get_clean();
+        $content=Utility::remove_string_javascript($content);
+        wp_enqueue_script('js-wp-booking-pro-init', Factory::getRootUrlPlugin() .'resources/js/init.js' );
+        wp_add_inline_script('js-wp-booking-pro', $content);
+
+
 
 		$scripts = $doc->getScripts();
-
-
-
         foreach ($scripts as $src => $attribs) {
+            $random = random_int(100000, 900000);
             if (strpos($src, 'http') !== false) {
             } else {
                 $src=Factory::getRootUrlPlugin() . $src;
             }
-            ?>
-            <script type="text/javascript" src="<?php echo $src ?>"></script>
-            <?php
+            wp_enqueue_script('my_scripts-'.$random, $src,array('jquery') );
+
+        }
+        wp_enqueue_script('js-wp-booking-pro-end', Factory::getRootUrlPlugin() .'resources/js/emtry.js' );
+        $doc=Factory::getDocument();
+        $script = $doc->getScript();
+        foreach ($script as $attribs => $content) {
+            wp_add_inline_script('js-wp-booking-pro-end', $content);
         }
 
         // Register the script
