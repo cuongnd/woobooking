@@ -271,10 +271,13 @@ class WooBookingView extends CMSObject
 
             $headDocument=$doc->loadRenderer('head');
             $headDocument->render('head');
+            $open_source->wp_add_inline_script();
             return $content;
         }else{
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it in view <b>".$this->view."</b>");
         }
+
+
     }
     public function display_block($block_id,$tpl){
 

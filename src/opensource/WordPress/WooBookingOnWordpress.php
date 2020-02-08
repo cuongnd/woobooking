@@ -204,6 +204,7 @@ class WooBookingOnWordpress
 		$this->add_basic_script_and_style_front_end();
 
 
+
 		add_action('wp_footer', array($this, 'wp_hook_add_script_footer'));
 		//hook api
 		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
@@ -225,6 +226,17 @@ class WooBookingOnWordpress
 	function wp_hook_add_script_head(){
         wp_enqueue_script('jquery');
 
+    }
+	function wp_add_inline_script(){
+        $document = Factory::getDocument();
+        $script = $document->getScript();
+        wp_add_inline_script( 'dummy-handle-header', 'console.log( "header" );' );
+
+        foreach ($script as $attribs => $content) {
+            $random=rand(1000,30000);
+
+            wp_add_inline_script('js-'.$random, $content);
+        }
     }
 	function add_custom_header()
 	{
@@ -1426,14 +1438,7 @@ class WooBookingOnWordpress
 
 
 
-		$script = $doc->getScript();
-		foreach ($script as $attribs => $content) {
-			?>
-            <script type="text/javascript">
-				<?php echo $content ?>
-            </script>
-			<?php
-		}
+		
 
 	}
 
