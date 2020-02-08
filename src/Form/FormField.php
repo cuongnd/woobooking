@@ -765,6 +765,12 @@ abstract class FormField
         //$this->element['name']=$name;
 	}
 
+	public function setId($id="")
+	{
+	    $this->id=$id;
+        //$this->element['name']=$name;
+	}
+
 	/**
 	 * Method to get the field label markup.
 	 *
