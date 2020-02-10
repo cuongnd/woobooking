@@ -35,6 +35,8 @@ class gutembergBlock
             filemtime( plugin_dir_path( __FILE__ ) . 'gutembergBlock/mb-block.js' ) // filemtime — Gets file modification time.
         );
         wp_localize_script('backend-list-block', 'list_view', $list_view);
+        wp_localize_script('backend-list-block', 'root_url', Factory::getRootUrl());
+        wp_localize_script('backend-list-block', 'api_task', $open_source->get_api_task());
 
     }
     function woobooking_block_category($categories, $post)
