@@ -287,6 +287,7 @@ class WooBookingOnWordpress
 		$this->view = self::get_current_page();
 		$app = Factory::getApplication();
 		$input = Factory::getInput();
+        $this->wp_enqueue_script_media();
 		if ($app->getClient() == 1) {
             $this->initWordpressBackend();
 		} else {
@@ -1136,9 +1137,24 @@ class WooBookingOnWordpress
 		return $list_menu;
 	}
 
+	public function wp_enqueue_script_media(){
+        if(self::is_backend_wordpress()){
+            add_action("admin_enqueue_scripts",array($this,"add_wp_enqueue_scripts"));
+        }else{
+            add_action("wp_enqueue_scripts",array($this,"add_wp_enqueue_scripts"));
+        }
+
+
+
+    }
+	public function add_wp_enqueue_scripts(){
+        wp_enqueue_media();
+    }
 	public function wp_hook_add_script_footer()
 	{
+
         wp_enqueue_script("jquery");
+
         wp_head();
 		$doc = Factory::getDocument();
 		$styleSheets = $doc->getStyleSheets();
