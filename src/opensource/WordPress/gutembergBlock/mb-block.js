@@ -202,7 +202,9 @@ render_wrapper_block=function(clientId,wp,key,props,content){
 
 
 };
+console.log("list_view",list_view);
 jQuery.each(list_view,function (key, item) {
+    key=`block-${key}`;
     wp.blocks.registerBlockType(`woobooking/${key}`, {
         title: item.title,
         icon: 'megaphone',
@@ -235,7 +237,7 @@ jQuery.each(list_view,function (key, item) {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: root_url + api_task,
+                    url: root_url + 'wp-booking-pro/?page=block-ajax_detail',
                     data: {
                         type: key,
                         open_source_client_id: clientId,
@@ -252,9 +254,12 @@ jQuery.each(list_view,function (key, item) {
 
                     },
                     success: function (response) {
-                        response = JSON.parse(response);
+                        console.log("response",response);
+
+
 
                         if (response.result === "success") {
+
                             list_html[key] = response;
                             list_content_of_block[clientId]=response.data;
                             $(`div.${clientId}`).find('.block-content').html(response.data);

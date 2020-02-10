@@ -162,6 +162,7 @@ class WooBookingOnWordpress
 		$list_view = self::get_list_layout_view_frontend();
 		if (!isset($list_view[$page])) {
 			echo "cannot found page";
+
 			die;
 		}
 		add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
@@ -199,9 +200,11 @@ class WooBookingOnWordpress
 				echo "class $class_name not exit in file $file_controller_short_path, please create this class";
 			}
 		}
+
 		$this->add_basic_script_and_style_front_end();
 		//hook api
-		add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
+
+
 	}
 
 	function wp_add_inline_script(){
@@ -289,10 +292,12 @@ class WooBookingOnWordpress
 		$app = Factory::getApplication();
 		$input = Factory::getInput();
         $this->wp_enqueue_script_media();
+        add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
+
 		if ($app->getClient() == 1) {
+
             $this->initWordpressBackend();
 		} else {
-
 			$this->initOpenWooBookingWordpressFrontend();
 			$this->ecommerce = ECommerce::getInstance();
 		}
@@ -383,7 +388,7 @@ class WooBookingOnWordpress
                 vc_add_shortcode_param('woo_booking_block_type', array($this, 'woo_booking_block_type_settings_field'));
             }
         }
-        add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
+
 		//vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
 
 
@@ -1010,6 +1015,7 @@ class WooBookingOnWordpress
 		$prefix_link = self::get_prefix_link();
 		$app = Factory::getApplication();
 		if ($app->getClient() == 1) {
+
 			return "/{$prefix_link}db_appointments/task";
 		} else {
 			return "/nbwoobooking/task";
@@ -1019,6 +1025,7 @@ class WooBookingOnWordpress
 
 	function woobooking_register_rest_route()
 	{
+
 		$view = self::get_current_page();
 		//root/wp-json/woobooking_api/1.0/db_appointments/task //post
 		register_rest_route(

@@ -186,6 +186,7 @@ class woobooking_controller{
 
     }
     public static function ajax_action_task(){
+
         $input=Factory::getInput();
         $data = json_decode( file_get_contents('php://input') );
         $task=$input->getString('task','');
@@ -322,6 +323,7 @@ class woobooking_controller{
      */
     public static function getInstance($controller, $config = array())
     {
+        $app=Factory::getApplication();
         if (is_object(self::$instance[$controller]))
         {
             return self::$instance[$controller];
@@ -354,7 +356,7 @@ class woobooking_controller{
         $input=Factory::getInput();
         if(empty($data))
         {
-            $data=$input->getArray($_POST)['data'];
+            $data=($input->getArray($_POST))['data'];
         }
 
 
@@ -415,7 +417,7 @@ class woobooking_controller{
         list($view,$layout)=explode(".",$view_layout);
         $openSource=Factory::getOpenSource();
         $key_woo_booking=$openSource->getKeyWooBooking();
-        $http_list_var=[];
+        $http_list_var=array();
         if(is_array($items_var)){
             foreach ($items_var as $key=> $value){
                 $http_list_var[]="$key=$value";

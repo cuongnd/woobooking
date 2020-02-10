@@ -28,15 +28,18 @@ class gutembergBlock
     function mdlr_editable_block_example_backend_enqueue() {
         $open_source=Factory::getOpenSource();
         $list_view = $open_source->get_list_layout_block_frontend();
+
         wp_enqueue_script(
             'backend-list-block', // Unique handle.
             plugins_url( 'gutembergBlock/mb-block.js', __FILE__ ), // Block.js: We register the block here.
             array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
             filemtime( plugin_dir_path( __FILE__ ) . 'gutembergBlock/mb-block.js' ) // filemtime — Gets file modification time.
         );
+        $api_task="/wp-json/".$open_source::$namespace.$open_source->get_api_task();
         wp_localize_script('backend-list-block', 'list_view', $list_view);
         wp_localize_script('backend-list-block', 'root_url', Factory::getRootUrl());
-        wp_localize_script('backend-list-block', 'api_task', $open_source->get_api_task());
+        wp_localize_script('backend-list-block', 'root_url_plugin', Factory::getRootUrlPlugin());
+        wp_localize_script('backend-list-block', 'api_task', $api_task);
 
     }
     function woobooking_block_category($categories, $post)
