@@ -14,7 +14,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-config-blog').live('click',funct
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + api_task,
+        url: root_url + 'wp-booking-pro/?page=block-ajax_block_config',
         data: {
             type: type,
             open_source_client_id: currentClientId,
