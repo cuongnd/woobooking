@@ -304,10 +304,12 @@ class WooBookingOnWordpress
 
 	}
 
-	function getEcommerce()
-	{
-		return $this->ecommerce;
-	}
+    public function getEcommerce()
+    {
+        $this->ecommerce= ECommerce::getInstance();
+        return $this->ecommerce;
+    }
+
 
 	function woobooking_block_category($categories, $post)
 	{
