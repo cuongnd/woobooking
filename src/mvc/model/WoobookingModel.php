@@ -148,6 +148,7 @@ class WoobookingModel extends BaseDatabaseModel
      */
     protected function populateState($ordering = null, $direction = null)
     {
+
         // If the context is set, assume that stateful lists are used.
         if ($this->context) {
             $app = Factory::getApplication();

@@ -731,7 +731,7 @@ class WooBookingOnWordpress
 	{
 
 		$input = Factory::getInput();
-		$page = $input->getString('page', $this->page_default);
+        $page = $input->getString('page', $this->page_default);
 		$type = null;
 		if (is_array($atts) && $id = reset($atts)) {
 			list($view, $layout) = explode("-", $page);
