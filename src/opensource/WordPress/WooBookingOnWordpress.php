@@ -312,18 +312,7 @@ class WooBookingOnWordpress
     }
 
 
-	function woobooking_block_category($categories, $post)
-	{
-		return array_merge(
-			$categories,
-			array(
-				array(
-					'slug' => 'woobooking-block',
-					'title' => __('Woo booking block', 'woobooking-block'),
-				),
-			)
-		);
-	}
+
 
 
 	public function initWordpressBackend()
@@ -373,7 +362,7 @@ class WooBookingOnWordpress
 
 
 
-            add_filter('block_categories', array($this, 'woobooking_block_category'), 10, 2);
+
 
 
             /* wp_update_nav_menu_item(23, 0, array('menu-item-title' => 'About',
@@ -639,7 +628,7 @@ class WooBookingOnWordpress
 		return $list_view;
 	}
 
-	protected static function get_list_layout_block_frontend()
+	public static function get_list_layout_block_frontend()
 	{
 		$blocks_path = WOOBOOKING_PATH_ROOT . "/blocks";
 

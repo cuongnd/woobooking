@@ -1,105 +1,71 @@
 /**
- * mb Gutemberg block
- *  Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+ * Editable Block Example
+ *
+ * https://github.com/modularwp/gutenberg-block-editable-example
  */
-var el = wp.element.createElement,
-    registerBlockType = wp.blocks.registerBlockType,
-    ServerSideRender = wp.components.ServerSideRender,
-    TextControl = wp.components.TextControl,
-    TextareaControl = wp.components.TextareaControl,
-    InspectorControls = wp.editor.InspectorControls;
+( function() {
+    var __                = wp.i18n.__; // The __() function for internationalization.
+    var createElement     = wp.element.createElement; // The wp.element.createElement() function to create elements.
+    var registerBlockType = wp.blocks.registerBlockType; // The registerBlockType() function to register blocks.
+    var RichText          = wp.editor.RichText; // For creating editable elements.
 
-/** Set the icon for your block */
-var mb_icon = el ("img", {
-    src: "/wp-content/plugins/mb.gutemberg-block/images/YTPL.svg",
-    width: "50px",
-    height: "50px"
-});
-
-registerBlockType( 'mbideas/mb-simple-block', {
-    title: 'mb Simple Block',
-    icon: "carrot",
-    category: 'mb.ideas',
-
-    attributes: {
-
-        'mb_title': {
-            type: 'string',
-            default: "mb Editor content block"
-        },
-        'mb_text': {
-            type: 'string',
-            default: "Write here some text"
-        },
-
-        'mb_url': {
-            type: 'string',
-            default: "https://pupunzi.com"
-        },
-    },
-
-
-    edit: (props) => {
-
-        if(props.isSelected){
-            //console.debug(props.attributes);
-        };
-
-        return [
-            /**
-             * Server side render
-             */
-            el("div", {
-                    className: "mb-editor-container",
-                    style: {textAlign: "center"}
+    /**
+     * Register block
+     *
+     * @param  {string}   name     Block name.
+     * @param  {Object}   settings Block settings.
+     * @return {?WPBlock}          Block itself, if registered successfully,
+     *                             otherwise "undefined".
+     */
+    jQuery.each(list_view,function (key, item) {
+        registerBlockType(
+            `mdlr/${key}`, // Block name. Must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
+            {
+                title: __( key ), // Block title. __() function allows for internationalization.
+                icon: 'unlock', // Block icon from Dashicons. https://developer.wordpress.org/resource/dashicons/.
+                category: 'woobooking-block', // Block category. Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+                attributes: {
+                    content: {
+                        type: 'string',
+                        default: 'Editable block content...',
+                    },
                 },
-                el( ServerSideRender, {
-                    block: 'mbideas/mb-simple-block',
-                    attributes: props.attributes
-                } )
-            ),
 
-            /**
-             * Inspector
-             */
-            el( InspectorControls,
-                {}, [
-                    el( "hr", {
-                        style: {marginTop:20}
-                    }),
+                // Defines the block within the editor.
+                edit: function( props ) {
+                    var content = props.attributes.content;
+                    var focus = props.focus;
 
-                    el( TextControl, {
-                        label: 'Title',
-                        value: props.attributes.mb_title,
-                        onChange: ( value ) => {
-                            props.setAttributes( { mb_title: value } );
+                    function onChangeContent( updatedContent ) {
+                        props.setAttributes( { content: updatedContent } );
+                    }
+
+                    return createElement(
+                        RichText,
+                        {
+                            tagName: 'p',
+                            className: props.className,
+                            value: content,
+                            onChange: onChangeContent,
+                            focus: focus,
+                            onFocus: props.setFocus
+                        },
+                    );
+                },
+
+                // Defines the saved block.
+                save: function( props ) {
+                    var content = props.attributes.content;
+
+                    return createElement( RichText.Content,
+                        {
+                            'tagName': 'div',
+                            'value': content
                         }
-                    } ),
+                    );
+                },
+            }
+        );
+    });
 
-                    el( TextareaControl, {
-                        style: {height:250},
-                        label: 'Content',
-                        value: props.attributes.mb_text,
-                        onChange: ( value ) => {
-                            props.setAttributes( { mb_text: value } );
-                            console.debug(props.attributes)
-                        }
-                    }, props.attributes.mb_text ),
-
-                    el( TextControl, {
-                        label: 'Url',
-                        value: props.attributes.mb_url,
-                        onChange: ( value ) => {
-                            props.setAttributes( { mb_url: value } );
-                        }
-                    } ),
-                ]
-            )
-        ]
-    },
-
-    save: () => {
-        /** this is resolved server side */
-        return null
-    }
-} );
+})();
