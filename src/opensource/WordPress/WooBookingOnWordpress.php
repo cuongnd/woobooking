@@ -169,6 +169,7 @@ class WooBookingOnWordpress
 
 		foreach ($list_view as $key => $view) {
 			$a_key = self::$key_woo_booking . "-block-" . $key;
+
 			add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
 		}
 
@@ -745,9 +746,12 @@ class WooBookingOnWordpress
 		}
 		require_once WOOBOOKING_PATH_COMPONENT_FRONT_END . "/controllers/Block.php";
 		$input = Factory::getInput();
-		if (is_array($atts) && $id = reset($atts)) {
+
+
+        if (is_array($atts) && $id = reset($atts)) {
 
 			list($package, $block, $block_name) = explode("-", $a_view);
+
 			echo BlockController::view_block_module($id, $block_name);
 		}
 		return false;
