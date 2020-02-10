@@ -382,16 +382,9 @@ class WooBookingOnWordpress
                  'menu-item-type' => 'post_type',
                  'menu-item-status' => 'publish'));*/
 
-            // Registering the block
-            /* foreach ($list_view as $key=> $view) {
-                 register_block_type("woobooking/$key", array(
-                     'render_callback' => [$this, 'render_last_posts'],
-                 ));
-             }*/
-
             add_action('admin_head-nav-menus.php', array($this, 'my_register_menu_metabox'));
-
-
+            $gutembergBlock=gutembergBlock::getInstance();
+            $gutembergBlock->init();
             //add_action('admin_init', array($this, 'add_nav_menu_meta_boxes'));
             //add admin menu
             add_action('admin_menu', array($this, 'woobooking_plugin_setup_menu'));
@@ -821,6 +814,7 @@ class WooBookingOnWordpress
 
 	function render_last_posts($attributes, $content)
 	{
+
 		$input = Factory::getInput();
 		$open_source_client_id = $attributes['open_source_client_id'];
 		$modelBlock = WoobookingModel::getInstance('block');
