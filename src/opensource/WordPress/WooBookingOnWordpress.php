@@ -316,7 +316,8 @@ class WooBookingOnWordpress
         $this->wp_enqueue_script_media();
         add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
 
-		if ($app->getClient() == 1) {
+
+        if ($app->getClient() == 1) {
 
             $this->initWordpressBackend();
 		} else {
