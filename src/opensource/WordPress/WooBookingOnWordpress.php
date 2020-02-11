@@ -48,7 +48,25 @@ class WooBookingOnWordpress
 	private static function setVersion($version=""){
 	    self::$version=$version;
     }
-	public function setDefaultPage($default_page=""){
+
+    public function add_shortcode()
+    {
+
+
+
+        add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
+
+        $list_view = self::get_list_layout_block_frontend();
+
+
+        foreach ($list_view as $key => $view) {
+            $a_key = self::$key_woo_booking . "-block-" . $key;
+
+            add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
+        }
+    }
+
+    public function setDefaultPage($default_page=""){
 	    $this->page_default=$default_page;
     }
 	public function getDefaultPage(){
@@ -136,8 +154,6 @@ class WooBookingOnWordpress
 
 
 		$task = $input->getString('task', '');
-
-
 		//trying remove add to cart and price
 		remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
 		//add_filter( 'woocommerce_is_purchasable',array($this,'__return_false'));
@@ -165,14 +181,8 @@ class WooBookingOnWordpress
 
 			die;
 		}
-		add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
-		$list_view = self::get_list_layout_block_frontend();
 
-		foreach ($list_view as $key => $view) {
-			$a_key = self::$key_woo_booking . "-block-" . $key;
-
-			add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
-		}
+		self::add_shortcode();
 
 
 		if (!$task) {
@@ -298,6 +308,7 @@ class WooBookingOnWordpress
 
             $this->initWordpressBackend();
 		} else {
+
 			$this->initOpenWooBookingWordpressFrontend();
 			$this->ecommerce = ECommerce::getInstance();
 		}
@@ -721,11 +732,10 @@ class WooBookingOnWordpress
 
 	public function woo_booking_render_by_tag_func($atts, $content, $a_view)
 	{
-
 		$input = Factory::getInput();
         $page = $input->getString('page', $this->page_default);
-
 		$type = null;
+
 		if (is_array($atts) && $id = reset($atts)) {
 			list($view, $layout) = explode("-", $page);
 			echo woobooking_controller::display_block_app($id, "$view.$layout");
@@ -748,6 +758,7 @@ class WooBookingOnWordpress
 
 	function woo_booking_render_block_by_tag_func($atts, $content, $a_view)
 	{
+
 		if (!self::checkInstalled()) {
 			self::goToPopupInstall();
 		}
@@ -1228,7 +1239,7 @@ class WooBookingOnWordpress
 
 
 
-		
+
 
 	}
 

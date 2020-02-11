@@ -343,7 +343,7 @@ function loadBlockScripts(response) {
                 script_arr.push(root_url_plugin+src);
             }
         });
-
+        console.log("script_arr",script_arr);
         $.getBlockMultiScripts(script_arr, root_url_plugin).done(function () {
             var script = response.script;
             $('head').append(`<script type="text/javascript">${script['text/javascript']}</script>`);
