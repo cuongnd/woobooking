@@ -32,14 +32,13 @@ $(`.woo-booking-block-edit-content`).find('.btn-config-blog').live('click',funct
         },
         success: function (response) {
             response = JSON.parse(response);
-
             if (response.result === "success") {
-                loadLockScripts(response);
+                loadBlockScripts(response);
                 $block_edit_content.find('.block-content').html(response.data);
                 $block_edit_content.find('.controllers-save-cancel').show();
                 $block_edit_content.find('.btn-config-blog').hide();
             }
-            loadLockScripts(response);
+            loadBlockScripts(response);
         }
     });
 });
@@ -71,12 +70,12 @@ $(`.woo-booking-block-edit-content`).find('.btn-preview-block').live('click',fun
             response = JSON.parse(response);
             list_content_of_block[currentClientId]=response.data;
             if (response.result === "success") {
-                loadLockScripts(response);
+                loadBlockScripts(response);
                 $block_edit_content.find('.block-content').html(response.data);
             }
             $block_edit_content.find('.controllers-save-cancel').hide();
             $block_edit_content.find('.btn-config-blog').show();
-            loadLockScripts(response);
+            loadBlockScripts(response);
         }
     });
 });
@@ -108,12 +107,12 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
             response = JSON.parse(response);
             list_content_of_block[currentClientId]=response.data;
             if (response.result === "success") {
-                loadLockScripts(response);
+                loadBlockScripts(response);
                 $block_edit_content.find('.block-content').html(response.data);
             }
             $block_edit_content.find('.controllers-save-cancel').hide();
             $block_edit_content.find('.btn-config-blog').show();
-            loadLockScripts(response);
+            loadBlockScripts(response);
         }
     });
 });
@@ -152,12 +151,12 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
                 response = JSON.parse(response);
                 list_content_of_block[currentClientId]=response.data;
                 if (response.result === "success") {
-                    loadLockScripts(response);
+                    loadBlockScripts(response);
                     $block_edit_content.find('.block-content').html(response.data);
                 }
                 $block_edit_content.find('.controllers-save-cancel').hide();
                 $block_edit_content.find('.btn-config-blog').show();
-                loadLockScripts(response);
+                loadBlockScripts(response);
             }
         });
     });
@@ -168,7 +167,7 @@ render_wrapper_block=function(clientId,wp,key,props,content){
         if($block.length>0){
             $block.addClass('has-config');
 
-            loadLockScripts(list_html[key]);
+            loadBlockScripts(list_html[key]);
             clearInterval(aInterval);
         }
     },1000);
@@ -253,16 +252,14 @@ jQuery.each(list_view,function (key, item) {
 
                     },
                     success: function (response) {
-                        console.log("response",response);
-
                         response=JSON.parse(response);
-
+                        console.log("response",response);
                         if (response.result === "success") {
 
                             list_html[key_html] = response;
                             list_content_of_block[clientId]=response.data;
                             $(`div.${clientId}`).find('.block-content').html(response.data);
-                            loadLockScripts(response);
+                            loadBlockScripts(response);
                             if (current_action[key] === "block.preview") {
                                 $(`div.${clientId}`).find('.controllers-save-cancel').hide();
                                 $(`div.${clientId}`).find('.btn-config-blog').show();
@@ -311,7 +308,7 @@ jQuery.getBlockMultiLess = function (arr, path) {
 };
 list_js_installed=[];
 list_less_install=[];
-function loadLockScripts(response) {
+function loadBlockScripts(response) {
     $ = jQuery;
     $('link[rel="stylesheet/less"]').remove();
     var styleSheets = response.styleSheets;
