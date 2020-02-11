@@ -711,6 +711,7 @@ class WooBookingOnWordpress
             root_url = "<?php echo $root_url ?>";
             root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+            api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
             list_view =<?php echo json_encode($list_view) ?>
         </script>
 
@@ -723,6 +724,7 @@ class WooBookingOnWordpress
 
 		$input = Factory::getInput();
         $page = $input->getString('page', $this->page_default);
+
 		$type = null;
 		if (is_array($atts) && $id = reset($atts)) {
 			list($view, $layout) = explode("-", $page);
@@ -1022,6 +1024,13 @@ class WooBookingOnWordpress
 		}
 
 	}
+	public static function get_api_task_frontend()
+	{
+		$prefix_link = self::get_prefix_link();
+		$app = Factory::getApplication();
+        return "/api_task_frontend";
+
+	}
 
 	function woobooking_register_rest_route()
 	{
@@ -1031,6 +1040,16 @@ class WooBookingOnWordpress
 		register_rest_route(
 			self::$namespace,
 			self::get_api_task(),
+			array(
+				'methods' => 'POST',
+				'callback' => array('woobooking_controller', 'ajax_action_task'),
+			)
+		);
+        //register only frontend
+        //root/wp-json/woobooking_api/1.0/db_appointments/task_frontend //post
+		register_rest_route(
+			self::$namespace,
+			self::get_api_task_frontend(),
 			array(
 				'methods' => 'POST',
 				'callback' => array('woobooking_controller', 'ajax_action_task'),
@@ -1177,6 +1196,7 @@ class WooBookingOnWordpress
             current_url = "<?php echo $root_url ?>";
             root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+            api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
         </script>
         <?php
         $content=ob_get_clean();

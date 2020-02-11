@@ -10,15 +10,15 @@ $(`.woo-booking-block-edit-content`).find('.btn-config-blog').live('click',funct
     let $block_edit_content=$(this).closest('.woo-booking-block-edit-content');
     let currentClientId=$block_edit_content.attr('data-clientid');
     let type=$block_edit_content.data('type');
-    current_action[type] = "block.ajax_get_config_blog";
+    current_action[type] = "block.preview";
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + 'wp-booking-pro/?page=block-ajax_block_config',
+        url: root_url + api_task_frontend,
         data: {
             type: type,
             open_source_client_id: currentClientId,
-            task: "block.ajax_get_config_blog"
+            task: current_action[type]
         },
         beforeSend: function () {
             // setting a timeout
@@ -51,7 +51,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-preview-block').live('click',fun
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + api_task,
+        url: root_url + api_task_frontend,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -88,7 +88,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + api_task,
+        url: root_url + api_task_frontend,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -136,7 +136,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: root_url + api_task,
+            url: root_url + api_task_frontend,
             data: data,
             beforeSend: function () {
                 // setting a timeout
@@ -219,25 +219,25 @@ jQuery.each(list_view,function (key, item) {
             if(typeof clientId==="undefined"){
                 clientId= props.clientId;
             }
+            let key_html=`${key}-${clientId}`;
 
-
-            if(typeof list_html[key] !=="undefined"){
-                let content=list_html[key].data;
+            if(typeof list_html[key_html] !=="undefined"){
+                let content=list_html[key_html].data;
                 if(typeof list_content_of_block[clientId]!=="undefined"){
                     content=list_content_of_block[clientId];
                 }
                 props.setAttributes({open_source_client_id:clientId});
-                current_action[key]=typeof  current_action[key]!=="undefined"?current_action[key]:"block.ajax_get_preview_blog";
+                current_action[key]=typeof  current_action[key]!=="undefined"?current_action[key]:"block.preview";
                 return  render_wrapper_block(clientId,wp,key,props,content);
             }
-            current_action[key]=typeof  current_action[key]!=="undefined"?current_action[key]:"block.ajax_get_preview_blog";
+            current_action[key]=typeof  current_action[key]!=="undefined"?current_action[key]:"block.preview";
             props.setAttributes({open_source_client_id:clientId});
-            if(typeof load_ajax[key]==="undefined") {
+            if(typeof load_ajax[key_html]==="undefined") {
                 load_ajax[key]=1;
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: root_url + 'wp-booking-pro/?page=block-ajax_detail',
+                    url: root_url + api_task_frontend,
                     data: {
                         type: key,
                         open_source_client_id: clientId,
@@ -260,11 +260,11 @@ jQuery.each(list_view,function (key, item) {
 
                         if (response.result === "success") {
 
-                            list_html[key] = response;
+                            list_html[key_html] = response;
                             list_content_of_block[clientId]=response.data;
                             $(`div.${clientId}`).find('.block-content').html(response.data);
                             loadLockScripts(response);
-                            if (current_action[key] === "block.ajax_get_preview_blog") {
+                            if (current_action[key] === "block.preview") {
                                 $(`div.${clientId}`).find('.controllers-save-cancel').hide();
                                 $(`div.${clientId}`).find('.btn-config-blog').show();
                             } else {

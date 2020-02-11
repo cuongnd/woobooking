@@ -36,10 +36,13 @@ class gutembergBlock
             filemtime( plugin_dir_path( __FILE__ ) . 'gutembergBlock/mb-block.js' ) // filemtime — Gets file modification time.
         );
         $api_task="/wp-json/".$open_source::$namespace.$open_source->get_api_task();
+        $api_task_frontend="/wp-json/".$open_source::$namespace.$open_source->get_api_task_frontend();
         wp_localize_script('backend-list-block', 'list_view', $list_view);
         wp_localize_script('backend-list-block', 'root_url', Factory::getRootUrl());
         wp_localize_script('backend-list-block', 'root_url_plugin', Factory::getRootUrlPlugin());
         wp_localize_script('backend-list-block', 'api_task', $api_task);
+        wp_localize_script('backend-list-block', 'api_task_frontend', $api_task_frontend);
+        wp_enqueue_script('less-init', Factory::getRootUrlPlugin() .'resources/js/less/less.min.js' );
 
     }
     function woobooking_block_category($categories, $post)
