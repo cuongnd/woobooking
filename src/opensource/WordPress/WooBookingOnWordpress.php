@@ -52,9 +52,17 @@ class WooBookingOnWordpress
 
     public function setup_render_gutenberg_dynamic()
     {
+        $api_task="/wp-json/".self::$namespace.self::get_api_task();
+        $api_task_frontend="/wp-json/".self::$namespace.self::get_api_task_frontend();
+        //wp_localize_script('backend-list-block', 'root_url', Factory::getRootUrl());
+        //wp_localize_script('backend-list-block', 'root_url_plugin', Factory::getRootUrlPlugin());
+        //wp_localize_script('backend-list-block', 'api_task', $api_task);
+        //wp_localize_script('backend-list-block', 'api_task_frontend', $api_task_frontend);
+
         add_action( 'init', function (){
             $gutembergBlock=gutembergBlock::getInstance();
             $open_source=Factory::getOpenSource();
+
             $list_view = $open_source::get_list_layout_block_frontend();
             foreach ($list_view as $key=>$item) {
                 register_block_type('woobooking/'.$key, array(
@@ -1207,11 +1215,11 @@ class WooBookingOnWordpress
 		ob_start();
         ?>
         <script type="text/javascript">
-            root_url = "<?php echo $root_url ?>";
-            current_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
-            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-            api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
+            var root_url = "<?php echo $root_url ?>";
+            var current_url = "<?php echo $root_url ?>";
+            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
+            var api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+            var api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
         </script>
         <?php
         $content=ob_get_clean();
