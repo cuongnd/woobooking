@@ -316,7 +316,11 @@ function loadLockScripts(response) {
     $('link[rel="stylesheet/less"]').remove();
     var styleSheets = response.styleSheets;
     $.each(styleSheets, function (src, value) {
-        $('head').append(`<link rel="stylesheet" href="${root_url_plugin}${src}" type="text/css" />`);
+        if (src.indexOf('http') >= 0) {
+            $('head').append(`<link rel="stylesheet" href="${src}" type="text/css" />`);
+        } else {
+            $('head').append(`<link rel="stylesheet" href="${root_url_plugin}${src}" type="text/css" />`);
+        }
     });
     less_arr = [];
     var lessStyleSheets = response.lessStyleSheets;
@@ -334,7 +338,7 @@ function loadLockScripts(response) {
         $.each(scripts, function (src, value) {
             if( src.indexOf('http') >= 0){
                 script_arr.push(src);
-            }else{
+            }else if(src.indexOf('less.min.js') === -1) {
                 script_arr.push(root_url_plugin+src);
             }
         });
