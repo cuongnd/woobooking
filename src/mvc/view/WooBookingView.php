@@ -2,6 +2,8 @@
 
 
 use WooBooking\CMS\Object\CMSObject;
+use WooBooking\CMS\OpenSource\WordPress\gutembergBlock;
+use WooBooking\CMS\Utilities\Utility;
 
 class WooBookingView extends CMSObject
 {
@@ -25,6 +27,32 @@ class WooBookingView extends CMSObject
         }else{
             throw new Exception("Error: model <b>$model_path</b> not exists, please create first");
         }
+
+    }
+    public static $instance=array();
+
+    public static function getInstance($view, $prefix = '', $config = array()):WooBookingView
+    {
+        $view = preg_replace('/[^A-Z0-9_\.-]/i', '', $view);
+        $view = ucfirst($view);
+        $view_path = WOOBOOKING_PATH_COMPONENT . "/views/$view/view.html.php";
+        if (file_exists($view_path)) {
+            require_once $view_path;
+            if (!array_key_exists($view, self::$instance)) {
+                $class_name = "{$view}View";
+                self::$instance[$view] = new $class_name();
+                self::$instance[$view]->model = $view;
+            }
+
+        } else {
+            throw new Exception("can not found model:" . Utility::get_short_file_by_path($view_path) . ',please create it');
+        }
+        return self::$instance[$view];
+    }
+
+
+    public function __construct()
+    {
 
     }
     public function get($property, $default = null)
@@ -198,6 +226,7 @@ class WooBookingView extends CMSObject
     public function display($tpl){
 
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
+
         $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
         $open_source=Factory::getOpenSource();
         $appConfig=Factory::getAppConfig();

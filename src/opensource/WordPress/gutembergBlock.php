@@ -3,8 +3,12 @@
 
 namespace WooBooking\CMS\OpenSource\WordPress;
 
+use Exception;
 use Factory;
 use WooBooking\CMS\Utilities\Utility;
+use woobooking_controller;
+use WoobookingModel;
+use WooBookingView;
 
 class gutembergBlock
 {
@@ -25,10 +29,17 @@ class gutembergBlock
         add_filter('block_categories', array($this, 'woobooking_block_category'), 10, 2);
 
     }
-    public function render_gutenberg_dynamic($attr){
-        $open_source_client_id=$attr['open_source_client_id'];
-        return $open_source_client_id;
-
+    public function render_gutenberg_dynamic($atts){
+        $input=Factory::getInput();
+        $open_source_client_id=$atts['open_source_client_id'];
+        $blockModel=WoobookingModel::getInstance('block');
+        $block=$blockModel->getBlockByOpenSourceId($open_source_client_id);
+        if(!$block->id){
+            throw new Exception("can not found block item" );
+        }
+        $input->set('id',$block->id);
+        $view=WooBookingView::getInstance('block');
+        return $view->display('preview');
     }
     function mdlr_editable_block_example_backend_enqueue() {
         $open_source=Factory::getOpenSource();
