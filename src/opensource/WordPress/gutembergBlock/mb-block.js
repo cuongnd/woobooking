@@ -120,7 +120,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
     let $block_edit_content=$(this).closest('.woo-booking-block-edit-content');
     let currentClientId=$block_edit_content.attr('data-clientid');
     let type=$block_edit_content.data('type');
-    current_action[type] = "block.preview";
+    current_action[type] = "block.save_config";
     if($block_edit_content.find('form').length===0){
         $.alert({
             title: 'Error ',

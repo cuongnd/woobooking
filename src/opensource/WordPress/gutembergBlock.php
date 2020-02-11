@@ -45,6 +45,8 @@ class gutembergBlock
         wp_enqueue_script('less-init', Factory::getRootUrlPlugin() .'resources/js/less/less.min.js' );
         wp_enqueue_script('jquery-confirm-script', Factory::getRootUrlPlugin() .'resources/js/jquery-confirm-master/dist/jquery-confirm.min.js' );
         wp_enqueue_style('jquery-confirm-css', Factory::getRootUrlPlugin() .'resources/js/jquery-confirm-master/dist/jquery-confirm.min.css' );
+        wp_enqueue_script('jquery-serializeObject', Factory::getRootUrlPlugin() .'admin/resources/js/form-serializeObject/jquery.serializeObject.js' );
+        wp_enqueue_script('jquery-serializeToJSON', Factory::getRootUrlPlugin() .'admin/resources/js/form-serializeObject/jquery.serializeToJSON.js' );
 
     }
     function woobooking_block_category($categories, $post)
