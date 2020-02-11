@@ -204,7 +204,6 @@ render_wrapper_block=function(clientId,wp,key,props,content){
 };
 console.log("list_view",list_view);
 jQuery.each(list_view,function (key, item) {
-    key=`block-${key}`;
     wp.blocks.registerBlockType(`woobooking/${key}`, {
         title: item.title,
         icon: 'megaphone',
