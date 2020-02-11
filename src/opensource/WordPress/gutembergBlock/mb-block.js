@@ -10,7 +10,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-config-blog').live('click',funct
     let $block_edit_content=$(this).closest('.woo-booking-block-edit-content');
     let currentClientId=$block_edit_content.attr('data-clientid');
     let type=$block_edit_content.data('type');
-    current_action[type] = "block.preview";
+    current_action[type] = "block.config";
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -131,7 +131,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
     $block_edit_content.find('form').serializeObject().done(function(data){
         data['type']=type;
         data['open_source_client_id']=currentClientId;
-        data['task']="block.preview";
+        data['task']=current_action[type];
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -156,18 +156,17 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
                 }
                 $block_edit_content.find('.controllers-save-cancel').hide();
                 $block_edit_content.find('.btn-config-blog').show();
-                loadBlockScripts(response);
             }
         });
     });
 });
-render_wrapper_block=function(clientId,wp,key,props,content){
+render_wrapper_block=function(clientId,wp,key,key_html,props,content){
     let aInterval = setInterval(function() {
         let $block=$(`div.${clientId}`);
         if($block.length>0){
             $block.addClass('has-config');
 
-            loadBlockScripts(list_html[key]);
+            loadBlockScripts(list_html[key_html]);
             clearInterval(aInterval);
         }
     },1000);
@@ -218,7 +217,7 @@ jQuery.each(list_view,function (key, item) {
                 clientId= props.clientId;
             }
             let key_html=`${key}-${clientId}`;
-
+            console.log('list_html[key_html]',list_html[key_html]);
             if(typeof list_html[key_html] !=="undefined"){
                 let content=list_html[key_html].data;
                 if(typeof list_content_of_block[clientId]!=="undefined"){
@@ -226,54 +225,55 @@ jQuery.each(list_view,function (key, item) {
                 }
                 props.setAttributes({open_source_client_id:clientId});
                 current_action[key]=typeof  current_action[key]!=="undefined"?current_action[key]:"block.preview";
-                return  render_wrapper_block(clientId,wp,key,props,content);
-            }
-            current_action[key]=typeof  current_action[key]!=="undefined"?current_action[key]:"block.preview";
-            props.setAttributes({open_source_client_id:clientId});
-            if(typeof load_ajax[key_html]==="undefined") {
-                load_ajax[key]=1;
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: root_url + api_task_frontend,
-                    data: {
-                        type: key,
-                        open_source_client_id: clientId,
-                        task: current_action[key]
-                    },
-                    beforeSend: function () {
-                        // setting a timeout
-                        //
-                    },
-                    error: function (xhr) { // if error occured
+                return  render_wrapper_block(clientId,wp,key,key_html,props,content);
+            }else {
+                current_action[key] = typeof current_action[key] !== "undefined" ? current_action[key] : "block.preview";
+                props.setAttributes({open_source_client_id: clientId});
+                if (typeof load_ajax[key_html] === "undefined") {
+                    load_ajax[key] = 1;
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: root_url + api_task_frontend,
+                        data: {
+                            type: key,
+                            open_source_client_id: clientId,
+                            task: current_action[key]
+                        },
+                        beforeSend: function () {
+                            // setting a timeout
+                            //
+                        },
+                        error: function (xhr) { // if error occured
 
-                    },
-                    complete: function () {
+                        },
+                        complete: function () {
 
-                    },
-                    success: function (response) {
-                        response=JSON.parse(response);
-                        console.log("response",response);
-                        if (response.result === "success") {
+                        },
+                        success: function (response) {
+                            response = JSON.parse(response);
+                            console.log("response", response);
+                            if (response.result === "success") {
 
-                            list_html[key_html] = response;
-                            list_content_of_block[clientId]=response.data;
-                            $(`div.${clientId}`).find('.block-content').html(response.data);
-                            loadBlockScripts(response);
-                            if (current_action[key] === "block.preview") {
-                                $(`div.${clientId}`).find('.controllers-save-cancel').hide();
-                                $(`div.${clientId}`).find('.btn-config-blog').show();
-                            } else {
-                                $(`div.${clientId}`).find('.controllers-save-cancel').show();
-                                $(`div.${clientId}`).find('.btn-config-blog').hide();
+                                list_html[key_html] = response;
+                                list_content_of_block[clientId] = response.data;
+                                $(`div.${clientId}`).find('.block-content').html(response.data);
+                                loadBlockScripts(response);
+                                if (current_action[key] === "block.preview") {
+                                    $(`div.${clientId}`).find('.controllers-save-cancel').hide();
+                                    $(`div.${clientId}`).find('.btn-config-blog').show();
+                                } else {
+                                    $(`div.${clientId}`).find('.controllers-save-cancel').show();
+                                    $(`div.${clientId}`).find('.btn-config-blog').hide();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
+                return render_wrapper_block(clientId,wp,key,key_html,props,'');
             }
 
 
-            return render_wrapper_block(clientId,wp,key,props,'');
         },
         save: function( props ) {
 
@@ -311,7 +311,11 @@ list_less_install=[];
 function loadBlockScripts(response) {
     $ = jQuery;
     $('link[rel="stylesheet/less"]').remove();
+    if(typeof response.styleSheets==="undefined"){
+        console.trace();
+    }
     var styleSheets = response.styleSheets;
+
     $.each(styleSheets, function (src, value) {
         if (src.indexOf('http') >= 0) {
             $('head').append(`<link rel="stylesheet" href="${src}" type="text/css" />`);
