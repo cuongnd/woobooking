@@ -163,7 +163,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
 render_wrapper_block=function(clientId,wp,key,key_html,props,content){
     let aInterval = setInterval(function() {
         let $block=$(`div.${clientId}`);
-        if($block.length>0){
+        if($block.length>0 && typeof list_html[key_html]!=="undefined"){
             $block.addClass('has-config');
 
             loadBlockScripts(list_html[key_html]);
