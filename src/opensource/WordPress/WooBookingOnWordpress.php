@@ -48,25 +48,20 @@ class WooBookingOnWordpress
 	private static function setVersion($version=""){
 	    self::$version=$version;
     }
-    function render_gutenberg_dynamic1($attr,$content) {
-        $open_source_client_id=$attr['open_source_client_id'];
-        return $open_source_client_id;
 
-    }
-    function render_gutenberg_dynamic() {
-        // automatically load dependencies and version
-        $list_view = self::get_list_layout_block_frontend();
-        foreach ($list_view as $key=>$item) {
 
-            register_block_type('woobooking/'.$key, array(
-                'render_callback' => array($this,'render_gutenberg_dynamic1')
-            ));
-        }
-
-    }
     public function setup_render_gutenberg_dynamic()
     {
-        add_action( 'init', array($this,'render_gutenberg_dynamic') );
+        add_action( 'init', function (){
+            $gutembergBlock=gutembergBlock::getInstance();
+            $open_source=Factory::getOpenSource();
+            $list_view = $open_source::get_list_layout_block_frontend();
+            foreach ($list_view as $key=>$item) {
+                register_block_type('woobooking/'.$key, array(
+                    'render_callback' => array($gutembergBlock,'render_gutenberg_dynamic')
+                ));
+            }
+        } );
     }
 
     public function setDefaultPage($default_page=""){
@@ -185,10 +180,16 @@ class WooBookingOnWordpress
 			die;
 		}
 
-		self::add_shortcode();
+        add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
+        $list_view = self::get_list_layout_block_frontend();
+        foreach ($list_view as $key => $view) {
+            $a_key = self::$key_woo_booking . "-block-" . $key;
+            add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
+        }
 
 
-		if (!$task) {
+
+        if (!$task) {
 
 		} else {
 

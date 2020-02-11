@@ -25,6 +25,11 @@ class gutembergBlock
         add_filter('block_categories', array($this, 'woobooking_block_category'), 10, 2);
 
     }
+    public function render_gutenberg_dynamic($attr){
+        $open_source_client_id=$attr['open_source_client_id'];
+        return $open_source_client_id;
+
+    }
     function mdlr_editable_block_example_backend_enqueue() {
         $open_source=Factory::getOpenSource();
         $list_view = $open_source->get_list_layout_block_frontend();
