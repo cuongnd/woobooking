@@ -83,7 +83,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
     let $block_edit_content=$(this).closest('.woo-booking-block-edit-content');
     let currentClientId=$block_edit_content.attr('data-clientid');
     let type=$block_edit_content.data('type');
-    current_action[type] = "block.ajax_get_preview_blog";
+    current_action[type] = "block.preview";
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -91,7 +91,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
         data: {
             type: type,
             open_source_client_id: currentClientId,
-            task: "block.ajax_get_preview_blog"
+            task: current_action[type]
         },
         beforeSend: function () {
             // setting a timeout
@@ -106,13 +106,13 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
         success: function (response) {
             response = JSON.parse(response);
             list_content_of_block[currentClientId]=response.data;
+            loadBlockScripts(response);
             if (response.result === "success") {
-                loadBlockScripts(response);
+
                 $block_edit_content.find('.block-content').html(response.data);
             }
             $block_edit_content.find('.controllers-save-cancel').hide();
             $block_edit_content.find('.btn-config-blog').show();
-            loadBlockScripts(response);
         }
     });
 });
@@ -120,7 +120,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
     let $block_edit_content=$(this).closest('.woo-booking-block-edit-content');
     let currentClientId=$block_edit_content.attr('data-clientid');
     let type=$block_edit_content.data('type');
-    current_action[type] = "block.ajax_get_preview_blog";
+    current_action[type] = "block.preview";
     if($block_edit_content.find('form').length===0){
         $.alert({
             title: 'Error ',
@@ -131,7 +131,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
     $block_edit_content.find('form').serializeObject().done(function(data){
         data['type']=type;
         data['open_source_client_id']=currentClientId;
-        data['task']="block.ajax_save_block";
+        data['task']="block.preview";
         $.ajax({
             type: "POST",
             dataType: "json",
