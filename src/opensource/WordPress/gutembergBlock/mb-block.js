@@ -255,7 +255,7 @@ jQuery.each(list_view,function (key, item) {
                     success: function (response) {
                         console.log("response",response);
 
-
+                        response=JSON.parse(response);
 
                         if (response.result === "success") {
 
