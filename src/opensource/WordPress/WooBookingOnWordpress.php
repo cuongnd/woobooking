@@ -675,8 +675,11 @@ class WooBookingOnWordpress
 				continue;
 			}
 			$xml = simplexml_load_file($file);
-			try {
-				$title = (string)@($xml->layout->attributes())['title'];
+
+            try {
+
+
+                $title = (string)@($xml->layout->attributes())['title'];
 			} catch (Exception $e) {
 				echo "please check file tructor xml";
 				die;
