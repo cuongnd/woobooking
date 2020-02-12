@@ -669,14 +669,14 @@ class WooBookingOnWordpress
 		foreach ($folders as $block) {
 			$block_path = $blocks_path . "/$block";
 			$file_config_block = str_replace("block_", "", $block);
-			$file = $block_path . "/forms/$file_config_block.xml";
+			$file = $block_path . "/forms/{$file_config_block}_config.xml";
+
 			if (!File::exists($file)) {
 				continue;
 			}
 			$xml = simplexml_load_file($file);
-
 			try {
-				$title = (string)($xml->layout->attributes())['title'];
+				$title = (string)@($xml->layout->attributes())['title'];
 			} catch (Exception $e) {
 				echo "please check file tructor xml";
 				die;
