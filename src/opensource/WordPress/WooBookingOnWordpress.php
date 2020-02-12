@@ -669,7 +669,7 @@ class WooBookingOnWordpress
 		foreach ($folders as $block) {
 			$block_path = $blocks_path . "/$block";
 			$file_config_block = str_replace("block_", "", $block);
-			$file = $block_path . "/$file_config_block.xml";
+			$file = $block_path . "/forms/$file_config_block.xml";
 			if (!File::exists($file)) {
 				continue;
 			}
