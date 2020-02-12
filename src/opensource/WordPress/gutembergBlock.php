@@ -35,7 +35,7 @@ class gutembergBlock
         $blockModel=WoobookingModel::getInstance('block');
         $block=$blockModel->getBlockByOpenSourceId($open_source_client_id);
         if(!$block->id){
-            throw new Exception("can not found block item" );
+            return false;
         }
         $input->set('id',$block->id);
         $view=WooBookingView::getInstance('block');

@@ -752,6 +752,7 @@ class WooBookingOnWordpress
 
 	public function woo_booking_render_by_tag_func($atts, $content, $a_view)
 	{
+
 		$input = Factory::getInput();
         $page = $input->getString('page', $this->page_default);
 		$type = null;
@@ -763,6 +764,9 @@ class WooBookingOnWordpress
 			list($view, $layout) = explode("-", $page);
 			echo woobooking_controller::view("$view.$layout");
 		}
+		$open_source=Factory::getOpenSource();
+        add_action('wp_footer', array($open_source, 'wp_hook_add_script_footer'));
+
 	}
 
 	function goToPopupInstall()
@@ -1112,6 +1116,7 @@ class WooBookingOnWordpress
 		$doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
 		HtmlFrontend::_('jquery.loading_js');
 		$doc->addScript('resources/js/less/less.min.js');
+
 		$doc->addScript('resources/js/autoNumeric/autoNumeric.js');
 		$doc->addScript('resources/js/Bootstrap-Loading/src/waitingfor.js');
 
