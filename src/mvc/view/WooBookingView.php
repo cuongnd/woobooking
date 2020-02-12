@@ -194,7 +194,7 @@ class WooBookingView extends CMSObject
         }
 
 
-        $link=Factory::getRootUrl()."wp-booking-pro/?page=wb_$view&task=$view.$task".(is_array($items_var)&&count($items_var)?'&':null).implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-booking-pro/?page=$view-list&task=$view.$task".(is_array($items_var)&&count($items_var)?'&':null).implode("&",$http_list_var);
         return $link;
     }
     public static function goToTaskLink($view,$task, $items_var=array()){
