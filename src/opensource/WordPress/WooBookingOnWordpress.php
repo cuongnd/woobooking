@@ -134,14 +134,18 @@ class WooBookingOnWordpress
 
 
 
+	public function session_start(){
+        add_action('init', function (){
+            if(!session_id()) {
+
+                session_start();
+
+            }
+        }, 1);
+    }
 	public function getSession()
 	{
-
-		if (!session_id()) {
-			@session_start();
-		}
-		$wp_session = $_SESSION;
-		return $wp_session;
+        return $_SESSION;
 	}
 
 	public function getECommerceOrderDetail($order_id)
