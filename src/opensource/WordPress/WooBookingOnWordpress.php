@@ -647,6 +647,9 @@ class WooBookingOnWordpress
 		return $list_view;
 	}
 
+	public static function updateOpenSource(){
+
+    }
 	public static function get_list_layout_block_frontend()
 	{
 		$blocks_path = WOOBOOKING_PATH_ROOT . "/blocks";
