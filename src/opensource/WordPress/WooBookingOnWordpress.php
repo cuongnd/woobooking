@@ -884,13 +884,82 @@ class WooBookingOnWordpress
 
 
 	}
+    function add_page_to_menu($page_id, $page_title, $menu_id, $parent = 0,$link){
+        $key_page = "wp-booking-pro";
+        wp_update_nav_menu_item($menu_id, 0,
+            array(
+                'menu-item-title' =>  __($page_title),
+                'menu-item-classes' => 'Wp-booking-pro',
+                'menu-item-url' => $link,
+                'menu-item-type' => 'custom',
+                'menu-item-status' => 'publish'
+        )
+        );
+    }
 
 	public static function pluginprefix_activation()
 	{
+	    $open_source=Factory::getOpenSource();
+
+        // setup navigation automatically
+        $root_url=Factory::getRootUrl();
+        $name = 'Navigation';
+        $menu_exists = wp_get_nav_menu_object($name);
+
+        if( !$menu_exists){
+            $menu_id = wp_create_nav_menu($name);
+            $menu = get_term_by( 'name', $name, 'nav_menu' );
+            $key_page = "wp-booking-pro";
+            $home_wp_booking_pro_post = array(
+                'post_name' => "$key_page",
+                'post_title' => "Wp booking pro",
+                'post_content' => "[$key_page]",
+                'post_status' => "publish",
+                'post_author' => get_current_user_id(),
+                'post_type' => "page",
+            );
+            $page_check = get_page_by_path($key_page);
+            if (!isset($page_check->ID)) {
+
+                wp_insert_post($home_wp_booking_pro_post, '');
+            }
+            //add it to create menu
+
+            $home_page=$root_url.$key_page;
+            wp_update_nav_menu_item($menu->term_id, 0, array(
+                'menu-item-title' =>  __('Wp booking pro'),
+                'menu-item-classes' => 'Wp-booking-pro',
+                'menu-item-url' => $home_page,
+                'menu-item-type' => 'custom',
+                'menu-item-status' => 'publish'
+                )
+            );
+            $current_page_home_page = get_page_by_path( $home_page );
+
+
+            $list_page = WooBookingOnWordpress::get_list_layout_view_frontend();
+
+            foreach ($list_page as $key=>$page ){
+                $link="$home_page?page=$key";
+                $open_source->add_page_to_menu(0,$key,$menu->term_id,$current_page_home_page->ID,$link);
+            }
+
+
+
+        }else{
+            $menu = get_term_by( 'name', $name, 'nav_menu' );
+        }
+        //then you set the wanted theme  location
+        $locations = get_theme_mod('nav_menu_locations');
+        $locations['primary'] = $menu->term_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+        return true;
+
+
 		$list_page = WooBookingOnWordpress::get_list_layout_view_frontend();
 		$key_woo_booking = self::$key_woo_booking;
 		$key_page = "wp-booking-pro";
-		$my_post = array(
+		$home_wp_booking_pro_post = array(
 			'post_name' => "$key_page",
 			'post_title' => "Wp booking pro",
 			'post_content' => "[$key_page]",
@@ -901,7 +970,7 @@ class WooBookingOnWordpress
 		$page_check = get_page_by_path($key_page);
 		if (!isset($page_check->ID)) {
 
-			wp_insert_post($my_post, '');
+			wp_insert_post($home_wp_booking_pro_post, '');
 		}
 		return true;
 	}
