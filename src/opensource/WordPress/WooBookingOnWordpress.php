@@ -886,13 +886,15 @@ class WooBookingOnWordpress
 	}
     function add_page_to_menu($page_id, $page_title, $menu_id, $parent = 0,$link){
         $key_page = "wp-booking-pro";
-        wp_update_nav_menu_item($menu_id, 0,
+        wp_update_nav_menu_item(
+                $menu_id, 0,
             array(
                 'menu-item-title' =>  __($page_title),
                 'menu-item-classes' => 'Wp-booking-pro',
                 'menu-item-url' => $link,
                 'menu-item-type' => 'custom',
-                'menu-item-status' => 'publish'
+                'menu-item-status' => 'publish',
+                'menu-item-parent-id'=>$parent
         )
         );
     }
@@ -941,7 +943,10 @@ class WooBookingOnWordpress
 
             foreach ($list_page as $key=>$page ){
                 $link="$home_page?page=$key";
-                $open_source->add_page_to_menu(0,$key,$menu->term_id,$current_page_home_page->ID,$link);
+                $title=$page['title'];
+                $show_main_menu=$page['show_main_menu'];
+                if($show_main_menu)
+                    $open_source->add_page_to_menu(0,$title,$menu->term_id,$current_page_home_page->ID,$link);
             }
 
 
