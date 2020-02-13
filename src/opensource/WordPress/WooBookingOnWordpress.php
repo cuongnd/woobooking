@@ -928,7 +928,7 @@ class WooBookingOnWordpress
             //add it to create menu
 
             $home_page=$root_url.$key_page;
-            wp_update_nav_menu_item($menu->term_id, 0, array(
+            $my_menu_id=wp_update_nav_menu_item($menu->term_id, 0, array(
                 'menu-item-title' =>  __('Wp booking pro'),
                 'menu-item-classes' => 'Wp-booking-pro',
                 'menu-item-url' => $home_page,
@@ -946,7 +946,7 @@ class WooBookingOnWordpress
                 $title=$page['title'];
                 $show_main_menu=$page['show_main_menu'];
                 if($show_main_menu)
-                    $open_source->add_page_to_menu(0,$title,$menu->term_id,$current_page_home_page->ID,$link);
+                    $open_source->add_page_to_menu(0,$title,$menu->term_id,$my_menu_id,$link);
             }
 
 
