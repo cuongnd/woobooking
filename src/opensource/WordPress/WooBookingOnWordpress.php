@@ -137,21 +137,18 @@ class WooBookingOnWordpress
 	public function session_start(){
         add_action('init', function (){
             if(!session_id()) {
-
                 session_start();
-
             }
         }, 1);
+
     }
 	public function getSession()
 	{
-        add_action('init', function (){
-            if(!session_id()) {
 
-                session_start();
-
-            }
-        }, 1);
+        if(!session_id()) {
+            session_start();
+            return $_SESSION;
+        }
         return $_SESSION;
 	}
 
@@ -648,7 +645,11 @@ class WooBookingOnWordpress
 	}
 
 	public static function updateOpenSource(){
-
+        require_once( ROOT_PATH_SITE . '/wp-includes/pluggable.php' );
+        global $current_user;
+        $current_user = wp_get_current_user();
+        $session=Factory::getSession();
+        $session->set('user',$current_user);
     }
 	public static function get_list_layout_block_frontend()
 	{

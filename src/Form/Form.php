@@ -1694,7 +1694,7 @@ class Form
 		{
 
 			// Get an array of fields with the correct name.
-			$fields = $this->xml->xpath('//field[@name="' . $name . '" and not(ancestor::field/form/*)]');
+			$fields = @$this->xml->xpath('//field[@name="' . $name . '" and not(ancestor::field/form/*)]');
             // Make sure something was found.
 			if (!$fields)
 			{
