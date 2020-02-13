@@ -145,6 +145,13 @@ class WooBookingOnWordpress
     }
 	public function getSession()
 	{
+        add_action('init', function (){
+            if(!session_id()) {
+
+                session_start();
+
+            }
+        }, 1);
         return $_SESSION;
 	}
 
@@ -194,6 +201,8 @@ class WooBookingOnWordpress
 
         add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
         $list_view = self::get_list_layout_block_frontend();
+        $open_source=Factory::getOpenSource();
+        $open_source->session_start();
         foreach ($list_view as $key => $view) {
             $a_key = self::$key_woo_booking . "-block-" . $key;
             add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
@@ -201,31 +210,7 @@ class WooBookingOnWordpress
 
 
 
-        if (!$task) {
 
-		} else {
-
-			list($controller, $task) = explode(".", $task);
-			$file_controller_path = WOOBOOKING_PATH_COMPONENT . "/controllers/" . ucfirst($controller) . ".php";
-			$file_controller_short_path = Utility::get_short_file_by_path($file_controller_path);
-			$file_short_controller_path = Utility::get_short_file_by_path($file_controller_path);
-			require_once $file_controller_path;
-			$class_name = ucfirst($controller) . "Controller";
-			if (file_exists($file_controller_path)) {
-				if (class_exists($class_name)) {
-					$class_controller = new $class_name();
-					if (method_exists($class_controller, $task)) {
-						//not return
-						call_user_func(array($class_controller, $task));
-					}
-				} else {
-					echo "class $class_name in file $file_short_controller_path can not found function(task) $task";
-				}
-
-			} else {
-				echo "class $class_name not exit in file $file_controller_short_path, please create this class";
-			}
-		}
 
 		$this->add_basic_script_and_style_front_end();
 		//hook api
@@ -754,6 +739,34 @@ class WooBookingOnWordpress
 	{
 
 		$input = Factory::getInput();
+        $open_source=Factory::getOpenSource();
+        $task=$input->getString('task',"");
+        if ($task) {
+            list($controller, $task) = explode(".", $task);
+            $file_controller_path = WOOBOOKING_PATH_COMPONENT . "/controllers/" . ucfirst($controller) . ".php";
+            $file_controller_short_path = Utility::get_short_file_by_path($file_controller_path);
+            $file_short_controller_path = Utility::get_short_file_by_path($file_controller_path);
+            require_once $file_controller_path;
+            $class_name = ucfirst($controller) . "Controller";
+            if (file_exists($file_controller_path)) {
+                if (class_exists($class_name)) {
+                    $class_controller = new $class_name();
+                    if (method_exists($class_controller, $task)) {
+                        //not return
+                        $content= call_user_func(array($class_controller, $task));
+                        add_action('wp_footer', array($open_source, 'wp_hook_add_script_footer'));
+                        return $content;
+                    }
+                } else {
+                    echo "class $class_name in file $file_short_controller_path can not found function(task) $task";
+                }
+
+            } else {
+                echo "class $class_name not exit in file $file_controller_short_path, please create this class";
+            }
+            return;
+        }
+
         $page = $input->getString('page', $this->page_default);
 		$type = null;
 
@@ -764,7 +777,7 @@ class WooBookingOnWordpress
 			list($view, $layout) = explode("-", $page);
 			echo woobooking_controller::view("$view.$layout");
 		}
-		$open_source=Factory::getOpenSource();
+
         add_action('wp_footer', array($open_source, 'wp_hook_add_script_footer'));
 
 	}

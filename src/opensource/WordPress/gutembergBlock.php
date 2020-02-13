@@ -34,7 +34,7 @@ class gutembergBlock
         $open_source_client_id=$atts['open_source_client_id'];
         $blockModel=WoobookingModel::getInstance('block');
         $block=$blockModel->getBlockByOpenSourceId($open_source_client_id);
-        if(!$block->id){
+        if(!$block){
             return false;
         }
         $input->set('id',$block->id);
