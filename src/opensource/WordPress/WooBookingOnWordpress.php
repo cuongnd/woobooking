@@ -293,7 +293,9 @@ class WooBookingOnWordpress
 	{
 		return is_admin();
 	}
-
+    function wpb_load_widget() {
+        register_widget( 'wpb_widget' );
+    }
 	public function run()
 	{
 		$this->view = self::get_current_page();
@@ -301,6 +303,9 @@ class WooBookingOnWordpress
 		$input = Factory::getInput();
         $this->wp_enqueue_script_media();
         add_action('rest_api_init', array($this, 'woobooking_register_rest_route'));
+        // Register and load the widget
+
+        add_action( 'widgets_init', array($this,'wpb_load_widget') );
 
 
         if ($app->getClient() == 1) {
