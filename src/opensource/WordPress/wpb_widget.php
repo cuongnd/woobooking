@@ -33,6 +33,7 @@ class wpb_widget extends WP_Widget
 // This is where you run the code and display the output
         echo __('Hello, World!', 'wpb_widget_domain');
         echo $args['after_widget'];
+
     }
 
 // Widget Backend 
