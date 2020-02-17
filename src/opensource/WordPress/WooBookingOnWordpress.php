@@ -355,6 +355,7 @@ class WooBookingOnWordpress
             $doc->addScript('admin/resources/js/less/less.min.js');
             $doc->addScript('admin/resources/js/jquery-validation/dist/jquery.validate.js');
             Html::_('jquery.confirm');
+            Html::_('jquery.sticky_footer');
             $doc->addScript('admin/resources/js/Bootstrap-Loading/src/waitingfor.js');
             $doc->addScript('admin/resources/js/jquery.form/jquery.form.js');
             $doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
@@ -431,7 +432,8 @@ class WooBookingOnWordpress
 		// Create an array of objects that imitate Post objects
 
 		$list_page = self::get_list_layout_view_frontend();
-		$key_woo_booking = self::$key_woo_booking;
+
+        $key_woo_booking = self::$key_woo_booking;
 		$removed_args = array(
 			'action',
 			'customlink-tab',
@@ -502,6 +504,7 @@ class WooBookingOnWordpress
 			add_submenu_page($link_dashboard, $view->label, $view->label, 'manage_options', $view->menu_slug,
 				array($this, 'wpbookingpro_page'));
 		}
+
 
 
 	}
@@ -797,7 +800,7 @@ class WooBookingOnWordpress
 		$html = '<html><head>';
 		$html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
 		$html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;',
-				$root_url . '/wp-booking-pro/?page=install-form')) . ';</script>';
+				$root_url . 'wp-admin/admin.php?page=wb_config&layout=install')) . ';</script>';
 		$html .= '</head><body></body></html>';
 		echo $html;
 	}

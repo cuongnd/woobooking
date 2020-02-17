@@ -154,7 +154,21 @@ JS
         }
         return;
     }
-	public static function fontawesome($debug = null)
+    public static function sticky_footer($debug = null)
+    {
+        // Include jQuery
+        static::framework();
+        // If no debugging value is set, use the configuration setting
+        // Only attempt to load the component if it's supported in core and hasn't already been loaded
+        if (empty(static::$loaded[__METHOD__])) {
+            $doc = Factory::getDocument();
+            $doc->addScript('admin/resources/js/Sticky-Footer/jquery.stickyfooterbar.js');
+            static::$loaded[__METHOD__] = true;
+        }
+        return;
+    }
+
+    public static function fontawesome($debug = null)
 	{
 
 		// Include jQuery
