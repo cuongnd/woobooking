@@ -513,7 +513,9 @@ class WooBookingOnWordpress
 	{
 		$input = Factory::getInput();
 		$page = $input->getString('page', '');
-		if (!self::checkInstalled()) {
+        $layout=$input->getString('layout',"");
+
+		if ($page!="wb_config" && $layout!="install" && !self::checkInstalled()) {
 			self::goToPopupInstall();
 		}
 		Html::_('jquery.tooltip');
