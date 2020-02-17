@@ -514,10 +514,14 @@ class WooBookingOnWordpress
 		$input = Factory::getInput();
 		$page = $input->getString('page', '');
         $layout=$input->getString('layout',"");
+        if($page=="wb_config"){
+            if($layout!=="install" && !self::checkInstalled()){
+                self::goToPopupInstall();
+            }
+        }elseif(!self::checkInstalled()){
+            self::goToPopupInstall();
+        }
 
-		if ($page!="wb_config" && $layout!="install" && !self::checkInstalled()) {
-			self::goToPopupInstall();
-		}
 		Html::_('jquery.tooltip');
 		Html::_('jquery.bootstrap');
 		$root_url = self::get_root_url();
