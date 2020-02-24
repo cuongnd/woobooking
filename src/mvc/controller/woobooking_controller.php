@@ -254,6 +254,7 @@ class woobooking_controller{
                     $response->script=$doc->getScript();
                     $response->styleSheets=$doc->getStyleSheets();
                     $response->lessStyleSheets=$doc->getLessStyleSheets();
+                    unset($response->lessStyleSheets['nb_apps/nb_woobooking/assets/less/main_style.less']);
                     $response->style=$doc->getStyle();
 
                     if(is_array($data) || $data){
