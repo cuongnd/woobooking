@@ -428,7 +428,7 @@ class woobooking_controller{
         }
 
 
-        $link=Factory::getRootUrl()."wp-booking-pro?page=$view-$layout/?".implode("&",$http_list_var);
+        $link=Factory::getRootUrl()."wp-booking-pro?page=$view-$layout&".implode("&",$http_list_var);
         return $link;
     }
 
