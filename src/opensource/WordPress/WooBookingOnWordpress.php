@@ -124,7 +124,7 @@ class WooBookingOnWordpress
 
     }
 
-    public function render_content($content)
+    public function wpbookingpro_render_content($content)
     {
         echo $content;
     }
