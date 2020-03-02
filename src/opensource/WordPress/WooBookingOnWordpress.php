@@ -742,7 +742,7 @@ class WooBookingOnWordpress
 
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
             list_view =<?php echo json_encode($list_view) ?>
@@ -1316,7 +1316,7 @@ class WooBookingOnWordpress
         <script type="text/javascript">
             var root_url = "<?php echo $root_url ?>";
             var current_url = "<?php echo $root_url ?>";
-            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(PLUGIN_NAME); ?>/";
+            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(PLUGIN_NAME); ?>/";
             var api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             var api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
         </script>
