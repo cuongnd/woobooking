@@ -348,7 +348,6 @@ class WooBookingOnWordpress
         if (self::is_rest_api()) {
 
         }else{
-            require_once WOOBOOKING_PATH_LIB . "/tgm-plugin-activation/class-tgm-plugin-activation.php";
             $doc->addScript('admin/nb_apps/nb_woobooking/assets/js/woo_booking_debug.js');
             Html::_('jquery.loading_js');
             $doc->addScript('admin/resources/js/drawer-master/js/hy-drawer.js');
@@ -836,11 +835,11 @@ class WooBookingOnWordpress
 		foreach ($list_view as $key => $value) {
 			$a_key = self::$key_woo_booking . "-" . $key;
 			vc_map(array(
-				"name" => __($value['title'], "my-text-domain"),
+				"name" => _e($value['title'], "wpbookingpro"),
 				"base" => $a_key,
 				"class" => "",
 				'admin_enqueue_js' => array(plugins_url('render_block_config.js', __FILE__)),
-				"category" => __("Woo Booking", "my-text-domain"),
+				"category" => _e("Woo Booking", "wpbookingpro"),
 				"params" => array(
 					array(
 						"type" => "woo_booking_block_type",
@@ -858,11 +857,11 @@ class WooBookingOnWordpress
 		foreach ($list_layout_block as $key => $value) {
 			$a_key = self::$key_woo_booking . "-block-" . $key;
 			vc_map(array(
-				"name" => __("Block " . $value['title'], "my-text-domain"),
+				"name" => _e("Block " . $value['title'], "wpbookingpro"),
 				"base" => $a_key,
 				"class" => "",
 				'admin_enqueue_js' => array(plugins_url('render_block_config.js', __FILE__)),
-				"category" => __("Woo Booking block", "my-text-domain"),
+				"category" => _e("Woo Booking block", "wpbookingpro"),
 				"params" => array(
 					array(
 						"type" => "woo_booking_block_type",
@@ -907,7 +906,7 @@ class WooBookingOnWordpress
         wp_update_nav_menu_item(
                 $menu_id, 0,
             array(
-                'menu-item-title' =>  __($page_title),
+                'menu-item-title' =>  _e($page_title),
                 'menu-item-classes' => 'Wp-booking-pro',
                 'menu-item-url' => $link,
                 'menu-item-type' => 'custom',
@@ -947,7 +946,7 @@ class WooBookingOnWordpress
 
             $home_page=$root_url.$key_page;
             $my_menu_id=wp_update_nav_menu_item($menu->term_id, 0, array(
-                'menu-item-title' =>  __('Wp booking pro'),
+                'menu-item-title' =>  _e('Wp booking pro'),
                 'menu-item-classes' => 'Wp-booking-pro',
                 'menu-item-url' => $home_page,
                 'menu-item-type' => 'custom',
@@ -980,7 +979,7 @@ class WooBookingOnWordpress
 	{
 		add_meta_box(
 			'wl_login_nav_link',
-			__('Wp booking pro menu item'),
+            _e('Wp booking pro menu item'),
 			array($this, 'nav_menu_link'),
 			'page',
 			'side',
