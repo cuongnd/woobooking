@@ -253,7 +253,25 @@ class woobooking_controller{
                     $response->data_script=$data_script;
                     $response->script=$doc->getScript();
                     $response->styleSheets=$doc->getStyleSheets();
-                    $response->lessStyleSheets=$doc->getLessStyleSheets();
+
+                    $config=Factory::getConfig();
+                    $environment=$config->get('environment',"development");
+                    if($environment=="development") {
+                        $response->lessStyleSheets=$doc->getLessStyleSheets();
+                    }else{
+                        $lessStyleSheets=$doc->getLessStyleSheets();
+                        $item=array(
+                                "type"=>"text/css",
+                                "options"=>array(),
+                        );
+                        foreach ($lessStyleSheets as $src => $attribs) {
+                            $path_info=pathinfo($src);
+                            $dirname=$path_info['dirname'];
+                            $filename=$path_info['filename'];
+                            $css_file_path="$dirname/$filename.css";
+                            $response->styleSheets[$css_file_path]=$item;
+                        }
+                    }
                     unset($response->lessStyleSheets['nb_apps/nb_woobooking/assets/less/main_style.less']);
                     $response->style=$doc->getStyle();
 

@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('WOO_BOOKING_PATH_PLATFORM') or die;
+defined('WPBOOKINGPRO_PATH_PLATFORM') or die;
 use WooBooking\CMS\Utilities\Utility;
 /**
  * Static class to handle loading of libraries.
@@ -506,7 +506,7 @@ abstract class WooBookingLoader
         if ($enablePrefixes)
         {
             // Register the J prefix and base path for WooBooking platform libraries.
-            self::registerPrefix('WooBooking', WOO_BOOKING_PATH_PLATFORM . '/WooBooking');
+            self::registerPrefix('WooBooking', WPBOOKINGPRO_PATH_PLATFORM . '/WooBooking');
 
             // Register the prefix autoloader.
             spl_autoload_register(array('WooBookingLoader', '_autoload'));
