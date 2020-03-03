@@ -108,7 +108,7 @@ class woobooking_controller{
         $block_view_path=WPBOOKINGPRO_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
         if(file_exists($block_view_path)){
             require_once $block_view_path;
-            $view_class=new BlockView();
+            $view_class=new WpBookingPro_BlockView();
             $view_class->view="block";
             return $view_class->display('config');
         }else{
@@ -120,7 +120,7 @@ class woobooking_controller{
         $block_view_path=WPBOOKINGPRO_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
         if(file_exists($block_view_path)){
             require_once $block_view_path;
-            $view_class=new BlockView();
+            $view_class=new WpBookingPro_BlockView();
             $view_class->view="block";
 
             return $view_class->display_block($block_id,$block_name);

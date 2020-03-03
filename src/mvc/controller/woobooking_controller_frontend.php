@@ -77,7 +77,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         if(file_exists($view_path)){
             require_once $view_path;
             $UFCiew=ucfirst($view);
-            $view_name="{$UFCiew}View";
+            $view_name="WpBookingPro_{$UFCiew}View";
             $view_class=new $view_name();
             $view_class->view=$view;
             return $view_class->display($tpl);
@@ -95,7 +95,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         if(file_exists($view_path)){
             require_once $view_path;
             $UFCiew=ucfirst($view);
-            $view_name="{$UFCiew}View";
+            $view_name="WpBookingPro_{$UFCiew}View";
             $view_class=new $view_name();
             $view_class->view=$view;
             return $view_class->display_block_app($block,$tpl);
@@ -108,7 +108,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $block_view_path=WPBOOKINGPRO_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
         if(file_exists($block_view_path)){
             require_once $block_view_path;
-            $view_class=new BlockView();
+            $view_class=new WpBookingPro_BlockView();
             $view_class->view="block";
             return $view_class->display('config');
         }else{
@@ -120,7 +120,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $block_view_path=WPBOOKINGPRO_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
         if(file_exists($block_view_path)){
             require_once $block_view_path;
-            $view_class=new BlockView();
+            $view_class=new WpBookingPro_BlockView();
             $view_class->view="block";
 
             return $view_class->display_block($block_id,$block_name);
