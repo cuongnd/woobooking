@@ -18,7 +18,7 @@ class WooBookingView extends CMSObject
     public function getModel($model=""){
         $model=$model?$model:$this->view;
         $model=ucfirst($model);
-        $model_path=WOOBOOKING_PATH_COMPONENT."/models/$model.php";
+        $model_path=WPBOOKINGPRO_PATH_COMPONENT."/models/$model.php";
         if(file_exists($model_path)){
             $model_name="{$model}Model";
             $model_class=WoobookingModel::getInstance($model);
@@ -35,7 +35,7 @@ class WooBookingView extends CMSObject
     {
         $view = preg_replace('/[^A-Z0-9_\.-]/i', '', $view);
         $view = ucfirst($view);
-        $view_path = WOOBOOKING_PATH_COMPONENT . "/views/$view/view.html.php";
+        $view_path = WPBOOKINGPRO_PATH_COMPONENT . "/views/$view/view.html.php";
         if (file_exists($view_path)) {
             require_once $view_path;
             if (!array_key_exists($view, self::$instance)) {
@@ -216,7 +216,7 @@ class WooBookingView extends CMSObject
     public function loadTemplate($tpl){
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
 
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
 
         if(file_exists($tmpl_path)){
             ob_start();
@@ -231,7 +231,7 @@ class WooBookingView extends CMSObject
         list($template,$layout)=explode(".",$template);
         $tmpl_short_path="/shared/".$template."/$layout.php";
 
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
 
         if(file_exists($tmpl_path)){
             ob_start();
@@ -244,7 +244,7 @@ class WooBookingView extends CMSObject
     }
     public function loadTemplateFromOtherView($view,$tpl){
         $tmpl_short_path="/views/".$view."/tmpl/".$tpl.".php";
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
 
         if(file_exists($tmpl_path)){
             ob_start();
@@ -259,7 +259,7 @@ class WooBookingView extends CMSObject
 
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
 
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
         $open_source=Factory::getOpenSource();
         $appConfig=Factory::getAppConfig();
         $debug="";
@@ -343,7 +343,7 @@ class WooBookingView extends CMSObject
     public function display_block($block_id,$tpl){
 
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
         $open_source=Factory::getOpenSource();
         $debug="";
         if(!$open_source->is_rest_api()) {
@@ -525,7 +525,7 @@ class WooBookingView extends CMSObject
     public function display_block_app($block,$tpl){
 
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
         $open_source=Factory::getOpenSource();
         $debug="";
         if(!$open_source->is_rest_api()) {

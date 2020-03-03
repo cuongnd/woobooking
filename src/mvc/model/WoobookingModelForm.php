@@ -46,8 +46,8 @@ class WoobookingModelForm extends WoobookingModel
     {
 
         Form::addFieldPath(__DIR__ . '/../../form/fields');
-        Form::addFormPath(WOOBOOKING_PATH_COMPONENT . '/models/forms');
-        Form::addFieldPath(WOOBOOKING_PATH_COMPONENT . '/models/fields');
+        Form::addFormPath(WPBOOKINGPRO_PATH_COMPONENT . '/models/forms');
+        Form::addFieldPath(WPBOOKINGPRO_PATH_COMPONENT . '/models/fields');
         try
         {
             $form = Form::getInstance($source, $options, false, $xpath);

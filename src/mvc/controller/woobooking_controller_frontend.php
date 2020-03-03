@@ -15,7 +15,7 @@ class woobooking_controller_frontend extends woobooking_controller{
      */
     public function loadTemplate($tpl){
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
-        $tmpl_path=WOOBOOKING_PATH_COMPONENT.$tmpl_short_path;
+        $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
 
         if(file_exists($tmpl_path)){
             ob_start();
@@ -72,7 +72,7 @@ class woobooking_controller_frontend extends woobooking_controller{
     }
     public static function view($layout){
         list($view,$tpl)=explode(".",$layout);
-        $view_path=WOOBOOKING_PATH_COMPONENT."/views/$view/view.html.php";
+        $view_path=WPBOOKINGPRO_PATH_COMPONENT."/views/$view/view.html.php";
 
         if(file_exists($view_path)){
             require_once $view_path;
@@ -90,7 +90,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $blockModel=WoobookingModel::getInstance('block');
         $block=$blockModel->getItem($block_id);
         list($view,$tpl)=explode(".",$layout);
-        $view_path=WOOBOOKING_PATH_COMPONENT."/views/$view/view.html.php";
+        $view_path=WPBOOKINGPRO_PATH_COMPONENT."/views/$view/view.html.php";
 
         if(file_exists($view_path)){
             require_once $view_path;
@@ -105,7 +105,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         }
     }
     public static function config_block($block_name, $config_layout){
-        $block_view_path=WOOBOOKING_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
+        $block_view_path=WPBOOKINGPRO_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
         if(file_exists($block_view_path)){
             require_once $block_view_path;
             $view_class=new BlockView();
@@ -117,7 +117,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         }
     }
     public static function view_block_module($block_id,$block_name){
-        $block_view_path=WOOBOOKING_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
+        $block_view_path=WPBOOKINGPRO_PATH_COMPONENT_FRONT_END."/views/block/view.html.php";
         if(file_exists($block_view_path)){
             require_once $block_view_path;
             $view_class=new BlockView();
@@ -134,7 +134,7 @@ class woobooking_controller_frontend extends woobooking_controller{
             $model=$this->model;
         }
         $Ucfmodel=ucfirst($model);
-        $model_path=WOOBOOKING_PATH_COMPONENT."/models/$Ucfmodel.php";
+        $model_path=WPBOOKINGPRO_PATH_COMPONENT."/models/$Ucfmodel.php";
         $model_name="{$Ucfmodel}Model";
         if(file_exists($model_path)){
             require_once $model_path;
@@ -153,7 +153,7 @@ class woobooking_controller_frontend extends woobooking_controller{
             $model=$this->modelItem;
         }
         $UCModel=ucfirst($model);
-        $model_path=WOOBOOKING_PATH_COMPONENT."/models/$UCModel.php";
+        $model_path=WPBOOKINGPRO_PATH_COMPONENT."/models/$UCModel.php";
         if(file_exists($model_path)){
             require_once $model_path;
             $model_name="{$model}Model";
@@ -173,7 +173,7 @@ class woobooking_controller_frontend extends woobooking_controller{
 
             throw new Exception("please defined publish var modelList in file ".get_called_class());
         }
-        $model_path=WOOBOOKING_PATH_COMPONENT."/models/$model.php";
+        $model_path=WPBOOKINGPRO_PATH_COMPONENT."/models/$model.php";
         if(file_exists($model_path)){
 
             $model_class=WoobookingModel::getInstance($model);
@@ -193,7 +193,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $task=$task?$task:$data->task;
         list($controller,$task)=explode(".",$task);
         
-        $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
+        $file_controller_path=WPBOOKINGPRO_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
         if(file_exists($file_controller_path)){
@@ -289,7 +289,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $app=Factory::getApplication();
         list($controller,$task)=explode(".",$task);
 
-        $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
+        $file_controller_path=WPBOOKINGPRO_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
         if(file_exists($file_controller_path)){
@@ -329,7 +329,7 @@ class woobooking_controller_frontend extends woobooking_controller{
             return self::$instance[$controller];
         }
 
-        $file_controller_path=WOOBOOKING_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
+        $file_controller_path=WPBOOKINGPRO_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
         if(file_exists($file_controller_path)){
