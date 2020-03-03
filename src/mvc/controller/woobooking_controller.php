@@ -77,7 +77,7 @@ class woobooking_controller{
         if(file_exists($view_path)){
             require_once $view_path;
             $UFCiew=ucfirst($view);
-            $view_name="{$UFCiew}View";
+            $view_name="WpBookingPro_{$UFCiew}View";
             $view_class=new $view_name();
             $view_class->view=$view;
             return $view_class->display($tpl);
@@ -198,7 +198,7 @@ class woobooking_controller{
         $response=new stdClass();
         if(file_exists($file_controller_path)){
             require_once $file_controller_path;
-            $class_name=ucfirst($controller)."Controller";
+            $class_name="WpBookingPro_".ucfirst($controller)."Controller";
             if(!class_exists($class_name)){
                 $response->result="error";
                 $response->msg="file $file_short_controller_path must has class $class_name, please check it";
@@ -295,7 +295,7 @@ class woobooking_controller{
         $response=new stdClass();
         if(file_exists($file_controller_path)){
             require_once $file_controller_path;
-            $class_name=ucfirst($controller)."Controller";
+            $class_name="WpBookingPro_".ucfirst($controller)."Controller";
             if(!class_exists($class_name)){
                 $app->enqueueMessage("file $file_short_controller_path must has class $class_name, please check it");
             }else{
@@ -335,7 +335,7 @@ class woobooking_controller{
         $response=new stdClass();
         if(file_exists($file_controller_path)){
             require_once $file_controller_path;
-            $class_name=ucfirst($controller)."Controller";
+            $class_name="WpBookingPro_".ucfirst($controller)."Controller";
             if(!class_exists($class_name)){
                 $app->enqueueMessage("file $file_short_controller_path must has class $class_name, please check it");
             }else{

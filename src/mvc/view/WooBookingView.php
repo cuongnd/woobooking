@@ -20,7 +20,6 @@ class WooBookingView extends CMSObject
         $model=ucfirst($model);
         $model_path=WPBOOKINGPRO_PATH_COMPONENT."/models/$model.php";
         if(file_exists($model_path)){
-            $model_name="{$model}Model";
             $model_class=WoobookingModel::getInstance($model);
             $model_class->model=$model;
             return $model_class;
@@ -39,7 +38,7 @@ class WooBookingView extends CMSObject
         if (file_exists($view_path)) {
             require_once $view_path;
             if (!array_key_exists($view, self::$instance)) {
-                $class_name = "{$view}View";
+                $class_name = "WpBookingPro_{$view}View";
                 self::$instance[$view] = new $class_name();
                 self::$instance[$view]->model = $view;
             }

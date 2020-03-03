@@ -539,7 +539,7 @@ class WooBookingOnWordpress
             $file_controller_short_path = Utility::get_short_file_by_path($file_controller_path);
             if (file_exists($file_controller_path)) {
                 require_once $file_controller_path;
-                $class_name = ucfirst($menu) . "Controller";
+                $class_name = "WpBookingPro_".ucfirst($menu) . "Controller";
 
                 if (class_exists($class_name)) {
                     $class_controller = new $class_name();
@@ -1360,7 +1360,7 @@ class WooBookingOnWordpress
     {
 
         if (empty(self::$list_menu_by_xml)) {
-            $file_xml_path_app = WOOBOOKING_PATH_ADMIN_COMPONENT1 . "/views.xml";
+            $file_xml_path_app = WPBOOKINGPRO_PATH_ADMIN_COMPONENT1 . "/views.xml";
             $xml = simplexml_load_file($file_xml_path_app);
 
 
