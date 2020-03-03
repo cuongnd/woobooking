@@ -1179,11 +1179,13 @@ class WooBookingOnWordpress
         $listMenu = self::getListMenuWooPanel();
         foreach ($listMenu as $menu) {
             $menu = self::get_true_menu_of_woo_booking($menu);
+            $menu=ucfirst($menu);
             $file_api_path = WPBOOKINGPRO_PATH_COMPONENT . "/api/Api{$menu}.php";
             if (file_exists($file_api_path)) {
                 require_once $file_api_path;
                 $class_name = "WpBookingPro_Api{$menu}";
                 new $class_name();
+
             }
 
         }

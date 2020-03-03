@@ -139,5 +139,8 @@ https://code.tutsplus.com/vi/articles/data-sanitization-and-validation-with-word
 xóa các file và folder khỏi git nhưng vẫn giữ ở local
 git rm --cached `git ls-files -i -X .gitignore`
 
+link update lai composer
+https://packagist.org/packages/netbaseteam/woobooking
+
 
 
