@@ -29,7 +29,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: wpbookingpro_root_url + api_task,
+                url: wpbookingpro_root_url + wpbookingpro_api_task,
                 data: data,
                 beforeSend: function () {
                     // setting a timeout
@@ -65,7 +65,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: wpbookingpro_root_url + api_task,
+                url: wpbookingpro_root_url + wpbookingpro_api_task,
                 data: {
                     type: block_setting.param_name,
                     id:id,
@@ -165,7 +165,7 @@ function loadLockScripts(response) {
     $('link[rel="stylesheet/less"]').remove();
     var styleSheets = response.styleSheets;
     $.each(styleSheets, function (src, value) {
-        $('head').append(`<link rel="stylesheet" href="${root_url_plugin}${src}" type="text/css" />`);
+        $('head').append(`<link rel="stylesheet" href="${wpbookingpro_root_url_plugin}${src}" type="text/css" />`);
     });
     less_arr = [];
     var lessStyleSheets = response.lessStyleSheets;
@@ -173,22 +173,22 @@ function loadLockScripts(response) {
         if( src.indexOf('http') >= 0){
             less_arr.push(src);
         }else{
-            less_arr.push(root_url_plugin+src);
+            less_arr.push(wpbookingpro_root_url_plugin+src);
         }
     });
 
-    $.getBlockMultiLess(less_arr, root_url_plugin).done(function () {
+    $.getBlockMultiLess(less_arr, wpbookingpro_root_url_plugin).done(function () {
         script_arr = [];
         var scripts = response.scripts;
         $.each(scripts, function (src, value) {
             if( src.indexOf('http') >= 0){
                 script_arr.push(src);
             }else{
-                script_arr.push(root_url_plugin+src);
+                script_arr.push(wpbookingpro_root_url_plugin+src);
             }
         });
 
-        $.getBlockMultiScripts(script_arr, root_url_plugin).done(function () {
+        $.getBlockMultiScripts(script_arr, wpbookingpro_root_url_plugin).done(function () {
             var script = response.script;
             $('head').append(`<script type="text/javascript">${script['text/javascript']}</script>`);
         });

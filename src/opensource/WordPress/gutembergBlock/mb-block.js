@@ -14,7 +14,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-config-blog').live('click',funct
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: wpbookingpro_root_url + api_task_frontend,
+        url: wpbookingpro_root_url + wpbookingpro_api_task_frontend,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -50,7 +50,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-preview-block').live('click',fun
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: wpbookingpro_root_url + api_task_frontend,
+        url: wpbookingpro_root_url + wpbookingpro_api_task_frontend,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -87,7 +87,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: wpbookingpro_root_url + api_task_frontend,
+        url: wpbookingpro_root_url + wpbookingpro_api_task_frontend,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -135,7 +135,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: wpbookingpro_root_url + api_task_frontend,
+            url: wpbookingpro_root_url + wpbookingpro_api_task_frontend,
             data: data,
             beforeSend: function () {
                 // setting a timeout
@@ -234,7 +234,7 @@ jQuery.each(list_view,function (key, item) {
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: wpbookingpro_root_url + api_task_frontend,
+                        url: wpbookingpro_root_url + wpbookingpro_api_task_frontend,
                         data: {
                             type: key,
                             open_source_client_id: clientId,
@@ -320,7 +320,7 @@ function loadBlockScripts(response) {
         if (src.indexOf('http') >= 0) {
             $('head').append(`<link rel="stylesheet" href="${src}" type="text/css" />`);
         } else {
-            $('head').append(`<link rel="stylesheet" href="${root_url_plugin}${src}" type="text/css" />`);
+            $('head').append(`<link rel="stylesheet" href="${wpbookingpro_root_url_plugin}${src}" type="text/css" />`);
         }
     });
     less_arr = [];
@@ -329,22 +329,22 @@ function loadBlockScripts(response) {
         if( src.indexOf('http') >= 0){
             less_arr.push(src);
         }else{
-            less_arr.push(root_url_plugin+src);
+            less_arr.push(wpbookingpro_root_url_plugin+src);
         }
     });
 
-    $.getBlockMultiLess(less_arr, root_url_plugin).done(function () {
+    $.getBlockMultiLess(less_arr, wpbookingpro_root_url_plugin).done(function () {
         script_arr = [];
         var scripts = response.scripts;
         $.each(scripts, function (src, value) {
             if( src.indexOf('http') >= 0){
                 script_arr.push(src);
             }else if(src.indexOf('less.min.js') === -1) {
-                script_arr.push(root_url_plugin+src);
+                script_arr.push(wpbookingpro_root_url_plugin+src);
             }
         });
         console.log("script_arr",script_arr);
-        $.getBlockMultiScripts(script_arr, root_url_plugin).done(function () {
+        $.getBlockMultiScripts(script_arr, wpbookingpro_root_url_plugin).done(function () {
             var script = response.script;
             $('head').append(`<script type="text/javascript">${script['text/javascript']}</script>`);
         });
