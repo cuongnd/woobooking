@@ -86,6 +86,7 @@ class WpBookingPro_FormFieldYesNo extends FormField
 		return parent::__get($name);
 	}
 
+
 	/**
 	 * Method to set certain otherwise inaccessible properties of the form field object.
 	 *
