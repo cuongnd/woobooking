@@ -29,7 +29,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: root_url + api_task,
+                url: wpbookingpro_root_url + api_task,
                 data: data,
                 beforeSend: function () {
                     // setting a timeout
@@ -65,7 +65,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: root_url + api_task,
+                url: wpbookingpro_root_url + api_task,
                 data: {
                     type: block_setting.param_name,
                     id:id,

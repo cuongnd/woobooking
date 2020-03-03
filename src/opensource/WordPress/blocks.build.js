@@ -14,7 +14,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-config-blog').live('click',funct
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + api_task,
+        url: wpbookingpro_root_url + api_task,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -51,7 +51,7 @@ $(`.woo-booking-block-edit-content`).find('.btn-preview-block').live('click',fun
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + api_task,
+        url: wpbookingpro_root_url + api_task,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -88,7 +88,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-cancel-block').live('click',f
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: root_url + api_task,
+        url: wpbookingpro_root_url + api_task,
         data: {
             type: type,
             open_source_client_id: currentClientId,
@@ -136,7 +136,7 @@ $(`div.woo-booking-block-edit-content`).find('.btn-save-block').live('click',fun
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: root_url + api_task,
+            url: wpbookingpro_root_url + api_task,
             data: data,
             beforeSend: function () {
                 // setting a timeout
@@ -235,7 +235,7 @@ jQuery.each(list_view,function (key, item) {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: root_url + api_task,
+                    url: wpbookingpro_root_url + api_task,
                     data: {
                         type: key,
                         open_source_client_id: clientId,

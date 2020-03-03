@@ -121,7 +121,7 @@ abstract class Html
         $className = $prefix . ucfirst($file);
 
         if(empty(static::$includePaths)){
-            self::addIncludePath(WOO_BOOKING_PATH_PLATFORM."/Html/Html");
+            self::addIncludePath(WPBOOKINGPRO_PATH_PLATFORM."/Html/Html");
         }
 
         if (!class_exists($className))
