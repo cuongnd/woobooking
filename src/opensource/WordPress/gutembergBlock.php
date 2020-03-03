@@ -54,10 +54,10 @@ class gutembergBlock
         $api_task="/wp-json/".$open_source::$namespace.$open_source->get_api_task();
         $api_task_frontend="/wp-json/".$open_source::$namespace.$open_source->get_api_task_frontend();
         wp_localize_script('backend-list-block', 'list_view', $list_view);
-        wp_localize_script('backend-list-block', 'root_url', Factory::getRootUrl());
-        wp_localize_script('backend-list-block', 'root_url_plugin', Factory::getRootUrlPlugin());
-        wp_localize_script('backend-list-block', 'api_task', $api_task);
-        wp_localize_script('backend-list-block', 'api_task_frontend', $api_task_frontend);
+        wp_localize_script('backend-list-block', 'wpbookingpro_root_url', Factory::getRootUrl());
+        wp_localize_script('backend-list-block', 'wpbookingpro_root_url_plugin', Factory::getRootUrlPlugin());
+        wp_localize_script('backend-list-block', 'wpbookingpro_api_task', $api_task);
+        wp_localize_script('backend-list-block', 'wpbookingpro_api_task_frontend', $api_task_frontend);
         wp_enqueue_script('less-init', Factory::getRootUrlPlugin() .'resources/js/less/less.min.js' );
         wp_enqueue_script('jquery-confirm-script', Factory::getRootUrlPlugin() .'resources/js/jquery-confirm-master/dist/jquery-confirm.min.js' );
         wp_enqueue_style('jquery-confirm-css', Factory::getRootUrlPlugin() .'resources/js/jquery-confirm-master/dist/jquery-confirm.min.css' );

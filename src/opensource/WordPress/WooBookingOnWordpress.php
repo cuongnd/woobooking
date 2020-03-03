@@ -739,10 +739,10 @@ class WooBookingOnWordpress
         ?>
 
         <script type="text/javascript">
-            root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
-            api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-            api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
+            wpbookingpro_root_url = "<?php echo $root_url ?>";
+            wpbookingpro_root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
+            wpbookingpro_api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
+            wpbookingpro_api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
             list_view =<?php echo json_encode($list_view) ?>
         </script>
 
