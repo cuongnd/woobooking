@@ -73,7 +73,7 @@ class WoobookingModel extends BaseDatabaseModel
         }
         $model_path = WPBOOKINGPRO_PATH_COMPONENT . "/models/$model.php";
         if (file_exists($model_path)  && !class_exists("{$model}Model")) {
-            $model_name = "{$model}Model";
+            $model_name = "WpBookingPro_{$model}Model";
             $model_class = WoobookingModel::getInstance($model);
             $model_class->model = $model;
             return $model_class;
@@ -319,7 +319,7 @@ class WoobookingModel extends BaseDatabaseModel
         if (file_exists($model_path)) {
             require_once $model_path;
             if (!array_key_exists($model, self::$instance)) {
-                $class_name = "{$model}Model";
+                $class_name = "WpBookingPro_{$model}Model";
                 self::$instance[$model] = new $class_name();
                 self::$instance[$model]->model = $model;
             }
