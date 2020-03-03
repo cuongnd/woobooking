@@ -2337,10 +2337,6 @@ class Form
 				{
 				   
                     echo sprintf('%s() could not load file %s', __METHOD__,$data);
-
-                    die;
-
-                    die;
 					throw new \RuntimeException(sprintf('%s() could not load file', __METHOD__));
 
 				}

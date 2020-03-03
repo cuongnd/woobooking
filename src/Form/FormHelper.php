@@ -194,6 +194,7 @@ abstract class FormHelper
 
 
 		$class =__NAMESPACE__.'\fields'."\Form{$entity}{$type}";
+
 		if (class_exists($class))
 		{
             return $class;
@@ -224,6 +225,7 @@ abstract class FormHelper
 
 		// Try to find the class file.
 		$type = strtolower($type) . '.php';
+
         foreach ($paths as $path)
 		{
 
@@ -239,7 +241,6 @@ abstract class FormHelper
 				break;
 			}
 		}
-
 
         // Check for all if the class exists.
 		return class_exists($class) ? $class : false;

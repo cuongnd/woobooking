@@ -1174,8 +1174,7 @@ class WooBookingOnWordpress
                 'callback' => array('woobooking_controller', 'ajax_action_task'),
             )
         );
-
-
+        require_once WPBOOKINGPRO_PATH_COMPONENT . "/api/ApiHelper.php";
         $listMenu = self::getListMenuWooPanel();
         foreach ($listMenu as $menu) {
             $menu = self::get_true_menu_of_woo_booking($menu);
