@@ -4,7 +4,7 @@
 namespace WooBooking\CMS\OpenSource\WordPress;
 
 
-use BlockController;
+use WPBOOKINGPRO_BlockController;
 use Exception;
 use Factory;
 use WooBooking\CMS;
@@ -111,8 +111,6 @@ class WooBookingOnWordpress
     {
         $input = Factory::getInput();
         $data = $input->getData();
-        echo "sdfsdfds";
-        die;
         $modelBooking = WoobookingModel::getInstance('booking');
         $modelBooking->add_to_cart($data);
 
@@ -742,7 +740,7 @@ class WooBookingOnWordpress
 
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
             list_view =<?php echo json_encode($list_view) ?>
@@ -764,7 +762,7 @@ class WooBookingOnWordpress
             $file_controller_short_path = Utility::get_short_file_by_path($file_controller_path);
             $file_short_controller_path = Utility::get_short_file_by_path($file_controller_path);
             require_once $file_controller_path;
-            $class_name = ucfirst($controller) . "Controller";
+            $class_name = "WpBookingPro_".ucfirst($controller) . "Controller";
             if (file_exists($file_controller_path)) {
                 if (class_exists($class_name)) {
                     $class_controller = new $class_name();
@@ -824,7 +822,7 @@ class WooBookingOnWordpress
 
             list($package, $block, $block_name) = explode("-", $a_view);
 
-            echo BlockController::view_block_module($id, $block_name);
+            echo WPBOOKINGPRO_BlockController::view_block_module($id, $block_name);
         }
         return false;
     }
@@ -1296,9 +1294,9 @@ class WooBookingOnWordpress
         foreach ($styleSheets as $src => $attribs) {
             $random = random_int(100000, 900000);
             if (strpos($src, 'http') !== false) {
-                wp_enqueue_style('woobooking-css-' . $random, $src);
+                wp_enqueue_style('wp-booking-pro-css-' . $random, $src);
             } else {
-                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . WPBOOKINGPRO_PLUGIN_NAME . '/' . $src);
+                wp_enqueue_style('wp-booking-pro-css-' . $random, plugins_url() . '/' . WPBOOKINGPRO_PLUGIN_NAME . '/' . $src);
             }
         }
         $lessStyleSheets = $doc->getLessStyleSheets();
@@ -1316,19 +1314,18 @@ class WooBookingOnWordpress
         <script type="text/javascript">
             var root_url = "<?php echo $root_url ?>";
             var current_url = "<?php echo $root_url ?>";
-            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
+            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
             var api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             var api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
         </script>
         <?php
         $content=ob_get_clean();
         $content=Utility::remove_string_javascript($content);
-        wp_enqueue_script('js-wp-booking-pro-init', Factory::getRootUrlPlugin() .'resources/js/init.js' );
-        wp_add_inline_script('js-wp-booking-pro-init', $content);
-
-
+        wp_enqueue_script('wp-booking-pro-js-init', Factory::getRootUrlPlugin() .'resources/js/init.js' );
+        wp_add_inline_script('wp-booking-pro-js-init', $content);
 
         $scripts = $doc->getScripts();
+
         foreach ($scripts as $src => $attribs) {
             $random = random_int(100000, 900000);
             if (strpos($src, 'http') !== false) {
