@@ -18,7 +18,7 @@ FormHelper::loadFieldClass('list');
  * @link   http://www.w3.org/TR/html-markup/command.radio.html#command.radio
  * @since  1.7.0
  */
-class FormFieldRadio extends JFormFieldList
+class WpBookingPro_FormFieldRadio extends JFormFieldList
 {
 	/**
 	 * The form field type.

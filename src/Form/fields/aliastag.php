@@ -16,7 +16,7 @@ FormHelper::loadFieldClass('list');
  *
  * @since  2.5.0
  */
-class FormFieldAliastag extends JFormFieldList
+class WpBookingPro_FormFieldAliastag extends JFormFieldList
 {
 	/**
 	 * The field type.

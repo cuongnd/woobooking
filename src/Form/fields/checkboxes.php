@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
+use WooBooking\CMS\Form\fields\FormFieldList;
+
 defined('_WPBOOKINGPRO_EXEC') or die;
 
 FormHelper::loadFieldClass('list');
@@ -19,7 +21,7 @@ FormHelper::loadFieldClass('list');
  * @see    JFormFieldCheckbox
  * @since  1.7.0
  */
-class FormFieldCheckboxes extends JFormFieldList
+class WpBookingPro_FormFieldCheckboxes extends FormFieldList
 {
 	/**
 	 * The form field type.

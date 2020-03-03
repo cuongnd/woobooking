@@ -19,7 +19,7 @@ FormHelper::loadFieldClass('text');
  * @see    JFormRuleUrl for validation of full urls
  * @since  1.7.0
  */
-class FormFieldUrl extends JFormFieldText
+class WpBookingPro_FormFieldUrl extends JFormFieldText
 {
 	/**
 	 * The form field type.

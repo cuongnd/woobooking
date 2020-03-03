@@ -22,7 +22,7 @@ use SimpleXMLElement;
  * @link   http://www.w3.org/TR/html-markup/input.text.html#input.text
  * @since  1.7.0
  */
-class FormFieldFullImage extends FormField
+class WpBookingPro_FormFieldFullImage extends FormField
 {
 	/**
 	 * The form field type.

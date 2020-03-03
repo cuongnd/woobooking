@@ -18,7 +18,7 @@ FormHelper::loadFieldClass('list');
  *
  * @since  1.7.0
  */
-class FormFieldFileList extends JFormFieldList
+class WpBookingPro_FormFieldFileList extends JFormFieldList
 {
 	/**
 	 * The form field type.

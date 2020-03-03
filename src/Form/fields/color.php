@@ -23,7 +23,7 @@ use SimpleXMLElement;
  * @link   http://www.w3.org/TR/html-markup/input.color.html
  * @since  1.7.3
  */
-class FormFieldColor extends FormField
+class WpBookingPro_FormFieldColor extends FormField
 {
 	/**
 	 * The form field type.

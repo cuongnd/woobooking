@@ -21,7 +21,7 @@ use SimpleXMLElement;
  * @link   http://www.w3.org/TR/html-markup/textarea.html#textarea
  * @since  1.7.0
  */
-class FormFieldTextarea extends FormField
+class WpBookingPro_FormFieldTextarea extends FormField
 {
 	/**
 	 * The form field type.

@@ -23,7 +23,7 @@ use WooBooking\CMS\Form\Form;
  *
  * @since  3.6
  */
-class FormFieldSubform extends FormField
+class WpBookingPro_FormFieldSubform extends FormField
 {
 	/**
 	 * The form field type.

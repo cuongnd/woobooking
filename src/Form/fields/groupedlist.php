@@ -15,7 +15,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  *
  * @since  1.7.0
  */
-class FormFieldGroupedList extends FormField
+class WpBookingPro_FormFieldGroupedList extends FormField
 {
 	/**
 	 * The form field type.

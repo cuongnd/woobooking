@@ -187,13 +187,12 @@ abstract class FormHelper
             // Check if the class exists
 			if (class_exists($class))
 			{
-
 				return $class;
 			}
 		}
 
 
-		$class =__NAMESPACE__.'\fields'."\Form{$entity}{$type}";
+		$class =__NAMESPACE__.'\fields'."\WpBookingPro_Form{$entity}{$type}";
 
 		if (class_exists($class))
 		{

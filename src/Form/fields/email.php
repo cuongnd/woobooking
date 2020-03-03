@@ -19,7 +19,7 @@ FormHelper::loadFieldClass('text');
  * @see    JFormRuleEmail
  * @since  1.7.0
  */
-class FormFieldEMail extends JFormFieldText
+class WpBookingPro_FormFieldEMail extends JFormFieldText
 {
 	/**
 	 * The form field type.

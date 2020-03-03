@@ -21,7 +21,7 @@ use WoobookingText;
  * @since  1.7.0
  */
 
-class FormFieldText extends FormField
+class WpBookingPro_FormFieldText extends FormField
 {
 	/**
 	 * The form field type.

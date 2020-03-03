@@ -20,7 +20,7 @@ FormHelper::loadFieldClass('text');
  * @see    JHtmlTel for rendering of telephone numbers
  * @since  1.7.0
  */
-class FormFieldTel extends JFormFieldText
+class WpBookingPro_FormFieldTel extends JFormFieldText
 {
 	/**
 	 * The form field type.

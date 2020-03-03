@@ -21,7 +21,7 @@ use SimpleXMLElement;
  * @link   http://www.w3.org/TR/html-markup/input.hidden.html#input.hidden
  * @since  1.7.0
  */
-class FormFieldHidden extends FormField
+class WpBookingPro_FormFieldHidden extends FormField
 {
 	/**
 	 * The form field type.

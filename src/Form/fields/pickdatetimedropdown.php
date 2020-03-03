@@ -21,7 +21,7 @@ use WoobookingText;
  * @since  1.7.0
  */
 
-class FormFieldPickDateTimeDropdown extends FormField
+class WpBookingPro_FormFieldPickDateTimeDropdown extends FormField
 {
 	/**
 	 * The form field type.

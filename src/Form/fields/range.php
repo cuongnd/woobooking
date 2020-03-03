@@ -18,7 +18,7 @@ FormHelper::loadFieldClass('number');
  * @link   http://www.w3.org/TR/html-markup/input.text.html#input.text
  * @since  3.2
  */
-class FormFieldRange extends JFormFieldNumber
+class WpBookingPro_FormFieldRange extends JFormFieldNumber
 {
 	/**
 	 * The form field type.

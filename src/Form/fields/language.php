@@ -18,7 +18,7 @@ FormHelper::loadFieldClass('list');
  * @see    JFormFieldContentLanguage for a select list of content languages.
  * @since  1.7.0
  */
-class FormFieldLanguage extends JFormFieldList
+class WpBookingPro_FormFieldLanguage extends JFormFieldList
 {
 	/**
 	 * The form field type.

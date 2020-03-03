@@ -17,7 +17,7 @@ FormHelper::loadFieldClass('list');
  *
  * @since  3.2
  */
-abstract class FormFieldPredefinedList extends FormFieldList
+abstract class WpBookingPro_FormFieldPredefinedList extends FormFieldList
 {
 	/**
 	 * The form field type.

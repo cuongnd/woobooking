@@ -16,7 +16,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @see    JAccess
  * @since  1.7.0
  */
-class FormFieldRules extends FormField
+class WpBookingPro_FormFieldRules extends FormField
 {
 	/**
 	 * The form field type.

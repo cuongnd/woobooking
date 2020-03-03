@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
+use WooBooking\CMS\Form\FormField;
+
 defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
@@ -18,7 +20,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @see    JFormFieldCheckboxes
  * @since  1.7.0
  */
-class FormFieldCheckbox extends FormField
+class WpBookingPro_FormFieldCheckbox extends FormField
 {
 	/**
 	 * The form field type.

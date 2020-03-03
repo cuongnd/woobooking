@@ -19,7 +19,7 @@ FormHelper::loadFieldClass('list');
  * @see    JAccess
  * @since  1.7.0
  */
-class FormFieldAccessLevel extends JFormFieldList
+class WpBookingPro_FormFieldAccessLevel extends JFormFieldList
 {
 	/**
 	 * The form field type.

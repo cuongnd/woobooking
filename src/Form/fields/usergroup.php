@@ -17,7 +17,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @since       1.7.0
  * @deprecated  3.5
  */
-class FormFieldUsergroup extends FormField
+class WpBookingPro_FormFieldUsergroup extends FormField
 {
 	/**
 	 * The form field type.

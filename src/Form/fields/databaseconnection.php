@@ -19,7 +19,7 @@ FormHelper::loadFieldClass('list');
  * @see    JDatabaseDriver
  * @since  1.7.3
  */
-class FormFieldDatabaseConnection extends JFormFieldList
+class WpBookingPro_FormFieldDatabaseConnection extends JFormFieldList
 {
 	/**
 	 * The form field type.

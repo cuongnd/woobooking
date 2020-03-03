@@ -18,7 +18,7 @@ FormHelper::loadFieldClass('list');
  * @see    JCache
  * @since  1.7.0
  */
-class FormFieldCacheHandler extends JFormFieldList
+class WpBookingPro_FormFieldCacheHandler extends JFormFieldList
 {
 	/**
 	 * The form field type.

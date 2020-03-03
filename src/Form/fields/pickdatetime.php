@@ -22,7 +22,7 @@ use WoobookingText;
  * @since  1.7.0
  */
 
-class FormFieldPickDateTime extends FormField
+class WpBookingPro_FormFieldPickDateTime extends FormField
 {
 	/**
 	 * The form field type.

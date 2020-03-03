@@ -17,7 +17,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @note   Two password fields may be validated as matching using JFormRuleEquals
  * @since  1.7.0
  */
-class FormFieldPassword extends FormField
+class WpBookingPro_FormFieldPassword extends FormField
 {
 	/**
 	 * The form field type.

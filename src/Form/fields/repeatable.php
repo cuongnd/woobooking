@@ -17,7 +17,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  *
  * @deprecated  4.0  Use JFormFieldSubform
  */
-class FormFieldRepeatable extends FormField
+class WpBookingPro_FormFieldRepeatable extends FormField
 {
 	/**
 	 * The form field type.

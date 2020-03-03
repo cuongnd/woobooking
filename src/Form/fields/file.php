@@ -16,7 +16,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @link   http://www.w3.org/TR/html-markup/input.file.html#input.file
  * @since  1.7.0
  */
-class FormFieldFile extends FormField
+class WpBookingPro_FormFieldFile extends FormField
 {
 	/**
 	 * The form field type.

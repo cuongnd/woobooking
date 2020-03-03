@@ -16,7 +16,7 @@ FormHelper::loadFieldClass('groupedlist');
  *
  * @since  1.7.0
  */
-class FormFieldTimezone extends JFormFieldGroupedList
+class WpBookingPro_FormFieldTimezone extends JFormFieldGroupedList
 {
 	/**
 	 * The form field type.

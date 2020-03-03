@@ -18,7 +18,7 @@ use WooBooking\CMS\Html\Html;
  *
  * @since  1.7.0
  */
-class FormFieldList extends FormField
+class WpBookingPro_FormFieldList extends FormField
 {
 	/**
 	 * The form field type.
