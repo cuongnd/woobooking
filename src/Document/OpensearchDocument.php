@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Document\Opensearch\OpensearchImage;
 use WooBooking\CMS\Document\Opensearch\OpensearchUrl;
@@ -77,13 +77,13 @@ class OpensearchDocument extends Document
 		// Add the favicon as the default image
 		// Try to find a favicon by checking the template and root folder
 		$app = \Factory::getApplication();
-		$dirs = array(JPATH_THEMES . '/' . $app->getTemplate(), WOOBOOKING_PATH_ROOT);
+		$dirs = array(JPATH_THEMES . '/' . $app->getTemplate(), WPBOOKINGPRO_PATH_ROOT);
 
 		foreach ($dirs as $dir)
 		{
 			if (file_exists($dir . '/favicon.ico'))
 			{
-				$path = str_replace(WOOBOOKING_PATH_ROOT, '', $dir);
+				$path = str_replace(WPBOOKINGPRO_PATH_ROOT, '', $dir);
 				$path = str_replace('\\', '/', $path);
 				$favicon = new OpensearchImage;
 
@@ -126,7 +126,7 @@ class OpensearchDocument extends Document
 	{
 		$xml = new \DOMDocument('1.0', 'utf-8');
 
-		if (defined('WBDEBUG') && WBDEBUG)
+		if (defined('WPBOOKING_PRO_DEBUG') && WPBOOKING_PRO_DEBUG)
 		{
 			$xml->formatOutput = true;
 		}

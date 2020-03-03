@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Document\Feed\FeedImage;
 use WooBooking\CMS\Document\Feed\FeedItem;

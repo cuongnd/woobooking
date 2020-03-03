@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * RawDocument class, provides an easy interface to parse and display raw output

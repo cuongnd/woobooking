@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document\Renderer\Feed;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Document\DocumentRenderer;
 use WooBooking\CMS\Uri\Uri;

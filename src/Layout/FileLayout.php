@@ -9,7 +9,7 @@ namespace WooBooking\CMS\Layout;
 use WooBooking\CMS\Filesystem\Path;
 
 use WooBooking\CMS\Utilities\Utility;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 /**

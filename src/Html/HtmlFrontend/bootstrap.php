@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Utility class for Bootstrap elements.
@@ -224,7 +224,7 @@ abstract class HtmlFrontendBootstrap
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null)
 		{
-			$debug = WBDEBUG;
+			$debug = WPBOOKING_PRO_DEBUG;
 		}
 
 		HtmlFrontend::_('script', 'jui/bootstrap.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));

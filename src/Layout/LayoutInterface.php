@@ -8,7 +8,7 @@
 namespace  WooBooking\CMS\Layout;
 
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Interface to handle display layout

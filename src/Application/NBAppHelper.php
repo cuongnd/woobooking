@@ -11,7 +11,7 @@ class NBAppHelper
         $db=\Factory::getDBO();
         $query=$db->getQuery(true);
         $query->select("*")
-            ->from(PREFIX_TABLE."config")
+            ->from(WPBOOKINGPRO_PREFIX_TABLE."config")
             ->where('id=1')
         ;
         $item=$db->setQuery($query)->loadObject();

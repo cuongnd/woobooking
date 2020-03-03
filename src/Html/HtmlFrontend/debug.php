@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Extended Utility class for render debug information.
@@ -48,7 +48,7 @@ abstract class HtmlFrontendDebug
 			static::$xdebugLinkFormat = ini_get('xdebug.file_link_format');
 		}
 
-		$link = str_replace(WOOBOOKING_PATH_ROOT, 'JROOT', JPath::clean($file));
+		$link = str_replace(WPBOOKINGPRO_PATH_ROOT, 'JROOT', JPath::clean($file));
 		$link .= $line ? ':' . $line : '';
 
 		if (static::$xdebugLinkFormat)

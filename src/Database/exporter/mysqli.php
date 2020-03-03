@@ -11,7 +11,7 @@ use Exception;
 use WooBooking\CMS\Database\DatabaseExporter;
 use WooBooking\CMS\Database\driver\DatabaseDriverMysqli;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 /**
  * MySQLi export driver.
  *

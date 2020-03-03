@@ -222,7 +222,7 @@ class Factory
         {
             if ($file === null)
             {
-                $file = WOOBOOKING_PATH_ROOT . '/nb_config.php';
+                $file = WPBOOKINGPRO_PATH_ROOT . '/nb_config.php';
             }
 
             self::$config = self::createConfig($file, $type, $namespace);

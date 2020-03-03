@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Client;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use woobooking\CMS\Log\Log;
 use woobooking\CMS\Utility\BufferStreamHandler;

@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Utility class for jQuery JavaScript behaviors
@@ -76,7 +76,7 @@ abstract class HtmlJquery
 		static::framework();
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null) {
-			$debug = WBDEBUG;
+			$debug = WPBOOKING_PRO_DEBUG;
 		}
 		$doc = Factory::getDocument();
 		$doc->addScript('https://code.jquery.com/ui/1.11.3/jquery-ui.js');

@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Form\Rule;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use woobooking\Registry\Registry;
 use WooBooking\CMS\Form\Form;

@@ -11,7 +11,7 @@ namespace WooBooking\CMS\Log;
 use WooBooking\CMS\Log\LogEntry;
 use WooBooking\CMS\Utilities\Utility;
 use WooBooking\CMS\Log\Logger\FormattedtextLogger;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * woobooking! Log Class

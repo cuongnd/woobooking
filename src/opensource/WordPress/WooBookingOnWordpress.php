@@ -19,69 +19,22 @@ use WoobookingModel;
 use WoobookingText;
 
 
-/**
- * Class WooBookingOnWordpress
- * @package WooBooking\CMS\OpenSource\WordPress
- */
 class WooBookingOnWordpress
 {
-    /**
-     * @var null
-     */
     public static $instance = null;
-    /**
-     * @var null
-     */
     public static $items_submenus = null;
-    /**
-     * @var string
-     */
     public static $key_woo_booking = "woobooking";
-    /**
-     * @var string
-     */
     public static $version = "1.0";
-    /**
-     * @var string
-     */
     public static $prefix_link = "wb_";
-    /**
-     * @var string
-     */
     public static $namespace = "woobooking_api/1.0";
-    /**
-     * @var array
-     */
     private static $list_environment = array();
-    /**
-     * @var string
-     */
     public $page_default="event-list";
-    /**
-     * @var string
-     */
     public $view = "";
-    /**
-     * @var null
-     */
     public $ecommerce = null;
-    /**
-     * @var array
-     */
     public $scripts = array();
-    /**
-     * @var array
-     */
     public $script = array();
-    /**
-     * @var string
-     */
     public $plugin_name = 'woobooking';
 
-    /**
-     * @param bool $new
-     * @return WooBookingOnWordpress|null
-     */
     public static function getInstance($new = false)
     {
         if (!is_object(self::$instance)) {
@@ -92,21 +45,19 @@ class WooBookingOnWordpress
         return self::$instance;
     }
 
-    /**
-     * @param string $version
-     */
     private static function setVersion($version=""){
         self::$version=$version;
     }
 
 
-    /**
-     *
-     */
     public function setup_render_gutenberg_dynamic()
     {
         $api_task="/wp-json/".self::$namespace.self::get_api_task();
         $api_task_frontend="/wp-json/".self::$namespace.self::get_api_task_frontend();
+        //wp_localize_script('backend-list-block', 'root_url', Factory::getRootUrl());
+        //wp_localize_script('backend-list-block', 'root_url_plugin', Factory::getRootUrlPlugin());
+        //wp_localize_script('backend-list-block', 'api_task', $api_task);
+        //wp_localize_script('backend-list-block', 'api_task_frontend', $api_task_frontend);
 
         add_action( 'init', function (){
             $gutembergBlock=gutembergBlock::getInstance();
@@ -121,73 +72,41 @@ class WooBookingOnWordpress
         } );
     }
 
-    /**
-     * @param string $default_page
-     */
     public function setDefaultPage($default_page=""){
         $this->page_default=$default_page;
     }
-
-    /**
-     * @return string
-     */
     public function getDefaultPage(){
         return $this->page_default;
     }
-
-    /**
-     * @return string
-     */
     private static function getVersion(){
         return self::$version;
     }
-
-    /**
-     * @return string
-     */
     private static function get_prefix_link()
     {
 
         return self::$prefix_link;
     }
 
-    /**
-     * @param $menu
-     * @return mixed
-     */
     private static function get_true_menu_of_woo_booking($menu)
     {
         return str_replace(self::$prefix_link, "", $menu);
     }
 
-    /**
-     * @return bool
-     */
     public function __return_false()
     {
         return false;
     }
 
-    /**
-     * @return string
-     */
     public function getKeyWooBooking()
     {
         return self::$key_woo_booking;
     }
 
-    /**
-     * @param $price
-     * @return string
-     */
     function react2wp_woocommerce_hide_product_price($price)
     {
         return '';
     }
 
-    /**
-     * @throws Exception
-     */
     public function my_action()
     {
         $input = Factory::getInput();
@@ -205,17 +124,16 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     * @param $content
-     */
-    public function wpbookingpro_render_content($content)
+    public function render_content($content)
     {
         echo $content;
     }
 
-    /**
-     *
-     */
+
+
+
+
+
     public function session_start(){
         add_action('init', function (){
             if(!session_id()) {
@@ -224,12 +142,9 @@ class WooBookingOnWordpress
         }, 1);
 
     }
-
-    /**
-     * @return mixed
-     */
     public function getSession()
     {
+
         if(!session_id()) {
             session_start();
             return $_SESSION;
@@ -237,26 +152,19 @@ class WooBookingOnWordpress
         return $_SESSION;
     }
 
-    /**
-     * @param $order_id
-     * @return mixed
-     */
     public function getECommerceOrderDetail($order_id)
     {
         $order = wc_get_order($order_id);
         return $order;
     }
 
-    /**
-     *
-     */
     public function initOpenWooBookingWordpressFrontend()
     {
 
         $root_url = self::get_root_url();
         $input = Factory::getInput();
         Factory::setRootUrl($root_url);
-        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
+        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . WPBOOKINGPRO_PLUGIN_NAME . "/");
 
 
         $task = $input->getString('task', '');
@@ -307,9 +215,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     *
-     */
     function wp_add_inline_script(){
         if(self::is_backend_wordpress()){
             add_action('admin_footer', array($this, 'wp_hook_add_script_footer'));
@@ -318,10 +223,6 @@ class WooBookingOnWordpress
         }
     }
 
-    /**
-     * @param $user_login
-     * @throws Exception
-     */
     public static function wp_login($user_login)
     {
         if (!self::checkInstalled()) {
@@ -347,9 +248,6 @@ class WooBookingOnWordpress
         $session->set('user', $user);
     }
 
-    /**
-     *
-     */
     public static function wp_logout()
     {
 
@@ -357,26 +255,16 @@ class WooBookingOnWordpress
         $session->set('user', null);
     }
 
-    /**
-     * @param $page
-     * @return mixed
-     */
     public static function get_stander_page_front_end($page)
     {
         return  $page;
     }
 
-    /**
-     * @return string
-     */
     function bl_new_demo_route_callback()
     {
         return "Congrats! Your demo callback is fully functional. Now make it do something fancy";
     }
 
-    /**
-     * @return bool
-     */
     public static function checkInstalled()
     {
         $app = Factory::getApplication();
@@ -386,7 +274,7 @@ class WooBookingOnWordpress
         if (count($list_table_in_database) == 0) {
             $installed = false;
         }
-        $json_table_need_install = File::read(WOOBOOKING_PATH_ROOT . "/install/tables.json");
+        $json_table_need_install = File::read(WPBOOKINGPRO_PATH_ROOT . "/install/tables.json");
 
         $json_table_need_install = json_decode($json_table_need_install);
 
@@ -401,24 +289,13 @@ class WooBookingOnWordpress
         return $installed;
     }
 
-    /**
-     * @return mixed
-     */
     public static function is_backend_wordpress()
     {
         return is_admin();
     }
-
-    /**
-     *
-     */
     function wpb_load_widget() {
         register_widget( 'wpb_widget' );
     }
-
-    /**
-     *
-     */
     public function run()
     {
         $this->view = self::get_current_page();
@@ -441,9 +318,6 @@ class WooBookingOnWordpress
         }
     }
 
-    /**
-     *
-     */
     function start_session()
     {
         if (!session_id()) {
@@ -452,9 +326,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     * @return ECommerce\WooCommerce\WooCommerce|null
-     */
     public function getEcommerce()
     {
         $this->ecommerce= ECommerce::getInstance();
@@ -462,9 +333,9 @@ class WooBookingOnWordpress
     }
 
 
-    /**
-     *
-     */
+
+
+
     public function initWordpressBackend()
     {
 
@@ -473,7 +344,7 @@ class WooBookingOnWordpress
         Factory::setRootUrl($root_url);
         $input = Factory::getInput();
         $doc = Factory::getDocument();
-        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . PLUGIN_NAME . "/");
+        Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . WPBOOKINGPRO_PLUGIN_NAME . "/");
         if (self::is_rest_api()) {
 
         }else{
@@ -538,9 +409,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     *
-     */
     function my_register_menu_metabox()
     {
         $custom_param = array(0 => 'This param will be passed to my_render_menu_metabox');
@@ -622,9 +490,6 @@ class WooBookingOnWordpress
         <?php
     }
 
-    /**
-     *
-     */
     function woobooking_plugin_setup_menu()
     {
         $list_view_admin = self::get_list_view_for_woo_panel();
@@ -643,9 +508,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     *
-     */
     function wpbookingpro_page()
     {
         $input = Factory::getInput();
@@ -692,11 +554,6 @@ class WooBookingOnWordpress
         }
     }
 
-    /**
-     * @param $settings
-     * @param $value
-     * @return false|string
-     */
     function woo_booking_block_type_settings_field($settings, $value)
     {
         ob_start();
@@ -750,10 +607,6 @@ class WooBookingOnWordpress
         <?php
         return ob_get_clean();
     }
-
-    /**
-     * @return array
-     */
     public static function get_list_layout_view_frontend()
     {
         $views_path = WOOBOOKING_PATH_COMPONENT_FRONT_END . "/views";
@@ -804,23 +657,16 @@ class WooBookingOnWordpress
         return $list_view;
     }
 
-    /**
-     *
-     */
     public static function updateOpenSource(){
-        require_once( ROOT_PATH_SITE . '/wp-includes/pluggable.php' );
+        require_once( WPBOOKINGPRO_ROOT_PATH_SITE . '/wp-includes/pluggable.php' );
         global $current_user;
         $current_user = wp_get_current_user();
         $session=Factory::getSession();
         $session->set('user',$current_user);
     }
-
-    /**
-     * @return array
-     */
     public static function get_list_layout_block_frontend()
     {
-        $blocks_path = WOOBOOKING_PATH_ROOT . "/blocks";
+        $blocks_path = WPBOOKINGPRO_PATH_ROOT . "/blocks";
 
         $list_block = array();
         $folders = Folder::folders($blocks_path);
@@ -852,9 +698,6 @@ class WooBookingOnWordpress
         return $list_block;
     }
 
-    /**
-     * @return array
-     */
     protected static function get_list_view_backend()
     {
         $views_path = WOOBOOKING_PATH_COMPONENT . "/views";
@@ -891,9 +734,6 @@ class WooBookingOnWordpress
         return $list_view;
     }
 
-    /**
-     *
-     */
     function shapeSpace_print_scripts()
     {
         $list_view = self::get_list_layout_view_frontend();
@@ -902,7 +742,7 @@ class WooBookingOnWordpress
 
         <script type="text/javascript">
             root_url = "<?php echo $root_url ?>";
-            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(PLUGIN_NAME); ?>/";
+            root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
             api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
             list_view =<?php echo json_encode($list_view) ?>
@@ -912,13 +752,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     * @param $atts
-     * @param $content
-     * @param $a_view
-     * @return mixed|void
-     * @throws Exception
-     */
     public function woo_booking_render_by_tag_func($atts, $content, $a_view)
     {
 
@@ -966,9 +799,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     *
-     */
     function goToPopupInstall()
     {
         $root_url = Factory::getRootUrl();
@@ -980,12 +810,6 @@ class WooBookingOnWordpress
         echo $html;
     }
 
-    /**
-     * @param $atts
-     * @param $content
-     * @param $a_view
-     * @return bool
-     */
     function woo_booking_render_block_by_tag_func($atts, $content, $a_view)
     {
 
@@ -1005,9 +829,6 @@ class WooBookingOnWordpress
         return false;
     }
 
-    /**
-     *
-     */
     function your_name_integrateWithVC()
     {
         $list_view = self::get_list_layout_view_frontend();
@@ -1056,11 +877,6 @@ class WooBookingOnWordpress
     }
 
 
-    /**
-     * @param $attributes
-     * @param $content
-     * @throws Exception
-     */
     function render_last_posts($attributes, $content)
     {
 
@@ -1085,15 +901,7 @@ class WooBookingOnWordpress
 
 
     }
-
-    /**
-     * @param $page_id
-     * @param $page_title
-     * @param $menu_id
-     * @param int $parent
-     * @param $link
-     */
-    function add_page_to_menu($page_id, $page_title, $menu_id, $parent = 0, $link){
+    function add_page_to_menu($page_id, $page_title, $menu_id, $parent = 0,$link){
         $key_page = "wp-booking-pro";
         wp_update_nav_menu_item(
             $menu_id, 0,
@@ -1108,9 +916,6 @@ class WooBookingOnWordpress
         );
     }
 
-    /**
-     * @return bool
-     */
     public static function pluginprefix_activation()
     {
 
@@ -1174,9 +979,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     *
-     */
     public function add_nav_menu_meta_boxes()
     {
         add_meta_box(
@@ -1189,9 +991,6 @@ class WooBookingOnWordpress
         );
     }
 
-    /**
-     *
-     */
     public function nav_menu_link()
     { ?>
         <?php
@@ -1253,9 +1052,6 @@ class WooBookingOnWordpress
     }
 
 
-    /**
-     * @return bool
-     */
     public static function is_rest_api()
     {
         $request_uri = $_SERVER['REQUEST_URI'];
@@ -1265,9 +1061,6 @@ class WooBookingOnWordpress
         return false;
     }
 
-    /**
-     * @return mixed|string
-     */
     function get_current_page()
     {
         $request_uri = $_SERVER['REQUEST_URI'];
@@ -1295,9 +1088,6 @@ class WooBookingOnWordpress
     }
 
 
-    /**
-     *
-     */
     public function woocommerce_after_single_product_summary()
     {
 
@@ -1316,18 +1106,11 @@ class WooBookingOnWordpress
     }
 
     //TODO chú ý sửa cái này trước khi đẩy live
-
-    /**
-     * @param $list_environment
-     */
     public static function set_environments($list_environment)
     {
         self::$list_environment = $list_environment;
     }
 
-    /**
-     * @return mixed|string
-     */
     public function get_root_url()
     {
         $config = Factory::getConfig();
@@ -1350,9 +1133,6 @@ class WooBookingOnWordpress
         return $root_url;
     }
 
-    /**
-     * @return string
-     */
     public static function get_api_task()
     {
         $prefix_link = self::get_prefix_link();
@@ -1365,10 +1145,6 @@ class WooBookingOnWordpress
         }
 
     }
-
-    /**
-     * @return string
-     */
     public static function get_api_task_frontend()
     {
         $prefix_link = self::get_prefix_link();
@@ -1377,9 +1153,6 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     *
-     */
     function woobooking_register_rest_route()
     {
 
@@ -1421,10 +1194,6 @@ class WooBookingOnWordpress
     }
 
     //for woobooking admin
-
-    /**
-     *
-     */
     function add_basic_script_and_style_front_end()
     {
         $app = Factory::getApplication();
@@ -1444,10 +1213,6 @@ class WooBookingOnWordpress
         HtmlFrontend::_('jquery.fontawesome');
     }
 
-    /**
-     * @return array|null
-     * @throws Exception
-     */
     public static function get_list_view_for_woo_panel()
     {
         if (empty(static::$items_submenus)) {
@@ -1494,11 +1259,6 @@ class WooBookingOnWordpress
 
 
     //TODO sẽ phải định  nghĩ lại menu
-
-    /**
-     * @return array
-     * @throws Exception
-     */
     public static function getListMenuWooPanel()
     {
         $list_view_admin = self::get_list_view_for_woo_panel();
@@ -1512,9 +1272,6 @@ class WooBookingOnWordpress
         return $list_menu;
     }
 
-    /**
-     *
-     */
     public function wp_enqueue_script_media(){
         if(self::is_backend_wordpress()){
             add_action("admin_enqueue_scripts",array($this,"add_wp_enqueue_scripts"));
@@ -1525,17 +1282,9 @@ class WooBookingOnWordpress
 
 
     }
-
-    /**
-     *
-     */
     public function add_wp_enqueue_scripts(){
         wp_enqueue_media();
     }
-
-    /**
-     * @throws Exception
-     */
     public function wp_hook_add_script_footer()
     {
 
@@ -1549,7 +1298,7 @@ class WooBookingOnWordpress
             if (strpos($src, 'http') !== false) {
                 wp_enqueue_style('woobooking-css-' . $random, $src);
             } else {
-                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . PLUGIN_NAME . '/' . $src);
+                wp_enqueue_style('woobooking-css-' . $random, plugins_url() . '/' . WPBOOKINGPRO_PLUGIN_NAME . '/' . $src);
             }
         }
         $lessStyleSheets = $doc->getLessStyleSheets();
@@ -1557,7 +1306,7 @@ class WooBookingOnWordpress
             ob_start();
             ?>
             <link rel="stylesheet/less" type="text/css"
-                  href="<?php echo plugins_url() . "/" . PLUGIN_NAME . "/" . $src ?>"/>
+                  href="<?php echo plugins_url() . "/" . WPBOOKINGPRO_PLUGIN_NAME . "/" . $src ?>"/>
             <?php
             echo ob_get_clean();
         }
@@ -1567,7 +1316,7 @@ class WooBookingOnWordpress
         <script type="text/javascript">
             var root_url = "<?php echo $root_url ?>";
             var current_url = "<?php echo $root_url ?>";
-            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(PLUGIN_NAME); ?>/";
+            var root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
             var api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
             var api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
         </script>
@@ -1605,14 +1354,8 @@ class WooBookingOnWordpress
 
     }
 
-    /**
-     * @var array
-     */
     public static $list_menu_by_xml = array();
 
-    /**
-     * @return array
-     */
     public static function get_list_view_xml()
     {
 

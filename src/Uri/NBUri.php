@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Uri;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * JUri Class
@@ -146,9 +146,9 @@ class NBUri extends Uri
 				static::$base['prefix'] = $uri->toString(array('scheme', 'host', 'port'));
 				static::$base['path'] = rtrim($uri->toString(array('path')), '/\\');
 
-				if (defined('_WOO_BOOKING_EXEC') && defined('JPATH_ADMINISTRATOR'))
+				if (defined('_WPBOOKINGPRO_EXEC') && defined('JPATH_ADMINISTRATOR'))
 				{
-					if (_WOO_BOOKING_EXEC == JPATH_ADMINISTRATOR)
+					if (_WPBOOKINGPRO_EXEC == JPATH_ADMINISTRATOR)
 					{
 						static::$base['path'] .= '/administrator';
 					}

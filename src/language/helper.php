@@ -6,7 +6,7 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 /**
  * Language helper class
  *
@@ -26,7 +26,7 @@ class LanguageHelper
 	 *
 	 * @since   11.1
 	 */
-	public static function createLanguageList($actualLanguage, $basePath = JPATH_BASE, $caching = false, $installed = false)
+	public static function createLanguageList($actualLanguage, $basePath = WPBOOKINGPRO_PATH_BASE, $caching = false, $installed = false)
 	{
 		$list = array();
 		// Cache activation
@@ -120,7 +120,7 @@ class LanguageHelper
 			if (Factory::getApplication()->getClientId() == 2)
 			{
 				$languages[$key] = array();
-				$knownLangs = Language::getKnownLanguages(JPATH_BASE);
+				$knownLangs = Language::getKnownLanguages(WPBOOKINGPRO_PATH_BASE);
 				foreach ($knownLangs as $metadata)
 				{
 					// Take off 3 letters iso code languages as they can't match browsers' languages and default them to en

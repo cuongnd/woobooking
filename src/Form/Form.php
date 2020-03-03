@@ -15,7 +15,7 @@ use Factory;
 use WooBooking\CMS\Utilities\Utility;
 use WooBooking\CMS\Utilities\ArrayHelper;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 /**
@@ -2043,7 +2043,7 @@ class Form
 		// Add the field paths.
 		foreach ($paths as $path)
 		{
-			$path = WOOBOOKING_PATH_ROOT . '/' . ltrim($path, '/\\');
+			$path = WPBOOKINGPRO_PATH_ROOT . '/' . ltrim($path, '/\\');
 			self::addFieldPath($path);
 		}
 
@@ -2054,7 +2054,7 @@ class Form
 		// Add the form paths.
 		foreach ($paths as $path)
 		{
-			$path = WOOBOOKING_PATH_ROOT . '/' . ltrim($path, '/\\');
+			$path = WPBOOKINGPRO_PATH_ROOT . '/' . ltrim($path, '/\\');
 			self::addFormPath($path);
 		}
 
@@ -2065,7 +2065,7 @@ class Form
 		// Add the rule paths.
 		foreach ($paths as $path)
 		{
-			$path = WOOBOOKING_PATH_ROOT . '/' . ltrim($path, '/\\');
+			$path = WPBOOKINGPRO_PATH_ROOT . '/' . ltrim($path, '/\\');
 			self::addRulePath($path);
 		}
 

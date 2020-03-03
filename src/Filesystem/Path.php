@@ -7,7 +7,7 @@
  */
 
 namespace WooBooking\CMS\Filesystem;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 use WooBooking\CMS\Utilities\Utility;
 
 
@@ -173,7 +173,7 @@ class Path
 
 		$path = self::clean($path);
 
-		if ((WOOBOOKING_PATH_ROOT != '') && strpos($path, self::clean(WOOBOOKING_PATH_ROOT)) !== 0)
+		if ((WPBOOKINGPRO_PATH_ROOT != '') && strpos($path, self::clean(WPBOOKINGPRO_PATH_ROOT)) !== 0)
 		{
 			throw new \Exception(
 				sprintf(
@@ -216,7 +216,7 @@ class Path
 
 		if (empty($path))
 		{
-			$path = WOOBOOKING_PATH_ROOT;
+			$path = WPBOOKINGPRO_PATH_ROOT;
 		}
 		// Remove double slashes and backslashes and convert all slashes and backslashes to DIRECTORY_SEPARATOR
 		// If dealing with a UNC path don't forget to prepend the path with a backslash.

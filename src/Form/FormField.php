@@ -10,7 +10,7 @@ namespace WooBooking\CMS\Form;
 use WooBooking\CMS\Layout\FileLayout;
 use WoobookingText;
 use WooBooking\CMS\Utilities\Utility;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 

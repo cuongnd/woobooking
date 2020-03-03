@@ -239,7 +239,7 @@ class ApplicationSite extends Application
     protected function initialiseApp($options = array())
     {
         
-        require_once WOOBOOKING_PATH_ROOT."/nb_config.php";
+        require_once WPBOOKINGPRO_PATH_ROOT."/nb_config.php";
         $config= new nb_config();
         
         $register=new Registry();

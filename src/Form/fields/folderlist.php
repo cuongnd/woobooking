@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 
@@ -187,7 +187,7 @@ class FormFieldFolderList extends JFormFieldList
 
 		if (!is_dir($path))
 		{
-			$path = WOOBOOKING_PATH_ROOT . '/' . $path;
+			$path = WPBOOKINGPRO_PATH_ROOT . '/' . $path;
 		}
 		
 		$path = JPath::clean($path);

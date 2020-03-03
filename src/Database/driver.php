@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 namespace WooBooking\CMS\Database;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 use  WooBooking\CMS\Database\driver\DatabaseDriverMysqli;
 use WooBooking\CMS\Database\exception\DatabaseExceptionUnsupported;
 use WooBooking\CMS\Database\DatabaseQuery;

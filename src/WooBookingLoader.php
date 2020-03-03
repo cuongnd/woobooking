@@ -359,7 +359,7 @@ abstract class WooBookingLoader
         // Verify the library path exists.
         if (!file_exists($path))
         {
-            $path = (str_replace(WOOBOOKING_PATH_ROOT, '', $path) == $path) ? basename($path) : str_replace(WOOBOOKING_PATH_ROOT, '', $path);
+            $path = (str_replace(WPBOOKINGPRO_PATH_ROOT, '', $path) == $path) ? basename($path) : str_replace(WPBOOKINGPRO_PATH_ROOT, '', $path);
 
             throw new RuntimeException('Library path ' . $path . ' cannot be found.', 500);
         }
@@ -452,7 +452,7 @@ abstract class WooBookingLoader
         // Verify the library path exists.
         if (!file_exists($path))
         {
-            $path = (str_replace(WOOBOOKING_PATH_ROOT, '', $path) == $path) ? basename($path) : str_replace(WOOBOOKING_PATH_ROOT, '', $path);
+            $path = (str_replace(WPBOOKINGPRO_PATH_ROOT, '', $path) == $path) ? basename($path) : str_replace(WPBOOKINGPRO_PATH_ROOT, '', $path);
 
             throw new RuntimeException('Library path ' . $path . ' cannot be found.', 500);
         }

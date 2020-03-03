@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * HtmlDocument class, provides an easy interface to parse and display a HTML document
@@ -643,11 +643,11 @@ class HtmlDocument extends Document
 		// Try to find a favicon by checking the template and root folder
 		$icon = '/favicon.ico';
 
-		foreach (array($directory, WOOBOOKING_PATH_ROOT) as $dir)
+		foreach (array($directory, WPBOOKINGPRO_PATH_ROOT) as $dir)
 		{
 			if (file_exists($dir . $icon))
 			{
-				$path = str_replace(WOOBOOKING_PATH_ROOT, '', $dir);
+				$path = str_replace(WPBOOKINGPRO_PATH_ROOT, '', $dir);
 				$path = str_replace('\\', '/', $path);
 				$this->addFavicon(Uri::base(true) . $path . $icon);
 				break;

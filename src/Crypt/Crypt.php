@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Crypt;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Crypt\Cipher\SimpleCipher;
 use WooBooking\CMS\Log\Log;

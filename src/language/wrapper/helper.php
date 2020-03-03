@@ -6,7 +6,7 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 /**
  * Wrapper class for LanguageHelper
  *
@@ -29,7 +29,7 @@ class LanguageWrapperHelper
 	 * @see     LanguageHelper::createLanguageList
 	 * @since   3.4
 	 */
-	public function createLanguageList($actualLanguage, $basePath = JPATH_BASE, $caching = false, $installed = false)
+	public function createLanguageList($actualLanguage, $basePath = WPBOOKINGPRO_PATH_BASE, $caching = false, $installed = false)
 	{
 		return LanguageHelper::createLanguageList($actualLanguage, $basePath, $caching, $installed);
 	}

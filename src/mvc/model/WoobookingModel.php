@@ -479,7 +479,7 @@ class WoobookingModel extends BaseDatabaseModel
         if (!$table) {
             $table = $this->table_name;
         }
-        return PREFIX_TABLE . "$table";
+        return WPBOOKINGPRO_PREFIX_TABLE . "$table";
     }
 
     public function setTableName($table)
@@ -493,7 +493,7 @@ class WoobookingModel extends BaseDatabaseModel
             $table = $this->table_name;
         }
         $UCFtable = ucfirst($table);
-        $table_path = WOOBOOKING_PATH_ROOT . "/admin/nb_apps/nb_woobooking/tables/$UCFtable.php";
+        $table_path = WPBOOKINGPRO_PATH_ROOT . "/admin/nb_apps/nb_woobooking/tables/$UCFtable.php";
         if (file_exists($table_path)) {
             require_once $table_path;
             $table_name = "{$UCFtable}Table";

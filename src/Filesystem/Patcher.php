@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Filesystem;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Log\Log;
 use WooBooking\CMS\Language\Text;
@@ -234,7 +234,7 @@ class Patcher
 	 *
 	 * @since   3.0.0
 	 */
-	public function add($udiff, $root = WOOBOOKING_PATH_ROOT, $strip = 0)
+	public function add($udiff, $root = WPBOOKINGPRO_PATH_ROOT, $strip = 0)
 	{
 		$this->patches[] = array(
 			'udiff' => $udiff,

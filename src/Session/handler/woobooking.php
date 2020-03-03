@@ -10,7 +10,7 @@ namespace WooBooking\CMS\Session\handler;
 
 use Factory;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 require_once __DIR__."/native.php";
 /**
  * Interface for managing HTTP sessions

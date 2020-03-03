@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Crypt\Cipher;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Crypt cipher for Rijndael 256 encryption, decryption and key generation.

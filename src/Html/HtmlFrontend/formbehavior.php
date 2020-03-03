@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 
@@ -47,7 +47,7 @@ abstract class HtmlFrontendFormbehavior
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null)
 		{
-			$debug = WBDEBUG;
+			$debug = WPBOOKING_PRO_DEBUG;
 		}
 
 		// Default settings

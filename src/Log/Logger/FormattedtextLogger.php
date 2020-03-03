@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Log\Logger;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Filesystem\File;
 use WooBooking\CMS\Filesystem\Folder;
@@ -176,7 +176,7 @@ class FormattedtextLogger extends Logger
 			$line = $this->formatLine($entry);
 			$line .= "\n";
 
-			if (!File::append(WOOBOOKING_PATH_ROOT.$this->path, $line))
+			if (!File::append(WPBOOKINGPRO_PATH_ROOT.$this->path, $line))
 			{
 				throw new \RuntimeException('Cannot write to log file.');
 			}
@@ -288,12 +288,12 @@ class FormattedtextLogger extends Logger
 		}
 
 		// Make sure the folder exists in which to create the log file.
-		Folder::create(WOOBOOKING_PATH_ROOT.dirname($this->path));
+		Folder::create(WPBOOKINGPRO_PATH_ROOT.dirname($this->path));
 
 		// Build the log file header.
 		$head = $this->generateFileHeader();
 
-		if (!File::write(WOOBOOKING_PATH_ROOT.$this->path, $head))
+		if (!File::write(WPBOOKINGPRO_PATH_ROOT.$this->path, $head))
 		{
 			throw new \RuntimeException('Cannot write to log file.');
 		}

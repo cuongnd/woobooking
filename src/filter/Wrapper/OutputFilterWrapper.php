@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Filter\Wrapper;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use woobooking\Filter\OutputFilter;
 

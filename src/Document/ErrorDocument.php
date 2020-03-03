@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Layout\LayoutHelper;
 use WooBooking\CMS\Uri\Uri;
@@ -167,7 +167,7 @@ class ErrorDocument extends Document
 			$lang = \Factory::getLanguage();
 
 			// 1.5 or core then 1.6
-			$lang->load('tpl_' . $template, WOOBOOKING_PATH_ROOT, null, false, true)
+			$lang->load('tpl_' . $template, WPBOOKINGPRO_PATH_ROOT, null, false, true)
 				|| $lang->load('tpl_' . $template, $directory . '/' . $template, null, false, true);
 		}
 

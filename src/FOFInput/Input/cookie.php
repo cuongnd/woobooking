@@ -9,7 +9,7 @@
 namespace WooBooking\CMS\FOFInput\Input;
 use WooBooking\CMS\FOFInput\FOFInput;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * woobooking! Input Cookie Class

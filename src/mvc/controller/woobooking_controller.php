@@ -245,7 +245,7 @@ class woobooking_controller{
 
                         if(strpos($src,"http")!==false){
                             $data_script.='<script  src="'.$src.'"></script>';
-                        }elseif(FileAlias::exists(WOOBOOKING_PATH_ROOT.DS.$src)){
+                        }elseif(FileAlias::exists(WPBOOKINGPRO_PATH_ROOT.DS.$src)){
                             $data_script.='<script src="'.Factory::getRootUrlPlugin().$src.'"></script>';
                         }
 

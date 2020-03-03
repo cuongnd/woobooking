@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Form\Field;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Component\ComponentHelper;
 use WooBooking\CMS\Form\FormField;
@@ -241,14 +241,14 @@ class MediaField extends FormField
 			$asset = Factory::getApplication()->input->get('option');
 		}
 
-		if ($this->value && file_exists(WOOBOOKING_PATH_ROOT . '/' . $this->value))
+		if ($this->value && file_exists(WPBOOKINGPRO_PATH_ROOT . '/' . $this->value))
 		{
 			$this->folder = explode('/', $this->value);
 			$this->folder = array_diff_assoc($this->folder, explode('/', ComponentHelper::getParams('com_media')->get('image_path', 'images')));
 			array_pop($this->folder);
 			$this->folder = implode('/', $this->folder);
 		}
-		elseif (file_exists(WOOBOOKING_PATH_ROOT . '/' . ComponentHelper::getParams('com_media')->get('image_path', 'images') . '/' . $this->directory))
+		elseif (file_exists(WPBOOKINGPRO_PATH_ROOT . '/' . ComponentHelper::getParams('com_media')->get('image_path', 'images') . '/' . $this->directory))
 		{
 			$this->folder = $this->directory;
 		}

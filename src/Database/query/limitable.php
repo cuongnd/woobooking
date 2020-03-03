@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 namespace WooBooking\CMS\Database\query;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 /**
  * woobooking Database Query Limitable Interface.
  * Adds bind/unbind methods as well as a getBounded() method

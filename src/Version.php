@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Helper\LibraryHelper;
 
@@ -324,7 +324,7 @@ final class Version
 			$mediaVersion = $params->get('mediaversion', '');
 
 			// Refresh assets in debug mode or when the media version is not set
-			if (WBDEBUG || empty($mediaVersion))
+			if (WPBOOKING_PRO_DEBUG || empty($mediaVersion))
 			{
 				$mediaVersion = $this->generateMediaVersion();
 

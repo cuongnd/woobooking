@@ -8,7 +8,7 @@
 
 use WooBooking\CMS\Object\CMSObject;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 /**

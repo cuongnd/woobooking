@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Filesystem\Streams;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Filesystem\Support\Stringcontroller;
 

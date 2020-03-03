@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Router\Exception;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Exception class defining an error for a missing route

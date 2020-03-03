@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use WooBooking\CMS\Form\Form;
 
@@ -112,7 +112,7 @@ class FormFieldSubform extends FormField
 				// Add root path if we have a path to XML file
 				if (strrpos($this->formsource, '.xml') === strlen($this->formsource) - 4)
 				{
-					$this->formsource = JPath::clean(WOOBOOKING_PATH_ROOT . '/' . $this->formsource);
+					$this->formsource = JPath::clean(WPBOOKINGPRO_PATH_ROOT . '/' . $this->formsource);
 				}
 
 				break;

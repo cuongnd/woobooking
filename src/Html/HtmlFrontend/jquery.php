@@ -9,7 +9,7 @@
 
 use WooBooking\CMS\Utilities\Utility as UtilityAlias;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 
 /**
@@ -96,7 +96,7 @@ abstract class HtmlFrontendJquery
 		static::framework();
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null) {
-			$debug = WBDEBUG;
+			$debug = WPBOOKING_PRO_DEBUG;
 		}
 		$doc = Factory::getDocument();
 		$doc->addScript('https://code.jquery.com/ui/1.11.3/jquery-ui.js');

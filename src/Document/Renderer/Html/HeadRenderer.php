@@ -7,7 +7,7 @@
  */
 
 namespace WooBooking\CMS\Document\Renderer\Html;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use Factory;
 use WooBooking\CMS\Document\DocumentRenderer;
@@ -157,7 +157,7 @@ class HeadRenderer extends DocumentRenderer
         if (!empty($scriptOptions)) {
             $buffer .= $tab . '<script type="application/json" class="WooBooking-script-options new">';
 
-            $prettyPrint = (WBDEBUG && defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : false);
+            $prettyPrint = (WPBOOKING_PRO_DEBUG && defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : false);
             $jsonOptions = json_encode($scriptOptions, $prettyPrint);
             $jsonOptions = $jsonOptions ? $jsonOptions : '{}';
 

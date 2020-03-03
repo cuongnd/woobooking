@@ -9,7 +9,7 @@
 namespace WooBooking\CMS\Database\exception;
 use RuntimeException;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 /**
  * Exception class defining an error executing a statement
  *

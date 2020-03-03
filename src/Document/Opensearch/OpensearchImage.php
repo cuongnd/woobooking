@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document\Opensearch;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Data object representing an OpenSearch image

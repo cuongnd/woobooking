@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Document\Feed;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Data object representing a feed image

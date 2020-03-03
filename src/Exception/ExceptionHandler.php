@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Exception;
 use WooBooking\CMS\Log\Log;
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
  * Displays the custom error page when an uncaught exception occurs.
@@ -112,7 +112,7 @@ class ExceptionHandler
 					false,
 					array(
 						'directory' => JPATH_THEMES,
-						'debug'     => WBDEBUG,
+						'debug'     => WPBOOKING_PRO_DEBUG,
 					)
 				);
 

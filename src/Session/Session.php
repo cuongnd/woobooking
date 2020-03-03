@@ -8,7 +8,7 @@
 
 namespace WooBooking\CMS\Session;
 
-defined('_WOO_BOOKING_EXEC') or die;
+defined('_WPBOOKINGPRO_EXEC') or die;
 
 use SessionHandlerInterface;
 use WooBooking\CMS\FOFInput\Input\Input;
