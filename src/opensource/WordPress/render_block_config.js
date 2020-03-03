@@ -1,13 +1,4 @@
-//huong dan su dung
-/*
- $('.render_block_config').render_block_config();
- render_block_config=$('.render_block_config').data('render_block_config');
- console.log(render_block_config);
- */
-// jQuery Plugin for SprFlat admin render_block_config
-// Control options and basic function of render_block_config
-// version 1.0, 28.02.2013
-// by SuggeElson www.suggeelson.com
+"use strict";
 (function ($) {
     // here we go!
     $.render_block_config = function (element, options) {
