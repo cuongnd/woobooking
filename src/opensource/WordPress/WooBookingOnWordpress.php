@@ -1182,7 +1182,7 @@ class WooBookingOnWordpress
             $file_api_path = WPBOOKINGPRO_PATH_COMPONENT . "/api/Api{$menu}.php";
             if (file_exists($file_api_path)) {
                 require_once $file_api_path;
-                $class_name = "Api{$menu}";
+                $class_name = "WpBookingPro_Api{$menu}";
                 new $class_name();
             }
 
