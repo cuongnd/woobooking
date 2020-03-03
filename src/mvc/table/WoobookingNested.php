@@ -1,4 +1,4 @@
-<?php
+x<?php
 /**
  * woobooking! Content Management System
  *

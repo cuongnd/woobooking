@@ -496,7 +496,7 @@ class WoobookingModel extends BaseDatabaseModel
         $table_path = WPBOOKINGPRO_PATH_ROOT . "/admin/nb_apps/nb_woobooking/tables/$UCFtable.php";
         if (file_exists($table_path)) {
             require_once $table_path;
-            $table_name = "{$UCFtable}Table";
+            $table_name = "WpBookingPro_{$UCFtable}Table";
             $db = Factory::getDBO();
             $table_class = new $table_name($this->getTableName($table), 'id', $db);
             return $table_class;
