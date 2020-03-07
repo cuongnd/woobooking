@@ -1303,7 +1303,7 @@ class WooBookingOnWordpress
         $lessStyleSheets = $doc->getLessStyleSheets();
         $config=Factory::getConfig();
         $environment=$config->get('environment',"development");
-        if($environment!=="development") {
+        if($environment =="development") {
             foreach ($lessStyleSheets as $src => $attribs) {
                 ob_start();
                 ?>
