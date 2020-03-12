@@ -7,6 +7,7 @@ namespace WooBooking\CMS\OpenSource\Wordpress;
 use Exception;
 use Factory;
 use WoobookingModel;
+use WooBookingView;
 
 
 class Widgets
@@ -27,7 +28,7 @@ class Widgets
     {
 
 
-        add_shortcode("touroperatorpro_elementor_block", array($this, 'woo_booking_render_block_by_elementor_func'));
+        add_shortcode("woobooking_elementor_block", array($this, 'woo_booking_render_block_by_elementor_func'));
 
         // Check if Elementor installed and activated
         if ( ! did_action( 'elementor/loaded' ) ) {
@@ -158,7 +159,7 @@ class Widgets
         }
         $wordpress=Factory::getOpenSource();
         $input->set('id',$block->id);
-        $view=View::getInstance('block');
+        $view=WooBookingView::getInstance('block');
         $view->view="block";
         $content=  $view->display('preview');
         add_action('wp_footer', array($wordpress, "wp_hook_add_script_footer"));

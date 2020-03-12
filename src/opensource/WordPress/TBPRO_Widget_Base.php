@@ -3,7 +3,8 @@ namespace WooBooking\CMS\OpenSource\Wordpress;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
-use TourOperatorPro\Factory;
+use Factory;
+
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -14,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-abstract class TBPRO_Widget_Base extends Widget_Base  {
+abstract class WOOBOOKING_Widget_Base extends Widget_Base  {
 
     /**
      * Retrieve the widget name.
@@ -147,7 +148,7 @@ abstract class TBPRO_Widget_Base extends Widget_Base  {
         $data=$input->getData();
         ob_start();
         ?>
-        [touroperatorpro_elementor_block block_name="<?php echo $block_name ?>" open_source_client_id="<?php echo $id ?>"]
+        [woobooking_elementor_block block_name="<?php echo $block_name ?>" open_source_client_id="<?php echo $id ?>"]
         <?php
         $content=ob_get_clean();
         echo $content;

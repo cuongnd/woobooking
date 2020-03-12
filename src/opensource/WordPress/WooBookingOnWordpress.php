@@ -7,6 +7,7 @@ namespace WooBooking\CMS\OpenSource\WordPress;
 
 use Exception;
 use Factory;
+
 use WooBooking\CMS;
 use WooBooking\CMS\Filesystem\File;
 use WooBooking\CMS\Filesystem\Folder;
@@ -297,6 +298,7 @@ class WooBookingOnWordpress
     }
     public function run()
     {
+
         $this->view = self::get_current_page();
         $app = Factory::getApplication();
         $input = Factory::getInput();
@@ -401,8 +403,11 @@ class WooBookingOnWordpress
             if (function_exists("vc_add_shortcode_param")) {
                 vc_add_shortcode_param('woo_booking_block_type', array($this, 'woo_booking_block_type_settings_field'));
             }
+
         }
 
+        $widgets = Widgets::getInstance();
+        $widgets->init();
         //vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
 
 
