@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-abstract class WOOBOOKING_Widget_Base extends Widget_Base  {
+abstract class WooBooking_Widget_Base extends Widget_Base  {
 
     /**
      * Retrieve the widget name.

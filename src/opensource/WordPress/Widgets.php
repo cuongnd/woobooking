@@ -1,7 +1,7 @@
 <?php
 
 
-namespace WooBooking\CMS\OpenSource\Wordpress;
+namespace WooBooking\CMS\OpenSource\WordPress;
 
 
 use Exception;
