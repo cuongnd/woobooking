@@ -4,7 +4,7 @@
 namespace WooBooking\CMS\OpenSource\WordPress;
 
 
-use WPBOOKINGPRO_BlockController;
+
 use Exception;
 use Factory;
 use WooBooking\CMS;
@@ -203,7 +203,8 @@ class WooBookingOnWordpress
             add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
         }
 
-
+        $widgets = Widgets::getInstance();
+        $widgets->init();
 
 
 
