@@ -49,10 +49,10 @@ class Widgets
         }
 
         // Register widget scripts
-        add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
+        add_action( 'elementor/frontend/after_register_scripts', array($this, 'widget_scripts' ) );
 
         // Register widgets
-        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+        add_action( 'elementor/widgets/widgets_registered',  array($this, 'register_widgets' ) );
     }
     /**
      * Admin notice
@@ -202,7 +202,7 @@ class Widgets
      */
     public function widget_scripts() {
 
-        wp_register_script( 'touroperatorpro', plugins_url( 'assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
+        wp_register_script( 'touroperatorpro', plugins_url( 'assets/js/hello-world.js', __FILE__ ), array('jquery' ), false, true );
     }
 
 
