@@ -133,21 +133,8 @@ class WooBookingOnWordpress
 
 
 
-    public function session_start(){
-        add_action('init', function (){
-            if(!session_id()) {
-                session_start();
-            }
-        }, 1);
-
-    }
     public function getSession()
     {
-
-        if(!session_id()) {
-            session_start();
-            return $_SESSION;
-        }
         return $_SESSION;
     }
 
@@ -156,15 +143,18 @@ class WooBookingOnWordpress
         $order = wc_get_order($order_id);
         return $order;
     }
-
+    public  function wooBooking_Wordpress_session_start(){
+        if(!session_id()) {
+            session_start();
+        }
+    }
     public function initOpenWooBookingWordpressFrontend()
     {
-
+        add_action('init', array($this,'wooBooking_Wordpress_session_start'), 1);
         $root_url = self::get_root_url();
         $input = Factory::getInput();
         Factory::setRootUrl($root_url);
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . WPBOOKINGPRO_PLUGIN_NAME . "/");
-
 
         $task = $input->getString('task', '');
         //trying remove add to cart and price
@@ -198,7 +188,9 @@ class WooBookingOnWordpress
         add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
         $list_view = self::get_list_layout_block_frontend();
         $open_source=Factory::getOpenSource();
-        $open_source->session_start();
+
+
+        //$open_source->session_start();
         foreach ($list_view as $key => $view) {
             $a_key = self::$key_woo_booking . "-block-" . $key;
             add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));

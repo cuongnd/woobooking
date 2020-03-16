@@ -143,4 +143,21 @@ link update lai composer
 https://packagist.org/packages/netbaseteam/woobooking
 
 
+----------------------------------
+link server mới
+http://45.119.84.18/~wpbookingpro
+admin_netbase/c%H=jT=J6!6Jd#Rq
+Thư mục public_html chứa tòa bộ website
+thư mục chưa woobooking
+public_html/wp-content/plugins/wpbookingpro
+http://45.119.84.18:2222/
+45.119.84.18
+Tài khoản ftp
+wpbookingpro/tnr0itvB3P
 
+Link vào quản lý database
+http://45.119.84.18/phpMyAdmin
+Database:	wpbookingpro_1
+Host:	localhost
+Username:	wpbookingpro_1
+Password:	tnr0itvB3P
