@@ -70,8 +70,8 @@ class Widgets
         $message = sprintf(
         /* translators: 1: Plugin name 2: Elementor */
             esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elementor-hello-world' ),
-            '<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
-            '<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>'
+            '<strong>' . esc_html__( 'Elementor wp booking pro', 'wpbookingpro' ) . '</strong>',
+            '<strong>' . esc_html__( 'Elementor', 'wpbookingpro' ) . '</strong>'
         );
 
         printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -92,9 +92,9 @@ class Widgets
 
         $message = sprintf(
         /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
-            '<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
-            '<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>',
+            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'wpbookingpro' ),
+            '<strong>' . esc_html__( 'Elementor wp booking pro', 'wpbookingpro' ) . '</strong>',
+            '<strong>' . esc_html__( 'Elementor', 'wpbookingpro' ) . '</strong>',
             self::MINIMUM_ELEMENTOR_VERSION
         );
 
@@ -116,9 +116,9 @@ class Widgets
 
         $message = sprintf(
         /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
-            '<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
-            '<strong>' . esc_html__( 'PHP', 'elementor-hello-world' ) . '</strong>',
+            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'wpbookingpro' ),
+            '<strong>' . esc_html__( 'Elementor wp booking pro', 'wpbookingpro' ) . '</strong>',
+            '<strong>' . esc_html__( 'PHP', 'wpbookingpro' ) . '</strong>',
             MINIMUM_PHP_VERSION
         );
 

@@ -143,14 +143,11 @@ class WooBookingOnWordpress
         $order = wc_get_order($order_id);
         return $order;
     }
-    public  function wooBooking_Wordpress_session_start(){
-        if(!session_id()) {
-            session_start();
-        }
-    }
+
     public function initOpenWooBookingWordpressFrontend()
     {
-        add_action('init', array($this,'wooBooking_Wordpress_session_start'), 1);
+
+
         $root_url = self::get_root_url();
         $input = Factory::getInput();
         Factory::setRootUrl($root_url);
