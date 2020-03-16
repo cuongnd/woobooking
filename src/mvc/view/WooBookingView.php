@@ -33,12 +33,12 @@ class WooBookingView extends CMSObject
     public static function getInstance($view, $prefix = '', $config = array()):WooBookingView
     {
         $view = preg_replace('/[^A-Z0-9_\.-]/i', '', $view);
-        $view = ucfirst($view);
+        $UcfView = ucfirst($view);
         $view_path = WPBOOKINGPRO_PATH_COMPONENT . "/views/$view/view.html.php";
         if (file_exists($view_path)) {
             require_once $view_path;
             if (!array_key_exists($view, self::$instance)) {
-                $class_name = "WpBookingPro_{$view}View";
+                $class_name = "WpBookingPro_{$UcfView}View";
                 self::$instance[$view] = new $class_name();
                 self::$instance[$view]->model = $view;
             }
