@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     woobookingpro.Platform
  * @subpackage  Archive
  *
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
@@ -12,7 +12,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
 /**
  * Wrapper class for Archive
  *
- * @package     Joomla.Platform
+ * @package     woobookingpro.Platform
  * @subpackage  Archive
  * @since       3.4
  * @deprecated  4.0 use the Joomla\Archive\Archive class instead
