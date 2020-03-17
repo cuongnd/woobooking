@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -19,7 +19,7 @@ use WoobookingTable;
 use WoobookingText;
 
 /**
- * Base class for a database aware Joomla Model
+ * Base class for a database aware Woobookingpro Model
  *
  * Acts as a Factory class for application specific objects and provides many supporting API functions.
  *

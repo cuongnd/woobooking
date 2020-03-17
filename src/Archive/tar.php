@@ -9,9 +9,9 @@
 
 defined('_WPBOOKINGPRO_EXEC') or die;
 
-WooBookingImport('joomla.filesystem.file');
-WooBookingImport('joomla.filesystem.folder');
-WooBookingImport('joomla.filesystem.path');
+WooBookingImport('Woobookingpro.filesystem.file');
+WooBookingImport('Woobookingpro.filesystem.folder');
+WooBookingImport('Woobookingpro.filesystem.path');
 
 /**
  * Tar format adapter for the Archive class
@@ -23,7 +23,7 @@ WooBookingImport('joomla.filesystem.path');
  * @contributor  Michael Cochrane <mike@graftonhall.co.nz>
  *
  * @since       1.5
- * @deprecated  4.0 use the Joomla\Archive\Tar class instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\Tar class instead
  */
 class NBArchiveTar implements ArchiveExtractable
 {

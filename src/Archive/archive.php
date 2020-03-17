@@ -17,7 +17,7 @@ use WooBooking\CMS\NBArchive\Archive;
  * An Archive handling class
  *
  * @since       1.5
- * @deprecated  4.0 use the Joomla\Archive\Archive class instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\Archive class instead
  */
 class NBArchive
 {
@@ -39,7 +39,7 @@ class NBArchive
 	 *
 	 * @since   1.5
 	 * @throws  InvalidArgumentException
-	 * @deprecated  4.0 use the Joomla\Archive\Archive class instead
+	 * @deprecated  4.0 use the Woobookingpro\Archive\Archive class instead
 	 */
 	public static function extract($archivename, $extractdir)
 	{
@@ -59,7 +59,7 @@ class NBArchive
 	 *
 	 * @since   1.5
 	 * @throws  UnexpectedValueException
-	 * @deprecated  4.0 use the Joomla\Archive\Archive class instead
+	 * @deprecated  4.0 use the Woobookingpro\Archive\Archive class instead
 	 */
 	public static function getAdapter($type)
 	{

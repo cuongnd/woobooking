@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -21,7 +21,7 @@ use WooBooking\CMS\Html\Html;
 use WoobookingText;
 
 /**
- * Pagination Class. Provides a common interface for content pagination for the Joomla! CMS.
+ * Pagination Class. Provides a common interface for content pagination for the Woobookingpro! CMS.
  *
  * @since  1.5
  */

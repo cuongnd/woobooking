@@ -15,7 +15,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @package     woobookingpro.Platform
  * @subpackage  Archive
  * @since       3.4
- * @deprecated  4.0 use the Joomla\Archive\Archive class instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\Archive class instead
  */
 class ArchiveWrapperArchive
 {
@@ -30,7 +30,7 @@ class ArchiveWrapperArchive
 	 * @see     Archive::extract()
 	 * @since   3.4
 	 * @throws InvalidArgumentException
-	 * @deprecated 4.0 use the Joomla\Archive\Archive class instead
+	 * @deprecated 4.0 use the Woobookingpro\Archive\Archive class instead
 	 */
 	public function extract($archivename, $extractdir)
 	{
@@ -46,7 +46,7 @@ class ArchiveWrapperArchive
 	 *
 	 * @see     JUserHelper::getAdapter()
 	 * @since   3.4
-	 * @deprecated 4.0 use the Joomla\Archive\Archive class instead
+	 * @deprecated 4.0 use the Woobookingpro\Archive\Archive class instead
 	 */
 	public function getAdapter($type)
 	{

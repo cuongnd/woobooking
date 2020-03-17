@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -14,7 +14,7 @@ use WooBooking\CMS\Application\CMSApplication;
 use WooBooking\CMS\Component\ComponentHelper;
 use WooBooking\CMS\Component\Router\RouterInterface;
 use WooBooking\CMS\Component\Router\RouterLegacy;
-use Joomla\String\StringHelper;
+use Woobookingpro\String\StringHelper;
 
 /**
  * Class to create and parse routes for the site application
@@ -780,7 +780,7 @@ class SiteRouter extends Router
 			{
 				$reflection = new \ReflectionClass($class);
 
-				if (in_array('Joomla\\CMS\\Component\\Router\\RouterInterface', $reflection->getInterfaceNames()))
+				if (in_array('Woobookingpro\\CMS\\Component\\Router\\RouterInterface', $reflection->getInterfaceNames()))
 				{
 					$this->componentRouters[$component] = new $class($this->app, $this->menu);
 				}
@@ -809,7 +809,7 @@ class SiteRouter extends Router
 	{
 		$reflection = new \ReflectionClass($router);
 
-		if (in_array('Joomla\\CMS\\Component\\Router\\RouterInterface', $reflection->getInterfaceNames()))
+		if (in_array('Woobookingpro\\CMS\\Component\\Router\\RouterInterface', $reflection->getInterfaceNames()))
 		{
 			$this->componentRouters[$component] = $router;
 

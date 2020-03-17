@@ -44,7 +44,7 @@ The only JCrypt cipher that meets the *authenticated encryption* criteria is **`
 
 ## Absolutely Avoid JCryptCipherSimple
 
-`JCryptCipherSimple` is deprecated and will be removed in Joomla 4. It's vulnerable to a known plaintext attack: If you know any information about the plaintext (e.g. the first character is '<'), an attacker can recover bits of the encryption key with ease.
+`JCryptCipherSimple` is deprecated and will be removed in Woobookingpro 4. It's vulnerable to a known plaintext attack: If you know any information about the plaintext (e.g. the first character is '<'), an attacker can recover bits of the encryption key with ease.
 
 If an attacker can influence the message, they can actually steal your encryption key. Here's how:
 

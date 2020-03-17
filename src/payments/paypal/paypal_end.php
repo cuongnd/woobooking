@@ -1,6 +1,6 @@
 <?php
 /**
- * @package	HikaShop for Joomla!
+ * @package	HikaShop for Woobookingpro!
  * @version	2.6.3
  * @author	hikashop.com
  * @copyright	(C) 2010-2016 HIKARI SOFTWARE. All rights reserved.
