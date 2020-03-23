@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     woobookingpro.Platform
  * @subpackage  Archive
  *
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
@@ -9,14 +9,14 @@
 
 defined('_WPBOOKINGPRO_EXEC') or die;
 
-WooBookingImport('joomla.filesystem.file');
-WooBookingImport('joomla.filesystem.stream');
+WooBookingImport('Woobookingpro.filesystem.file');
+WooBookingImport('Woobookingpro.filesystem.stream');
 
 /**
  * Bzip2 format adapter for the Archive class
  *
  * @since       1.5
- * @deprecated  4.0 use the Joomla\Archive\Bzip2 class instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\Bzip2 class instead
  */
 class NBArchiveBzip2 implements ArchiveExtractable
 {

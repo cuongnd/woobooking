@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -52,9 +52,9 @@ class Route
 	private static $_router = array();
 
 	/**
-	 * Translates an internal Joomla URL to a humanly readable URL. This method builds links for the current active client.
+	 * Translates an internal Woobookingpro URL to a humanly readable URL. This method builds links for the current active client.
 	 *
-	 * @param   string   $url       Absolute or Relative URI to Joomla resource.
+	 * @param   string   $url       Absolute or Relative URI to Woobookingpro resource.
 	 * @param   boolean  $xhtml     Replace & by &amp; for XML compliance.
 	 * @param   integer  $tls       Secure state for the resolved URI. Use Route::TLS_* constants
 	 *                                0: (default) No change, use the protocol currently used in the request
@@ -95,17 +95,17 @@ class Route
 		}
 		catch (\RuntimeException $e)
 		{
-			// @deprecated  4.0 Before 3.9.0 this method failed silently on router error. This B/C will be removed in Joomla 4.0.
+			// @deprecated  4.0 Before 3.9.0 this method failed silently on router error. This B/C will be removed in Woobookingpro 4.0.
 			return null;
 		}
 	}
 
 	/**
-	 * Translates an internal Joomla URL to a humanly readable URL.
+	 * Translates an internal Woobookingpro URL to a humanly readable URL.
 	 * NOTE: To build link for active client instead of a specific client, you can use <var>JRoute::_()</var>
 	 *
 	 * @param   string   $client    The client name for which to build the link.
-	 * @param   string   $url       Absolute or Relative URI to Joomla resource.
+	 * @param   string   $url       Absolute or Relative URI to Woobookingpro resource.
 	 * @param   boolean  $xhtml     Replace & by &amp; for XML compliance.
 	 * @param   integer  $tls       Secure state for the resolved URI. Use Route::TLS_* constants
 	 *                                0: (default) No change, use the protocol currently used in the request

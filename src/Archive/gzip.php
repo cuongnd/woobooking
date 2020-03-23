@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     woobookingpro.Platform
  * @subpackage  Archive
  *
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
@@ -9,7 +9,7 @@
 
 defined('_WPBOOKINGPRO_EXEC') or die;
 
-WooBookingImport('joomla.filesystem.file');
+WooBookingImport('Woobookingpro.filesystem.file');
 
 /**
  * Gzip format adapter for the Archive class
@@ -21,7 +21,7 @@ WooBookingImport('joomla.filesystem.file');
  * @contributor  Michael Cochrane <mike@graftonhall.co.nz>
  *
  * @since       1.5
- * @deprecated  4.0 use the Joomla\Archive\Gzip class instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\Gzip class instead
  */
 class NBArchiveGzip implements ArchiveExtractable
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -14,7 +14,7 @@ use WooBooking\CMS\Crypt\Cipher\SimpleCipher;
 use WooBooking\CMS\Log\Log;
 
 /**
- * Crypt is a Joomla Platform class for handling basic encryption/decryption of data.
+ * Crypt is a Woobookingpro Platform class for handling basic encryption/decryption of data.
  *
  * @since  3.0.0
  */

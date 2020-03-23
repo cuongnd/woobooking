@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -11,7 +11,7 @@ namespace WooBooking\CMS\Crypt;
 defined('_WPBOOKINGPRO_EXEC') or die;
 
 /**
- * Joomla Platform Password Hashing Interface
+ * Woobookingpro Platform Password Hashing Interface
  *
  * @since       3.0.1
  * @deprecated  4.0  Use PHP 5.5's native password hashing API
@@ -20,7 +20,7 @@ interface CryptPassword
 {
 	const BLOWFISH = '$2y$';
 
-	const JOOMLA = 'Joomla';
+	const Woobookingpro = 'Woobookingpro';
 
 	const PBKDF = '$pbkdf$';
 

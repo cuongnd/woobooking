@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomla! Content Management System
+ * Woobookingpro! Content Management System
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -14,7 +14,7 @@ use WooBooking\CMS\Crypt\Crypt;
 use WooBooking\CMS\Crypt\CryptPassword;
 
 /**
- * Joomla Platform Password Crypter
+ * Woobookingpro Platform Password Crypter
  *
  * @since       3.0.1
  * @deprecated  4.0  Use PHP 5.5's native password hashing API
@@ -77,7 +77,7 @@ class SimpleCryptPassword implements CryptPassword
 
 				return crypt($password, $salt);
 
-			case CryptPassword::JOOMLA:
+			case CryptPassword::Woobookingpro:
 				$salt = $this->getSalt(32);
 
 				return md5($password . $salt) . ':' . $salt;
@@ -154,7 +154,7 @@ class SimpleCryptPassword implements CryptPassword
 			return Crypt::timingSafeCompare(crypt($password, $hash), $hash);
 		}
 
-		// Check if the hash is a Joomla hash.
+		// Check if the hash is a Woobookingpro hash.
 		if (preg_match('#[a-z0-9]{32}:[A-Za-z0-9]{32}#', $hash) === 1)
 		{
 			// Check the password

@@ -195,7 +195,7 @@ class Factory
      */
     protected static function createSession(array $options = array())
     {
-        // Get the Joomla configuration settings
+        // Get the Woobookingpro configuration settings
         $conf    = self::getConfig();
         $handler = $conf->get('session_handler', 'none');
 

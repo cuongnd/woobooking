@@ -530,7 +530,7 @@ class WBPayment
                 $file = JPath::clean(HIKASHOP_ROOT . DS . trim($file, DS . ' '));
             if (!empty($file) && defined('FILE_APPEND')) {
                 if (!file_exists(dirname($file))) {
-                    jimport('joomla.filesystem.folder');
+                    jimport('Woobookingpro.filesystem.folder');
                     JFolder::create(dirname($file));
                 }
                 file_put_contents($file, $dbg, FILE_APPEND);

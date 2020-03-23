@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     woobookingpro.Platform
  * @subpackage  Archive
  *
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
@@ -13,7 +13,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * Archieve class interface
  *
  * @since       3.0.0
- * @deprecated  4.0 use the Joomla\Archive\ExtractableInterface interface instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\ExtractableInterface interface instead
  */
 interface NBArchiveExtractable
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of the Joomla Framework Archive Package
+ * Part of the Woobookingpro Framework Archive Package
  *
  * @copyright  Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -176,7 +176,7 @@ class Archive
 					: '';
 
 			$error = $error == '' && !($class instanceof ExtractableInterface)
-					? 'The provided adapter "%s" (class "%s") must implement Joomla\\Archive\\ExtractableInterface'
+					? 'The provided adapter "%s" (class "%s") must implement Woobookingpro\\Archive\\ExtractableInterface'
 					: $error;
 
 			$error = $error == '' && !$class::isSupported()

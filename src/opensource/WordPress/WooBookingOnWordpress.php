@@ -4,9 +4,10 @@
 namespace WooBooking\CMS\OpenSource\WordPress;
 
 
-use WPBOOKINGPRO_BlockController;
+
 use Exception;
 use Factory;
+
 use WooBooking\CMS;
 use WooBooking\CMS\Filesystem\File;
 use WooBooking\CMS\Filesystem\Folder;
@@ -132,21 +133,8 @@ class WooBookingOnWordpress
 
 
 
-    public function session_start(){
-        add_action('init', function (){
-            if(!session_id()) {
-                session_start();
-            }
-        }, 1);
-
-    }
     public function getSession()
     {
-
-        if(!session_id()) {
-            session_start();
-            return $_SESSION;
-        }
         return $_SESSION;
     }
 
@@ -159,11 +147,11 @@ class WooBookingOnWordpress
     public function initOpenWooBookingWordpressFrontend()
     {
 
+
         $root_url = self::get_root_url();
         $input = Factory::getInput();
         Factory::setRootUrl($root_url);
         Factory::setRootUrlPlugin($root_url . "/wp-content/plugins/" . WPBOOKINGPRO_PLUGIN_NAME . "/");
-
 
         $task = $input->getString('task', '');
         //trying remove add to cart and price
@@ -197,13 +185,16 @@ class WooBookingOnWordpress
         add_shortcode("wp-booking-pro", array($this, 'woo_booking_render_by_tag_func'));
         $list_view = self::get_list_layout_block_frontend();
         $open_source=Factory::getOpenSource();
-        $open_source->session_start();
+
+
+        //$open_source->session_start();
         foreach ($list_view as $key => $view) {
             $a_key = self::$key_woo_booking . "-block-" . $key;
             add_shortcode($a_key, array($this, 'woo_booking_render_block_by_tag_func'));
         }
 
-
+        $widgets = Widgets::getInstance();
+        $widgets->init();
 
 
 
@@ -296,6 +287,7 @@ class WooBookingOnWordpress
     }
     public function run()
     {
+
         $this->view = self::get_current_page();
         $app = Factory::getApplication();
         $input = Factory::getInput();
@@ -400,8 +392,11 @@ class WooBookingOnWordpress
             if (function_exists("vc_add_shortcode_param")) {
                 vc_add_shortcode_param('woo_booking_block_type', array($this, 'woo_booking_block_type_settings_field'));
             }
+
         }
 
+        $widgets = Widgets::getInstance();
+        $widgets->init();
         //vc_add_shortcode_param('my_param', 'my_param_settings_field', plugins_url('test.js', __FILE__));
 
 

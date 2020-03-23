@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     woobookingpro.Platform
  * @subpackage  Archive
  *
  * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
@@ -34,7 +34,7 @@ defined('_WPBOOKINGPRO_EXEC') or die;
  * @contributor  Michael Cochrane <mike@graftonhall.co.nz>
  *
  * @since       1.5
- * @deprecated  4.0 use the Joomla\Archive\Zip class instead
+ * @deprecated  4.0 use the Woobookingpro\Archive\Zip class instead
  */
 class NBArchiveZip implements NBArchiveExtractable
 {
