@@ -1288,8 +1288,6 @@ class WooBookingOnWordpress
     {
 
         wp_enqueue_script("jquery");
-
-        wp_head();
         $doc = Factory::getDocument();
         $styleSheets = $doc->getStyleSheets();
         foreach ($styleSheets as $src => $attribs) {
