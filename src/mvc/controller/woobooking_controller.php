@@ -26,6 +26,7 @@ class woobooking_controller{
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it");
         }
     }
+
     public function ajax_get_json_item($id=0){
         $modelItem=$this->getModelItem();
         return json_encode($modelItem->getItem());

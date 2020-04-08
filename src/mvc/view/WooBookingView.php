@@ -214,18 +214,18 @@ class WooBookingView extends CMSObject
     }
     public function loadTemplate($tpl){
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
-
         $tmpl_path=WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
 
         if(file_exists($tmpl_path)){
             ob_start();
-            require $tmpl_path;
+            include $tmpl_path;
             $content=ob_get_clean();
             echo  $content;
         }else{
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it");
         }
     }
+
     public function loadSharedTemplate($template){
         list($template,$layout)=explode(".",$template);
         $tmpl_short_path="/shared/".$template."/$layout.php";
