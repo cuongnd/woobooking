@@ -315,7 +315,7 @@ JS
         // Only attempt to load the component if it's supported in core and hasn't already been loaded
         if (empty(static::$loaded[__METHOD__])) {
             $doc = Factory::getDocument();
-            $doc->addStyleSheet('resources/js/bootstrap3.3.7/bootstrap.min.css');
+            $doc->addStyleSheet('admin/resources/js/bootstrap3.3.7/less/bootstrap.css');
             $doc->addScript('resources/js/bootstrap3.3.7/bootstrap.min.js');
             static::$loaded[__METHOD__] = true;
         }
