@@ -135,12 +135,15 @@ if (has("w")) {
 
 		// try to compile it
 		if ($updated) {
+            WP_Filesystem();
+
+            global $wp_filesystem;
 			$last_action = time();
 
 			try {
 				$cache = lessc::cexecute($cache);
 				echo "Writing updated file: ".$out."\n";
-				if (!file_put_contents($out, $cache['compiled'])) {
+				if (!$wp_filesystem->put_contents($out, $cache['compiled'])) {
 					err($fa."Could not write to file ".$out);
 					exit(1);
 				}
@@ -242,7 +245,7 @@ try {
 	if (!$fout = array_shift($argv)) {
 		echo ($out);
 	} else {
-		file_put_contents($fout, $out);
+        $wp_filesystem->put_contents($fout, $out);
 	}
 
 } catch (exception $ex) {

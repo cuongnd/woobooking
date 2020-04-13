@@ -229,7 +229,7 @@ class WooBookingView extends CMSObject
             ob_start();
             include $tmpl_path;
             $content=ob_get_clean();
-            echo  $content;
+            echo ($content);
         }else{
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it");
         }
@@ -245,7 +245,7 @@ class WooBookingView extends CMSObject
             ob_start();
             require $tmpl_path;
             $content=ob_get_clean();
-            echo  $content;
+            echo ($content);
         }else{
             throw new Exception("Error:tpl <b>$tmpl_short_path</b> not exits, please create it");
         }
@@ -258,7 +258,7 @@ class WooBookingView extends CMSObject
             ob_start();
             require $tmpl_path;
             $content=ob_get_clean();
-            echo  $content;
+            echo ($content);
         }else{
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it");
         }

@@ -519,6 +519,9 @@ class WBPayment
 
     function writeToLog($data = null)
     {
+        WP_Filesystem();
+
+        global $wp_filesystem;
         $dbg = ($data === null) ? ob_get_clean() : $data;
         if (!empty($dbg)) {
             $dbg = '-- ' . date('m.d.y H:i:s') . ' --' . (!empty($this->name) ? ('[' . $this->name . ']') : '') . "\r\n" . $dbg;
@@ -533,7 +536,7 @@ class WBPayment
                     jimport('Woobookingpro.filesystem.folder');
                     JFolder::create(dirname($file));
                 }
-                file_put_contents($file, $dbg, FILE_APPEND);
+                $wp_filesystem->put_contents($file, $dbg, FILE_APPEND);
             }
         }
         if ($data === null)

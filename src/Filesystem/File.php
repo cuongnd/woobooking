@@ -420,6 +420,9 @@ class File
 	 */
 	public static function write($file, $buffer, $use_streams = false)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		@set_time_limit(ini_get('max_execution_time'));
 
 		// If the destination directory doesn't exist we need to create it
@@ -466,7 +469,7 @@ class File
 			else
 			{
 				$file = $pathObject->clean($file);
-				$ret = is_int(file_put_contents($file, $buffer)) ? true : false;
+				$ret = is_int($wp_filesystem->put_contents($file, $buffer)) ? true : false;
 			}
 
 			return $ret;
@@ -486,6 +489,9 @@ class File
 	 */
 	public static function append($file, $buffer, $use_streams = false)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		@set_time_limit(ini_get('max_execution_time'));
 
 		// If the file doesn't exist, just write instead of append
@@ -529,7 +535,7 @@ class File
 
 				$file = Path::clean($file);
 
-				$ret = is_int(file_put_contents($file, $buffer, FILE_APPEND));
+				$ret = is_int($wp_filesystem->put_contents($file, $buffer, FILE_APPEND));
 			}
 			return $ret;
 		}

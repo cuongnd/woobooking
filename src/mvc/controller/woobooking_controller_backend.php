@@ -30,7 +30,7 @@ class woobooking_controller_backend extends woobooking_controller{
             ob_start();
             include $tmpl_path;
             $content=ob_get_clean();
-            echo  $content;
+            echo ($content);
         }else{
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it");
         }
