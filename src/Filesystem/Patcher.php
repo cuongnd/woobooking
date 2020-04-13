@@ -218,7 +218,7 @@ class Patcher
 	 *
 	 * @since   3.0.0
 	 */
-	public function addFile($filename, $root = , $strip = 0)
+	public function addFile($filename, $root = '', $strip = 0)
 	{
         WP_Filesystem();
 
