@@ -15,7 +15,7 @@ require "lessify.inc.php";
 
 try  {
 	$parser = new lessify($fname);
-	echo $parser->parse();
+	echo ($parser->parse());
 } catch (exception $e) {
 	exit("Fatal error: ".$e->getMessage()."\n");
 }

@@ -68,7 +68,7 @@ class Utility
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;',$url)) . ';</script>';
         $html .= '</head><body></body></html>';
-        echo $html;
+        echo ($html);
     }
     public static function getFrontendGoToLink($view_layout, $items_var=array()){
 
@@ -147,7 +147,7 @@ class Utility
         ob_start();
         ?>
         <hr/>
-        <h3><?php echo $title ?></h3>
+        <h3><?php echo ($title) ?></h3>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -181,12 +181,12 @@ class Utility
                     $_stack['line'] = '';
                 ?>
                 <tr>
-                    <td><?php echo $file_path_short ?></td>
-                    <td><?php echo $_stack['line'] ?></td>
-                    <td><?php echo $_stack['class'] ?></td>
-                    <td><?php echo $_stack['type'] ?></td>
-                    <td><?php echo $_stack['function'] ?></td>
-                    <td><?php echo  $line_content; ?></td>
+                    <td><?php echo ($file_path_short) ?></td>
+                    <td><?php echo ($_stack['line']) ?></td>
+                    <td><?php echo ($_stack['class']) ?></td>
+                    <td><?php echo ($_stack['type']) ?></td>
+                    <td><?php echo ($_stack['function']) ?></td>
+                    <td><?php echo  ($line_content); ?></td>
                     <td><pre><?php  print_r($args,false); ?></pre></td>
                 </tr>
                 <?php } ?>
@@ -496,16 +496,16 @@ class Utility
         curl_close($curl);
         $output1=strtolower($output);
         if (strpos($output1, 'api quota exceeded') !== false) {
-            echo JUri::root().$js_file;
+            echo (JUri::root().$js_file);
             echo "</br>";
-            echo JUri::root().$compress_file;
+            echo (JUri::root().$compress_file);
             echo "</br>";
-            echo $output;
+            echo ($output);
             echo "</br>";
         }else{
-            echo JUri::root().$js_file;
+            echo (JUri::root().$js_file);
             echo "</br>";
-            echo JUri::root().$compress_file;
+            echo (JUri::root().$compress_file);
             echo "</br>";
             echo "----ok-----";
             echo substr($output,0,150);
@@ -989,7 +989,7 @@ class Utility
     public  static function lazyLoadContent($class="") {
         ob_start();
         ?>
-        <div class="animated-background <?php echo $class ?>  ">
+        <div class="animated-background <?php echo ($class) ?>  ">
             <div class="background-masker header-top"></div>
             <div class="background-masker header-left"></div>
             <div class="background-masker header-right"></div>

@@ -128,7 +128,7 @@ class ExceptionHandler
 
 				$app->setBody($data);
 
-				echo $app->toString();
+				echo ($app->toString());
 
 				$app->close(0);
 
@@ -169,7 +169,7 @@ class ExceptionHandler
 			}
 		}
 
-		echo $message;
+		echo ($message);
 
 		jexit(1);
 	}

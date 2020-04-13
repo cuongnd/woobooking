@@ -459,7 +459,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.$url)) . ';</script>';
         $html .= '</head><body></body></html>';
-        echo $html;
+        echo ($html);
 
     }
 
@@ -470,7 +470,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.'/'.$url)) . ';</script>';
         $html .= '</head><body></body></html>';
-        echo $html;
+        echo ($html);
     }
     public function redirectInWooBookingPage($page){
         $openSource=Factory::getOpenSource();
@@ -480,6 +480,6 @@ class woobooking_controller_frontend extends woobooking_controller{
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.'wp-booking-pro?page='.$page)) . ';</script>';
         $html .= '</head><body></body></html>';
-        echo $html;
+        echo ($html);
     }
 }

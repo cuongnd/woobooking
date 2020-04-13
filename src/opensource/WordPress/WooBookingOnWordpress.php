@@ -125,7 +125,7 @@ class WooBookingOnWordpress
 
     public function render_content($content)
     {
-        echo $content;
+        echo ($content);
     }
 
 
@@ -446,14 +446,14 @@ class WooBookingOnWordpress
                             <label class="menu-item-title">
                                 <input type="checkbox" class="menu-item-checkbox"
                                        name="menu-item[-1][menu-item-object-id]"
-                                       value="-1"> <?php echo $page['title'] ?>
+                                       value="-1"> <?php echo ($page['title']) ?>
                             </label>
                             <input type="hidden" class="menu-item-type" name="menu-item[-1][menu-item-type]"
                                    value="custom">
                             <input type="hidden" class="menu-item-title" name="menu-item[-1][menu-item-title]"
-                                   value="<?php echo $page['title'] ?>">
+                                   value="<?php echo ($page['title']) ?>">
                             <input type="hidden" class="menu-item-url" name="menu-item[-1][menu-item-url]"
-                                   value="<?php bloginfo('wpurl'); ?>/<?php echo "wp-booking-pro/?page=$key" ?>">
+                                   value="<?php bloginfo('wpurl'); ?>/<?php echo ("wp-booking-pro/?page=$key") ?>">
                         </li>
                     <?php } ?>
                 </ul>
@@ -468,11 +468,11 @@ class WooBookingOnWordpress
                     ),
                     remove_query_arg($removed_args)
                 ));
-                ?>#my-menu-test-metabox" class="select-all"><?php _e('Select All'); ?></a>
+                ?>#my-menu-test-metabox" class="select-all"><?php esc_attr_e('Select All','wpbookingpro'); ?></a>
 			</span>
                     <span class="add-to-menu">
 				<input type="submit"<?php wp_nav_menu_disabled_check($nav_menu_selected_id); ?>
-                       class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e('Add to Menu'); ?>"
+                       class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e('Add to Menu','wpbookingpro'); ?>"
                        name="add-my-plugin-menu-item" id="submit-my-plugin-div"/>
 				<span class="spinner"></span>
 			</span>
@@ -536,7 +536,7 @@ class WooBookingOnWordpress
 
                 if (class_exists($class_name)) {
                     $class_controller = new $class_name();
-                    echo $class_controller->view("$menu.$layout");
+                    echo ($class_controller->view("$menu.$layout"));
                 } else {
                     echo "Class $class_name not exit in file $file_controller_short_path, please create this class";
                 }
@@ -587,13 +587,13 @@ class WooBookingOnWordpress
                 </div>
             </div>
 
-            <input name="<?php echo esc_attr($settings["param_name"]) ?>"
-                   class="wpb_vc_param_value wpb-textinput  <?php echo esc_attr($settings['param_name']) ?> <?php esc_attr($settings['type']) ?>_field"
-                   type="hidden" value="<?php echo esc_attr($value) ?>"/>
+            <input name="<?php echo($settings["param_name"]) ?>"
+                   class="wpb_vc_param_value wpb-textinput  <?php echo($settings['param_name']) ?> <?php echo($settings['type']) ?>_field"
+                   type="hidden" value="<?php esc_html_e($value) ?>"/>
             <script type="text/javascript">
                 $('.woo-booking-block-edit-content').render_block_config({
-                    id: "<?php echo $value ?>",
-                    block_setting:<?php echo json_encode($settings) ?>
+                    id: "<?php echo ($value) ?>",
+                    block_setting:<?php echo (json_encode($settings)) ?>
                 });
             </script>
         </div>
@@ -734,11 +734,11 @@ class WooBookingOnWordpress
         ?>
 
         <script type="text/javascript">
-            wpbookingpro_root_url = "<?php echo $root_url ?>";
-            wpbookingpro_root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
-            wpbookingpro_api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-            wpbookingpro_api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
-            list_view =<?php echo json_encode($list_view) ?>
+            wpbookingpro_root_url = "<?php echo ($root_url) ?>";
+            wpbookingpro_root_url_plugin = "<?php echo ($root_url) ?>/wp-content/plugins/<?php echo(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
+            wpbookingpro_api_task = "/wp-json/<?php echo (self::$namespace . self::get_api_task()) ?>";
+            wpbookingpro_api_task_frontend = "/wp-json/<?php echo (self::$namespace . self::get_api_task_frontend()) ?>";
+            list_view =<?php echo (json_encode($list_view)) ?>
         </script>
 
         <?php
@@ -800,7 +800,7 @@ class WooBookingOnWordpress
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;',
                 $root_url . 'wp-admin/admin.php?page=wb_config&layout=install')) . ';</script>';
         $html .= '</head><body></body></html>';
-        echo $html;
+        echo ($html);
     }
 
     function woo_booking_render_block_by_tag_func($atts, $content, $a_view)
@@ -817,7 +817,7 @@ class WooBookingOnWordpress
 
             list($package, $block, $block_name) = explode("-", $a_view);
 
-            echo WPBOOKINGPRO_BlockController::view_block_module($id, $block_name);
+            echo (WPBOOKINGPRO_BlockController::view_block_module($id, $block_name));
         }
         return false;
     }
@@ -998,14 +998,14 @@ class WooBookingOnWordpress
                             <label class="menu-item-title">
                                 <input type="checkbox" class="menu-item-checkbox"
                                        name="menu-item[-1][menu-item-object-id]"
-                                       value="-1"> <?php echo $page['title'] ?>
+                                       value="-1"> <?php echo ($page['title']) ?>
                             </label>
                             <input type="hidden" class="menu-item-type" name="menu-item[-1][menu-item-type]"
                                    value="custom">
                             <input type="hidden" class="menu-item-title" name="menu-item[-1][menu-item-title]"
-                                   value="<?php echo $page['title'] ?>">
+                                   value="<?php echo ($page['title']) ?>">
                             <input type="hidden" class="menu-item-url" name="menu-item[-1][menu-item-url]"
-                                   value="<?php bloginfo('wpurl'); ?>/<?php echo "wp-booking-pro/?page=$key_woo_booking-$key" ?>">
+                                   value="<?php bloginfo('wpurl'); ?>/<?php echo ("wp-booking-pro/?page=$key_woo_booking-$key") ?>">
                         </li>
                     <?php } ?>
                 </ul>
@@ -1094,7 +1094,7 @@ class WooBookingOnWordpress
         $class_name = "BookingController";
         $class_controller = new $class_name();
         $input->set('open_source_link_id', $id);
-        echo $class_controller->view("booking.training");
+        echo ($class_controller->view("booking.training"));
 
     }
 
@@ -1319,11 +1319,11 @@ class WooBookingOnWordpress
         ob_start();
         ?>
         <script type="text/javascript">
-            var wpbookingpro_root_url = "<?php echo $root_url ?>";
-            var wpbookingpro_current_url = "<?php echo $root_url ?>";
-            var wpbookingpro_root_url_plugin = "<?php echo $root_url ?>/wp-content/plugins/<?php wpbookingpro_render_content(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
-            var wpbookingpro_api_task = "/wp-json/<?php echo self::$namespace . self::get_api_task() ?>";
-            var wpbookingpro_api_task_frontend = "/wp-json/<?php echo self::$namespace . self::get_api_task_frontend() ?>";
+            var wpbookingpro_root_url = "<?php echo ($root_url) ?>";
+            var wpbookingpro_current_url = "<?php echo ($root_url) ?>";
+            var wpbookingpro_root_url_plugin = "<?php echo ($root_url) ?>/wp-content/plugins/<?php echo(WPBOOKINGPRO_PLUGIN_NAME); ?>/";
+            var wpbookingpro_api_task = "/wp-json/<?php echo (self::$namespace . self::get_api_task()) ?>";
+            var wpbookingpro_api_task_frontend = "/wp-json/<?php echo (self::$namespace . self::get_api_task_frontend()) ?>";
         </script>
         <?php
         $content=ob_get_clean();

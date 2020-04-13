@@ -96,7 +96,7 @@ class Application extends CMSObject
         $html .= '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $html .= '<script>document.location.href=' . json_encode(str_replace("'", '&apos;', $root_url.'/'.$url)) . ';</script>';
         $html .= '</head><body></body></html>';
-        echo $html;
+        echo ($html);
     }
 
 

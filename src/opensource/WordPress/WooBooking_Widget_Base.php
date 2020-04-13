@@ -148,10 +148,10 @@ abstract class WooBooking_Widget_Base extends Widget_Base  {
         $data=$input->getData();
         ob_start();
         ?>
-        [woobooking_elementor_block block_name="<?php echo $block_name ?>" open_source_client_id="<?php echo $id ?>"]
+        [woobooking_elementor_block block_name="<?php echo ($block_name) ?>" open_source_client_id="<?php echo ($id) ?>"]
         <?php
         $content=ob_get_clean();
-        echo $content;
+        echo ($content);
         //echo json_encode($data);
 
     }

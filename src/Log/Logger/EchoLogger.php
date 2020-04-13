@@ -56,8 +56,8 @@ class EchoLogger extends Logger
 	 */
 	public function addEntry(LogEntry $entry)
 	{
-		echo $this->priorities[$entry->priority] . ': '
+		echo ($this->priorities[$entry->priority] . ': '
 			. $entry->message . (empty($entry->category) ? '' : ' [' . $entry->category . ']')
-			. $this->line_separator;
+			. $this->line_separator);
 	}
 }

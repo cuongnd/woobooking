@@ -67,7 +67,7 @@ class WoobookingModelForm extends WoobookingModel
         }
         catch (\Exception $e)
         {
-            echo $e->getMessage();
+            echo ($e->getMessage());
             die;
             $this->setError($e->getMessage());
 

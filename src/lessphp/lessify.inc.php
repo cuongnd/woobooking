@@ -106,12 +106,12 @@ class tagparse extends easyparse {
 
 	static function compileTag($tag) {
 		ob_start();
-		if (isset($tag['comb'])) echo $tag['comb']." ";
-		if (isset($tag['front'])) echo $tag['front'];
+		if (isset($tag['comb'])) echo ($tag['comb']." ");
+		if (isset($tag['front'])) echo ($tag['front']);
 		if (isset($tag['attr'])) {
-			echo '['.$tag['attr'];
+			echo ('['.$tag['attr']);
 			if (isset($tag['op'])) {
-				echo $tag['op'].$tag['op_value'];
+				echo ($tag['op'].$tag['op_value']);
 			}
 			echo ']';
 		}
@@ -275,7 +275,7 @@ class nodecounter {
 	static function compileProperties($c, $block) {
 		foreach($block as $name => $value) {
 			if ($c->isProperty($name, $value)) {
-				echo $c->compileProperty($name, $value)."\n";
+				echo ($c->compileProperty($name, $value)."\n");
 			}
 		}
 	}
@@ -287,7 +287,7 @@ class nodecounter {
 		$isVisible = !is_null($this->the_block) || !is_null($this->child_blocks);
 
 		if ($isVisible) {
-			echo $c->indent(implode(' ', $path).' {');
+			echo ($c->indent(implode(' ', $path).' {'));
 			$c->indentLevel++;
 			$path = array();
 
@@ -297,11 +297,11 @@ class nodecounter {
 
 			if ($this->child_blocks) {
 				foreach ($this->child_blocks as $block) {
-					echo $c->indent(tagparse::compilePaths($block['__tags']).' {');
+					echo ($c->indent(tagparse::compilePaths($block['__tags']).' {'));
 					$c->indentLevel++;
 					$this->compileProperties($c, $block);
 					$c->indentLevel--;
-					echo $c->indent('}');
+					echo ($c->indent('}'));
 				}
 			}
 		}
@@ -313,7 +313,7 @@ class nodecounter {
 
 		if ($isVisible) {
 			$c->indentLevel--;
-			echo $c->indent('}');
+			echo ($c->indent('}'));
 		}
 
 	}
@@ -436,11 +436,11 @@ class lessify extends lessc {
 					unset($compressed[$top]);
 				}
 			} else {
-				echo $this->indent(implode(', ', $tags).' {');
+				echo ($this->indent(implode(', ', $tags).' {'));
 				$this->indentLevel++;
 				nodecounter::compileProperties($this, $block);
 				$this->indentLevel--;
-				echo $this->indent('}');
+				echo ($this->indent('}'));
 			}
 		}
 	}

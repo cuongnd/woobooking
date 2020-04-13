@@ -79,7 +79,7 @@ function process($data, $import = null) {
 	if ($import) $l->importDir = $import;
 
 	try {
-		echo $l->parse($data);
+		echo ($l->parse($data));
 		exit(0);
 	} catch (exception $ex) {
 		err($fa."\n".str_repeat('=', 20)."\n".
@@ -160,7 +160,7 @@ if (has("w")) {
 }
 
 if (!$fname = array_shift($argv)) {
-	echo $HELP;
+	echo ($HELP);
 	exit(1);
 }
 
@@ -237,7 +237,7 @@ try {
 	}
 
 	if (!$fout = array_shift($argv)) {
-		echo $out;
+		echo ($out);
 	} else {
 		file_put_contents($fout, $out);
 	}

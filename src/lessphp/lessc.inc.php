@@ -3707,13 +3707,13 @@ class lessc_formatter_classic {
 				$selectorSeparator = $this->selectorSeparator;
 			}
 
-			echo $pre .
-				implode($selectorSeparator, $block->selectors);
+			echo ($pre .
+				implode($selectorSeparator, $block->selectors));
 			if ($isSingle) {
-				echo $this->openSingle;
+				echo ($this->openSingle);
 				$inner = "";
 			} else {
-				echo $this->open . $this->break;
+				echo ($this->open . $this->break);
 				$inner = $this->indentStr();
 			}
 
@@ -3721,9 +3721,9 @@ class lessc_formatter_classic {
 
 		if (!empty($block->lines)) {
 			$glue = $this->break.$inner;
-			echo $inner . implode($glue, $block->lines);
+			echo ($inner . implode($glue, $block->lines));
 			if (!$isSingle && !empty($block->children)) {
-				echo $this->break;
+				echo ($this->break);
 			}
 		}
 
@@ -3732,12 +3732,12 @@ class lessc_formatter_classic {
 		}
 
 		if (!empty($block->selectors)) {
-			if (!$isSingle && empty($block->children)) echo $this->break;
+			if (!$isSingle && empty($block->children)) echo ($this->break);
 
 			if ($isSingle) {
-				echo $this->closeSingle . $this->break;
+				echo ($this->closeSingle . $this->break);
 			} else {
-				echo $pre . $this->close . $this->break;
+				echo ($pre . $this->close . $this->break);
 			}
 
 			$this->indentLevel--;

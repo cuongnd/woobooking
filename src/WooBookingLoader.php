@@ -217,7 +217,7 @@ abstract class WooBookingLoader
                     self::$classes[strtolower($class)] = require_once $base . '/' . $path . '.php';
                     $success = true;
                 }else{
-                    echo $base . '/' . $path . '.php'."not found";
+                    echo ($base . '/' . $path . '.php'."not found");
                     echo "<pre>";
                     print_r(Utility::printDebugBacktrace(), false);
                     echo "</pre>";
@@ -237,7 +237,7 @@ abstract class WooBookingLoader
                 if (is_file($base . '/' . $path . '.php')) {
                     $success = (bool)include_once $base . '/' . $path . '.php';
                 } else {
-                    echo $base . '/' . $path . '.php'." not found";
+                    echo ($base . '/' . $path . '.php'." not found");
                     echo "<pre>";
                     print_r(Utility::printDebugBacktrace(), false);
                     echo "</pre>";

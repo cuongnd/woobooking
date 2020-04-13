@@ -1756,7 +1756,7 @@ class WoobookingNested extends WoobookingTable
 			$buffer .= $sep;
 		}
 
-		echo $buffer;
+		echo ($buffer);
 	}
 
 	/**

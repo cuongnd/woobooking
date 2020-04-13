@@ -569,7 +569,7 @@ class Document
 		?>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
-                $('<?php echo $selector ?>').<?php echo $function_name ?>(<?php echo json_encode($config) ?>);
+                $('<?php echo ($selector) ?>').<?php echo ($function_name) ?>(<?php echo (json_encode($config)) ?>);
             });
 
         </script>

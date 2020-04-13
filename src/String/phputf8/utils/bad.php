@@ -115,7 +115,7 @@ function utf8_bad_strip($str) {
     ob_start();
     while (preg_match('/'.$UTF8_BAD.'/S', $str, $matches)) {
         if ( !isset($matches[2])) {
-            echo $matches[0];
+            echo ($matches[0]);
         }
         $str = substr($str,strlen($matches[0]));
     }
@@ -151,9 +151,9 @@ function utf8_bad_replace($str, $replace = '?') {
     ob_start();
     while (preg_match('/'.$UTF8_BAD.'/S', $str, $matches)) {
         if ( !isset($matches[2])) {
-            echo $matches[0];
+            echo ($matches[0]);
         } else {
-            echo $replace;
+            echo ($replace);
         }
         $str = substr($str,strlen($matches[0]));
     }

@@ -9,14 +9,14 @@
 defined('_WPBOOKINGPRO_EXEC') or die('Restricted access');
 ?><div class="hikashop_paypal_end" id="hikashop_paypal_end">
 	<span id="hikashop_paypal_end_message" class="hikashop_paypal_end_message">
-		<?php echo WoobookingText::sprintf('PLEASE_WAIT_BEFORE_REDIRECTION_TO_X', @$this->payment_name).'<br/><span id="hikashop_paypal_button_message">'. WoobookingText::_('CLICK_ON_BUTTON_IF_NOT_REDIRECTED').'</span>';?>
+		<?php printf('PLEASE_WAIT_BEFORE_REDIRECTION_TO_X', @$this->payment_name).'<br/><span id="hikashop_paypal_button_message">'. esc_attr('Click on button if not redirected','wpbookingpro').'</span>';?>
 	</span>
 	<span id="hikashop_paypal_end_spinner" class="hikashop_paypal_end_spinner hikashop_checkout_end_spinner">
 	</span>
 	<br/>
-	<form id="hikashop_paypal_form" name="hikashop_paypal_form" action="<?php echo $this->payment_params->url;?>" method="post">
+	<form id="hikashop_paypal_form" name="hikashop_paypal_form" action="<?php echo ($this->payment_params->url);?>" method="post">
 		<div id="hikashop_paypal_end_image" class="hikashop_paypal_end_image">
-			<input id="hikashop_paypal_button" type="submit" class="btn btn-primary" value="<?php echo WoobookingText::_('PAY_NOW');?>" name="" alt="<?php echo WoobookingText::_('PAY_NOW');?>" onclick="document.getElementById('hikashop_paypal_form').submit(); return false;"/>
+			<input id="hikashop_paypal_button" type="submit" class="btn btn-primary" value="<?php esc_attr_e('Pay now','wpbookingpro');?>" name="" alt="<?php esc_attr_e('Pay now','wpbookingpro');?>" onclick="document.getElementById('hikashop_paypal_form').submit(); return false;"/>
 		</div>
 		<?php
 

@@ -76,7 +76,7 @@ final class Image implements ImageInterface {
      */
     public function blob( $type = 'PNG' ) {
         $this->imagick->setImageFormat($type);
-        echo $this->imagick->getImageBlob();
+        echo ($this->imagick->getImageBlob());
     }
 
     /**

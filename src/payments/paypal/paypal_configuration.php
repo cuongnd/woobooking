@@ -10,22 +10,22 @@ defined('_WPBOOKINGPRO_EXEC') or die('Restricted access');
 ?><tr>
 	<td class="key">
 		<label for="params[payment_params][url]"><?php
-			echo WoobookingText::_( 'Url' );
+			esc_attr_e('Url','wpbookingpro');
 		?></label>
 	</td>
 	<td>
 
-		<input type="text" class="form-control" disabled name="params[payment_params][url]" value="<?php echo $this->escape(@$this->element->payment_params->url); ?>" />
+		<input type="text" class="form-control" disabled name="params[payment_params][url]" value="<?php echo ($this->escape(@$this->element->payment_params->url)); ?>" />
 	</td>
 </tr>
 <tr>
 	<td class="key">
 		<label for="params[payment_params][email]"><?php
-			echo WoobookingText::_( 'Email' );
+			esc_attr_e('Email','wpbookingpro');
 		?></label>
 	</td>
 	<td>
-		<input type="text" class="form-control" name="params[payment_params][email]" value="<?php echo $this->escape(@$this->element->payment_params->email); ?>" />
+		<input type="text" class="form-control" name="params[payment_params][email]" value="<?php echo ($this->escape(@$this->element->payment_params->email)); ?>" />
 	</td>
 </tr>
 
