@@ -46,7 +46,7 @@ abstract class WooBooking_Widget_Base extends Widget_Base  {
         $class_call=strtolower($class_call);
         $class_call=str_replace("widget","",$class_call);
         $class_call=str_replace("_"," ",$class_call);
-        return __( $class_call, 'touroperatorpro' );
+        return esc_attr( $class_call, 'wpbookingpro' );
     }
 
     /**
@@ -108,7 +108,7 @@ abstract class WooBooking_Widget_Base extends Widget_Base  {
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __( 'Content', 'elementor-hello-world' ),
+                'label' => esc_attr( 'Content', 'elementor-hello-world' ),
             ]
         );
 
@@ -120,7 +120,7 @@ abstract class WooBooking_Widget_Base extends Widget_Base  {
         $this->start_controls_section(
             'section_style',
             [
-                'label' => __( 'Style', 'elementor-hello-world' ),
+                'label' => esc_attr( 'Style', 'elementor-hello-world' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );

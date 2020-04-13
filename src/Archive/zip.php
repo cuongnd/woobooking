@@ -225,6 +225,9 @@ class NBArchiveZip implements NBArchiveExtractable
 	 */
 	protected function extractCustom($archive, $destination)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$this->_data = null;
 		$this->_metadata = null;
 
@@ -233,7 +236,7 @@ class NBArchiveZip implements NBArchiveExtractable
 			return $this->raiseWarning(100, 'Zlib not supported');
 		}
 
-		$this->_data = file_get_contents($archive);
+		$this->_data = $wp_filesystem->get_contents($archive);
 
 		if (!$this->_data)
 		{

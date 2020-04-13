@@ -222,10 +222,13 @@ class Zip implements ExtractableInterface
 	 */
 	protected function extractCustom($archive, $destination)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$this->data     = null;
 		$this->metadata = null;
 
-		$this->data = file_get_contents($archive);
+		$this->data = $wp_filesystem->get_contents($archive);
 
 		if (!$this->data)
 		{

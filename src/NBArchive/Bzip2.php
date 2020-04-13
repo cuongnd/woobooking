@@ -67,12 +67,15 @@ class Bzip2 implements ExtractableInterface
 	 */
 	public function extract($archive, $destination)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$this->data = null;
 
 		if (!isset($this->options['use_streams']) || $this->options['use_streams'] == false)
 		{
 			// Old style: read the whole file and then parse it
-			$this->data = file_get_contents($archive);
+			$this->data = $wp_filesystem->get_contents($archive);
 
 			if (!$this->data)
 			{

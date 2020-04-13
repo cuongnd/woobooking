@@ -42,6 +42,9 @@ class NBArchiveBzip2 implements ArchiveExtractable
 	 */
 	public function extract($archive, $destination, array $options = array())
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$this->_data = null;
 
 		if (!extension_loaded('bz2'))
@@ -55,7 +58,7 @@ class NBArchiveBzip2 implements ArchiveExtractable
 		}
 
 		// Old style: read the whole file and then parse it
-		$this->_data = file_get_contents($archive);
+		$this->_data = $wp_filesystem->get_contents($archive);
 
 		if (!$this->_data)
 		{

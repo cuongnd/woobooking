@@ -195,9 +195,11 @@ class woobooking_controller_backend extends woobooking_controller{
 
     }
     public static function ajax_action_task(){
+        WP_Filesystem();
 
+        global $wp_filesystem;
         $input=Factory::getInput();
-        $data = json_decode( file_get_contents('php://input') );
+        $data = json_decode( $wp_filesystem->get_contents('php://input') );
         $task=$input->getString('task','');
         $task=$task?$task:$data->task;
         list($controller,$task)=explode(".",$task);
@@ -291,8 +293,11 @@ class woobooking_controller_backend extends woobooking_controller{
 
     }
     public static function action_task(){
+        WP_Filesystem();
+
+        global $wp_filesystem;
         $input=Factory::getInput();
-        $data = json_decode( file_get_contents('php://input') );
+        $data = json_decode( $wp_filesystem->get_contents('php://input') );
         $task=$input->getString('task','');
         $task=$task?$task:$data->task;
         $app=Factory::getApplication();

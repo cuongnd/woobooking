@@ -12,10 +12,10 @@ class wpb_widget extends WP_Widget
             'wpb_widget',
 
 // Widget name will appear in UI
-            __('WPBeginner Widget', 'wpb_widget_domain'),
+            esc_attr('WPBeginner Widget', 'wpb_widget_domain'),
 
 // Widget description
-            array('description' => __('Sample widget based on WPBeginner Tutorial', 'wpb_widget_domain'),)
+            array('description' => esc_attr('Sample widget based on WPBeginner Tutorial', 'wpb_widget_domain'),)
         );
     }
 

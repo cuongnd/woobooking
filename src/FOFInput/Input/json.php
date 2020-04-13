@@ -35,6 +35,9 @@ class InputJSON extends Input
 	 */
 	public function __construct(array $source = null, array $options = array())
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		if (isset($options['filter']))
 		{
 			$this->filter = $options['filter'];
@@ -46,7 +49,7 @@ class InputJSON extends Input
 
 		if (is_null($source))
 		{
-			$this->_raw = file_get_contents('php://input');
+			$this->_raw = $wp_filesystem->get_contents('php://input');
 			$this->data = json_decode($this->_raw, true);
 		}
 		else

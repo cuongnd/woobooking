@@ -202,7 +202,7 @@ class Widgets
      */
     public function widget_scripts() {
 
-        wp_register_script( 'touroperatorpro', plugins_url( 'assets/js/hello-world.js', __FILE__ ), array('jquery' ), false, true );
+        wp_register_script( 'wpbookingpro', plugins_url( 'assets/js/hello-world.js', __FILE__ ), array('jquery' ), false, true );
     }
 
 

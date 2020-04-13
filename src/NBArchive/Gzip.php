@@ -81,11 +81,14 @@ class Gzip implements ExtractableInterface
 	 */
 	public function extract($archive, $destination)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$this->data = null;
 
 		if (!isset($this->options['use_streams']) || $this->options['use_streams'] == false)
 		{
-			$this->data = file_get_contents($archive);
+			$this->data = $wp_filesystem->get_contents($archive);
 
 			if (!$this->data)
 			{

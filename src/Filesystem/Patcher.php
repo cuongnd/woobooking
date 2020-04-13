@@ -220,7 +220,10 @@ class Patcher
 	 */
 	public function addFile($filename, $root = , $strip = 0)
 	{
-		return $this->add(file_get_contents($filename), $root, $strip);
+        WP_Filesystem();
+
+        global $wp_filesystem;
+		return $this->add($wp_filesystem->get_contents($filename), $root, $strip);
 	}
 
 	/**
@@ -499,12 +502,15 @@ class Patcher
 	 */
 	protected function &getSource($src)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		if (!isset($this->sources[$src]))
 		{
 			$this->sources[$src] = null;
 			if (is_readable($src))
 			{
-				$this->sources[$src] = self::splitLines(file_get_contents($src));
+				$this->sources[$src] = self::splitLines($wp_filesystem->get_contents($src));
 			}
 		}
 

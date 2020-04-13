@@ -206,13 +206,13 @@ function utf8_from_unicode($arr) {
         # ASCII range (including control chars)
         if ( ($arr[$k] >= 0) && ($arr[$k] <= 0x007f) ) {
 
-            echo chr($arr[$k]);
+            echo (chr($arr[$k]));
 
         # 2 byte sequence
         } else if ($arr[$k] <= 0x07ff) {
 
-            echo chr(0xc0 | ($arr[$k] >> 6));
-            echo chr(0x80 | ($arr[$k] & 0x003f));
+            echo (chr(0xc0 | ($arr[$k] >> 6)));
+            echo (chr(0x80 | ($arr[$k] & 0x003f)));
 
         # Byte order mark (skip)
         } else if($arr[$k] == 0xFEFF) {
@@ -234,17 +234,17 @@ function utf8_from_unicode($arr) {
         # 3 byte sequence
         } else if ($arr[$k] <= 0xffff) {
 
-            echo chr(0xe0 | ($arr[$k] >> 12));
-            echo chr(0x80 | (($arr[$k] >> 6) & 0x003f));
-            echo chr(0x80 | ($arr[$k] & 0x003f));
+            echo (chr(0xe0 | ($arr[$k] >> 12)));
+            echo (chr(0x80 | (($arr[$k] >> 6) & 0x003f)));
+            echo (chr(0x80 | ($arr[$k] & 0x003f)));
 
         # 4 byte sequence
         } else if ($arr[$k] <= 0x10ffff) {
 
-            echo chr(0xf0 | ($arr[$k] >> 18));
-            echo chr(0x80 | (($arr[$k] >> 12) & 0x3f));
-            echo chr(0x80 | (($arr[$k] >> 6) & 0x3f));
-            echo chr(0x80 | ($arr[$k] & 0x3f));
+            echo (chr(0xf0 | ($arr[$k] >> 18)));
+            echo (chr(0x80 | (($arr[$k] >> 12) & 0x3f)));
+            echo (chr(0x80 | (($arr[$k] >> 6) & 0x3f)));
+            echo (chr(0x80 | ($arr[$k] & 0x3f)));
 
         } else {
 

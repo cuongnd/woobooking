@@ -133,15 +133,15 @@ class WBPaymentPaypal extends WBPayment
             return false;
 
         if ($this->payment_params->debug)
-            echo print_r($vars, true) . "\r\n\r\n";
+            echo (print_r($vars, true) . "\r\n\r\n");
 
         if (empty($dbOrder)) {
-            echo 'Could not load any order for your notification ' . @$vars['invoice'];
+            echo ('Could not load any order for your notification ' . @$vars['invoice']);
             return false;
         }
 
         if ($this->payment_params->debug) {
-            echo print_r($dbOrder, true) . "\r\n\r\n";
+            echo (print_r($dbOrder, true) . "\r\n\r\n");
         }
 
         $order_id = $dbOrder->order_id;
@@ -186,7 +186,7 @@ class WBPaymentPaypal extends WBPayment
         }
 
         if ($this->payment_params->debug)
-            echo print_r($url, true) . "\r\n\r\n";
+            echo (print_r($url, true) . "\r\n\r\n");
 
         $fp = fsockopen($url['host_socket'], $url['port'], $errno, $errstr, 30);
         if (!$fp) {
@@ -219,9 +219,9 @@ class WBPaymentPaypal extends WBPayment
         fclose($fp);
 
         if ($this->payment_params->debug) {
-            echo print_r($header, true) . "\r\n\r\n";
-            echo print_r($data, true) . "\r\n\r\n";
-            echo print_r($response, true) . "\r\n\r\n";
+            echo (print_r($header, true) . "\r\n\r\n");
+            echo (print_r($data, true) . "\r\n\r\n");
+            echo (print_r($response, true) . "\r\n\r\n");
         }
 
         $response = substr($response, strpos($response, "\r\n\r\n") + strlen("\r\n\r\n"));

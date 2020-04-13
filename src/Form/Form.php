@@ -875,7 +875,7 @@ class Form
                 echo "<pre>";
                 print_r(Utility::printDebugBacktrace(), false);
                 echo "</pre>";
-                echo sprintf('%s() could not load file %s', __METHOD__,$a_file.'.xml');
+                printf('%s() could not load file %s', __METHOD__,$a_file.'.xml');
                 die;
 				return false;
 			}
@@ -2336,7 +2336,7 @@ class Form
                 if ($form->loadFile($data, $replace, $xpath) == false)
 				{
 				   
-                    echo sprintf('%s() could not load file %s', __METHOD__,$data);
+                    printf('%s() could not load file %s', __METHOD__,$data);
 					throw new \RuntimeException(sprintf('%s() could not load file', __METHOD__));
 
 				}

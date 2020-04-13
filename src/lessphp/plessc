@@ -224,10 +224,13 @@ function dumpWithoutParent($o, $alsoStrip=array()) {
 }
 
 try {
+    WP_Filesystem();
+
+    global $wp_filesystem;
 	$less = make_less($fname);
 	if (has("T", "X")) {
 		$parser = new lessc_parser($less, $fname);
-		$tree = $parser->parse(file_get_contents($fname));
+		$tree = $parser->parse($wp_filesystem->get_contents($fname));
 		if (has("X"))
 			$out = print_r($tree, 1);
 		else

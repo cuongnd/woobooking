@@ -91,6 +91,9 @@ class lessc {
 	}
 
 	protected function tryImport($importPath, $parentBlock, $out) {
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		if ($importPath[0] == "function" && $importPath[1] == "url") {
 			$importPath = $this->flattenList($importPath[2]);
 		}
@@ -117,7 +120,7 @@ class lessc {
 
 		$this->addParsedFile($realPath);
 		$parser = $this->makeParser($realPath);
-		$root = $parser->parse(file_get_contents($realPath));
+		$root = $parser->parse($wp_filesystem->get_contents($realPath));
 
 		// set the parents of all the block props
 		foreach ($root->props as $prop) {
@@ -990,6 +993,9 @@ class lessc {
 	 * @return string        formatted url(), either as a link or base64-encoded
 	 */
 	protected function lib_data_uri($value) {
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$mime = ($value[0] === 'list') ? $value[2][0][2] : null;
 		$url = ($value[0] === 'list') ? $value[2][1][2][0] : $value[2][0];
 
@@ -1009,7 +1015,7 @@ class lessc {
 				}
 
 				if(!is_null($mime)) // fallback if the mime type is still unknown
-					$url = sprintf('data:%s;base64,%s', $mime, base64_encode(file_get_contents($fullpath)));
+					$url = sprintf('data:%s;base64,%s', $mime, base64_encode($wp_filesystem->get_contents($fullpath)));
 			}
 		}
 
@@ -1906,6 +1912,9 @@ class lessc {
 	}
 
 	public function compileFile($fname, $outFname = null) {
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		if (!is_readable($fname)) {
 			throw new Exception('load error: failed to find '.$fname);
 		}
@@ -1919,7 +1928,7 @@ class lessc {
 
 		$this->addParsedFile($fname);
 
-		$out = $this->compile(file_get_contents($fname), $fname);
+		$out = $this->compile($wp_filesystem->get_contents($fname), $fname);
 
 		$this->importDir = $oldImport;
 

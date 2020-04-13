@@ -302,13 +302,16 @@ abstract class Html
 	 */
 	protected static function getMd5Version($path)
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$md5 = dirname($path) . '/MD5SUM';
 
 		if (file_exists($md5))
 		{
 			Log::add('Usage of MD5SUM files is deprecated, use version instead.', Log::WARNING, 'deprecated');
 
-			return '?' . file_get_contents($md5);
+			return '?' . $wp_filesystem->get_contents($md5);
 		}
 
 		return '';

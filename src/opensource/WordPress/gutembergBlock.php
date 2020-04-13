@@ -72,7 +72,7 @@ class gutembergBlock
             array(
                 array(
                     'slug' => 'woobooking-block',
-                    'title' => __('Woo booking block', 'woobooking-block'),
+                    'title' => esc_attr('Woo booking block', 'woobooking-block'),
                 ),
             )
         );

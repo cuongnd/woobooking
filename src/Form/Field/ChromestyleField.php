@@ -172,6 +172,9 @@ class ChromestyleField extends FormFieldGroupedList
 	 */
 	protected function getTemplateModuleStyles()
 	{
+        WP_Filesystem();
+
+        global $wp_filesystem;
 		$moduleStyles = array();
 
 		$templates = array($this->getSystemTemplate());
@@ -190,7 +193,7 @@ class ChromestyleField extends FormFieldGroupedList
 			// Is there modules.php for that template?
 			if (file_exists($modulesFilePath))
 			{
-				$modulesFileData = file_get_contents($modulesFilePath);
+				$modulesFileData = $wp_filesystem->get_contents($modulesFilePath);
 
 				preg_match_all('/function[\s\t]*modChrome\_([a-z0-9\-\_]*)[\s\t]*\(/i', $modulesFileData, $styles);
 

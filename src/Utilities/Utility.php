@@ -281,14 +281,16 @@ class Utility
     }
     // function to geocode address, it will return false if unable to geocode address
     function geocode($address){
+        WP_Filesystem();
 
+        global $wp_filesystem;
         // url encode the address
         $address = urlencode($address);
 
         // google map geocode api url
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyBE32zhVjZxVoUiuXrXhsFRea2bF9r6WcU";
         // get the json response
-        $resp_json = file_get_contents($url);
+        $resp_json = $wp_filesystem->get_contents($url);
 
         // decode the json
         $resp = json_decode($resp_json, true);
