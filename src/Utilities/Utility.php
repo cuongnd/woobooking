@@ -249,7 +249,7 @@ class Utility
         ob_start();
         ?>
         <script type="text/javascript">
-            var temp_lang=<?php echo json_encode($list_language)?>;
+            var temp_lang=<?php echo (json_encode($list_language))?>;
             for (var key in temp_lang) {
                 // skip loop if the property is from prototype
                 if (!temp_lang.hasOwnProperty(key)) continue;

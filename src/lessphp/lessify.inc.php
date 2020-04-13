@@ -266,7 +266,7 @@ class nodecounter {
 	function dump($stack = null) {
 		if (is_null($stack)) $stack = array();
 		$stack[] = $this->getName();
-		echo implode(' -> ', $stack)." ($this->count)\n";
+		echo (implode(' -> ', $stack)." ($this->count)\n");
 		foreach ($this->children as $child) {
 			$child->dump($stack);
 		}

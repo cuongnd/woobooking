@@ -1301,7 +1301,7 @@ class WooBookingOnWordpress
                 ob_start();
                 ?>
                 <link rel="stylesheet/less" type="text/css"
-                      href="<?php echo plugins_url() . "/" . WPBOOKINGPRO_PLUGIN_NAME . "/" . $src ?>"/>
+                      href="<?php echo (Factory::getRootUrlPlugin()) . "/" . WPBOOKINGPRO_PLUGIN_NAME . "/" . $src ?>"/>
                 <?php
                 echo ob_get_clean();
             }

@@ -31,7 +31,7 @@ class wpb_widget extends WP_Widget
             echo ($args['before_title'] . $title . $args['after_title']);
 
 // This is where you run the code and display the output
-        echo esc_attr('Hello, World!', 'wpb_widget_domain');
+        esc_attr_e('Hello, World!', 'wpb_widget_domain');
         echo ($args['after_widget']);
 
     }

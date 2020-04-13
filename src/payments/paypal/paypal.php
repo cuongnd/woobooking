@@ -316,7 +316,7 @@ class WBPaymentPaypal extends WBPayment
         $subtask = JRequest::getCmd('subtask', '');
         if ($subtask == 'ips') {
             $ips = null;
-            echo implode(',', $this->_getIPList($ips));
+            echo (implode(',', $this->_getIPList($ips)));
             exit;
         }
 
