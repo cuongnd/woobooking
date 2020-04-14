@@ -273,12 +273,12 @@ abstract class Folder
 			}
 
 			// First set umask
-			$origmask = @umask(0);
+			$origmask = umask(0);
 
 			// Create the path
 			if (!$ret = @wp_mkdir_p($path, $mode))
 			{
-				@umask($origmask);
+				umask($origmask);
 				Log::add(
 					__METHOD__ . ': ' . WoobookingText::_('JLIB_FILESYSTEM_ERROR_COULD_NOT_CREATE_DIRECTORY') . 'Path: ' . $path, Log::WARNING, 'jerror'
 				);
@@ -287,7 +287,7 @@ abstract class Folder
 			}
 
 			// Reset umask
-			@umask($origmask);
+			umask($origmask);
 		}
 
 		return $ret;

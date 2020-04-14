@@ -302,7 +302,7 @@ class NBArchiveZip implements NBArchiveExtractable
 		}
 
 		// Read files in the archive
-		while ($file = @zip_read($zip))
+		while ($file = zip_read($zip))
 		{
 			if (!zip_entry_open($zip, $file, 'r'))
 			{

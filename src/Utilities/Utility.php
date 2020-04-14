@@ -342,34 +342,7 @@ class Utility
         $config=Factory::getConfig();
         return str_replace('#__',$config->get('dbprefix'),$query);
     }
-    static function  getCurl($link = '', $curlopt_ssl_verifypeer = false, $curlopt_ssl_verifyhost = false, $curlopt_encoding = 'gzip', $curlopt_returntransfer = true)
-    {
-        if ($link == '')
-            return;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $curlopt_ssl_verifypeer);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $curlopt_ssl_verifyhost);
-        curl_setopt($ch, CURLOPT_ENCODING, $curlopt_encoding);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_URL, $link);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, $curlopt_returntransfer);
-        $result = curl_exec($ch);
-        return $result;
-    }
-    static function  getCurlChat($link = '', $curlopt_ssl_verifypeer = false, $curlopt_ssl_verifyhost = false, $curlopt_encoding = 'gzip', $curlopt_returntransfer = true)
-    {
-        if ($link == '')
-            return;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $curlopt_ssl_verifypeer);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $curlopt_ssl_verifyhost);
-        curl_setopt($ch, CURLOPT_ENCODING, $curlopt_encoding);
-        curl_setopt($ch, CURLOPT_POST, false);
-        curl_setopt($ch, CURLOPT_URL, $link);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, $curlopt_returntransfer);
-        $result = curl_exec($ch);
-        return $result;
-    }
+
     public static function get_user_debug(){
         require_once WPBOOKINGPRO_PATH_ROOT.DS."components/com_tools/helpers/tools.php";
         $session=Factory::getSession();
@@ -456,100 +429,6 @@ class Utility
     /**
      * @return mixed|string
      */
-    public static function  getBrowser() {
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        $browser        = "Unknown Browser";
-        $browser_array = array(
-            '/msie/i'      => 'Internet Explorer',
-            '/firefox/i'   => 'Firefox',
-            '/safari/i'    => 'Safari',
-            '/chrome/i'    => 'Chrome',
-            '/edge/i'      => 'Edge',
-            '/opera/i'     => 'Opera',
-            '/netscape/i'  => 'Netscape',
-            '/maxthon/i'   => 'Maxthon',
-            '/konqueror/i' => 'Konqueror',
-            '/mobile/i'    => 'Handheld Browser'
-        );
-        foreach ($browser_array as $regex => $value)
-            if (preg_match($regex, $user_agent))
-                $browser = $value;
-        return $browser;
-    }
-    public static function write_compress_js($file_js, $compress_file)
-    {
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Minify.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/JS.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exception.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/ConverterInterface.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/Converter.php';
-        $minifier = new Minify\JS(WPBOOKINGPRO_PATH_ROOT . DS . $file_js);
-        $js_compress_content=$minifier->minify();
-        JFile::write(WPBOOKINGPRO_PATH_ROOT . DS . $compress_file, $js_compress_content);
-    }
-    public static function closure_compiler_js_by_url_js($js_file, $compress_file)
-    {
-        return;
-        $data = array('apikey' => 'b4b8w3PnSid7pt7p3c42fX3ruKGXP4h28KA6NZtpHXw8Q',
-            'url' => JUri::root().$js_file);
-        $curl = curl_init("https://api.dotmaui.com/client/1.0/jsmin/");
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $output = curl_exec($curl);
-        curl_close($curl);
-        $output1=strtolower($output);
-        if (strpos($output1, 'api quota exceeded') !== false) {
-            echo (JUri::root().$js_file);
-            echo "</br>";
-            echo (JUri::root().$compress_file);
-            echo "</br>";
-            echo ($output);
-            echo "</br>";
-        }else{
-            echo (JUri::root().$js_file);
-            echo "</br>";
-            echo (JUri::root().$compress_file);
-            echo "</br>";
-            echo "----ok-----";
-            echo (substr($output,0,150));
-            echo "</br>";
-            JFile::write(WPBOOKINGPRO_PATH_ROOT.DS.$compress_file, $output);
-        }
-        echo "<hr/>";
-    }
-    public static function write_compress_css($file_css, $compress_css_file)
-    {
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Minify.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exception.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exceptions/BasicException.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exceptions/FileImportException.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/CSS.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exception.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/ConverterInterface.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/Converter.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/NoConverter.php';
-        $minifier = new Minify\CSS($file_css);
-        JFile::write( $compress_css_file, $minifier->minify());
-    }
-    public static function write_compress_css_by_content($css_content, $compress_css_file)
-    {
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Minify.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exception.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exceptions/BasicException.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exceptions/IOException.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exceptions/BasicException.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exceptions/FileImportException.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/CSS.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/minify-master/src/Exception.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/ConverterInterface.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/Converter.php';
-        require_once WPBOOKINGPRO_PATH_ROOT . DS . 'libraries/minifyjscss/path-converter-master/src/NoConverter.php';
-        $minifier = new Minify\CSS();
-        $minifier->add($css_content);
-        $css_content=$minifier->minify();
-        JFile::write( $compress_css_file, $css_content);
-    }
 
     public static function gen_random_string($length = 8)
     {

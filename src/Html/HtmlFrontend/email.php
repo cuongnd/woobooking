@@ -67,7 +67,7 @@ abstract class HtmlFrontendEmail
 					// Split email by @ symbol
 					$text = explode('@', $text);
 					$text_parts = explode('.', $text[1]);
-					$tmpScript = "var addy_text" . $rand . " = '" . @$text[0] . "' + '&#64;' + '" . implode("' + '&#46;' + '", @$text_parts)
+					$tmpScript = "var addy_text" . $rand . " = '" . $text[0] . "' + '&#64;' + '" . implode("' + '&#46;' + '", @$text_parts)
 						. "';";
 				}
 				else
