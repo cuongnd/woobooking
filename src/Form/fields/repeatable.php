@@ -45,7 +45,7 @@ class WpBookingPro_FormFieldRepeatable extends FormField
 
 		// Needed for repeating modals in gmaps
 		// @TODO: what and where???
-		$subForm->repeatCounter = (int) @$this->form->repeatCounter;
+		$subForm->repeatCounter = (int) $this->form->repeatCounter;
 
 		$children = $this->element->children();
 		$subForm->setFields($children);

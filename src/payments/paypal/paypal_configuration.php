@@ -14,7 +14,7 @@ defined('_WPBOOKINGPRO_EXEC') or die('Restricted access');
 	</td>
 	<td>
 
-		<input type="text" class="form-control" disabled name="params[payment_params][url]" value="<?php echo ($this->escape(@$this->element->payment_params->url)); ?>" />
+		<input type="text" class="form-control" disabled name="params[payment_params][url]" value="<?php echo ($this->escape($this->element->payment_params->url)); ?>" />
 	</td>
 </tr>
 <tr>
@@ -24,7 +24,7 @@ defined('_WPBOOKINGPRO_EXEC') or die('Restricted access');
 		?></label>
 	</td>
 	<td>
-		<input type="text" class="form-control" name="params[payment_params][email]" value="<?php echo ($this->escape(@$this->element->payment_params->email)); ?>" />
+		<input type="text" class="form-control" name="params[payment_params][email]" value="<?php echo ($this->escape($this->element->payment_params->email)); ?>" />
 	</td>
 </tr>
 

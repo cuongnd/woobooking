@@ -20,7 +20,7 @@ class WBPaymentBanktransfer extends WBPayment {
 	function onAfterOrderConfirm(&$order,&$methods,$method_id) {
 		parent::onAfterOrderConfirm($order,$methods,$method_id);
 		if($order->order_status != $this->payment_params->order_status)
-			$this->modifyOrder($order->order_id, $this->payment_params->order_status, (bool)@$this->payment_params->status_notif_email, false);
+			$this->modifyOrder($order->order_id, $this->payment_params->order_status, (bool)$this->payment_params->status_notif_email, false);
 
 		$this->removeCart = true;
 

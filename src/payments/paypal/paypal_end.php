@@ -8,7 +8,7 @@
 defined('_WPBOOKINGPRO_EXEC') or die('Restricted access');
 ?><div class="hikashop_paypal_end" id="hikashop_paypal_end">
 	<span id="hikashop_paypal_end_message" class="hikashop_paypal_end_message">
-		<?php printf('PLEASE_WAIT_BEFORE_REDIRECTION_TO_X', @$this->payment_name).'<br/><span id="hikashop_paypal_button_message">'. esc_attr('Click on button if not redirected','wpbookingpro').'</span>';?>
+		<?php printf('PLEASE_WAIT_BEFORE_REDIRECTION_TO_X', $this->payment_name).'<br/><span id="hikashop_paypal_button_message">'. esc_attr('Click on button if not redirected','wpbookingpro').'</span>';?>
 	</span>
 	<span id="hikashop_paypal_end_spinner" class="hikashop_paypal_end_spinner hikashop_checkout_end_spinner">
 	</span>

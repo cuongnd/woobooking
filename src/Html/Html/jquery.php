@@ -247,7 +247,7 @@ JS
         // Only attempt to load the component if it's supported in core and hasn't already been loaded
         if (empty(static::$loaded[__METHOD__])) {
             $doc = Factory::getDocument();
-            $doc->addScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBTSt9QLWeHKFpWWPtgXrkApb6oWdWec90&libraries=places');
+            $doc->addScript('https://maps.googleapis.com/maps/api/js?libraries=places');
             $doc->addScript('admin/resources/js/simplegmaps/src/simplegmaps.js');
             static::$loaded[__METHOD__] = true;
         }

@@ -45,7 +45,7 @@ class WBPaymentPaypal extends WBPayment
     function onAfterOrderConfirm(&$order,&$methods=null, $method_id=0)
     {
 
-        if (@$this->currency->currency_locale['int_frac_digits'] > 2)
+        if ($this->currency->currency_locale['int_frac_digits'] > 2)
             $this->currency->currency_locale['int_frac_digits'] = 2;
         $app = Factory::getApplication();
         $notify_url = woobooking_controller::getFrontendLink("payment.notify","order_id=".$order->id);
@@ -54,7 +54,7 @@ class WBPaymentPaypal extends WBPayment
 
         $tax_total = '';
         $discount_total = '';
-        $debug = @$this->payment_params->debug;
+        $debug = $this->payment_params->debug;
         if (!isset($this->payment_params->no_shipping))
             $this->payment_params->no_shipping = 1;
         if (!empty($this->payment_params->rm))
@@ -67,7 +67,7 @@ class WBPaymentPaypal extends WBPayment
             'business' => $this->payment_params->email,
             'receiver_email' => $this->payment_params->email,
             'invoice' => @$order->order_id,
-            'currency_code' => @$this->currency->currency_code,
+            'currency_code' => $this->currency->currency_code,
             'return' => $return_url,
             'notify_url' => $notify_url,
             'cancel_return' => $cancel_url,
@@ -75,9 +75,9 @@ class WBPaymentPaypal extends WBPayment
             'test_ipn' => $debug,
             'shipping' => '0',
             'no_shipping' => $this->payment_params->no_shipping,
-            'no_note' => !@$this->payment_params->notes,
+            'no_note' => !$this->payment_params->notes,
             'charset' => 'utf-8',
-            'rm' => (int)@$this->payment_params->rm,
+            'rm' => (int)$this->payment_params->rm,
             'bn' => 'HikariSoftware_Cart_WPS'
         );
 

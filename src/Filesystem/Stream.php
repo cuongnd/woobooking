@@ -162,7 +162,7 @@ class Stream extends CMSObject
 		// Attempt to close on destruction if there is a file handle
 		if ($this->fh)
 		{
-			@$this->close();
+			$this->close();
 		}
 	}
 
