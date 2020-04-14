@@ -117,7 +117,7 @@ class SimpleCryptPassword implements CryptPassword
 	{
 		$bytes = ceil($length * 6 / 8);
 
-		$randomData = str_replace('+', '.', base64_encode(Crypt::genRandomBytes($bytes)));
+		$randomData = str_replace('+', '.', (Crypt::genRandomBytes($bytes)));
 
 		return substr($randomData, 0, $length);
 	}

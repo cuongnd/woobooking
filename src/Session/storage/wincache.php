@@ -44,10 +44,7 @@ class SessionStorageWincache extends SessionStorage
 	 */
 	public function register()
 	{
-		if (!headers_sent())
-		{
-			ini_set('session.save_handler', 'wincache');
-		}
+
 	}
 
 	/**

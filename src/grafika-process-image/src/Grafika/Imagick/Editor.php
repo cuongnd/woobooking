@@ -614,7 +614,7 @@ final class Editor implements EditorInterface
         $targetDir = dirname($file); // $file's directory
         if (false === is_dir($targetDir)) { // Check if $file's directory exist
             // Create and set default perms to 0755
-            if ( ! mkdir($targetDir, $permission, true)) {
+            if ( ! wp_mkdir_p($targetDir, $permission, true)) {
                 throw new \Exception(sprintf('Cannot create %s', $targetDir));
             }
         }

@@ -730,12 +730,12 @@ class FtpClient
 	 *
 	 * @since   1.5
 	 */
-	public function mkdir($path)
+	public function wp_mkdir_p($path)
 	{
 		// If native FTP support is enabled let's use it...
 		if (FTP_NATIVE)
 		{
-			if (@ftp_mkdir($this->_conn, $path) === false)
+			if (@ftp_wp_mkdir_p($this->_conn, $path) === false)
 			{
 				Log::add(\JText::_('JLIB_CLIENT_ERROR_JFTP_MKDIR_BAD_RESPONSE_NATIVE'), Log::WARNING, 'jerror');
 

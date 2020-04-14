@@ -81,13 +81,9 @@ class SessionStorageRedis extends SessionStorage
 				{
 					$path .= '&auth=' . $this->_server['auth'];
 				}
-
-				ini_set('session.save_path', $path);
-				ini_set('session.save_handler', 'redis');
 			}
 
 			// This is required if the configuration.php gzip is turned on
-			ini_set('zlib.output_compression', 'Off');
 		}
 	}
 

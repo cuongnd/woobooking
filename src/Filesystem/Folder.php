@@ -228,7 +228,7 @@ abstract class Folder
 
 			// Translate path to FTP path
 			$path = $pathObject->clean(str_replace(WPBOOKINGPRO_PATH_ROOT, $FTPOptions['root'], $path), '/');
-			$ret = $ftp->mkdir($path);
+			$ret = $ftp->wp_mkdir_p($path);
 			$ftp->chmod($path, $mode);
 		}
 		else
@@ -277,7 +277,7 @@ abstract class Folder
 			$origmask = @umask(0);
 
 			// Create the path
-			if (!$ret = @mkdir($path, $mode))
+			if (!$ret = @wp_mkdir_p($path, $mode))
 			{
 				@umask($origmask);
 				Log::add(

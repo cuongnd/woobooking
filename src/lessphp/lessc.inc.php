@@ -1019,7 +1019,7 @@ class lessc {
 				}
 
 				if(!is_null($mime)) // fallback if the mime type is still unknown
-					$url = sprintf('data:%s;base64,%s', $mime, base64_encode($wp_filesystem->get_contents($fullpath)));
+					$url = sprintf('data:%s;base64,%s', $mime, ($wp_filesystem->get_contents($fullpath)));
 			}
 		}
 

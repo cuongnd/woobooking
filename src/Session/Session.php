@@ -609,10 +609,6 @@ class Session implements \IteratorAggregate
 		if (isset($_SESSION['woobooking']) && !empty($_SESSION['woobooking']))
 		{
 			$data = $_SESSION['woobooking'];
-
-			$data = base64_decode($data);
-            
-			$this->data = unserialize($data);
         }
         // Temporary, PARTIAL, data migration of existing session data to avoid logout on update from J < 3.4.7
 		if (isset($_SESSION['__default']) && !empty($_SESSION['__default']))

@@ -453,7 +453,7 @@ class WooBookingOnWordpress
                             <input type="hidden" class="menu-item-title" name="menu-item[-1][menu-item-title]"
                                    value="<?php echo ($page['title']) ?>">
                             <input type="hidden" class="menu-item-url" name="menu-item[-1][menu-item-url]"
-                                   value="<?php echo esc_url( site_url() ); ?>/<?php echo ("wp-booking-pro/?page=$key") ?>">
+                                   value="<?php echo (esc_url(site_url())); ?>/<?php echo ("wp-booking-pro/?page=$key") ?>">
                         </li>
                     <?php } ?>
                 </ul>
@@ -461,13 +461,13 @@ class WooBookingOnWordpress
                 <p class="button-controls">
 			<span class="list-controls">
 				<a href="<?php
-                echo esc_url(add_query_arg(
+                echo (esc_url(add_query_arg(
                     array(
                         'my-plugin-all' => 'all',
                         'selectall' => 1,
                     ),
                     remove_query_arg($removed_args)
-                ));
+                )));
                 ?>#my-menu-test-metabox" class="select-all"><?php esc_attr_e('Select All','wpbookingpro'); ?></a>
 			</span>
                     <span class="add-to-menu">
@@ -525,7 +525,7 @@ class WooBookingOnWordpress
 
         if ($task) {
 
-            echo woobooking_controller::action_task();
+            echo (woobooking_controller::action_task());
         } else {
             $menu = self::get_true_menu_of_woo_booking($page);
             $file_controller_path = WPBOOKINGPRO_PATH_COMPONENT . "/controllers/" . ucfirst($menu) . ".php";
@@ -782,10 +782,10 @@ class WooBookingOnWordpress
 
         if (is_array($atts) && $id = reset($atts)) {
             list($view, $layout) = explode("-", $page);
-            echo woobooking_controller::display_block_app($id, "$view.$layout");
+            echo (woobooking_controller::display_block_app($id, "$view.$layout"));
         } else {
             list($view, $layout) = explode("-", $page);
-            echo woobooking_controller::view("$view.$layout");
+            echo (woobooking_controller::view("$view.$layout"));
         }
 
         add_action('wp_footer', array($open_source, 'wp_hook_add_script_footer'));
@@ -889,7 +889,7 @@ class WooBookingOnWordpress
         } else {
 
             list($view, $layout) = explode("-", $type);
-            echo woobooking_controller::view("$view.$layout");
+            echo (woobooking_controller::view("$view.$layout"));
         }
 
 
@@ -1005,7 +1005,7 @@ class WooBookingOnWordpress
                             <input type="hidden" class="menu-item-title" name="menu-item[-1][menu-item-title]"
                                    value="<?php echo ($page['title']) ?>">
                             <input type="hidden" class="menu-item-url" name="menu-item[-1][menu-item-url]"
-                                   value="<?php echo esc_url( site_url() ); ?>/<?php echo ("wp-booking-pro/?page=$key_woo_booking-$key") ?>">
+                                   value="<?php echo (esc_url(site_url())); ?>/<?php echo ("wp-booking-pro/?page=$key_woo_booking-$key") ?>">
                         </li>
                     <?php } ?>
                 </ul>

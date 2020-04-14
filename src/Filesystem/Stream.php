@@ -239,8 +239,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = 'Error Unknown whilst opening a file';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		// Decide which context to use:
 		switch ($this->processingmethod)
@@ -287,7 +285,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -316,8 +313,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = 'Error Unknown';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		switch ($this->processingmethod)
 		{
@@ -353,7 +348,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -378,7 +372,6 @@ class Stream extends CMSObject
 		// Capture PHP errors
 		$php_errormsg = '';
 		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		switch ($this->processingmethod)
 		{
@@ -399,7 +392,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $res;
@@ -426,7 +418,6 @@ class Stream extends CMSObject
 		// Capture PHP errors
 		$php_errormsg = '';
 		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 		$res = @filesize($this->filename);
 
 		if (!$res)
@@ -468,7 +459,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before.
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -497,7 +487,6 @@ class Stream extends CMSObject
 		// Capture PHP errors
 		$php_errormsg = 'Error Unknown';
 		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		switch ($this->processingmethod)
 		{
@@ -522,7 +511,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -569,8 +557,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = 'Error Unknown';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 		$remaining = $length;
 
 		do
@@ -624,7 +610,6 @@ class Stream extends CMSObject
 		while ($remaining || !$length);
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -656,8 +641,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		switch ($this->processingmethod)
 		{
@@ -683,7 +666,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -707,8 +689,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		switch ($this->processingmethod)
 		{
@@ -730,7 +710,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $res;
@@ -781,8 +760,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 		$remaining = $length;
 		$start = 0;
 
@@ -816,7 +793,6 @@ class Stream extends CMSObject
 		while ($remaining);
 
 		// Restore error tracking to what it was before.
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -856,8 +832,6 @@ class Stream extends CMSObject
 
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 		$sch = parse_url($filename, PHP_URL_SCHEME);
 
 		// Scheme specific options; ftp's chmod support is fun.
@@ -884,7 +858,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before.
-		ini_set('track_errors', $track_errors);
 
 		// Return the result
 		return $retval;
@@ -1020,8 +993,6 @@ class Stream extends CMSObject
 		{
 			// Capture PHP errors
 			$php_errormsg = 'Unknown error setting context option';
-			$track_errors = ini_get('track_errors');
-			ini_set('track_errors', true);
 			$retval = @stream_context_set_option($this->fh, $this->contextOptions);
 
 			if (!$retval)
@@ -1030,7 +1001,6 @@ class Stream extends CMSObject
 			}
 
 			// Restore error tracking to what it was before
-			ini_set('track_errors', $track_errors);
 		}
 
 		return $retval;
@@ -1057,8 +1027,6 @@ class Stream extends CMSObject
 		{
 			// Capture PHP errors
 			$php_errormsg = '';
-			$track_errors = ini_get('track_errors');
-			ini_set('track_errors', true);
 
 			$res = @stream_filter_append($this->fh, $filtername, $read_write, $params);
 
@@ -1072,7 +1040,6 @@ class Stream extends CMSObject
 			}
 
 			// Restore error tracking to what it was before.
-			ini_set('track_errors', $track_errors);
 		}
 
 		return $res;
@@ -1098,8 +1065,6 @@ class Stream extends CMSObject
 		{
 			// Capture PHP errors
 			$php_errormsg = '';
-			$track_errors = ini_get('track_errors');
-			ini_set('track_errors', true);
 			$res = @stream_filter_prepend($this->fh, $filtername, $read_write, $params);
 
 			if (!$res && $php_errormsg)
@@ -1114,7 +1079,6 @@ class Stream extends CMSObject
 			}
 
 			// Restore error tracking to what it was before.
-			ini_set('track_errors', $track_errors);
 		}
 
 		return $res;
@@ -1135,8 +1099,6 @@ class Stream extends CMSObject
 	{
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		if ($byindex)
 		{
@@ -1153,7 +1115,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before.
-		ini_set('track_errors', $track_errors);
 
 		return $res;
 	}
@@ -1175,8 +1136,6 @@ class Stream extends CMSObject
 	{
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		$chmodDest = $this->_getFilename($dest, 'w', $use_prefix, $relative);
 
@@ -1211,7 +1170,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		return $res;
 	}
@@ -1233,8 +1191,6 @@ class Stream extends CMSObject
 	{
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		$src = $this->_getFilename($src, 'w', $use_prefix, $relative);
 		$dest = $this->_getFilename($dest, 'w', $use_prefix, $relative);
@@ -1263,7 +1219,6 @@ class Stream extends CMSObject
 		$this->chmod($dest);
 
 		// Restore error tracking to what it was before
-		ini_set('track_errors', $track_errors);
 
 		return $res;
 	}
@@ -1284,8 +1239,6 @@ class Stream extends CMSObject
 	{
 		// Capture PHP errors
 		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
 
 		$filename = $this->_getFilename($filename, 'w', $use_prefix, $relative);
 
@@ -1311,7 +1264,6 @@ class Stream extends CMSObject
 		}
 
 		// Restore error tracking to what it was before.
-		ini_set('track_errors', $track_errors);
 
 		return $res;
 	}

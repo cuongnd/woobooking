@@ -431,23 +431,23 @@ class WBPayment
         if (!isset($this->app))
             $this->app = JFactory::getApplication();
         $this->cc_number = $this->app->getUserState(HIKASHOP_COMPONENT . '.cc_number');
-        if (!empty($this->cc_number)) $this->cc_number = base64_decode($this->cc_number);
+        if (!empty($this->cc_number)) $this->cc_number = ($this->cc_number);
         $this->cc_month = $this->app->getUserState(HIKASHOP_COMPONENT . '.cc_month');
-        if (!empty($this->cc_month)) $this->cc_month = base64_decode($this->cc_month);
+        if (!empty($this->cc_month)) $this->cc_month = ($this->cc_month);
         $this->cc_year = $this->app->getUserState(HIKASHOP_COMPONENT . '.cc_year');
-        if (!empty($this->cc_year)) $this->cc_year = base64_decode($this->cc_year);
+        if (!empty($this->cc_year)) $this->cc_year = ($this->cc_year);
         $this->cc_type = $this->app->getUserState(HIKASHOP_COMPONENT . '.cc_type');
         if (!empty($this->cc_type)) {
-            $this->cc_type = base64_decode($this->cc_type);
+            $this->cc_type = ($this->cc_type);
         }
         $this->cc_owner = $this->app->getUserState(HIKASHOP_COMPONENT . '.cc_owner');
         if (!empty($this->cc_owner)) {
-            $this->cc_owner = base64_decode($this->cc_owner);
+            $this->cc_owner = ($this->cc_owner);
         }
         $this->cc_CCV = '';
         if ($ccv) {
             $this->cc_CCV = $this->app->getUserState(HIKASHOP_COMPONENT . '.cc_CCV');
-            if (!empty($this->cc_CCV)) $this->cc_CCV = base64_decode($this->cc_CCV);
+            if (!empty($this->cc_CCV)) $this->cc_CCV = ($this->cc_CCV);
         }
     }
 

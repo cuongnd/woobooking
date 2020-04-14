@@ -146,10 +146,6 @@ class SessionHandlerNative implements SessionHandlerInterface
 	 */
 	public function regenerate($destroy = false, $lifetime = null)
 	{
-		if (!headers_sent() && null !== $lifetime)
-		{
-			ini_set('session.cookie_lifetime', $lifetime);
-		}
 
 		$return = session_regenerate_id($destroy);
 
@@ -194,7 +190,7 @@ class SessionHandlerNative implements SessionHandlerInterface
 			$data    = $session->getData();
 
             // Before storing it, let's serialize and encode the Registry object
-			$_SESSION['woobooking'] = base64_encode(serialize($data));
+			$_SESSION['woobooking'] = (serialize($data));
             session_write_close();
 
 			$this->closed  = true;

@@ -64,11 +64,6 @@ class SessionStorageMemcached extends SessionStorage
 		{
 			$serverConf = current($this->_servers);
 
-			if (!headers_sent())
-			{
-				ini_set('session.save_path', "{$serverConf['host']}:{$serverConf['port']}");
-				ini_set('session.save_handler', 'memcached');
-			}
 		}
 	}
 
