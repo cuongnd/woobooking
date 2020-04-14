@@ -426,7 +426,6 @@ class File
             require_once (ABSPATH . '/wp-admin/includes/file.php');
             WP_Filesystem();
         }
-		@set_time_limit(ini_get('max_execution_time'));
 
 		// If the destination directory doesn't exist we need to create it
 		if (!file_exists(dirname($file)))
@@ -497,7 +496,6 @@ class File
             require_once (ABSPATH . '/wp-admin/includes/file.php');
             WP_Filesystem();
         }
-		@set_time_limit(ini_get('max_execution_time'));
 
 		// If the file doesn't exist, just write instead of append
 		if (!file_exists($file))

@@ -437,7 +437,6 @@ class NBArchiveZip implements NBArchiveExtractable
 			$entries[$name]['_dataStart'] = $lfhStart + 30 + $info['Length'] + $info['ExtraLength'];
 
 			// Bump the max execution time because not using the built in php zip libs makes this process slow.
-			@set_time_limit(ini_get('max_execution_time'));
 		}
 
 		while ((($fhStart = strpos($data, $this->_ctrlDirHeader, $fhStart + 46)) !== false));

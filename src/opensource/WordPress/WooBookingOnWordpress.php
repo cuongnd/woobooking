@@ -655,7 +655,7 @@ class WooBookingOnWordpress
         global $current_user;
         $current_user = wp_get_current_user();
         $session=Factory::getSession();
-        $session->set('user',$current_user);
+        //$session->set('user',$current_user);
     }
     public static function get_list_layout_block_frontend()
     {

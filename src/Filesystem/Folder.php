@@ -42,7 +42,6 @@ abstract class Folder
 	 */
 	public static function copy($src, $dest, $path = '', $force = false, $use_streams = false)
 	{
-		@set_time_limit(ini_get('max_execution_time'));
 
 		$FTPOptions = ClientHelper::getCredentials('ftp');
 		$pathObject = new PathWrapper;
@@ -305,7 +304,6 @@ abstract class Folder
 	 */
 	public static function delete($path)
 	{
-		@set_time_limit(ini_get('max_execution_time'));
 		$pathObject = new PathWrapper;
 
 		// Sanity check
@@ -610,7 +608,6 @@ abstract class Folder
 	 */
 	protected static function _items($path, $filter, $recurse, $full, $exclude, $excludefilter_string, $findfiles)
 	{
-		@set_time_limit(ini_get('max_execution_time'));
 
 		$arr = array();
 
