@@ -547,50 +547,6 @@ JS
         }
         return;
     }
-    /*
-     * HtmlFrontend::_('jquery.framework');
-        HtmlFrontend::_('jquery.elite_video_player');
-
-    	<link rel="stylesheet" href="css/elite.css" type="text/css" media="screen"/>
-	<link rel="stylesheet" href="css/elite-font-awesome.css" type="text/css">
-	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" type="text/css">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-	<script src="js/froogaloop.js" type="text/javascript"></script>
-	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
-	<script src="js/THREEx.FullScreen.js"></script>
-	<script src="js/videoPlayer.js" type="text/javascript"></script>
-	<script src="js/Playlist.js" type="text/javascript"></script>
-
-
-     */
-    public static function elite_video_player($debug = null)
-    {
-        // Include jQuery
-        static::framework();
-        // If no debugging value is set, use the configuration setting
-        // Only attempt to load the component if it's supported in core and hasn't already been loaded
-        if (empty(static::$loaded[__METHOD__])) {
-            $doc = Factory::getDocument();
-            $doc->addScript('https://cdn.jsdelivr.net/npm/hls.js@latest');
-            $doc->addScript('media/system/js/elite-video-player/source/js/froogaloop.js');
-            $doc->addScript('media/system/js/elite-video-player/source/js/jquery.mCustomScrollbar.js');
-            $doc->addScript('media/system/js/elite-video-player/source/js/THREEx.FullScreen.js');
-            $doc->addScript('media/system/js/elite-video-player/source/js/videoPlayer.js');
-            $doc->addScript('media/system/js/elite-video-player/source/js/Playlist.js');
-
-            $doc->addStyleSheet('media/system/js/elite-video-player/source/css/elite.css');
-            $doc->addStyleSheet('media/system/js/elite-video-player/source/css/elite-font-awesome.css');
-            $doc->addStyleSheet('media/system/js/elite-video-player/source/css/jquery.mCustomScrollbar.css');
-            static::$loaded[__METHOD__] = true;
-        }
-        return;
-    }
-
-    /*
-         * HtmlFrontend::_('jquery.framework');
-            HtmlFrontend::_('jquery.waitingfor');
-         */
     public static function waitingfor($debug = null)
     {
         // Include jQuery

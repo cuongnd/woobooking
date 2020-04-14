@@ -405,7 +405,7 @@ final class ArrayHelper
 			case 'INT':
 			case 'INTEGER':
 				// Only use the first integer value
-				@preg_match('/-?[0-9]+/', $result, $matches);
+				preg_match('/-?[0-9]+/', $result, $matches);
 				$result = @(int) $matches[0];
 
 				break;
@@ -413,7 +413,7 @@ final class ArrayHelper
 			case 'FLOAT':
 			case 'DOUBLE':
 				// Only use the first floating point value
-				@preg_match('/-?[0-9]+(\.[0-9]+)?/', $result, $matches);
+				preg_match('/-?[0-9]+(\.[0-9]+)?/', $result, $matches);
 				$result = @(float) $matches[0];
 
 				break;

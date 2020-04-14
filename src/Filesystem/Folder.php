@@ -78,7 +78,7 @@ abstract class Folder
 			// Connect the FTP client
 			$ftp = FtpClient::getInstance($FTPOptions['host'], $FTPOptions['port'], array(), $FTPOptions['user'], $FTPOptions['pass']);
 
-			if (!($dh = @opendir($src)))
+			if (!($dh = opendir($src)))
 			{
 				throw new \RuntimeException('Cannot open source folder', -1);
 			}
@@ -116,7 +116,7 @@ abstract class Folder
 		}
 		else
 		{
-			if (!($dh = @opendir($src)))
+			if (!($dh = opendir($src)))
 			{
 				throw new \RuntimeException('Cannot open source folder', -1);
 			}
@@ -612,7 +612,7 @@ abstract class Folder
 		$arr = array();
 
 		// Read the source directory
-		if (!($handle = @opendir($path)))
+		if (!($handle = opendir($path)))
 		{
 			return $arr;
 		}

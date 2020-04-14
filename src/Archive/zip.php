@@ -322,7 +322,6 @@ class NBArchiveZip implements NBArchiveExtractable
 			}
 		}
 
-		@zip_close($zip);
 
 		return true;
 	}

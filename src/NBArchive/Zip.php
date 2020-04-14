@@ -314,7 +314,7 @@ class Zip implements ExtractableInterface
 			}
 		}
 
-		@zip_close($zip);
+		zip_close($zip);
 
 		return true;
 	}

@@ -364,7 +364,7 @@ class FtpClient
 		// If native FTP support is enabled let's use it...
 		if (FTP_NATIVE)
 		{
-			if (@ftp_login($this->_conn, $user, $pass) === false)
+			if (ftp_login($this->_conn, $user, $pass) === false)
 			{
 				Log::add('JFtp::login: Unable to login', Log::WARNING, 'jerror');
 
