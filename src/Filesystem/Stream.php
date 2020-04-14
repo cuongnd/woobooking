@@ -1198,17 +1198,17 @@ class Stream extends CMSObject
 		if ($context)
 		{
 			// Use the provided context
-			$res = @rename($src, $dest, $context);
+			$res = rename($src, $dest, $context);
 		}
 		elseif ($this->context)
 		{
 			// Use the object's context
-			$res = @rename($src, $dest, $this->context);
+			$res = rename($src, $dest, $this->context);
 		}
 		else
 		{
 			// Don't use any context
-			$res = @rename($src, $dest);
+			$res = rename($src, $dest);
 		}
 
 		if (!$res && $php_errormsg)

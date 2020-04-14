@@ -459,7 +459,7 @@ abstract class Folder
 			}
 			else
 			{
-				if (!@rename($src, $dest))
+				if (!rename($src, $dest))
 				{
 					return Text::_('JLIB_FILESYSTEM_ERROR_RENAME_FILE');
 				}
