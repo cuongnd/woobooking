@@ -1147,17 +1147,17 @@ class Stream extends CMSObject
 		if ($context)
 		{
 			// Use the provided context
-			$res = @copy($src, $dest, $context);
+			$res = copy($src, $dest, $context);
 		}
 		elseif ($this->context)
 		{
 			// Use the objects context
-			$res = @copy($src, $dest, $this->context);
+			$res = copy($src, $dest, $this->context);
 		}
 		else
 		{
 			// Don't use any context
-			$res = @copy($src, $dest);
+			$res = copy($src, $dest);
 		}
 
 		if (!$res && $php_errormsg)
@@ -1245,17 +1245,17 @@ class Stream extends CMSObject
 		if ($context)
 		{
 			// Use the provided context
-			$res = @unlink($filename, $context);
+			$res = unlink($filename, $context);
 		}
 		elseif ($this->context)
 		{
 			// Use the object's context
-			$res = @unlink($filename, $this->context);
+			$res = unlink($filename, $this->context);
 		}
 		else
 		{
 			// Don't use any context
-			$res = @unlink($filename);
+			$res = unlink($filename);
 		}
 
 		if (!$res && $php_errormsg)

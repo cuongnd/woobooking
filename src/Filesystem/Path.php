@@ -33,9 +33,9 @@ class Path
 
 		if ($perms !== false)
 		{
-			if (@chmod($path, $perms ^ 0001))
+			if (chmod($path, $perms ^ 0001))
 			{
-				@chmod($path, $perms);
+				chmod($path, $perms);
 
 				return true;
 			}

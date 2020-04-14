@@ -98,7 +98,7 @@ class Archive
 				}
 				catch (\RuntimeException $exception)
 				{
-					@unlink($tmpfname);
+					unlink($tmpfname);
 
 					return false;
 				}
@@ -113,7 +113,7 @@ class Archive
 					$result = File::copy($tmpfname, $extractdir . '/' . $filename, null, 0);
 				}
 
-				@unlink($tmpfname);
+				unlink($tmpfname);
 
 				break;
 
@@ -129,7 +129,7 @@ class Archive
 				}
 				catch (\RuntimeException $exception)
 				{
-					@unlink($tmpfname);
+					unlink($tmpfname);
 
 					return false;
 				}
@@ -144,7 +144,7 @@ class Archive
 					$result = File::copy($tmpfname, $extractdir . '/' . $filename, null, 0);
 				}
 
-				@unlink($tmpfname);
+				unlink($tmpfname);
 
 				break;
 

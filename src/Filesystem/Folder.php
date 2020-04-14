@@ -152,7 +152,7 @@ abstract class Folder
 						}
 						else
 						{
-							if (!@copy($sfid, $dfid))
+							if (!copy($sfid, $dfid))
 							{
 								throw new \RuntimeException('Copy file failed', -1);
 							}

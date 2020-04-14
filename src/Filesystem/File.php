@@ -208,11 +208,11 @@ class File
 
 			// Try making the file writable first. If it's read-only, it can't be deleted
 			// on Windows, even if the parent folder is writable
-			@chmod($file, 0777);
+			chmod($file, 0777);
 
 			// In case of restricted permissions we zap it one way or the other
 			// as long as the owner is either the webserver or the ftp
-			if (@unlink($file))
+			if (unlink($file))
 			{
 				// Do nothing
 			}
