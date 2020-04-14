@@ -214,10 +214,10 @@ class WooBookingView extends CMSObject
     }
     public function loadTemplate($tpl){
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
-
+        $open_source=Factory::getOpenSource();
         $plugin_name=WPBOOKINGPRO_PLUGIN_NAME;
         $template_path=get_template_directory();
-        $template1_path="$template_path/$plugin_name/nb_apps/nb_woobooking/{$this->view}/tmpl/{$tpl}.php";
+        $template1_path="$template_path/$plugin_name/".($open_source->is_backend_wordpress()?'admin/':"")."nb_apps/nb_woobooking/{$this->view}/tmpl/{$tpl}.php";
         $template2_path= WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
         if(file_exists($template1_path)){
             $tmpl_path= $template1_path;
@@ -265,17 +265,19 @@ class WooBookingView extends CMSObject
     }
     public function display($tpl){
 
+        $open_source=Factory::getOpenSource();
+
         $tmpl_short_path="/views/".$this->view."/tmpl/".$tpl.".php";
         $plugin_name=WPBOOKINGPRO_PLUGIN_NAME;
         $template_path=get_template_directory();
-        $template1_path="$template_path/$plugin_name/nb_apps/nb_woobooking/{$this->view}/tmpl/{$tpl}.php";
+        $template1_path="$template_path/$plugin_name/".($open_source->is_backend_wordpress()?'admin/':"")."nb_apps/nb_woobooking/{$this->view}/tmpl/{$tpl}.php";
         $template2_path= WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
         if(file_exists($template1_path)){
             $tmpl_path= $template1_path;
         }else{
             $tmpl_path= $template2_path;
         }
-        $open_source=Factory::getOpenSource();
+
         $appConfig=Factory::getAppConfig();
         $debug="";
         if(!$open_source->is_rest_api() && ($appConfig->get('debug_dev')==1 || $appConfig->get('debug_end_user') )) {
