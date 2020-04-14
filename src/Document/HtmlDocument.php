@@ -541,45 +541,6 @@ class HtmlDocument extends Document
 	}
 
 	/**
-	 * Count the modules based on the given condition
-	 *
-	 * @param   string  $condition  The condition to use
-	 *
-	 * @return  integer  Number of modules found
-	 *
-	 * @since   1.7.0
-	 */
-	public function countModules($condition)
-	{
-		$operators = '(\+|\-|\*|\/|==|\!=|\<\>|\<|\>|\<=|\>=|and|or|xor)';
-		$words = preg_split('# ' . $operators . ' #', $condition, null, PREG_SPLIT_DELIM_CAPTURE);
-
-		if (count($words) === 1)
-		{
-			$name = strtolower($words[0]);
-			$result = ((isset(parent::$_buffer['modules'][$name])) && (parent::$_buffer['modules'][$name] === false))
-				? 0 : count(ModuleHelper::getModules($name));
-
-			return $result;
-		}
-
-		Log::add('Using an expression in HtmlDocument::countModules() is deprecated.', Log::WARNING, 'deprecated');
-
-		for ($i = 0, $n = count($words); $i < $n; $i += 2)
-		{
-			// Odd parts (modules)
-			$name = strtolower($words[$i]);
-			$words[$i] = ((isset(parent::$_buffer['modules'][$name])) && (parent::$_buffer['modules'][$name] === false))
-				? 0
-				: count(ModuleHelper::getModules($name));
-		}
-
-		$str = 'return ' . implode(' ', $words) . ';';
-
-		return eval($str);
-	}
-
-	/**
 	 * Count the number of child menu items of the current active menu item
 	 *
 	 * @return  integer  Number of child menu items

@@ -93,7 +93,7 @@ abstract class HtmlFrontendEmail
 				document.getElementById('cloak" . $rand . "').innerHTML = '';
 				var prefix = '&#109;a' + 'i&#108;' + '&#116;o';
 				var path = 'hr' + 'ef' + '=';
-				var addy" . $rand . " = '" . @$mail[0] . "' + '&#64;';
+				var addy" . $rand . " = '" . $mail[0] . "' + '&#64;';
 				addy" . $rand . " = addy" . $rand . " + '" . implode("' + '&#46;' + '", $mail_parts) . "';
 				$tmpScript
 		";

@@ -44,8 +44,8 @@ abstract class LoggerInterfaceTest extends \PHPUnit_Framework_TestCase
         $logger->log($level, $message, array('user' => 'Bob'));
 
         $expected = array(
-            $level.' message of level '.$level.' with context: Bob',
-            $level.' message of level '.$level.' with context: Bob',
+            $level . ' message of level ' . $level . ' with context: Bob',
+            $level . ' message of level ' . $level . ' with context: Bob',
         );
         $this->assertEquals($expected, $this->getLogs());
     }
@@ -96,38 +96,6 @@ abstract class LoggerInterfaceTest extends \PHPUnit_Framework_TestCase
         $this->getLogger()->warning($dummy);
 
         $expected = array('warning DUMMY');
-        $this->assertEquals($expected, $this->getLogs());
-    }
-
-    public function testContextCanContainAnything()
-    {
-        $context = array(
-            'bool' => true,
-            'null' => null,
-            'string' => 'Foo',
-            'int' => 0,
-            'float' => 0.5,
-            'nested' => array('with object' => new DummyTest),
-            'object' => new \DateTime,
-            'resource' => fopen('php://memory', 'r'),
-        );
-
-        $this->getLogger()->warning('Crazy context data', $context);
-
-        $expected = array('warning Crazy context data');
-        $this->assertEquals($expected, $this->getLogs());
-    }
-
-    public function testContextExceptionKeyCanBeExceptionOrOtherValues()
-    {
-        $logger = $this->getLogger();
-        $logger->warning('Random message', array('exception' => 'oops'));
-        $logger->critical('Uncaught Exception!', array('exception' => new \LogicException('Fail')));
-
-        $expected = array(
-            'warning Random message',
-            'critical Uncaught Exception!'
-        );
         $this->assertEquals($expected, $this->getLogs());
     }
 }
