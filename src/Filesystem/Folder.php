@@ -276,7 +276,7 @@ abstract class Folder
 			$origmask = umask(0);
 
 			// Create the path
-			if (!$ret = @wp_mkdir_p($path, $mode))
+			if (!$ret = wp_mkdir_p($path, $mode))
 			{
 				umask($origmask);
 				Log::add(
@@ -373,7 +373,7 @@ abstract class Folder
 
 		// In case of restricted permissions we zap it one way or the other
 		// as long as the owner is either the webserver or the ftp.
-		if (@rmdir($path))
+		if (rmdir($path))
 		{
 			$ret = true;
 		}

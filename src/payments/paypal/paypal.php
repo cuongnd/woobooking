@@ -66,7 +66,7 @@ class WBPaymentPaypal extends WBPayment
             'upload' => '1',
             'business' => $this->payment_params->email,
             'receiver_email' => $this->payment_params->email,
-            'invoice' => @$order->order_id,
+            'invoice' => $order->order_id,
             'currency_code' => $this->currency->currency_code,
             'return' => $return_url,
             'notify_url' => $notify_url,
@@ -123,7 +123,7 @@ class WBPaymentPaypal extends WBPayment
         }
         $data = implode('&', $data) . '&cmd=_notify-validate';
 
-        $dbOrder = $this->getOrder((int)@$vars['invoice']);
+        $dbOrder = $this->getOrder((int)$vars['invoice']);
         $this->loadPaymentParams($dbOrder);
         if (empty($this->payment_params))
             return false;
@@ -136,7 +136,7 @@ class WBPaymentPaypal extends WBPayment
             echo (print_r($vars, true) . "\r\n\r\n");
 
         if (empty($dbOrder)) {
-            echo ('Could not load any order for your notification ' . @$vars['invoice']);
+            echo ('Could not load any order for your notification ' . $vars['invoice']);
             return false;
         }
 
@@ -264,11 +264,11 @@ class WBPaymentPaypal extends WBPayment
 
         $history = new stdClass();
         $history->notified = 0;
-        $history->amount = @$vars['mc_gross'] . @$vars['mc_currency'];
+        $history->amount = $vars['mc_gross'] . $vars['mc_currency'];
         $history->data = ob_get_clean();
 
         $price_check = round($dbOrder->order_full_price, (int)$this->currency->currency_locale['int_frac_digits']);
-        if ($price_check != @$vars['mc_gross'] || $this->currency->currency_code != @$vars['mc_currency']) {
+        if ($price_check != $vars['mc_gross'] || $this->currency->currency_code != $vars['mc_currency']) {
             $email = new stdClass();
             $email->subject = WoobookingText::sprintf('NOTIFICATION_REFUSED_FOR_THE_ORDER', 'Paypal') . WoobookingText::_('INVALID_AMOUNT');
             $email->body = str_replace('<br/>', "\r\n", WoobookingText::sprintf('AMOUNT_RECEIVED_DIFFERENT_FROM_ORDER', 'Paypal', $history->amount, $price_check . $this->currency->currency_code)) . "\r\n\r\n" . WoobookingText::sprintf('CHECK_DOCUMENTATION', HIKASHOP_HELPURL . 'payment-paypal-error#amount') . $order_text;
@@ -276,12 +276,12 @@ class WBPaymentPaypal extends WBPayment
             $this->modifyOrder($order_id, $this->payment_params->invalid_status, $history, $email);
             return false;
         }
-        if (strtolower(@$vars['receiver_email']) != strtolower($this->payment_params->email) && strtolower(@$vars['business']) != strtolower($this->payment_params->email)) {
+        if (strtolower($vars['receiver_email']) != strtolower($this->payment_params->email) && strtolower($vars['business']) != strtolower($this->payment_params->email)) {
             $email = new stdClass();
             $email->subject = WoobookingText::sprintf('NOTIFICATION_REFUSED_FOR_THE_ORDER', 'Paypal') . 'wrong receiver';
             $email->body = str_replace('<br/>', "\r\n", 'The money was sent to the wrong PayPal account, likely due to the customer trying to cheat.' . "\r\n" .
-                'Notification receiver: ' . @$vars['receiver_email'] . "\r\n" .
-                'Notification business: ' . @$vars['business'] . "\r\n" .
+                'Notification receiver: ' . $vars['receiver_email'] . "\r\n" .
+                'Notification business: ' . $vars['business'] . "\r\n" .
                 'Your paypal address: ' . $this->payment_params->email . "\r\n" .
                 $order_text);
 

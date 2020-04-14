@@ -159,7 +159,7 @@ class SimpleCryptPassword implements CryptPassword
 		{
 			// Check the password
 			$parts = explode(':', $hash);
-			$salt  = @$parts[1];
+			$salt  = $parts[1];
 
 			// Compile the hash to compare
 			// If the salt is empty AND there is a ':' in the original hash, we must append ':' at the end

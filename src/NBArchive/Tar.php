@@ -242,9 +242,8 @@ class Tar implements ExtractableInterface
 						. (($mode & 0x002) ? 'w' : '-')
 						. (($mode & 0x001) ? 'x' : '-');
 				}
-				elseif (\chr($info['typeflag']) == 'L' && $info['filename'] == '././@LongLink')
+				elseif (\chr($info['typeflag']) == 'L' && $info['filename'] == '././LongLink')
 				{
-					// GNU tar ././@LongLink support - the filename is actually in the contents, set a variable here so we can test in the next loop
 					$longlinkfilename = $contents;
 
 					// And the file contents are in the next block so we'll need to skip this

@@ -284,7 +284,7 @@ abstract class HtmlFrontendMenu
 		foreach ($mitems as $v)
 		{
 			$pt            = $v->parent_id;
-			$list          = @$children[$pt] ? $children[$pt] : array();
+			$list          = $children[$pt] ? $children[$pt] : array();
 			$list[]        = $v;
 			$children[$pt] = $list;
 		}

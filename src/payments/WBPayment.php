@@ -60,7 +60,7 @@ class WBPayment
         $currencyClass = hikashop_get('class.currency');
         if (!empty($order->total)) {
             $null = null;
-            $currency_id = intval(@$order->total->prices[0]->price_currency_id);
+            $currency_id = intval($order->total->prices[0]->price_currency_id);
             $currency = $currencyClass->getCurrencies($currency_id, $null);
             if (!empty($currency) && !empty($this->accepted_currencies) && !in_array(@$currency[$currency_id]->currency_code, $this->accepted_currencies))
                 return true;
@@ -84,7 +84,7 @@ class WBPayment
                     $method->payment_deposit_value = round($method->payment_params->payment_deposit_amount, -3);
                 } else {
                     $payment_deposit_percent = $method->payment_params->payment_deposit_percent;
-                    $method->payment_deposit_value = round(($payment_deposit_percent * @$order->full_total->prices[0]->price_value_with_tax) / 100, -3);
+                    $method->payment_deposit_value = round(($payment_deposit_percent * $order->full_total->prices[0]->price_value_with_tax) / 100, -3);
                 }
             }
             if (method_exists($this, 'needCC')) {
@@ -297,7 +297,7 @@ class WBPayment
 
     function loadPaymentParams(&$order)
     {
-        $payment_id = @$order->order_payment_id;
+        $payment_id = $order->order_payment_id;
         $this->payment_params = null;
         if (!empty($order->order_payment_method) && $order->order_payment_method == $this->name && !empty($payment_id) && $this->pluginParams($payment_id))
             $this->payment_params =& $this->plugin_params;

@@ -1303,7 +1303,7 @@ class WooBookingOnWordpress
                 <link rel="stylesheet/less" type="text/css"
                       href="<?php echo (plugins_url()) . "/" . WPBOOKINGPRO_PLUGIN_NAME . "/" . $src ?>"/>
                 <?php
-                echo ob_get_clean();
+                echo (ob_get_clean());
             }
         }else{
             foreach ($lessStyleSheets as $src => $attribs) {

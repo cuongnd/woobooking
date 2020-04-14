@@ -84,7 +84,7 @@ class WbDate extends DateTime
 		if (empty(self::$gmt) || empty(self::$stz))
 		{
 			self::$gmt = new DateTimeZone('GMT');
-			self::$stz = new DateTimeZone(@date_default_timezone_get());
+			self::$stz = new DateTimeZone(date_default_timezone_get());
 		}
 		// If the time zone object is not set, attempt to build it.
 		if (!($tz instanceof DateTimeZone))

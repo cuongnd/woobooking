@@ -774,7 +774,7 @@ class lessc {
 			break;
 		case "directive":
 			list(, $name, $value) = $prop;
-			$out->lines[] = "@$name " . $this->compileValue($this->reduce($value)).';';
+			$out->lines[] = "$name " . $this->compileValue($this->reduce($value)).';';
 			break;
 		case "comment":
 			$out->lines[] = $prop[1];

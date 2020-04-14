@@ -418,7 +418,7 @@ class Stream extends CMSObject
 		// Capture PHP errors
 		$php_errormsg = '';
 		$track_errors = ini_get('track_errors');
-		$res = @filesize($this->filename);
+		$res = filesize($this->filename);
 
 		if (!$res)
 		{
@@ -896,7 +896,7 @@ class Stream extends CMSObject
 		// According to the manual this always works!
 		if (count($this->contextOptions))
 		{
-			$this->context = @stream_context_create($this->contextOptions);
+			$this->context = stream_context_create($this->contextOptions);
 		}
 		else
 		{
@@ -993,7 +993,7 @@ class Stream extends CMSObject
 		{
 			// Capture PHP errors
 			$php_errormsg = 'Unknown error setting context option';
-			$retval = @stream_context_set_option($this->fh, $this->contextOptions);
+			$retval = stream_context_set_option($this->fh, $this->contextOptions);
 
 			if (!$retval)
 			{
@@ -1028,7 +1028,7 @@ class Stream extends CMSObject
 			// Capture PHP errors
 			$php_errormsg = '';
 
-			$res = @stream_filter_append($this->fh, $filtername, $read_write, $params);
+			$res = stream_filter_append($this->fh, $filtername, $read_write, $params);
 
 			if (!$res && $php_errormsg)
 			{
@@ -1065,7 +1065,7 @@ class Stream extends CMSObject
 		{
 			// Capture PHP errors
 			$php_errormsg = '';
-			$res = @stream_filter_prepend($this->fh, $filtername, $read_write, $params);
+			$res = stream_filter_prepend($this->fh, $filtername, $read_write, $params);
 
 			if (!$res && $php_errormsg)
 			{

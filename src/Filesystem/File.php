@@ -329,7 +329,6 @@ class File
 	 * @return  mixed  Returns file contents or boolean False if failed
 	 *
 	 * @since   1.7.0
-	 * @deprecated  4.0 - Use the native file_get_contents() instead.
 	 */
     public static function read($filename)
     {
