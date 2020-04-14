@@ -290,7 +290,7 @@ class Utility
         $address = urlencode($address);
 
         // google map geocode api url
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyBE32zhVjZxVoUiuXrXhsFRea2bF9r6WcU";
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}";
         // get the json response
         $resp_json = $wp_filesystem->get_contents($url);
 

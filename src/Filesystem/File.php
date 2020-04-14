@@ -331,63 +331,18 @@ class File
 	 * @since   1.7.0
 	 * @deprecated  4.0 - Use the native file_get_contents() instead.
 	 */
-	public static function read($filename, $incpath = false, $amount = 0, $chunksize = 8192, $offset = 0)
-	{
+    public static function read($filename)
+    {
 
-		//Log::add(__METHOD__ . ' is deprecated. Use native file_get_contents() syntax.', Log::WARNING, 'deprecated');
+        global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
+        $data =  $wp_filesystem->get_contents($filename);
 
-		$data = null;
-
-		if ($amount && $chunksize > $amount)
-		{
-			$chunksize = $amount;
-		}
-
-		if (false === $fh = fopen($filename, 'rb', $incpath))
-		{
-			//Log::add(Text::sprintf('JLIB_FILESYSTEM_ERROR_READ_UNABLE_TO_OPEN_FILE', $filename), Log::WARNING, 'jerror');
-
-			return false;
-		}
-
-		clearstatcache();
-
-		if ($offset)
-		{
-			fseek($fh, $offset);
-		}
-
-		if ($fsize = @ filesize($filename))
-		{
-			if ($amount && $fsize > $amount)
-			{
-				$data = fread($fh, $amount);
-			}
-			else
-			{
-				$data = fread($fh, $fsize);
-			}
-		}
-		else
-		{
-			$data = '';
-
-			/*
-			 * While it's:
-			 * 1: Not the end of the file AND
-			 * 2a: No Max Amount set OR
-			 * 2b: The length of the data is less than the max amount we want
-			 */
-			while (!feof($fh) && (!$amount || strlen($data) < $amount))
-			{
-				$data .= fread($fh, $chunksize);
-			}
-		}
-
-		fclose($fh);
-
-		return $data;
-	}
+        return $data;
+    }
 	public static function readLine($filename,$current_line=0)
 	{
         $content="";
@@ -418,65 +373,28 @@ class File
 	 *
 	 * @since   1.7.0
 	 */
-	public static function write($file, $buffer, $use_streams = false)
-	{
+    public static function write($file, $buffer, $use_streams = false)
+    {
+        // If the destination directory doesn't exist we need to create it
+        if (!file_exists(dirname($file)))
+        {
+            $folderObject = new FolderWrapper;
 
+            if ($folderObject->create(dirname($file)) == false)
+            {
+                return false;
+            }
+        }
         global $wp_filesystem;
         if (empty($wp_filesystem)) {
             require_once (ABSPATH . '/wp-admin/includes/file.php');
             WP_Filesystem();
         }
+        $pathObject = new PathWrapper;
+        $file = $pathObject->clean($file);
+        return $wp_filesystem->put_contents($file,$buffer);
 
-		// If the destination directory doesn't exist we need to create it
-		if (!file_exists(dirname($file)))
-		{
-			$folderObject = new FolderWrapper;
-
-			if ($folderObject->create(dirname($file)) == false)
-			{
-				return false;
-			}
-		}
-
-		if ($use_streams)
-		{
-			$stream = Factory::getStream();
-
-			// Beef up the chunk size to a meg
-			$stream->set('chunksize', (1024 * 1024));
-
-			if (!$stream->writeFile($file, $buffer))
-			{
-				Log::add(Text::sprintf('JLIB_FILESYSTEM_ERROR_WRITE_STREAMS', $file, $stream->getError()), Log::WARNING, 'jerror');
-
-				return false;
-			}
-
-			return true;
-		}
-		else
-		{
-			$FTPOptions = ClientHelper::getCredentials('ftp');
-			$pathObject = new PathWrapper;
-
-			if ($FTPOptions['enabled'] == 1)
-			{
-				// Connect the FTP client
-				$ftp = FtpClient::getInstance($FTPOptions['host'], $FTPOptions['port'], array(), $FTPOptions['user'], $FTPOptions['pass']);
-
-				// Translate path for the FTP account and use FTP write buffer to file
-				$file = $pathObject->clean(str_replace(WPBOOKINGPRO_PATH_ROOT, $FTPOptions['root'], $file), '/');
-				$ret = $ftp->write($file, $buffer);
-			}
-			else
-			{
-				$file = $pathObject->clean($file);
-				$ret = is_int($wp_filesystem->put_contents($file, $buffer)) ? true : false;
-			}
-
-			return $ret;
-		}
-	}
+    }
 
 	/**
 	 * Append contents to a file

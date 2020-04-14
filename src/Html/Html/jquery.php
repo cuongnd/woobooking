@@ -177,7 +177,7 @@ JS
 		// Only attempt to load the component if it's supported in core and hasn't already been loaded
 		if (empty(static::$loaded[__METHOD__])) {
 			$doc = Factory::getDocument();
-			$doc->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css');
+			$doc->addStyleSheet('admin/resources/js/fontawesome-free-5.12.1/css/all.css');
 			static::$loaded[__METHOD__] = true;
 		}
 		return;
