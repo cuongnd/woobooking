@@ -635,7 +635,7 @@ class WooBookingOnWordpress
                     echo "please check file tructor xml";
                     die;
                 }
-                $title = asc_attr($title,'wpbookingpro');
+                $title = esc_attr($title,'wpbookingpro');
                 if (!$title) {
                     continue;
                 }
@@ -1301,7 +1301,7 @@ class WooBookingOnWordpress
                 ob_start();
                 ?>
                 <link rel="stylesheet/less" type="text/css"
-                      href="<?php echo (Factory::getRootUrlPlugin()) . "/" . WPBOOKINGPRO_PLUGIN_NAME . "/" . $src ?>"/>
+                      href="<?php echo (plugins_url()) . "/" . WPBOOKINGPRO_PLUGIN_NAME . "/" . $src ?>"/>
                 <?php
                 echo ob_get_clean();
             }

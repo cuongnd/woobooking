@@ -196,9 +196,11 @@ class woobooking_controller{
 
     }
     public static function ajax_action_task(){
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
         $input=Factory::getInput();
         $data = json_decode( $wp_filesystem->get_contents('php://input') );
         $task=$input->getString('task','');
@@ -313,9 +315,11 @@ class woobooking_controller{
 
     }
     public static function action_task(){
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
         $input=Factory::getInput();
         $data = json_decode( $wp_filesystem->get_contents('php://input') );
         $task=$input->getString('task','');

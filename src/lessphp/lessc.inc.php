@@ -91,9 +91,11 @@ class lessc {
 	}
 
 	protected function tryImport($importPath, $parentBlock, $out) {
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		if ($importPath[0] == "function" && $importPath[1] == "url") {
 			$importPath = $this->flattenList($importPath[2]);
 		}
@@ -993,9 +995,11 @@ class lessc {
 	 * @return string        formatted url(), either as a link or base64-encoded
 	 */
 	protected function lib_data_uri($value) {
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		$mime = ($value[0] === 'list') ? $value[2][0][2] : null;
 		$url = ($value[0] === 'list') ? $value[2][1][2][0] : $value[2][0];
 
@@ -1912,9 +1916,11 @@ class lessc {
 	}
 
 	public function compileFile($fname, $outFname = null) {
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		if (!is_readable($fname)) {
 			throw new Exception('load error: failed to find '.$fname);
 		}

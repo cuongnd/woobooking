@@ -274,9 +274,11 @@ abstract class HtmlFrontend
 	 */
 	protected static function getMd5Version($path)
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		$md5 = dirname($path) . '/MD5SUM';
 
 		if (file_exists($md5))

@@ -346,9 +346,11 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 	 */
 	public function loadFile($file, $format = 'JSON', $options = array())
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		$data = $wp_filesystem->get_contents($file);
 
 		return $this->loadString($data, $format, $options);

@@ -35,9 +35,11 @@ class InputJSON extends Input
 	 */
 	public function __construct(array $source = null, array $options = array())
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		if (isset($options['filter']))
 		{
 			$this->filter = $options['filter'];

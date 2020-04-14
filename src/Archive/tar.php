@@ -75,9 +75,11 @@ class NBArchiveTar implements ArchiveExtractable
 	 */
 	public function extract($archive, $destination, array $options = array())
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		$this->_data = null;
 		$this->_metadata = null;
 

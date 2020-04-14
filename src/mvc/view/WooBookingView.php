@@ -726,7 +726,7 @@ class WooBookingView extends CMSObject
             $this->header=$model->getHeader();
         }
         $this->view="default";
-        echo self::display("list");
+        echo (self::display("list"));
 
     }
     public function displayForm(){
@@ -735,6 +735,6 @@ class WooBookingView extends CMSObject
             $this->form=$model->getForm();
         }
         $this->view="default";
-        echo self::display("form");
+        echo (self::display("form"));
     }
 }

@@ -281,9 +281,11 @@ class Utility
     }
     // function to geocode address, it will return false if unable to geocode address
     function geocode($address){
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
         // url encode the address
         $address = urlencode($address);
 
@@ -510,7 +512,7 @@ class Utility
             echo (JUri::root().$compress_file);
             echo "</br>";
             echo "----ok-----";
-            echo substr($output,0,150);
+            echo (substr($output,0,150));
             echo "</br>";
             JFile::write(WPBOOKINGPRO_PATH_ROOT.DS.$compress_file, $output);
         }

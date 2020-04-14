@@ -420,9 +420,12 @@ class File
 	 */
 	public static function write($file, $buffer, $use_streams = false)
 	{
-        WP_Filesystem();
 
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		@set_time_limit(ini_get('max_execution_time'));
 
 		// If the destination directory doesn't exist we need to create it
@@ -489,9 +492,11 @@ class File
 	 */
 	public static function append($file, $buffer, $use_streams = false)
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		@set_time_limit(ini_get('max_execution_time'));
 
 		// If the file doesn't exist, just write instead of append

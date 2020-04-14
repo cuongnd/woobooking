@@ -135,9 +135,11 @@ if (has("w")) {
 
 		// try to compile it
 		if ($updated) {
-            WP_Filesystem();
-
             global $wp_filesystem;
+            if (empty($wp_filesystem)) {
+                require_once (ABSPATH . '/wp-admin/includes/file.php');
+                WP_Filesystem();
+            }
 			$last_action = time();
 
 			try {
@@ -227,9 +229,11 @@ function dumpWithoutParent($o, $alsoStrip=array()) {
 }
 
 try {
-    WP_Filesystem();
-
     global $wp_filesystem;
+    if (empty($wp_filesystem)) {
+        require_once (ABSPATH . '/wp-admin/includes/file.php');
+        WP_Filesystem();
+    }
 	$less = make_less($fname);
 	if (has("T", "X")) {
 		$parser = new lessc_parser($less, $fname);

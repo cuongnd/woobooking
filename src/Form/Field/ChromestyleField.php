@@ -172,9 +172,11 @@ class ChromestyleField extends FormFieldGroupedList
 	 */
 	protected function getTemplateModuleStyles()
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		$moduleStyles = array();
 
 		$templates = array($this->getSystemTemplate());

@@ -519,9 +519,11 @@ class WBPayment
 
     function writeToLog($data = null)
     {
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
         $dbg = ($data === null) ? ob_get_clean() : $data;
         if (!empty($dbg)) {
             $dbg = '-- ' . date('m.d.y H:i:s') . ' --' . (!empty($this->name) ? ('[' . $this->name . ']') : '') . "\r\n" . $dbg;

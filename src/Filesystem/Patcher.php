@@ -220,9 +220,11 @@ class Patcher
 	 */
 	public function addFile($filename, $root = '', $strip = 0)
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		return $this->add($wp_filesystem->get_contents($filename), $root, $strip);
 	}
 
@@ -502,9 +504,11 @@ class Patcher
 	 */
 	protected function &getSource($src)
 	{
-        WP_Filesystem();
-
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 		if (!isset($this->sources[$src]))
 		{
 			$this->sources[$src] = null;

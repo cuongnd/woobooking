@@ -713,9 +713,12 @@ final class Editor implements EditorInterface
      */
     public function save($image, $file, $type = null, $quality = null, $interlace = false, $permission = 0755)
     {
-        WP_Filesystem();
 
         global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
         if (null === $type) {
 
             $type = $this->_getImageTypeFromFileName($file); // Null given, guess type from file extension
