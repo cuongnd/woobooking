@@ -500,11 +500,10 @@ class Session implements \IteratorAggregate
 	{
         if (!$this->isActive())
         {
-
             $this->start();
         }
         $prev = $this->data->get($namespace . '.' . $name, null);
-		$this->data->set($namespace . '.' . $name, $value);
+        $this->data->set($namespace . '.' . $name, $value);
         return $prev;
 	}
 

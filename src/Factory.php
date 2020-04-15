@@ -181,7 +181,6 @@ class Factory
         {
             self::$session = self::createSession($options);
         }
-
         return self::$session;
     }
     /**
