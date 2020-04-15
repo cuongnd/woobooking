@@ -81,7 +81,7 @@ abstract class Html
         // Only attempt to load the component if it's supported in core and hasn't already been loaded
         if (empty(static::$loaded[__METHOD__])) {
             $doc = Factory::getDocument();
-            $doc->addScript('resources/js/form-serializeObject/jquery.serializeObject.min.js');
+            $doc->addScript('admin/resources/js/form-serializeObject/jquery.serializeObject.js');
             static::$loaded[__METHOD__] = true;
         }
         return;

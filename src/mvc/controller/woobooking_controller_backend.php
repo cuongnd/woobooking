@@ -74,6 +74,8 @@ class woobooking_controller_backend extends woobooking_controller{
             $data_post=$input->getArray($_POST);
         }
         $data_post=array_key_exists('data',$data_post)?$data_post['data']:$data_post;
+
+
         $data_post= $this->save($data_post);
 
 

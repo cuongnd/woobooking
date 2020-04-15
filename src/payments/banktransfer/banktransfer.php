@@ -18,8 +18,12 @@ class WBPaymentBanktransfer extends WBPayment {
 		'return_url' => array('RETURN_URL', 'input'),
 	);
 
-	function onAfterOrderConfirm(&$order,&$methods,$method_id) {
-		parent::onAfterOrderConfirm($order,$methods,$method_id);
+	function onAfterOrderConfirm(&$order,&$methods=null,$method_id=0) {
+        if(!isset($this->payment_params)){
+            echo "please config payment width bank account";
+            return false;
+        }
+
 		if($order->order_status != $this->payment_params->order_status)
 			$this->modifyOrder($order->order_id, $this->payment_params->order_status, (bool)@$this->payment_params->status_notif_email, false);
 
@@ -29,8 +33,6 @@ class WBPaymentBanktransfer extends WBPayment {
 		if(preg_match('#^[a-z0-9_]*$#i',$this->information)){
 			$this->information = WoobookingText::_($this->information);
 		}
-		$currencyClass = hikashop_get('class.currency');
-		$this->amount = $currencyClass->format($order->order_full_price,$order->order_currency_id);
 		$this->order_number = $order->order_number;
 
 		$this->return_url =& $this->payment_params->return_url;

@@ -45,6 +45,10 @@ class WBPaymentPaypal extends WBPayment
     function onAfterOrderConfirm(&$order,&$methods=null, $method_id=0)
     {
 
+        if(!isset($this->payment_params) && !isset($this->payment_params->email)){
+            echo "please config payment width paypal account";
+            return false;
+        }
         if (@$this->currency->currency_locale['int_frac_digits'] > 2)
             $this->currency->currency_locale['int_frac_digits'] = 2;
         $app = Factory::getApplication();

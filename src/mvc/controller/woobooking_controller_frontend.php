@@ -75,6 +75,7 @@ class woobooking_controller_frontend extends woobooking_controller{
             $data_post=$input->getArray($_POST);
         }
         $data_post=array_key_exists('data',$data_post)?$data_post['data']:$data_post;
+
         $data_post= $this->save($data_post);
 
 
@@ -202,7 +203,7 @@ class woobooking_controller_frontend extends woobooking_controller{
         $task=$input->getString('task','');
         $task=$task?$task:$data->task;
         list($controller,$task)=explode(".",$task);
-        
+
         $file_controller_path=WPBOOKINGPRO_PATH_COMPONENT."/controllers/".ucfirst($controller).".php";
         $file_short_controller_path=Utility::get_short_file_by_path($file_controller_path);
         $response=new stdClass();
