@@ -161,3 +161,16 @@ Database:	wpbookingpro_1
 Host:	localhost
 Username:	wpbookingpro_1
 Password:	tnr0itvB3P
+
+
+Thông tin tài khoản vào
+
+http://demo9.cmsmart.net/spaclub_tf/
+162.241.159.168
+
+tài khoản ftp
+demo9cmsmart
+V9bksGZxxN
+account wp-admin
+admin_nb/5EHi8qxHSxv)NgK
+

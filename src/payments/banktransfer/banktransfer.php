@@ -23,20 +23,7 @@ class WBPaymentBanktransfer extends WBPayment {
             echo "please config payment width bank account";
             return false;
         }
-
-		if($order->order_status != $this->payment_params->order_status)
-			$this->modifyOrder($order->order_id, $this->payment_params->order_status, (bool)@$this->payment_params->status_notif_email, false);
-
-		$this->removeCart = true;
-
-		$this->information = $this->payment_params->information;
-		if(preg_match('#^[a-z0-9_]*$#i',$this->information)){
-			$this->information = WoobookingText::_($this->information);
-		}
-		$this->order_number = $order->order_number;
-
-		$this->return_url =& $this->payment_params->return_url;
-
+		$this->bank_info =& $this->payment_params->bank_info;
 		return $this->showPage('end');
 
 	}
