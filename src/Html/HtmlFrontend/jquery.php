@@ -250,6 +250,7 @@ JS
         if (empty(static::$loaded[__METHOD__])) {
             $doc = Factory::getDocument();
             $doc->addScript('resources/js/form-serializeObject/jquery.serializeObject.js');
+            $doc->addScript('resources/js/form-serializeObject/jquery.serializeToJSON.js');
             static::$loaded[__METHOD__] = true;
         }
         return;
