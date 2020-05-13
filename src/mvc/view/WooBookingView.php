@@ -234,6 +234,13 @@ class WooBookingView extends CMSObject
             throw new Exception("Error:tpl <b>$tpl</b> not exits, please create it");
         }
     }
+    public function loadBlock($block){
+        $tmpl_short_path = "/blocks/block_$block/$block.php";
+        $tmpl_path = WPBOOKINGPRO_ROOT_PATH_PLUGIN . $tmpl_short_path;
+        if (file_exists($tmpl_path)) {
+            include $tmpl_path;
+        }
+    }
 
     public function loadSharedTemplate($template){
         list($template,$layout)=explode(".",$template);
