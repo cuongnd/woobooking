@@ -240,7 +240,7 @@ class WooBookingView extends CMSObject
         $open_source=Factory::getOpenSource();
         $plugin_name=WPBOOKINGPRO_PLUGIN_NAME;
         $template_path=get_template_directory();
-        $template1_path="$template_path/$plugin_name/".($open_source->is_backend_wordpress()?'admin/':"")."nb_apps/nb_woobooking/blocks/block_$block/$block.php";
+        $template1_path="$template_path/$plugin_name/".($open_source->is_backend_wordpress()?'admin/':"")."blocks/block_$block/$block.php";
         $template2_path= WPBOOKINGPRO_PATH_COMPONENT.$tmpl_short_path;
         if(file_exists($template1_path)){
             $tmpl_path= $template1_path;
